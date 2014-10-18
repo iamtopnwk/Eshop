@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">网店</string>
+    <string name="hello_world">你好世界!</string>
+    <string name="UserName">用户名</string>
+    <string name="Password">密码</string>
+    <string name="action_search">搜索</string>
+    <string name="action_notification">通知</string>
+    <string name="action_kart">购物车</string>
+    <string name="action_overflow">溢出</string>
+    <string name="action_settings">设置</string>
+    
+     <string name="drawer_open">滑块菜单中打开</string>
+    <string name="drawer_close">滑盖式菜单关闭</string>
+    
+    <!-- Nav Drawer Menu Items -->
+    <string-array name="nav_drawer_items">
+        <item >首页</item>
+        <item >找人</item>
+        <item >图片</item>
+        <item >社区</item>
+        <item >页</item>
+        <item >什么\的热</item>
+    </string-array>
+    
+    <!-- Nav Drawer List Item Icons -->
+    <!-- Keep them in order as the titles are in -->
+    <array name="nav_drawer_icons">
+        <item>@drawable/ic_home</item>
+        <item>@drawable/ic_people</item>
+        <item>@drawable/ic_photos</item>
+        <item>@drawable/ic_communities</item>
+        <item>@drawable/ic_pages</item>
+        <item>@drawable/ic_whats_hot</item>
+    </array>
+    
+    <!-- Content Description -->
+    <string name="desc_list_item_icon">项目图标</string>
+
+</resources>
