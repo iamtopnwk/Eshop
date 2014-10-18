@@ -32,6 +32,7 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.os.Build;
 
+//Main Activity
 public class EshopMainActivity extends Activity {
 	private DrawerLayout mDrawerLayout;
 	private ListView mDrawerList;
@@ -241,4 +242,3 @@ public class EshopMainActivity extends Activity {
 
 }
 
-/** Testing ***/

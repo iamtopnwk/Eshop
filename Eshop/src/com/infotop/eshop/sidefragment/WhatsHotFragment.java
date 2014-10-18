@@ -23,4 +23,3 @@ public class WhatsHotFragment extends Fragment {
         return rootView;
     }
 }
-/** Test **/
