@@ -1,6 +1,9 @@
-package com.infotop.eshop;
+package com.infotop.eshop.activities;
 
-import com.infotop.eshop.activities.EshopMainActivity;
+import com.infotop.eshop.R;
+import com.infotop.eshop.R.id;
+import com.infotop.eshop.R.layout;
+import com.infotop.eshop.R.menu;
 
 import android.app.Activity;
 import android.content.Intent;
