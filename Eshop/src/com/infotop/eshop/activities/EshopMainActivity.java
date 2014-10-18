@@ -240,3 +240,5 @@ public class EshopMainActivity extends Activity {
 	}
 
 }
+
+/** Testing ***/
