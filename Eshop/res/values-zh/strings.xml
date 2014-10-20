@@ -3,8 +3,6 @@
 
     <string name="app_name">网店</string>
     <string name="hello_world">你好世界!</string>
-    <string name="UserName">用户名</string>
-    <string name="Password">密码</string>
     <string name="action_search">搜索</string>
     <string name="action_notification">通知</string>
     <string name="action_kart">购物车</string>
@@ -12,6 +10,13 @@
     <string name="action_settings">设置</string>
     <string name="drawer_open">滑块菜单中打开</string>
     <string name="drawer_close">滑盖式菜单关闭</string>
+
+    <!-- Login in -->
+    <string name="ULogin">登录</string>
+    <string name="UserName">用户邮箱</string>
+    <string name="Password">密码</string>
+    <string name="Uforgot">忘记密码?</string>
+    <string name="Usignin">登录</string>
 
     <!-- Sign up -->
     <string name="RuserName">产品名称</string>

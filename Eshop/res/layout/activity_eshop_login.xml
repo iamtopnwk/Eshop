@@ -25,22 +25,15 @@
         </ImageView>
     </TableRow>
 
-    <TableRow
-        android:id="@+id/tableRow1"
+    <TextView
+        android:id="@+id/textView1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center_horizontal" >
-
-        <TextView
-            android:id="@+id/textView1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="Login"
-            android:textSize="24dp"
-            android:textStyle="bold" >
-        </TextView>
-    </TableRow>
+        android:gravity="center"
+        android:text="@string/ULogin"
+        android:textSize="24dp"
+        android:textStyle="bold" >
+    </TextView>
 
     <!-- Row2 Column2 -->
 
@@ -89,31 +82,12 @@
 
     <!-- Row4 Column1 -->
 
-    <TableRow
-        android:id="@+id/tableRow4"
+    <Button
+        android:id="@+id/button1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="right" >
-
-        <Button
-            android:id="@+id/button1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:onClick="getHomePage"
-            android:text="SignIn" />
-    </TableRow>
-
-    <!--
-    <LinearLayout>
-
-        <TextView
-            android:id="@+id/textView4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="60dp">
-        </TextView>
-    </LinearLayout>
-    -->
+        android:onClick="getHomePage"
+        android:text="@string/Usignin" />
 
     <LinearLayout>
 
@@ -122,7 +96,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
-            android:text="Forgot Password?"
+            android:text="@string/Uforgot"
             android:textSize="16dp" />
 
         <Button
@@ -132,7 +106,7 @@
             android:layout_marginLeft="10dp"
             android:layout_marginTop="30dp"
             android:onClick="signUp"
-            android:text="Sign Up"
+            android:text="@string/Rsignup"
             android:textSize="16dp" />
     </LinearLayout>
 
