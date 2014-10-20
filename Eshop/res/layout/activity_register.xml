@@ -39,13 +39,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/UserName"
-            android:textSize="16dp" />
+            android:textSize="12dp" />
 
         <EditText
-            android:id="@+id/editRText1"
-            android:layout_width="match_parent"
+            android:id="@+id/RuserName"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:ems="10" >
+            android:ems="10"
+            android:inputType="textPersonName" >
         </EditText>
     </TableRow>
 
@@ -60,11 +61,56 @@
             android:id="@+id/textRView3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/Password"
-            android:textSize="16dp" />
+            android:text="UserEmail"
+            android:textSize="12dp" />
 
         <EditText
-            android:id="@+id/editRText2"
+            android:id="@+id/RuserEmail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textEmailAddress" >
+        </EditText>
+    </TableRow>
+
+    <!-- Row4 Column4 -->
+
+    <TableRow
+        android:id="@+id/tableRow4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <TextView
+            android:id="@+id/textRView4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/Password"
+            android:textSize="12dp" />
+
+        <EditText
+            android:id="@+id/Rpassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textPassword" >
+        </EditText>
+    </TableRow>
+    <!-- Row5 Column5 -->
+
+    <TableRow
+        android:id="@+id/tableRow5"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <TextView
+            android:id="@+id/textRView5"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:text="Confirm Password"
+            android:textSize="12dp" />
+
+        <EditText
+            android:id="@+id/Rcpassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
@@ -72,19 +118,79 @@
         </EditText>
     </TableRow>
 
-    <!-- Row4 Column1 -->
+    <!-- Row6 Column6 -->
 
     <TableRow
-        android:id="@+id/tableRow4"
+        android:id="@+id/tableRow6"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="right" >
+        android:layout_height="wrap_content" >
 
-        <Button
-            android:id="@+id/button1"
+        <TextView
+            android:id="@+id/textRView6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Billing Address"
+            android:textSize="12dp" />
+
+        <EditText
+            android:id="@+id/Rbaddress"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:onClick="getRegisterPage"
-            android:text="Submit" />
+            android:ems="10"
+            android:inputType="textMultiLine" >
+        </EditText>
     </TableRow>
+
+    <!-- Row7 Column7 -->
+
+    <TableRow
+        android:id="@+id/tableRow7"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <TextView
+            android:id="@+id/textRView7"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:text="Shipping Address"
+            android:textSize="12dp" />
+
+        <EditText
+            android:id="@+id/Rsaddress"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textMultiLine" >
+        </EditText>
+    </TableRow>
+
+    <TableRow
+        android:id="@+id/tableRow8"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <TextView
+            android:id="@+id/textRView8"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:text="Mobile Number"
+            android:textSize="12dp" />
+
+        <EditText
+            android:id="@+id/Rmobile"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="phone" >
+        </EditText>
+    </TableRow>
+
+    <Button
+        android:id="@+id/button1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:onClick="getRegisterPage"
+        android:text="Submit" />
+
 </TableLayout>
