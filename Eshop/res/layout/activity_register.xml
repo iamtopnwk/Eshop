@@ -10,22 +10,14 @@
 
     <!-- Row1 Column1 -->
 
-    <TableRow
-        android:id="@+id/tableRow1"
+    <TextView
+        android:id="@+id/textRView1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center_horizontal" >
-
-        <TextView
-            android:id="@+id/textRView1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="Sign up"
-            android:textSize="24dp"
-            android:textStyle="bold" >
-        </TextView>
-    </TableRow>
+        android:gravity="center"
+        android:text="@string/Rsignup"
+        android:textSize="24dp"
+        android:textStyle="bold" />
 
     <!-- Row2 Column2 -->
 
@@ -38,7 +30,7 @@
             android:id="@+id/textRView2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/UserName"
+            android:text="@string/RuserName"
             android:textSize="12dp" />
 
         <EditText
@@ -61,7 +53,7 @@
             android:id="@+id/textRView3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="UserEmail"
+            android:text="@string/REmail"
             android:textSize="12dp" />
 
         <EditText
@@ -84,7 +76,7 @@
             android:id="@+id/textRView4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/Password"
+            android:text="@string/RPwd"
             android:textSize="12dp" />
 
         <EditText
@@ -106,7 +98,7 @@
             android:id="@+id/textRView5"
             android:layout_width="wrap_content"
             android:layout_height="40dp"
-            android:text="Confirm Password"
+            android:text="@string/RCPwd"
             android:textSize="12dp" />
 
         <EditText
@@ -129,7 +121,7 @@
             android:id="@+id/textRView6"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Billing Address"
+            android:text="@string/RBAdd"
             android:textSize="12dp" />
 
         <EditText
@@ -152,7 +144,7 @@
             android:id="@+id/textRView7"
             android:layout_width="wrap_content"
             android:layout_height="40dp"
-            android:text="Shipping Address"
+            android:text="@string/RSAdd"
             android:textSize="12dp" />
 
         <EditText
@@ -173,7 +165,7 @@
             android:id="@+id/textRView8"
             android:layout_width="wrap_content"
             android:layout_height="40dp"
-            android:text="Mobile Number"
+            android:text="@string/RMobile"
             android:textSize="12dp" />
 
         <EditText
@@ -191,6 +183,6 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:onClick="getRegisterPage"
-        android:text="Submit" />
+        android:text="@string/Rsubmit" />
 
 </TableLayout>

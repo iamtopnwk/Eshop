@@ -12,6 +12,16 @@
     <string name="action_settings">Settings</string>
     <string name="drawer_open">Slider Menu Opened</string>
     <string name="drawer_close">Slider Menu Closed</string>
+    <!-- Sign up -->
+    <string name="RuserName">Name</string>
+    <string name="REmail">Email</string>
+    <string name="RPwd">Password</string>
+    <string name="RCPwd">Confirm Password</string>
+    <string name="RBAdd">Billing Address</string>
+    <string name="RSAdd">Shipping Address</string>
+    <string name="RMobile">Mobile Number</string>
+    <string name="Rsubmit">Submit</string>
+     <string name="Rsignup">Registration</string>
 
     <!-- Nav Drawer Menu Items -->
     <string-array name="nav_drawer_items">

@@ -10,20 +10,30 @@
     <string name="action_kart">购物车</string>
     <string name="action_overflow">溢出</string>
     <string name="action_settings">设置</string>
-    
-     <string name="drawer_open">滑块菜单中打开</string>
+    <string name="drawer_open">滑块菜单中打开</string>
     <string name="drawer_close">滑盖式菜单关闭</string>
-    
+
+    <!-- Sign up -->
+    <string name="RuserName">产品名称</string>
+    <string name="REmail">电子邮件</string>
+    <string name="RPwd">密码</string>
+    <string name="RCPwd">确认密码</string>
+    <string name="RBAdd">计费  地址</string>
+    <string name="RSAdd">航运 地址</string>
+    <string name="RMobile">移动</string>
+    <string name="Rsubmit">提交</string>
+    <string name="Rsignup">注册</string>
+
     <!-- Nav Drawer Menu Items -->
     <string-array name="nav_drawer_items">
-        <item >首页</item>
-        <item >找人</item>
-        <item >图片</item>
-        <item >社区</item>
-        <item >页</item>
-        <item >什么\的热</item>
+        <item>首页</item>
+        <item>找人</item>
+        <item>图片</item>
+        <item>社区</item>
+        <item>页</item>
+        <item>什么\的热</item>
     </string-array>
-    
+
     <!-- Nav Drawer List Item Icons -->
     <!-- Keep them in order as the titles are in -->
     <array name="nav_drawer_icons">
@@ -34,7 +44,7 @@
         <item>@drawable/ic_pages</item>
         <item>@drawable/ic_whats_hot</item>
     </array>
-    
+
     <!-- Content Description -->
     <string name="desc_list_item_icon">项目图标</string>
 
