@@ -49,7 +49,7 @@
     </TextView>
 
     <ImageButton
-        android:id="@+id/button1"
+        android:id="@+id/cartBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/price"
@@ -57,18 +57,19 @@
         android:onClick="addToCart"
         android:src="@drawable/ic_add_to_cart" />
 
-    <Button
-        android:id="@+id/button2"
+    <ImageButton
+        android:id="@+id/buyBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/price"
         android:layout_marginLeft="15dp"
-        android:layout_toRightOf="@+id/button1"
+        android:layout_toRightOf="@+id/cartBtn"
+        android:src="@drawable/ic_buy"
         android:onClick="buyItem"
         android:text="@string/buy_item" />
 
     <ImageButton
-        android:id="@+id/button3"
+        android:id="@+id/wishlistBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
