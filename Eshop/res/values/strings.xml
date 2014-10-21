@@ -3,7 +3,6 @@
 
     <string name="app_name">Eshop</string>
     <string name="hello_world">Hello world!</string>
-    
     <string name="action_search">search</string>
     <string name="action_notification">Notification</string>
     <string name="action_kart">Cart List</string>
@@ -11,14 +10,14 @@
     <string name="action_settings">Settings</string>
     <string name="drawer_open">Slider Menu Opened</string>
     <string name="drawer_close">Slider Menu Closed</string>
-    
-    <!-- Login  -->
-     <string name="ULogin">Login</string>
+
+    <!-- Login -->
+    <string name="ULogin">Login</string>
     <string name="UserName">UserEmail</string>
     <string name="Password">Password</string>
     <string name="Uforgot">Forgot Password?</string>
     <string name="Usignin">Sign in</string>
-    
+
     <!-- Sign up -->
     <string name="RuserName">Name</string>
     <string name="REmail">Email</string>
@@ -28,7 +27,7 @@
     <string name="RSAdd">Shipping Address</string>
     <string name="RMobile">Mobile Number</string>
     <string name="Rsubmit">Submit</string>
-     <string name="Rsignup">Registration</string>
+    <string name="Rsignup">Registration</string>
 
     <!-- Nav Drawer Menu Items -->
     <string-array name="nav_drawer_items">
@@ -55,5 +54,11 @@
     <string name="desc_list_item_icon">Item Icon</string>
     <string name="title_activity_eshop_login">Login</string>
     <string name="title_activity_register">Sign Up</string>
+
+    <!-- Books List View -->
+    <string name="title_activity_product_details">Book Details</string>
+    <string name="wish_list">Wish List</string>
+    <string name="add_to_cart">Add To Cart</string>
+    <string name="buy_item">Buy</string>
 
 </resources>

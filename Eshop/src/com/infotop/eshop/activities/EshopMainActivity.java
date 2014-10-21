@@ -6,7 +6,7 @@ import com.infotop.eshop.R;
 import com.infotop.eshop.adapters.NavDrawerListAdapter;
 import com.infotop.eshop.model.NavDrawerItem;
 import com.infotop.eshop.sidefragment.CommunityFragment;
-import com.infotop.eshop.sidefragment.FindPeopleFragment;
+import com.infotop.eshop.sidefragment.BooksFragment;
 import com.infotop.eshop.sidefragment.HomeFragment;
 import com.infotop.eshop.sidefragment.PagesFragment;
 import com.infotop.eshop.sidefragment.PhotosFragment;
@@ -180,7 +180,7 @@ public class EshopMainActivity extends Activity {
 			fragment = new HomeFragment();
 			break;
 		case 1:
-			fragment = new FindPeopleFragment();
+			fragment = new BooksFragment();
 			break;
 		case 2:
 			fragment = new PhotosFragment();

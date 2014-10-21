@@ -33,6 +33,16 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.infotop.eshop.EshopLoginActivity" />
         </activity>
+        
+         <activity
+            android:name="com.infotop.eshop.activities.ProductDetailsActivity"
+            android:label="@string/title_activity_product_details"
+            android:parentActivityName="com.infotop.eshop.activities.EshopMainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.infotop.eshop.activities.EshopMainActivity" />
+        </activity>
+        
     </application>
 
 </manifest>
