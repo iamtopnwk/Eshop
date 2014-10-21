@@ -10,7 +10,7 @@ import com.infotop.eshop.sidefragment.BooksFragment;
 import com.infotop.eshop.sidefragment.HomeFragment;
 import com.infotop.eshop.sidefragment.PagesFragment;
 import com.infotop.eshop.sidefragment.PhotosFragment;
-import com.infotop.eshop.sidefragment.WhatsHotFragment;
+import com.infotop.eshop.sidefragment.ClothsFragment;
 
 import android.app.Activity;
 import android.app.ActionBar;
@@ -192,7 +192,7 @@ public class EshopMainActivity extends Activity {
 			fragment = new PagesFragment();
 			break;
 		case 5:
-			fragment = new WhatsHotFragment();
+			fragment = new ClothsFragment();
 			break;
 
 		default:
