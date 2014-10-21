@@ -16,13 +16,13 @@ import android.widget.Toast;
 
 public class RegisterActivity extends Activity {
 
-	private EditText userName;
-	private EditText userEmail;
-	private EditText userPwd;
-	private EditText userCPwd;
-	private EditText userBAdd;
-	private EditText userSAdd;
-	private EditText userMobile;
+	private EditText userName,userEmail,userPwd,userCPwd,userBAdd,userSAdd,userMobile;
+	//private EditText userEmail;
+	//private EditText userPwd;
+	//private EditText userCPwd;
+	//private EditText userBAdd;
+	//private EditText userSAdd;
+	//private EditText userMobile;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
