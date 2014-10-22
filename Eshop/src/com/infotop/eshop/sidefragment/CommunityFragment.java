@@ -17,7 +17,7 @@ public class CommunityFragment extends Fragment {
             Bundle savedInstanceState) {
  
         View rootView = inflater.inflate(R.layout.fragment_community, container, false);
-         
+         //text
         return rootView;
     }
 }
