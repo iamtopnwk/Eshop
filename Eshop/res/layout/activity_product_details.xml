@@ -88,527 +88,417 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal" >
 
-            <RelativeLayout
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content" >
-
-                <ImageView
-                    android:id="@+id/image1"
-                    android:layout_width="75dp"
-                    android:layout_height="75dp"
-                    android:src="@drawable/ic_book1" />
-
-                <TextView
-                    android:id="@+id/text1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/image1"
-                    android:text="Price: $102" />
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content" >
-
-                <ImageView
-                    android:id="@+id/image2"
-                    android:layout_width="75dp"
-                    android:layout_height="75dp"
-                    android:src="@drawable/ic_book2" />
-
-                <TextView
-                    android:id="@+id/text2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/image2"
-                    android:text="Price: $110" />
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content" >
-
-                <ImageView
-                    android:id="@+id/image3"
-                    android:layout_width="75dp"
-                    android:layout_height="75dp"
-                    android:src="@drawable/ic_book3" />
-
-                <TextView
-                    android:id="@+id/text3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/image3"
-                    android:text="Price: $40" />
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content" >
-
-                <ImageView
-                    android:id="@+id/image4"
-                    android:layout_width="75dp"
-                    android:layout_height="75dp"
-                    android:src="@drawable/ic_book4" />
-
-                <TextView
-                    android:id="@+id/text4"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/image4"
-                    android:text="Price: $65" />
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content" >
-
-                <ImageView
-                    android:id="@+id/image5"
-                    android:layout_width="75dp"
-                    android:layout_height="75dp"
-                    android:src="@drawable/ic_book5" />
-
-                <TextView
-                    android:id="@+id/text5"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/image5"
-                    android:text="Price: 73" />
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content" >
-
-                <ImageView
-                    android:id="@+id/image6"
-                    android:layout_width="75dp"
-                    android:layout_height="75dp"
-                    android:src="@drawable/ic_book6" />
-
-                <TextView
-                    android:id="@+id/text6"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/image6"
-                    android:text="Price: $86" />
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content" >
-
-                <ImageView
-                    android:id="@+id/image7"
-                    android:layout_width="75dp"
-                    android:layout_height="75dp"
-                    android:src="@drawable/ic_book7" />
-
-                <TextView
-                    android:id="@+id/text7"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/image7"
-                    android:text="Price: $89" />
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content" >
-
-                <ImageView
-                    android:id="@+id/image8"
-                    android:layout_width="75dp"
-                    android:layout_height="75dp"
-                    android:src="@drawable/ic_book8" />
-
-                <TextView
-                    android:id="@+id/text8"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/image8"
-                    android:text="Price: $86" />
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content" >
-
-                <ImageView
-                    android:id="@+id/image9"
-                    android:layout_width="75dp"
-                    android:layout_height="75dp"
-                    android:src="@drawable/ic_book9" />
-
-                <TextView
-                    android:id="@+id/text9"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/image9"
-                    android:text="Price: $86" />
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content" >
-
-                <ImageView
-                    android:id="@+id/image10"
-                    android:layout_width="75dp"
-                    android:layout_height="75dp"
-                    android:src="@drawable/ic_book10" />
-
-                <TextView
-                    android:id="@+id/text10"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/image10"
-                    android:text="Price: $86" />
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content" >
-
-                <ImageView
-                    android:id="@+id/image11"
-                    android:layout_width="75dp"
-                    android:layout_height="75dp"
-                    android:src="@drawable/ic_book11" />
-
-                <TextView
-                    android:id="@+id/text11"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/image11"
-                    android:text="Price: $86" />
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content" >
-
-                <ImageView
-                    android:id="@+id/image12"
-                    android:layout_width="75dp"
-                    android:layout_height="75dp"
-                    android:src="@drawable/ic_book12" />
-
-                <TextView
-                    android:id="@+id/text12"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/image12"
-                    android:text="Price: $86" />
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content" >
-
-                <ImageView
-                    android:id="@+id/image13"
-                    android:layout_width="75dp"
-                    android:layout_height="75dp"
-                    android:src="@drawable/ic_book13" />
-
-                <TextView
-                    android:id="@+id/text13"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/image13"
-                    android:text="Price: $86" />
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content" >
-
-                <ImageView
-                    android:id="@+id/image14"
-                    android:layout_width="75dp"
-                    android:layout_height="75dp"
-                    android:src="@drawable/ic_book14" />
-
-                <TextView
-                    android:id="@+id/text14"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/image14"
-                    android:text="Price: $86" />
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content" >
-
-                <ImageView
-                    android:id="@+id/image15"
-                    android:layout_width="75dp"
-                    android:layout_height="75dp"
-                    android:src="@drawable/ic_book15" />
-
-                <TextView
-                    android:id="@+id/text15"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/image15"
-                    android:text="Price: $86" />
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content" >
-
-                <ImageView
-                    android:id="@+id/image16"
-                    android:layout_width="75dp"
-                    android:layout_height="75dp"
-                    android:src="@drawable/ic_book16" />
-
-                <TextView
-                    android:id="@+id/text16"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/image16"
-                    android:text="Price: $86" />
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content" >
-
-                <ImageView
-                    android:id="@+id/image17"
-                    android:layout_width="75dp"
-                    android:layout_height="75dp"
-                    android:src="@drawable/ic_book17" />
-
-                <TextView
-                    android:id="@+id/text17"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/image17"
-                    android:text="Price: $86" />
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content" >
-
-                <ImageView
-                    android:id="@+id/image18"
-                    android:layout_width="75dp"
-                    android:layout_height="75dp"
-                    android:src="@drawable/ic_book18" />
-
-                <TextView
-                    android:id="@+id/text18"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/image18"
-                    android:text="Price: $86" />
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content" >
-
-                <ImageView
-                    android:id="@+id/image19"
-                    android:layout_width="75dp"
-                    android:layout_height="75dp"
-                    android:src="@drawable/ic_book19" />
-
-                <TextView
-                    android:id="@+id/text19"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/image19"
-                    android:text="Price: $86" />
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content" >
-
-                <ImageView
-                    android:id="@+id/image20"
-                    android:layout_width="75dp"
-                    android:layout_height="75dp"
-                    android:src="@drawable/ic_book20" />
-
-                <TextView
-                    android:id="@+id/text20"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/image20"
-                    android:text="Price: $86" />
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content" >
-
-                <ImageView
-                    android:id="@+id/image21"
-                    android:layout_width="75dp"
-                    android:layout_height="75dp"
-                    android:src="@drawable/ic_book21" />
-
-                <TextView
-                    android:id="@+id/text21"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/image21"
-                    android:text="Price: $86" />
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content" >
-
-                <ImageView
-                    android:id="@+id/image22"
-                    android:layout_width="75dp"
-                    android:layout_height="75dp"
-                    android:src="@drawable/ic_book22" />
-
-                <TextView
-                    android:id="@+id/text22"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/image22"
-                    android:text="Price: $86" />
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content" >
-
-                <ImageView
-                    android:id="@+id/image23"
-                    android:layout_width="75dp"
-                    android:layout_height="75dp"
-                    android:src="@drawable/ic_book23" />
-
-                <TextView
-                    android:id="@+id/text23"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/image23"
-                    android:text="Price: $86" />
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content" >
-
-                <ImageView
-                    android:id="@+id/image24"
-                    android:layout_width="75dp"
-                    android:layout_height="75dp"
-                    android:src="@drawable/ic_book24" />
-
-                <TextView
-                    android:id="@+id/text24"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/image24"
-                    android:text="Price: $86" />
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content" >
-
-                <ImageView
-                    android:id="@+id/image25"
-                    android:layout_width="75dp"
-                    android:layout_height="75dp"
-                    android:src="@drawable/ic_book25" />
-
-                <TextView
-                    android:id="@+id/text25"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/image25"
-                    android:text="Price: $86" />
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content" >
-
-                <ImageView
-                    android:id="@+id/image26"
-                    android:layout_width="75dp"
-                    android:layout_height="75dp"
-                    android:src="@drawable/ic_book26" />
-
-                <TextView
-                    android:id="@+id/text26"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/image26"
-                    android:text="Price: $86" />
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content" >
-
-                <ImageView
-                    android:id="@+id/image27"
-                    android:layout_width="75dp"
-                    android:layout_height="75dp"
-                    android:src="@drawable/ic_book27" />
-
-                <TextView
-                    android:id="@+id/text27"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/image27"
-                    android:text="Price: $86" />
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content" >
-
-                <ImageView
-                    android:id="@+id/image28"
-                    android:layout_width="75dp"
-                    android:layout_height="75dp"
-                    android:src="@drawable/ic_book28" />
-
-                <TextView
-                    android:id="@+id/text28"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/image28"
-                    android:text="Price: $86" />
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content" >
-
-                <ImageView
-                    android:id="@+id/image29"
-                    android:layout_width="75dp"
-                    android:layout_height="75dp"
-                    android:src="@drawable/ic_book29" />
-
-                <TextView
-                    android:id="@+id/text29"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/image29"
-                    android:text="Price: $86" />
-            </RelativeLayout>
+            <RelativeLayout 
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content">
+            <ImageView android:id="@+id/image1"
+                 android:layout_width="75dp"
+                 android:layout_height="75dp"
+                 android:src="@drawable/ic_book1"/>
+            <TextView android:id="@+id/text1"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:layout_below="@+id/image1"
+                  android:text="Price: $102"/>
+        </RelativeLayout>
+        
+        <RelativeLayout 
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content">
+            <ImageView android:id="@+id/image2"
+                 android:layout_width="75dp"
+                 android:layout_height="75dp"
+                 android:src="@drawable/ic_book2"/>
+            <TextView android:id="@+id/text2"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:layout_below="@+id/image2"
+                  android:text="Price: $110"/>
+        </RelativeLayout>
+        
+        <RelativeLayout 
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content">
+            
+            <ImageView android:id="@+id/image3"
+                 android:layout_width="75dp"
+                 android:layout_height="75dp"
+                 android:src="@drawable/ic_book3"/>
+            
+            <TextView android:id="@+id/text3"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  
+                  android:layout_below="@+id/image3"
+                  android:text="Price: $40"/>
+        </RelativeLayout>
+        
+        <RelativeLayout 
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content">
+            <ImageView android:id="@+id/image4"
+                 android:layout_width="75dp"
+                 android:layout_height="75dp"
+                 android:src="@drawable/ic_book4"/>
+            <TextView android:id="@+id/text4"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:layout_below="@+id/image4"
+                  android:text="Price: $65"/>
+        </RelativeLayout>
+        
+        <RelativeLayout 
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content">
+            <ImageView android:id="@+id/image5"
+                 android:layout_width="75dp"
+                 android:layout_height="75dp"
+                 android:src="@drawable/ic_book5"/>
+            <TextView android:id="@+id/text5"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:layout_below="@+id/image5"
+                  android:text="Price: 73"/>
+        </RelativeLayout>
+        
+        <RelativeLayout 
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content">
+            <ImageView android:id="@+id/image6"
+                 android:layout_width="75dp"
+                 android:layout_height="75dp"
+                 android:src="@drawable/ic_book6"/>
+            <TextView android:id="@+id/text6"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:layout_below="@+id/image6"
+                  android:text="Price: $86"/>
+        </RelativeLayout>
+        
+         <RelativeLayout 
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content">
+            <ImageView android:id="@+id/image7"
+                 android:layout_width="75dp"
+                 android:layout_height="75dp"
+                 android:src="@drawable/ic_book7"/>
+            <TextView android:id="@+id/text7"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:layout_below="@+id/image7"
+                  android:text="Price: $89"/>
+        </RelativeLayout>
+         <RelativeLayout 
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content">
+            <ImageView android:id="@+id/image8"
+                 android:layout_width="75dp"
+                 android:layout_height="75dp"
+                 android:src="@drawable/ic_book8"/>
+            <TextView android:id="@+id/text8"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:layout_below="@+id/image8"
+                  android:text="Price: $320"/>
+        </RelativeLayout>
+        
+         <RelativeLayout 
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content">
+            <ImageView android:id="@+id/image9"
+                 android:layout_width="75dp"
+                 android:layout_height="75dp"
+                 android:src="@drawable/ic_book9"/>
+            <TextView android:id="@+id/text9"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:layout_below="@+id/image9"
+                  android:text="Price: $326"/>
+        </RelativeLayout>
+        
+          <RelativeLayout 
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content">
+            <ImageView android:id="@+id/image10"
+                 android:layout_width="75dp"
+                 android:layout_height="75dp"
+                 android:src="@drawable/ic_book10"/>
+            <TextView android:id="@+id/text10"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:layout_below="@+id/image10"
+                  android:text="Price: $560"/>
+        </RelativeLayout>
+        
+           <RelativeLayout 
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content">
+            <ImageView android:id="@+id/image11"
+                 android:layout_width="75dp"
+                 android:layout_height="75dp"
+                 android:src="@drawable/ic_book11"/>
+            <TextView android:id="@+id/text11"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:layout_below="@+id/image11"
+                  android:text="Price: $143"/>
+        </RelativeLayout>
+        
+            <RelativeLayout 
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content">
+            <ImageView android:id="@+id/image12"
+                 android:layout_width="75dp"
+                 android:layout_height="75dp"
+                 android:src="@drawable/ic_book12"/>
+            <TextView android:id="@+id/text12"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:layout_below="@+id/image12"
+                  android:text="Price: $150"/>
+        </RelativeLayout>
+        
+             <RelativeLayout 
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content">
+            <ImageView android:id="@+id/image13"
+                 android:layout_width="75dp"
+                 android:layout_height="75dp"
+                 android:src="@drawable/ic_book13"/>
+            <TextView android:id="@+id/text13"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:layout_below="@+id/image13"
+                  android:text="Price: $120"/>
+        </RelativeLayout>
+        
+              <RelativeLayout 
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content">
+            <ImageView android:id="@+id/image14"
+                 android:layout_width="75dp"
+                 android:layout_height="75dp"
+                 android:src="@drawable/ic_book14"/>
+            <TextView android:id="@+id/text14"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:layout_below="@+id/image14"
+                  android:text="Price: $430"/>
+        </RelativeLayout>
+        
+               <RelativeLayout 
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content">
+            <ImageView android:id="@+id/image15"
+                 android:layout_width="75dp"
+                 android:layout_height="75dp"
+                 android:src="@drawable/ic_book15"/>
+            <TextView android:id="@+id/text15"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:layout_below="@+id/image15"
+                  android:text="Price: $210"/>
+        </RelativeLayout>
+        
+                <RelativeLayout 
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content">
+            <ImageView android:id="@+id/image16"
+                 android:layout_width="75dp"
+                 android:layout_height="75dp"
+                 android:src="@drawable/ic_book16"/>
+            <TextView android:id="@+id/text16"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:layout_below="@+id/image16"
+                  android:text="Price: $540"/>
+        </RelativeLayout>
+        
+                 <RelativeLayout 
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content">
+            <ImageView android:id="@+id/image17"
+                 android:layout_width="75dp"
+                 android:layout_height="75dp"
+                 android:src="@drawable/ic_book17"/>
+            <TextView android:id="@+id/text17"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:layout_below="@+id/image17"
+                  android:text="Price: $15"/>
+        </RelativeLayout>
+        
+      
+        
+                   <RelativeLayout 
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content">
+            <ImageView android:id="@+id/image18"
+                 android:layout_width="75dp"
+                 android:layout_height="75dp"
+                 android:src="@drawable/ic_book18"/>
+            <TextView android:id="@+id/text18"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:layout_below="@+id/image18"
+                  android:text="Price: $45"/>
+        </RelativeLayout>
+        
+                    <RelativeLayout 
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content">
+            <ImageView android:id="@+id/image19"
+                 android:layout_width="75dp"
+                 android:layout_height="75dp"
+                 android:src="@drawable/ic_book19"/>
+            <TextView android:id="@+id/text19"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:layout_below="@+id/image19"
+                  android:text="Price: $42"/>
+        </RelativeLayout>
+        
+                     <RelativeLayout 
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content">
+            <ImageView android:id="@+id/image20"
+                 android:layout_width="75dp"
+                 android:layout_height="75dp"
+                 android:src="@drawable/ic_book20"/>
+            <TextView android:id="@+id/text20"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:layout_below="@+id/image20"
+                  android:text="Price: $75"/>
+        </RelativeLayout>
+        
+                      <RelativeLayout 
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content">
+            <ImageView android:id="@+id/image21"
+                 android:layout_width="75dp"
+                 android:layout_height="75dp"
+                 android:src="@drawable/ic_book21"/>
+            <TextView android:id="@+id/text21"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:layout_below="@+id/image21"
+                  android:text="Price: $65"/>
+        </RelativeLayout>
+        
+                       <RelativeLayout 
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content">
+            <ImageView android:id="@+id/image22"
+                 android:layout_width="75dp"
+                 android:layout_height="75dp"
+                 android:src="@drawable/ic_book22"/>
+            <TextView android:id="@+id/text22"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:layout_below="@+id/image22"
+                  android:text="Price: $143"/>
+        </RelativeLayout>
+        
+                        <RelativeLayout 
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content">
+            <ImageView android:id="@+id/image23"
+                 android:layout_width="75dp"
+                 android:layout_height="75dp"
+                 android:src="@drawable/ic_book23"/>
+            <TextView android:id="@+id/text23"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:layout_below="@+id/image23"
+                  android:text="Price: $320"/>
+        </RelativeLayout>
+        
+      
+        
+                          <RelativeLayout 
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content">
+            <ImageView android:id="@+id/image24"
+                 android:layout_width="75dp"
+                 android:layout_height="75dp"
+                 android:src="@drawable/ic_book24"/>
+            <TextView android:id="@+id/text24"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:layout_below="@+id/image24"
+                  android:text="Price: $70"/>
+        </RelativeLayout>
+        
+                           <RelativeLayout 
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content">
+            <ImageView android:id="@+id/image25"
+                 android:layout_width="75dp"
+                 android:layout_height="75dp"
+                 android:src="@drawable/ic_book25"/>
+            <TextView android:id="@+id/text25"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:layout_below="@+id/image25"
+                  android:text="Price: $156"/>
+        </RelativeLayout>
+        
+                            <RelativeLayout 
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content">
+            <ImageView android:id="@+id/image26"
+                 android:layout_width="75dp"
+                 android:layout_height="75dp"
+                 android:src="@drawable/ic_book26"/>
+            <TextView android:id="@+id/text26"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:layout_below="@+id/image26"
+                  android:text="Price: $436 "/>
+        </RelativeLayout>
+        
+                             <RelativeLayout 
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content">
+            <ImageView android:id="@+id/image27"
+                 android:layout_width="75dp"
+                 android:layout_height="75dp"
+                 android:src="@drawable/ic_book27"/>
+            <TextView android:id="@+id/text27"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:layout_below="@+id/image27"
+                  android:text="Price: $210"/>
+        </RelativeLayout>
+        
+                              <RelativeLayout 
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content">
+            <ImageView android:id="@+id/image28"
+                 android:layout_width="75dp"
+                 android:layout_height="75dp"
+                 android:src="@drawable/ic_book28"/>
+            <TextView android:id="@+id/text28"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:layout_below="@+id/image28"
+                  android:text="Price: $301"/>
+        </RelativeLayout>
+        
+         <RelativeLayout 
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content">
+            <ImageView android:id="@+id/image29"
+                 android:layout_width="75dp"
+                 android:layout_height="75dp"
+                 android:src="@drawable/ic_book29"/>
+            <TextView android:id="@+id/text29"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:layout_below="@+id/image29"
+                  android:text="Price: $430"/>
+        </RelativeLayout>
         </LinearLayout>
     </HorizontalScrollView>
 
