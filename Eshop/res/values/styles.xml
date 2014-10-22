@@ -17,8 +17,8 @@
     <style name="AppTheme" parent="AppBaseTheme">
 
         <!-- All customizations that are NOT specific to a particular API-level can go here. -->
-        <item name="android:windowBackground">@drawable/bc</item>
-        <item name="android:textColor">#FFFFFF</item>
+        <item name="android:windowBackground">@drawable/fea</item>
+        <item name="android:textColor">#ffffff</item>
     </style>
 
 </resources>
