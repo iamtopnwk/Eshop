@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import com.infotop.eshop.ClothsMainActivity;
 import com.infotop.eshop.R;
+import com.infotop.eshop.activities.ClothsMainActivity;
 import com.infotop.eshop.activities.ProductDetailsActivity;
 import com.infotop.eshop.adapters.ExpandableListAdapter;
 
