@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import com.infotop.eshop.R;
+import com.infotop.eshop.activities.BookListMainActivity;
 import com.infotop.eshop.activities.ClothsMainActivity;
 import com.infotop.eshop.activities.ProductDetailsActivity;
 import com.infotop.eshop.adapters.ExpandableListAdapter;
@@ -84,6 +85,16 @@ public class ClothsFragment extends Fragment {
 			public boolean onChildClick(ExpandableListView parent, View v,
 					int groupPosition, int childPosition, long id) {
 				// TODO Auto-generated method stub
+				if (listDataChild.get(listDataHeader.get(groupPosition))
+						.get(childPosition).equals("T-shirts")) {
+					System.out.println("This is Dictionary Activity");
+					Intent i = new Intent(getActivity(),
+							ClothsMainActivity.class);
+					// i.putExtra("book_item", product);
+					startActivity(i);
+				} else {
+					System.out.println("Non Dictionary Item");
+				}
 				return false;
 			}
 		});
@@ -104,15 +115,12 @@ public class ClothsFragment extends Fragment {
 		List<String> mens = new ArrayList<String>();
 		mens.add("T-shirts");
 		mens.add("Jeans");
-		mens.add("Shirts");
 		List<String> womens = new ArrayList<String>();
 		womens.add("Sarees");
 		womens.add("Kurtha");
-		womens.add("Jeans");
 		List<String> kids = new ArrayList<String>();
-		kids.add("T-shirts");
-		kids.add("Jeans");
 		kids.add("Shirts");
+		kids.add("Jeans");
 
 		listDataChild.put(listDataHeader.get(0), mens); // Header, Child data
 		listDataChild.put(listDataHeader.get(1), womens);
