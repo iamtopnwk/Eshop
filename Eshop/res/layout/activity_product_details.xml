@@ -1,110 +1,126 @@
-<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent" >
 
     <TableLayout
-        android:layout_width="wrap_content"
+        android:id="@+id/tablelayout1"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content" >
 
-        <TableRow
-            android:id="@+id/tableRow1"
+        <TableLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" >
 
-            <ImageView
-                android:id="@+id/logo"
-                android:layout_width="130dp"
-                android:layout_height="150dp" />
-
-            <TableLayout>
-
-                <TableRow
-                    android:id="@+id/tableRow11"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" >
-
-                    <Button
-                        android:id="@+id/wishlistBtn"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:onClick="addToWishlist"
-                        android:text="WishList" />
-                </TableRow>
-
-                <TableRow
-                    android:id="@+id/tableRow12"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" >
-
-                    <Button
-                        android:id="@+id/cartBtn"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:onClick="addToCart"
-                        android:text="Add to Cart" />
-                </TableRow>
-
-                <TableRow
-                    android:id="@+id/tableRow13"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" >
-
-                    <Button
-                        android:id="@+id/buyBtn"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:onClick="buyItem"
-                        android:text="Buy Now" />
-                </TableRow>
-            </TableLayout>
-        </TableRow>
-
-        <TableRow
-            android:id="@+id/tableRow2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" >
-
-            <TextView
-                android:id="@+id/bookName1"
-                android:layout_width="90dp"
-                android:layout_height="wrap_content"
-                android:textColor="#FFA400"
-                android:textStyle="bold" >
-            </TextView>
-        </TableRow>
-
-        <TableRow
-            android:id="@+id/tableRow3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" >
-
-            <TextView
-                android:id="@+id/authorName"
-                android:layout_width="90dp"
+            <TableRow
+                android:id="@+id/tableRow1"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content" >
-            </TextView>
-        </TableRow>
 
-        <TableRow
-            android:id="@+id/tableRow4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" >
+                <ImageView
+                    android:id="@+id/logo"
+                    android:layout_width="130dp"
+                    android:layout_height="150dp" />
 
-            <TextView
-                android:id="@+id/price"
-                android:layout_width="90dp"
+                <TableLayout>
+
+                    <TableRow
+                        android:id="@+id/tableRow11"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" >
+
+                        <Button
+                            android:id="@+id/wishlistBtn"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:onClick="addToWishlist"
+                            android:text="WishList" />
+                    </TableRow>
+
+                    <TableRow
+                        android:id="@+id/tableRow12"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" >
+
+                        <Button
+                            android:id="@+id/cartBtn"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:onClick="addToCart"
+                            android:text="Add to Cart" />
+                    </TableRow>
+
+                    <TableRow
+                        android:id="@+id/tableRow13"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" >
+
+                        <Button
+                            android:id="@+id/buyBtn"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:onClick="buyItem"
+                            android:text="Buy Now" />
+                    </TableRow>
+                </TableLayout>
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/tableRow2"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content" >
-            </TextView>
-        </TableRow>
+
+                <TextView
+                    android:id="@+id/bookName1"
+                    android:layout_width="90dp"
+                    android:layout_height="wrap_content"
+                    android:textColor="#FFA400"
+                    android:textStyle="bold" >
+                </TextView>
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/tableRow3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" >
+
+                <TextView
+                    android:id="@+id/authorName"
+                    android:layout_width="90dp"
+                    android:layout_height="wrap_content" >
+                </TextView>
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/tableRow4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" >
+
+                <TextView
+                    android:id="@+id/price"
+                    android:layout_width="90dp"
+                    android:layout_height="wrap_content" >
+                </TextView>
+            </TableRow>
+        </TableLayout>
     </TableLayout>
 
-    <LinearLayout>
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tablelayout1"
+        android:layout_marginTop="60dp"
+        android:orientation="vertical" >
 
-        <ListView
-            android:id="@+id/listhorizontal"
+        <TextView
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" >
-        </ListView>
+            android:layout_height="wrap_content"
+            android:text="Similar Books" >
+        </TextView>
+
+        <com.infotop.eshop.adapters.HorizontalListView
+            android:id="@+id/listhorizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content" />
     </LinearLayout>
 
-</TableLayout>
+</RelativeLayout>

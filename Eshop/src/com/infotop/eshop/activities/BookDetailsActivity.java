@@ -3,6 +3,7 @@ package com.infotop.eshop.activities;
 //import com.infotop.eshop.activities.ProductDetailsHorizontalActivity;
 import com.infotop.eshop.R;
 import com.infotop.eshop.adapters.CustomListHorizontalAdapter;
+import com.infotop.eshop.adapters.HorizontalListView;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -31,7 +32,7 @@ public class BookDetailsActivity extends Activity {
 	Button buyBtn1;
 	Button wishlistBtn1;
 
-	ListView list;
+	HorizontalListView list;
 	String[] web = { "Oxford Dictionary", "Telugu Dictionary",
 			"Oriya Dictionary", "Oracle 10g", "C I O", "FootSteps",
 			"Church & Home", "Kill Zumbiles", "Doctor's Guide", "Oil Traders",
@@ -95,7 +96,7 @@ public class BookDetailsActivity extends Activity {
 
 		hAdapter = new CustomListHorizontalAdapter(this, web, imageId, price);
 		// Adapter Object set to a list
-		list = (ListView) findViewById(R.id.listhorizontal);
+		list = (HorizontalListView) findViewById(R.id.listhorizontal);
 		list.setAdapter(hAdapter);
 		// Click to any item
 		list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
