@@ -63,7 +63,7 @@
 
             <TextView
                 android:id="@+id/prName"
-                android:layout_width="wrap_content"
+                android:layout_width="90dp"
                 android:layout_height="wrap_content"
                 android:text="Medium Text"
                 android:textAppearance="?android:attr/textAppearanceMedium" />
@@ -76,7 +76,7 @@
 
             <TextView
                 android:id="@+id/prDescription"
-                android:layout_width="wrap_content"
+                android:layout_width="90dp"
                 android:layout_height="wrap_content"
                 android:text="Description" />
         </TableRow>
@@ -88,7 +88,7 @@
 
             <TextView
                 android:id="@+id/prPrice"
-                android:layout_width="wrap_content"
+                android:layout_width="90dp"
                 android:layout_height="wrap_content"
                 android:text="Price" />
         </TableRow>

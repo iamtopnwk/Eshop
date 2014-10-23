@@ -23,7 +23,7 @@ public class ClothDetailsActivity extends Activity {
 			R.drawable.img_tshirt3, R.drawable.img_tshirt4,
 			R.drawable.img_tshirt5 };
 
-	String[] productDescription = { "Denim Brand is very famous for reliablity", "Description2",
+	String[] productDescription = { "Description1", "Description2",
 			"Description3", "Description4", "Description5" };
 
 	String[] productPrice = { "Price: $102", "Price: $110", "Price: $40",
