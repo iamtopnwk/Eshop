@@ -23,7 +23,7 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
+        </activity>
         -->
         <activity
             android:name=".activities.EshopMainActivity"
@@ -58,12 +58,20 @@
                 android:value="com.infotop.eshop.activities.EshopMainActivity" />
         </activity>
         <activity
-            android:name="com.infotop.eshop.activities.BookListMainActivity"
+            android:name=".activities.BookListMainActivity"
             android:label="@string/title_activity_book_list_main"
             android:parentActivityName=".activities.EshopMainActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.infotop.eshop.activities.EshopMainActivity" />
+        </activity>
+        <activity
+            android:name="com.infotop.eshop.activities.ClothDetailsActivity"
+            android:label="@string/title_activity_cloth_details"
+            android:parentActivityName=".activities.ClothsMainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.infotop.eshop.activities.ClothsMainActivity" />
         </activity>
     </application>
 

@@ -2,7 +2,6 @@ package com.infotop.eshop.activities;
 
 //import com.infotop.eshop.activities.ProductDetailsHorizontalActivity;
 import com.infotop.eshop.R;
-
 import com.infotop.eshop.adapters.CustomListHorizontalAdapter;
 
 import android.app.Activity;
@@ -13,7 +12,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
-
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -25,12 +24,12 @@ import android.widget.Toast;
 
 public class ProductDetailsActivity extends Activity {
 
-	String bookName = null;
+	Long position = null;
 
 	// adding CartButton,WishlistButton,BuyButton
-	ImageButton cartBtn1;
-	ImageButton buyBtn1;
-	ImageButton wishlistBtn1;
+	Button cartBtn1;
+	Button buyBtn1;
+	Button wishlistBtn1;
 
 	ListView list;
 	String[] web = { "Oxford Dictionary", "Telugu Dictionary",
@@ -53,6 +52,17 @@ public class ProductDetailsActivity extends Activity {
 			R.drawable.ic_book24, R.drawable.ic_book25, R.drawable.ic_book26,
 			R.drawable.ic_book27, R.drawable.ic_book28, R.drawable.ic_book29 };
 
+	String[] author = { "Author:Pabitra", "Author:Balchander",
+			"Author: S.K Dutta", "Author: Devid", "Author: Dephenar L",
+			"Author: Rajesh P", "Author: Rakesh Menon", "Author: Snthil Kumar",
+			"Author: PrabaKaran", "Author: Rajesh", "Author: Arun K.",
+			"Author:Tian Xiangly", "Author: Mrs Leo", "Author: Chian Yang",
+			"Author: Sudeep ", "Author: Summy Darien", "Author:Petor Burg",
+			"Author: L.Kluzner", "Author: P.Sepherd", "Author: Sakil",
+			"Author: L.M Nahama", "Author: S.Babu", "Author: N Murthy",
+			"Author: S.pati", "Author: Z.Nelson", "Author: P.S Panda",
+			"Author: J K Mantri", "Author: J.M Tripathy", "Author: R.K Burma" };
+
 	String[] price = { "Price: $102", "Price: $110", "Price: $40",
 			"Price: $65", "Price: $73", "Price: $86", "Price: $89",
 			"Price: $320", "Price: $326", "Price: $560", "Price: $143",
@@ -62,37 +72,28 @@ public class ProductDetailsActivity extends Activity {
 			"Price: $70", "Price: $156", "Price: $436", "Price: $210",
 			"Price: $301", "Price: $430" };
 
+
 	CustomListHorizontalAdapter hAdapter;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_product_details);
-
-		// method declaration for corresponding buttons
-		addToCart();
-		buyItem();
-		addToWishlist();
-
-		TextView textView = (TextView) findViewById(R.id.bookName1);
-		TextView textView1 = (TextView) findViewById(R.id.authorName);
-		TextView textView2 = (TextView) findViewById(R.id.description);
-		TextView textView3 = (TextView) findViewById(R.id.price);
-		ImageView imageView = (ImageView) findViewById(R.id.logo);
-
 		// Get data from EshopMainActivity
 		Bundle extras = getIntent().getExtras();
-		bookName = extras.getString("book_item");
-
-		System.out.println(bookName);
-		if (bookName.equals("Oxford Dictionary")) {
-			imageView.setImageResource(R.drawable.ic_book1);
-			textView.setText("Oxford Dictionary");
-			textView1.setText("Author:Pabitra");
-			textView2.setText("Description: It's a famous Dictionary");
-			textView3.setText("Price: $72");
-		}
-
+		position = (long) extras.getInt("book_item");
+		for (int i = 0; i <= web.length; i++)
+			if (i == position) {
+				TextView tv = (TextView) findViewById(R.id.bookName1);
+				TextView tv1 = (TextView) findViewById(R.id.authorName);
+				TextView tv2 = (TextView) findViewById(R.id.price);
+				ImageView iv = (ImageView) findViewById(R.id.logo);
+				iv.setImageResource(imageId[i]);
+				tv.setText(web[i]);
+				tv1.setText(author[i]);
+				tv2.setText(price[i]);
+			}
+	
 		hAdapter = new CustomListHorizontalAdapter(this, web, imageId,price);
 		// Adapter Object set to a list
 		list = (ListView) findViewById(R.id.listhorizontal);
@@ -103,11 +104,11 @@ public class ProductDetailsActivity extends Activity {
 			public void onItemClick(AdapterView<?> parent, View view,
 					int position, long id) {
 
-				String products = (String) hAdapter.getItem(position);
+				//String products = (String) hAdapter.getItem(position);
 				// pass Data to other Activity
 				Intent i = new Intent(ProductDetailsActivity.this,
 						ProductDetailsActivity.class);
-				i.putExtra("book_item", products);
+				i.putExtra("book_item", position);
 				startActivity(i);
 
 				// Toast.makeText(BooksListViewActivity.this, "You Clicked at "
@@ -120,7 +121,7 @@ public class ProductDetailsActivity extends Activity {
 	// functionalities for cartBtn
 	public void addToCart() {
 
-		cartBtn1 = (ImageButton) findViewById(R.id.cartBtn);
+		cartBtn1 = (Button) findViewById(R.id.cartBtn);
 
 		cartBtn1.setOnClickListener(new OnClickListener() {
 
@@ -137,7 +138,7 @@ public class ProductDetailsActivity extends Activity {
 	// functionalities for buyBtn
 	public void buyItem() {
 
-		buyBtn1 = (ImageButton) findViewById(R.id.buyBtn);
+		buyBtn1 = (Button) findViewById(R.id.buyBtn);
 		buyBtn1.setOnClickListener(new OnClickListener() {
 
 			@Override
@@ -155,7 +156,7 @@ public class ProductDetailsActivity extends Activity {
 	// functionalities for wishlistBtn
 	public void addToWishlist() {
 
-		wishlistBtn1 = (ImageButton) findViewById(R.id.wishlistBtn);
+		wishlistBtn1 = (Button) findViewById(R.id.wishlistBtn);
 		wishlistBtn1.setOnClickListener(new OnClickListener() {
 
 			@Override

@@ -8,9 +8,12 @@ import com.infotop.eshop.adapters.CustomGridViewAdapter;
 import com.infotop.eshop.adapters.CustomListAdapter;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.ListView;
 
@@ -39,6 +42,22 @@ public class ClothsMainActivity extends Activity {
 		// Adapter Object set to a list
 		grid = (GridView) findViewById(R.id.clothsgridView);
 		grid.setAdapter(adapter);
+		grid.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+			@Override
+			public void onItemClick(AdapterView<?> parent, View view,
+					int position, long id) {
+
+				//String product = (String) adapter.getItem(position);
+				// pass Data to other Activity
+				Intent i = new Intent(ClothsMainActivity.this,
+						ClothDetailsActivity.class);
+				i.putExtra("book_item", position);
+				startActivity(i);
+
+				// Toast.makeText(BooksListViewActivity.this, "You Clicked at "
+				// +web[+ position], Toast.LENGTH_SHORT).show();
+			}
+		});
 	}
 
 	@Override

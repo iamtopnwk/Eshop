@@ -71,11 +71,11 @@ public class BookListMainActivity extends Activity {
 			public void onItemClick(AdapterView<?> parent, View view,
 					int position, long id) {
 
-				String product = (String) adapter.getItem(position);
+				//String product = (String) adapter.getItem(position);
 				// pass Data to other Activity
 				Intent i = new Intent(BookListMainActivity.this,
 						ProductDetailsActivity.class);
-				i.putExtra("book_item", product);
+				i.putExtra("book_item", position);
 				startActivity(i);
 
 				// Toast.makeText(BooksListViewActivity.this, "You Clicked at "

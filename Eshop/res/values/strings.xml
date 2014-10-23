@@ -62,5 +62,6 @@
     <string name="buy_item">Buy</string>
     <string name="title_activity_cloths_main">ClothsMainActivity</string>
     <string name="title_activity_book_list_main">BookListMainActivity</string>
+    <string name="title_activity_cloth_details">ClothDetailsActivity</string>
 
 </resources>

@@ -12,7 +12,7 @@
             android:layout_height="wrap_content" >
 
             <ImageView
-                android:id="@+id/logo"
+                android:id="@+id/prImage"
                 android:layout_width="130dp"
                 android:layout_height="150dp" />
 
@@ -24,36 +24,33 @@
                     android:layout_height="wrap_content" >
 
                     <Button
-                        android:id="@+id/wishlistBtn"
+                        android:id="@+id/button1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:onClick="addToWishlist"
                         android:text="WishList" />
                 </TableRow>
 
                 <TableRow
-                    android:id="@+id/tableRow12"
+                     android:id="@+id/tableRow12"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" >
 
                     <Button
-                        android:id="@+id/cartBtn"
+                        android:id="@+id/button2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:onClick="addToCart"
                         android:text="Add to Cart" />
                 </TableRow>
 
                 <TableRow
-                    android:id="@+id/tableRow13"
+                     android:id="@+id/tableRow13"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" >
 
                     <Button
-                        android:id="@+id/buyBtn"
+                        android:id="@+id/button3"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:onClick="buyItem"
                         android:text="Buy Now" />
                 </TableRow>
             </TableLayout>
@@ -65,12 +62,11 @@
             android:layout_height="wrap_content" >
 
             <TextView
-                android:id="@+id/bookName1"
+                android:id="@+id/prName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="#FFA400"
-                android:textStyle="bold" >
-            </TextView>
+                android:text="Medium Text"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
         </TableRow>
 
         <TableRow
@@ -79,10 +75,10 @@
             android:layout_height="wrap_content" >
 
             <TextView
-                android:id="@+id/authorName"
+                android:id="@+id/prDescription"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" >
-            </TextView>
+                android:layout_height="wrap_content"
+                android:text="Description" />
         </TableRow>
 
         <TableRow
@@ -91,20 +87,17 @@
             android:layout_height="wrap_content" >
 
             <TextView
-                android:id="@+id/price"
+                android:id="@+id/prPrice"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" >
-            </TextView>
+                android:layout_height="wrap_content"
+                android:text="Price" />
         </TableRow>
-    </TableLayout>
 
-    <LinearLayout>
-
-        <ListView
-            android:id="@+id/listhorizontal"
+        <TableRow
+            android:id="@+id/tableRow5"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" >
-        </ListView>
-    </LinearLayout>
+        </TableRow>
+    </TableLayout>
 
 </TableLayout>
