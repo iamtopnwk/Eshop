@@ -74,7 +74,7 @@ public class BookListMainActivity extends Activity {
 				//String product = (String) adapter.getItem(position);
 				// pass Data to other Activity
 				Intent i = new Intent(BookListMainActivity.this,
-						ProductDetailsActivity.class);
+						BookDetailsActivity.class);
 				i.putExtra("book_item", position);
 				startActivity(i);
 

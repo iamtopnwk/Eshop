@@ -41,8 +41,16 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.infotop.eshop.EshopLoginActivity" />
         </activity>
+         <activity
+            android:name=".activities.BookListMainActivity"
+            android:label="@string/title_activity_book_list_main"
+            android:parentActivityName=".activities.EshopMainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.infotop.eshop.activities.EshopMainActivity" />
+        </activity>
         <activity
-            android:name=".activities.ProductDetailsActivity"
+            android:name=".activities.BookDetailsActivity"
             android:label="@string/title_activity_product_details"
             android:parentActivityName=".activities.BookListMainActivity" >
             <meta-data
@@ -56,15 +64,7 @@
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.infotop.eshop.activities.EshopMainActivity" />
-        </activity>
-        <activity
-            android:name=".activities.BookListMainActivity"
-            android:label="@string/title_activity_book_list_main"
-            android:parentActivityName=".activities.EshopMainActivity" >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.infotop.eshop.activities.EshopMainActivity" />
-        </activity>
+        </activity>    
         <activity
             android:name="com.infotop.eshop.activities.ClothDetailsActivity"
             android:label="@string/title_activity_cloth_details"

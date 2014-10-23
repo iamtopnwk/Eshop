@@ -3,7 +3,7 @@ package com.infotop.eshop.adapters;
 import com.infotop.eshop.R;
 import com.infotop.eshop.R.id;
 import com.infotop.eshop.R.layout;
-import com.infotop.eshop.activities.ProductDetailsActivity;
+import com.infotop.eshop.activities.BookDetailsActivity;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;

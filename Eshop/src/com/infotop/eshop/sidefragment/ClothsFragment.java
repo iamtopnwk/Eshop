@@ -7,7 +7,7 @@ import java.util.List;
 import com.infotop.eshop.R;
 import com.infotop.eshop.activities.BookListMainActivity;
 import com.infotop.eshop.activities.ClothsMainActivity;
-import com.infotop.eshop.activities.ProductDetailsActivity;
+import com.infotop.eshop.activities.BookDetailsActivity;
 import com.infotop.eshop.adapters.ExpandableListAdapter;
 
 import android.app.Fragment;

@@ -22,7 +22,7 @@ import android.widget.Toast;
 //import com.infotop.bookslistview.BooksListViewActivity;
 //import com.infotop.bookslistview.R;
 
-public class ProductDetailsActivity extends Activity {
+public class BookDetailsActivity extends Activity {
 
 	Long position = null;
 
@@ -72,7 +72,6 @@ public class ProductDetailsActivity extends Activity {
 			"Price: $70", "Price: $156", "Price: $436", "Price: $210",
 			"Price: $301", "Price: $430" };
 
-
 	CustomListHorizontalAdapter hAdapter;
 
 	@Override
@@ -93,8 +92,8 @@ public class ProductDetailsActivity extends Activity {
 				tv1.setText(author[i]);
 				tv2.setText(price[i]);
 			}
-	
-		hAdapter = new CustomListHorizontalAdapter(this, web, imageId,price);
+
+		hAdapter = new CustomListHorizontalAdapter(this, web, imageId, price);
 		// Adapter Object set to a list
 		list = (ListView) findViewById(R.id.listhorizontal);
 		list.setAdapter(hAdapter);
@@ -104,10 +103,10 @@ public class ProductDetailsActivity extends Activity {
 			public void onItemClick(AdapterView<?> parent, View view,
 					int position, long id) {
 
-				//String products = (String) hAdapter.getItem(position);
+				// String products = (String) hAdapter.getItem(position);
 				// pass Data to other Activity
-				Intent i = new Intent(ProductDetailsActivity.this,
-						ProductDetailsActivity.class);
+				Intent i = new Intent(BookDetailsActivity.this,
+						BookDetailsActivity.class);
 				i.putExtra("book_item", position);
 				startActivity(i);
 
@@ -119,54 +118,30 @@ public class ProductDetailsActivity extends Activity {
 	}
 
 	// functionalities for cartBtn
-	public void addToCart() {
+	public void addToCart(View view) {
+		System.out.println("Add Cart Button");
 
-		cartBtn1 = (Button) findViewById(R.id.cartBtn);
+		Toast.makeText(BookDetailsActivity.this, "Your Item is Added to Cart",
+				Toast.LENGTH_SHORT).show();
 
-		cartBtn1.setOnClickListener(new OnClickListener() {
-
-			@Override
-			public void onClick(View arg0) {
-				Toast.makeText(ProductDetailsActivity.this,
-						"Your Item is Added to Cart", Toast.LENGTH_SHORT)
-						.show();
-
-			}
-		});
 	}
 
 	// functionalities for buyBtn
-	public void buyItem() {
+	public void buyItem(View view) {
+		System.out.println("Add Buy Button");
 
-		buyBtn1 = (Button) findViewById(R.id.buyBtn);
-		buyBtn1.setOnClickListener(new OnClickListener() {
-
-			@Override
-			public void onClick(View arg0) {
-
-				Toast.makeText(ProductDetailsActivity.this,
-						"your item is booked and go to payment details",
-						Toast.LENGTH_SHORT).show();
-
-			}
-		});
+		Toast.makeText(BookDetailsActivity.this,
+				"your item is booked and go to payment details",
+				Toast.LENGTH_SHORT).show();
 
 	}
 
 	// functionalities for wishlistBtn
-	public void addToWishlist() {
+	public void addToWishlist(View view) {
+		System.out.println("Add WishList Button");
 
-		wishlistBtn1 = (Button) findViewById(R.id.wishlistBtn);
-		wishlistBtn1.setOnClickListener(new OnClickListener() {
-
-			@Override
-			public void onClick(View arg0) {
-
-				Toast.makeText(ProductDetailsActivity.this,
-						"Your item is added to Wish List", Toast.LENGTH_SHORT)
-						.show();
-			}
-		});
+		Toast.makeText(BookDetailsActivity.this,
+				"Your item is added to Wish List", Toast.LENGTH_SHORT).show();
 	}
 
 	@Override
