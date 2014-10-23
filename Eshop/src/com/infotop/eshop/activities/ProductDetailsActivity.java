@@ -1,11 +1,9 @@
 package com.infotop.eshop.activities;
 
-//import com.infotop.bookslistview.ProductDetailsActivity;
+//import com.infotop.eshop.activities.ProductDetailsHorizontalActivity;
 import com.infotop.eshop.R;
-import com.infotop.eshop.R.drawable;
-import com.infotop.eshop.R.id;
-import com.infotop.eshop.R.layout;
-import com.infotop.eshop.adapters.CustomListAdapter;
+
+import com.infotop.eshop.adapters.CustomListHorizontalAdapter;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -15,7 +13,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
-import android.widget.Button;
+
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -55,17 +53,6 @@ public class ProductDetailsActivity extends Activity {
 			R.drawable.ic_book24, R.drawable.ic_book25, R.drawable.ic_book26,
 			R.drawable.ic_book27, R.drawable.ic_book28, R.drawable.ic_book29 };
 
-	String[] author = { "Author:Pabitra", "Author:Balchander",
-			"Author: S.K Dutta", "Author: Devid", "Author: Dephenar L",
-			"Author: Rajesh P", "Author: Rakesh Menon", "Author: Snthil Kumar",
-			"Author: PrabaKaran", "Author: Rajesh", "Author: Arun K.",
-			"Author:Tian Xiangly", "Author: Mrs Leo", "Author: Chian Yang",
-			"Author: Sudeep ", "Author: Summy Darien", "Author:Petor Burg",
-			"Author: L.Kluzner", "Author: P.Sepherd", "Author: Sakil",
-			"Author: L.M Nahama", "Author: S.Babu", "Author: N Murthy",
-			"Author: S.pati", "Author: Z.Nelson", "Author: P.S Panda",
-			"Author: J K Mantri", "Author: J.M Tripathy", "Author: R.K Burma" };
-
 	String[] price = { "Price: $102", "Price: $110", "Price: $40",
 			"Price: $65", "Price: $73", "Price: $86", "Price: $89",
 			"Price: $320", "Price: $326", "Price: $560", "Price: $143",
@@ -75,7 +62,7 @@ public class ProductDetailsActivity extends Activity {
 			"Price: $70", "Price: $156", "Price: $436", "Price: $210",
 			"Price: $301", "Price: $430" };
 
-	CustomListAdapter adapter;
+	CustomListHorizontalAdapter hAdapter;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -106,21 +93,21 @@ public class ProductDetailsActivity extends Activity {
 			textView3.setText("Price: $72");
 		}
 
-		adapter = new CustomListAdapter(this, web, imageId, author, price);
+		hAdapter = new CustomListHorizontalAdapter(this, web, imageId,price);
 		// Adapter Object set to a list
 		list = (ListView) findViewById(R.id.listhorizontal);
-		list.setAdapter(adapter);
+		list.setAdapter(hAdapter);
 		// Click to any item
 		list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view,
 					int position, long id) {
 
-				String product = (String) adapter.getItem(position);
+				String products = (String) hAdapter.getItem(position);
 				// pass Data to other Activity
 				Intent i = new Intent(ProductDetailsActivity.this,
 						ProductDetailsActivity.class);
-				i.putExtra("book_item", product);
+				i.putExtra("book_item", products);
 				startActivity(i);
 
 				// Toast.makeText(BooksListViewActivity.this, "You Clicked at "
@@ -179,6 +166,13 @@ public class ProductDetailsActivity extends Activity {
 						.show();
 			}
 		});
+	}
+
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		// Inflate the menu; this adds items to the action bar if it is present.
+		getMenuInflater().inflate(R.menu.book_list_main, menu);
+		return true;
 	}
 
 	@Override

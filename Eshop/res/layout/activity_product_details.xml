@@ -78,12 +78,18 @@
         android:src="@drawable/ic_wishlist"
         android:text="@string/wish_list" />
 
+   <LinearLayout 
+       
+       android:orientation="vertical"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:layout_marginTop="400dp">    
+        
     <ListView
         android:id="@+id/listhorizontal"
-        android:layout_below="@+id/buyBtn"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" 
-        android:scrollbars="horizontal">
+        android:layout_height="wrap_content">
     </ListView>
+    </LinearLayout> 
 
 </RelativeLayout>
