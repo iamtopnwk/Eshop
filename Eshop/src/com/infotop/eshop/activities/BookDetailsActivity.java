@@ -28,9 +28,9 @@ public class BookDetailsActivity extends Activity {
 	Long position = null;
 
 	// adding CartButton,WishlistButton,BuyButton
-	Button cartBtn1;
-	Button buyBtn1;
-	Button wishlistBtn1;
+	ImageButton cartBtn1;
+	ImageButton buyBtn1;
+	ImageButton wishlistBtn1;
 
 	HorizontalListView list;
 	String[] web = { "Oxford Dictionary", "Telugu Dictionary",

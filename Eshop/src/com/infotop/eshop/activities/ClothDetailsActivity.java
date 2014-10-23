@@ -9,12 +9,20 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class ClothDetailsActivity extends Activity {
 
 	Long position = null;
+
+	// adding CartButton,WishlistButton,BuyButton
+	ImageButton cartBtn1;
+	ImageButton buyBtn1;
+	ImageButton wishlistBtn1;
 
 	String[] productName = { "Denim", "T-shirt2", "T-shirt3", "T-shirt4",
 			"T-shirt5" };
@@ -46,6 +54,33 @@ public class ClothDetailsActivity extends Activity {
 				tv1.setText(productDescription[i]);
 				tv2.setText(productPrice[i]);
 			}
+	}
+
+	// functionalities for cartBtn
+	public void addToCart(View view) {
+		System.out.println("Add Cart Button");
+
+		Toast.makeText(ClothDetailsActivity.this, "Your Item is Added to Cart",
+				Toast.LENGTH_SHORT).show();
+
+	}
+
+	// functionalities for buyBtn
+	public void buyItem(View view) {
+		System.out.println("Add Buy Button");
+
+		Toast.makeText(ClothDetailsActivity.this,
+				"your item is booked and go to payment details",
+				Toast.LENGTH_SHORT).show();
+
+	}
+
+	// functionalities for wishlistBtn
+	public void addToWishlist(View view) {
+		System.out.println("Add WishList Button");
+
+		Toast.makeText(ClothDetailsActivity.this,
+				"Your item is added to Wish List", Toast.LENGTH_SHORT).show();
 	}
 
 	@Override

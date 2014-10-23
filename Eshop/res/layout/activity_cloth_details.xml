@@ -2,12 +2,9 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent" >
 
-<TableLayout
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent" >
-
     <TableLayout
-        android:layout_width="wrap_content"
+        android:id="@+id/tablelayout2"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content" >
 
         <TableRow
@@ -27,35 +24,38 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" >
 
-                    <Button
+                    <ImageButton
                         android:id="@+id/button1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="WishList" />
+                        android:onClick="addToWishlist"
+                        android:src="@drawable/wishlist" />
                 </TableRow>
 
                 <TableRow
-                     android:id="@+id/tableRow12"
+                    android:id="@+id/tableRow12"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" >
 
-                    <Button
+                    <ImageButton
                         android:id="@+id/button2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Add to Cart" />
+                        android:onClick="addToCart"
+                        android:src="@drawable/cart" />
                 </TableRow>
 
                 <TableRow
-                     android:id="@+id/tableRow13"
+                    android:id="@+id/tableRow13"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" >
 
-                    <Button
+                    <ImageButton
                         android:id="@+id/button3"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Buy Now" />
+                        android:onClick="buyItem"
+                        android:src="@drawable/buy_now" />
                 </TableRow>
             </TableLayout>
         </TableRow>
@@ -104,5 +104,4 @@
         </TableRow>
     </TableLayout>
 
-</TableLayout>
 </RelativeLayout>
