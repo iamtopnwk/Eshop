@@ -4,12 +4,16 @@ import com.infotop.eshop.R;
 import com.infotop.eshop.R.id;
 import com.infotop.eshop.R.layout;
 import com.infotop.eshop.R.menu;
+import com.infotop.eshop.adapters.CustomListHorizontalAdapter;
+import com.infotop.eshop.adapters.HorizontalListView;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -24,6 +28,8 @@ public class ClothDetailsActivity extends Activity {
 	ImageButton buyBtn1;
 	ImageButton wishlistBtn1;
 
+	HorizontalListView list;
+
 	String[] productName = { "Denim", "T-shirt2", "T-shirt3", "T-shirt4",
 			"T-shirt5" };
 
@@ -36,6 +42,8 @@ public class ClothDetailsActivity extends Activity {
 
 	String[] productPrice = { "Price: $102", "Price: $110", "Price: $40",
 			"Price: $65", "Price: $73" };
+
+	CustomListHorizontalAdapter hAdapter;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -54,6 +62,28 @@ public class ClothDetailsActivity extends Activity {
 				tv1.setText(productDescription[i]);
 				tv2.setText(productPrice[i]);
 			}
+		hAdapter = new CustomListHorizontalAdapter(this, productName,
+				productImage, productPrice);
+		// Adapter Object set to a list
+		list = (HorizontalListView) findViewById(R.id.listhorizontal);
+		list.setAdapter(hAdapter);
+		// Click to any item
+		list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+			@Override
+			public void onItemClick(AdapterView<?> parent, View view,
+					int position, long id) {
+
+				// String products = (String) hAdapter.getItem(position);
+				// pass Data to other Activity
+				Intent i = new Intent(ClothDetailsActivity.this,
+						ClothDetailsActivity.class);
+				i.putExtra("book_item", position);
+				startActivity(i);
+
+				// Toast.makeText(BooksListViewActivity.this, "You Clicked at "
+				// +web[+ position], Toast.LENGTH_SHORT).show();
+			}
+		});
 	}
 
 	// functionalities for cartBtn
