@@ -20,93 +20,90 @@
             <TableLayout>
 
                 <TableRow
+                    android:id="@+id/tableRow2"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content" >
+
+                    <TextView
+                        android:id="@+id/bookName1"
+                        android:layout_width="120dp"
+                        android:layout_height="wrap_content"
+                        android:text="Medium Text"
+                        android:textAppearance="?android:attr/textAppearanceMedium" >
+                    </TextView>
+
+                    <ImageView
+                        android:id="@+id/wishlistBtn"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:onClick="addToWishlist"
+                        android:src="@drawable/icon_wishlist" />
+                </TableRow>
+
+                <TableRow
+                    android:id="@+id/tableRow3"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content" >
+
+                    <TextView
+                        android:id="@+id/authorName"
+                        android:layout_width="90dp"
+                        android:layout_height="wrap_content"
+                        android:text="Author Name" >
+                    </TextView>
+                </TableRow>
+
+                <TableRow
+                    android:id="@+id/tableRow4"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content" >
+
+                    <TextView
+                        android:id="@+id/price"
+                        android:layout_width="90dp"
+                        android:layout_height="wrap_content"
+                        android:text="Price" >
+                    </TextView>
+                </TableRow>
+
+                <TableRow
                     android:id="@+id/tableRow11"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" >
-
-                    <ImageButton
-                        android:id="@+id/wishlistBtn"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:onClick="addToWishlist"
-                        android:src="@drawable/wishlist" />
-                </TableRow>
-
-                <TableRow
-                    android:id="@+id/tableRow12"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" >
-
-                    <ImageButton
-                        android:id="@+id/cartBtn"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:onClick="addToCart"
-                        android:src="@drawable/cart" />
-                </TableRow>
-
-                <TableRow
-                    android:id="@+id/tableRow13"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" >
-
-                    <ImageButton
-                        android:id="@+id/buyBtn"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:onClick="buyItem"
-                        android:src="@drawable/buy_now" />
                 </TableRow>
             </TableLayout>
-        </TableRow>
-
-        <TableRow
-            android:id="@+id/tableRow2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" >
-
-            <TextView
-                android:id="@+id/bookName1"
-                android:layout_width="120dp"
-                android:layout_height="wrap_content"
-                android:text="Medium Text"
-                android:textAppearance="?android:attr/textAppearanceMedium" >
-            </TextView>
-        </TableRow>
-
-        <TableRow
-            android:id="@+id/tableRow3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" >
-
-            <TextView
-                android:id="@+id/authorName"
-                android:layout_width="90dp"
-                android:layout_height="wrap_content"
-                android:text="Author Name" >
-            </TextView>
-        </TableRow>
-
-        <TableRow
-            android:id="@+id/tableRow4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" >
-
-            <TextView
-                android:id="@+id/price"
-                android:layout_width="90dp"
-                android:layout_height="wrap_content"
-                android:text="Price" >
-            </TextView>
         </TableRow>
     </TableLayout>
 
     <LinearLayout
+        android:id="@+id/linear1"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/tablelayout1"
+        android:layout_marginTop="230dp"
+        android:orientation="horizontal" >
+
+        <ImageButton
+            android:layout_marginLeft="60dp"
+            android:id="@+id/cartBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="addToCart"
+            android:src="@drawable/cart" />
+
+        <ImageButton
+            android:id="@+id/buyBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="buyItem"
+            android:src="@drawable/buy_now" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
         android:layout_marginTop="60dp"
-        android:orientation="vertical" >
+        android:orientation="vertical" 
+        android:layout_below="@+id/linear1">
 
         <TextView
             android:layout_width="wrap_content"
