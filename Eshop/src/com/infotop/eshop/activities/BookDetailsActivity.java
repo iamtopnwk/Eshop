@@ -78,7 +78,7 @@ public class BookDetailsActivity extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_product_details);
+		setContentView(R.layout.activity_book_details);
 		// Get data from EshopMainActivity
 		Bundle extras = getIntent().getExtras();
 		position = (long) extras.getInt("book_item");
