@@ -7,9 +7,10 @@ import com.infotop.eshop.adapters.NavDrawerListAdapter;
 import com.infotop.eshop.model.NavDrawerItem;
 import com.infotop.eshop.sidefragment.CommunityFragment;
 import com.infotop.eshop.sidefragment.BooksFragment;
+import com.infotop.eshop.sidefragment.ElectronicsFragment;
 import com.infotop.eshop.sidefragment.HomeFragment;
 import com.infotop.eshop.sidefragment.PagesFragment;
-import com.infotop.eshop.sidefragment.PhotosFragment;
+
 import com.infotop.eshop.sidefragment.ClothsFragment;
 
 import android.app.Activity;
@@ -183,7 +184,7 @@ public class EshopMainActivity extends Activity {
 			fragment = new BooksFragment();
 			break;
 		case 2:
-			fragment = new PhotosFragment();
+			fragment = new ElectronicsFragment();
 			break;
 		case 3:
 			fragment = new CommunityFragment();

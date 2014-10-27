@@ -1,0 +1,53 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+           
+    
+    >
+<RelativeLayout 
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/lay">
+    
+    <ImageView
+        android:id="@+id/grid_image"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:gravity="center_vertical" >
+    </ImageView>
+
+     <TextView
+         android:id="@+id/grid_text"
+         android:layout_width="fill_parent"
+         android:layout_height="wrap_content"
+         android:layout_weight="6"
+         android:layout_below="@+id/grid_image"
+         android:gravity="center_vertical" >
+
+    </TextView>
+    <TextView
+         android:id="@+id/grid_text1"
+         android:layout_width="fill_parent"
+         android:layout_height="wrap_content"
+         android:layout_weight="1"
+         android:textColor="#0000CD"
+         android:typeface="serif"
+         android:layout_below="@+id/grid_text"
+         android:gravity="center_vertical" >
+
+    </TextView></RelativeLayout>
+
+    <RatingBar
+         android:id="@+id/ratingBar"
+         android:layout_width="wrap_content"
+         android:layout_height="20dp"
+        
+         style="?android:attr/ratingBarStyleSmall"
+         android:numStars="5"
+         android:isIndicator="false"
+         android:stepSize="0.1"
+         android:layout_marginTop="150dp"
+         android:gravity="center_vertical"
+         />
+</RelativeLayout>

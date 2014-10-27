@@ -76,6 +76,24 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.infotop.eshop.activities.ClothsMainActivity" />
         </activity>
+        
+           <activity
+            android:name="com.infotop.eshop.activities.ElectronicsMainActivity"
+            android:label="@string/title_activity_electronics_details"
+            android:parentActivityName=".activities.EshopMainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.infotop.eshop.activities.ElectronicsMainActivity" />
+        </activity>
+        
+        <activity
+            android:name="com.infotop.eshop.activities.ElectronicsDetailsActivity"
+            android:label="@string/title_activity_electronics_details"
+            android:parentActivityName=".activities.ElectronicsMainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.infotop.eshop.activities.ElectronicsMainActivity" />
+        </activity>
     </application>
 
 </manifest>
