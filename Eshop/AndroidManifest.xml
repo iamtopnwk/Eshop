@@ -8,6 +8,9 @@
         android:minSdkVersion="16"
         android:targetSdkVersion="21" />
 
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
     <application
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
@@ -23,7 +26,7 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
+        </activity>
         -->
         <activity
             android:name=".activities.EshopMainActivity"
@@ -41,7 +44,7 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.infotop.eshop.EshopLoginActivity" />
         </activity>
-         <activity
+        <activity
             android:name=".activities.BookListMainActivity"
             android:label="@string/title_activity_book_list_main"
             android:parentActivityName=".activities.EshopMainActivity" >
@@ -64,7 +67,7 @@
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.infotop.eshop.activities.EshopMainActivity" />
-        </activity>    
+        </activity>
         <activity
             android:name="com.infotop.eshop.activities.ClothDetailsActivity"
             android:label="@string/title_activity_cloth_details"
