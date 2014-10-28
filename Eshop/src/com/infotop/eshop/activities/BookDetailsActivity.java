@@ -1,6 +1,8 @@
 package com.infotop.eshop.activities;
 
 //import com.infotop.eshop.activities.ProductDetailsHorizontalActivity;
+import java.util.ArrayList;
+
 import com.infotop.eshop.R;
 import com.infotop.eshop.adapters.CustomListHorizontalAdapter;
 import com.infotop.eshop.adapters.HorizontalListView;
@@ -80,20 +82,17 @@ public class BookDetailsActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_book_details);
 		// Get data from EshopMainActivity
-		Bundle extras = getIntent().getExtras();
-		position = (long) extras.getInt("book_item");
-		for (int i = 0; i <= web.length; i++)
-			if (i == position) {
-				TextView tv = (TextView) findViewById(R.id.bookName1);
-				TextView tv1 = (TextView) findViewById(R.id.authorName);
-				TextView tv2 = (TextView) findViewById(R.id.price);
-				ImageView iv = (ImageView) findViewById(R.id.logo);
-				iv.setImageResource(imageId[i]);
-				tv.setText(web[i]);
-				tv1.setText(author[i]);
-				tv2.setText(price[i]);
-			}
-
+		ArrayList<String> s=getIntent().getExtras().getStringArrayList("productData");
+		System.out.println("Product Name:"+ s.get(0));
+		TextView tv = (TextView) findViewById(R.id.bookName1);
+		TextView tv1 = (TextView) findViewById(R.id.authorName);
+		TextView tv2 = (TextView) findViewById(R.id.price);
+		ImageView iv = (ImageView) findViewById(R.id.logo);
+		tv.setText(s.get(1));
+		tv1.setText(s.get(2));
+		tv2.setText(s.get(3));
+		iv.setImageResource(Integer.valueOf(s.get(4)));
+		
 		hAdapter = new CustomListHorizontalAdapter(this, web, imageId, price);
 		// Adapter Object set to a list
 		list = (HorizontalListView) findViewById(R.id.listhorizontal);

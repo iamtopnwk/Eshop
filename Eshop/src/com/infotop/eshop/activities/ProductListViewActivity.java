@@ -16,6 +16,7 @@ import com.infotop.eshop.httpservice.HttpServiceHandler;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.Menu;
@@ -114,16 +115,18 @@ public class ProductListViewActivity extends Activity {
 				@Override
 				public void onItemClick(AdapterView<?> parent, View view,
 						int position, long id) {
-
+					ArrayList<String> productData = new ArrayList<String>();
+					productData.add(pdctId[position]);
+					productData.add(pdct[position]);
+					productData.add(pdesc[position]);
+					productData.add(price[position]);
+					productData.add(imgId[position].toString());
 					// String product = (String) adapter.getItem(position);
 					// pass Data to other Activity
-
-					if (position == 0) {
-					/*	Intent i = new Intent(EdealBooksMActivity.this,
-								EdealBooksMActivity.class);
-						i.putExtra("pcId", chld[position]);
-						startActivity(i);*/
-					}
+						Intent i = new Intent(ProductListViewActivity.this,
+								BookDetailsActivity.class);
+						i.putStringArrayListExtra("productData", productData);
+						startActivity(i);
 				}
 			});
 			// Close progress dialog
