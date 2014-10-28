@@ -66,6 +66,7 @@
       <string name="title_activity_electronics_details">ElectronicsMainActivity</string>
     
     <string name="title_activity_cloth_details">ClothDetailsActivity</string>
+     <string name="title_activity_product_list_view">Products List</string>
    
 
 </resources>
