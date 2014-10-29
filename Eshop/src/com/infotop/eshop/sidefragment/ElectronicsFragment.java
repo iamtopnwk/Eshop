@@ -1,145 +1,145 @@
 package com.infotop.eshop.sidefragment;
 
-
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
-import com.infotop.eshop.R;
-import com.infotop.eshop.activities.BookListMainActivity;
-import com.infotop.eshop.activities.ElectronicsMainActivity;
-import com.infotop.eshop.adapters.ExpandableListAdapter;
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 import android.app.Fragment;
+import android.app.ProgressDialog;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ExpandableListView;
-import android.widget.ExpandableListView.OnChildClickListener;
-import android.widget.ExpandableListView.OnGroupClickListener;
-import android.widget.ExpandableListView.OnGroupCollapseListener;
-import android.widget.ExpandableListView.OnGroupExpandListener;
+import android.widget.AdapterView;
+import android.widget.ListView;
+
+import com.infotop.eshop.R;
+import com.infotop.eshop.activities.ProductListViewActivity;
+import com.infotop.eshop.adapters.CategoryListAdapter;
+import com.infotop.eshop.httpservice.HttpServiceHandler;
 
 public class ElectronicsFragment extends Fragment {
-	
-	
-	ExpandableListAdapter listAdapter;
-	ExpandableListView expListView;
-	List<String> listDataHeader;
-	HashMap<String, List<String>> listDataChild;
-	
+
+	CategoryListAdapter listAdapter;
+	ListView list;
+	String[] chld;
+	Integer[] imgId;
+	String[] ccId;
+	String[] cdesc;
+	private static final String TAG_AADATA = "aaData";
+	private static final String TAG_CCNAME = "categoryName";
+	private static final String TAG_CCDESC = "categoryDescription";
+	private static final String TAG_CCid = "id";
+	static JSONObject jObj = null;
+	JSONArray childCategory = null;
+	Long totalRecords;
+
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 
 		View rootView = inflater.inflate(R.layout.fragment_electro, container,
 				false);
-		expListView = (ExpandableListView) rootView
-				.findViewById(R.id.expandableListView1);
-		prepareListData();
-		listAdapter = new ExpandableListAdapter(getActivity(), listDataHeader,
-				listDataChild);
+		list = (ListView) rootView.findViewById(R.id.subCatLListView);
+		// String parentCatId = getIntent().getExtras().getString("pcId");
 
-		// setting list adapter
-		expListView.setAdapter(listAdapter);
-		// Listview Group click listener
-		expListView.setOnGroupClickListener(new OnGroupClickListener() {
+		String serverURL = "http://192.168.8.160:8989/eshop/rest/ccategory/" + 2;
 
-			@Override
-			public boolean onGroupClick(ExpandableListView parent, View v,
-					int groupPosition, long id) {
-				/*
-				 * Toast.makeText(getActivity(),
-				 * listDataHeader.get(groupPosition), Toast.LENGTH_SHORT)
-				 * .show();
-				 */
-				return false;
-			}
-		});
-
-		// Listview Group expanded listener
-		expListView.setOnGroupExpandListener(new OnGroupExpandListener() {
-
-			@Override
-			public void onGroupExpand(int groupPosition) {
-
-			}
-		});
-
-		// Listview Group collasped listener
-		expListView.setOnGroupCollapseListener(new OnGroupCollapseListener() {
-
-			@Override
-			public void onGroupCollapse(int groupPosition) {
-
-			}
-		});
-
-		// Listview on child click listener
-		expListView.setOnChildClickListener(new OnChildClickListener() {
-
-			@Override
-			public boolean onChildClick(ExpandableListView parent, View v,
-					int groupPosition, int childPosition, long id) {
-				// TODO Auto-generated method stub
-				if (listDataChild.get(listDataHeader.get(groupPosition))
-						.get(childPosition).equals("Apple")) {
-					System.out.println("This is Electronics Activity");
-					Intent i = new Intent(getActivity(),
-							ElectronicsMainActivity.class);
-					// i.putExtra("book_item", product);
-					startActivity(i);
-				} else {
-					System.out.println("Non Dictionary Item");
-				}
-				return false;
-			}
-		});
-
+		// Use AsyncTask execute Method To Prevent ANR Problem
+		new LongOperation().execute(serverURL);
 		return rootView;
 	}
 
-	private void prepareListData() {
-		listDataHeader = new ArrayList<String>();
-		listDataChild = new HashMap<String, List<String>>();
+	private class LongOperation extends AsyncTask<String, Void, Void> {
+		private String pcontent;
+		private ProgressDialog dialog = new ProgressDialog(getActivity());
 
-		// Adding child data
-		listDataHeader.add("Laptops");
-		listDataHeader.add("Tablets");
-		listDataHeader.add("TVs");
+		protected void onPreExecute() {
+			// NOTE: You can call UI Element here.
 
-		// Adding child data
-		List<String> laptops = new ArrayList<String>();
-		laptops.add("Apple");
-		laptops.add("Dell");
-		laptops.add("Lenevo");
-		laptops.add("Sony");
-		laptops.add("Accer");
-		laptops.add("ThinkPad");
-		laptops.add("Samsung");
-		
-		List<String> tablets = new ArrayList<String>();
-		tablets.add("mi");
-		tablets.add("Samsung");
-		tablets.add("micromax");
-		tablets.add("Sony");
-		tablets.add("LG");
-		
-		List<String> tvs = new ArrayList<String>();
-		tvs.add("mi");
-		tvs.add("Sony");
-		tvs.add("LG");
-		tvs.add("Videocon");
-		tvs.add("Samsung");
-		
+			// Start Progress Dialog (Message)
 
-		listDataChild.put(listDataHeader.get(0), laptops); // Header, Child
-															// data
-		listDataChild.put(listDataHeader.get(1), tablets);
-		listDataChild.put(listDataHeader.get(2), tvs);
+			dialog.setMessage("Please wait..");
+			dialog.show();
+
+		}
+
+		@Override
+		protected Void doInBackground(String... urls) {
+
+			// Send data
+			try {
+				HttpServiceHandler hs = new HttpServiceHandler();
+				pcontent = hs.httpContent(urls[0]);
+				JSONObject jsonObj;
+				jsonObj = new JSONObject(pcontent);
+				childCategory = jsonObj.getJSONArray(TAG_AADATA);
+				chld = new String[childCategory.length()];
+				imgId = new Integer[childCategory.length()];
+				ccId = new String[childCategory.length()];
+				cdesc = new String[childCategory.length()];
+				List<String> ccName = new ArrayList<String>();
+				for (int i = 0; i < childCategory.length(); i++) {
+					JSONObject pc = childCategory.getJSONObject(i);
+					chld[i] = pc.getString(TAG_CCNAME);
+					ccId[i] = pc.getString(TAG_CCid);
+					cdesc[i] = pc.getString(TAG_CCDESC);
+					ccName.add(chld[i]);
+					System.out.println(chld[i]);
+					if (chld[i].equals("Samsung")) {
+						imgId[i] = R.drawable.samsung;
+						System.out.println(imgId[i]);
+					} else if (chld[i].equals("Sony")) {
+						imgId[i] = R.drawable.sony;
+						System.out.println(imgId[i]);
+					} else if (chld[i].equals("Lenevo")) {
+						imgId[i] = R.drawable.lenevo;
+						System.out.println(imgId[i]);
+					} else if (chld[i].equals("Dell")) {
+						imgId[i] = R.drawable.dell;
+						System.out.println(imgId[i]);
+					} else if (chld[i].equals("HP")) {
+						imgId[i] = R.drawable.hp;
+						System.out.println(imgId[i]);
+					}
+
+				}
+
+			} catch (Exception ex) {
+				System.out.println("Exception e:" + ex.getMessage());
+			}
+			/*****************************************************/
+			return null;
+		}
+
+		protected void onPostExecute(Void unused) {
+			dialog.dismiss();
+			// NOTE: You can call UI Element here.
+			listAdapter = new CategoryListAdapter(getActivity(), chld, imgId,
+					cdesc);
+			System.out.println("ListAdapter value is:" + listAdapter);
+			list.setAdapter(listAdapter);
+			list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+				@Override
+				public void onItemClick(AdapterView<?> parent, View view,
+						int position, long id) {
+
+					// String product = (String) adapter.getItem(position);
+					// pass Data to other Activity
+
+
+						Intent i = new Intent(getActivity(),
+								ProductListViewActivity.class);
+						i.putExtra("ccId", ccId[position]);
+						startActivity(i);
+					}
+			});
+			// Close progress dialog
+		}
+
 	}
-
-    
 }

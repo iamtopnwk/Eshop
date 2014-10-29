@@ -54,7 +54,7 @@ public class ElectronicsMainActivity extends  Activity  {
 		      R.drawable.lap6,
 		      R.drawable.lap7,
 		      R.drawable.vaio,
-		      R.drawable.sam,
+		      R.drawable.samsung,
 		      
 		     
 		  };

@@ -11,14 +11,21 @@ import org.json.JSONObject;
 
 import android.app.Fragment;
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ExpandableListView;
+import android.widget.Toast;
+import android.widget.ExpandableListView.OnChildClickListener;
 
 import com.infotop.eshop.R;
+import com.infotop.eshop.activities.BookDetailsActivity;
+import com.infotop.eshop.activities.ElectronicsMainActivity;
+import com.infotop.eshop.activities.ProductListViewActivity;
 import com.infotop.eshop.adapters.ExpandableListAdapter;
 import com.infotop.eshop.httpservice.HttpServiceHandler;
 
@@ -28,6 +35,7 @@ public class ClothsFragment extends Fragment {
 	ExpandableListView expListView;
 	List<String> listDataHeader;
 	HashMap<String, List<String>> listDataChild;
+	HashMap<String, List<String>> listDataChild1;
 	private static final String TAG_AADATA = "aaData";
 	private static final String TAG_PCNAME = "categoryName";
 	private static final String TAG_PCTRecrds = "iTotalRecords";
@@ -74,7 +82,6 @@ public class ClothsFragment extends Fragment {
 		@Override
 		protected Void doInBackground(String... urls) {
 			// TODO Auto-generated method stub
-			HttpContext localContext = new BasicHttpContext();
 
 			// Send data
 			try {
@@ -87,26 +94,32 @@ public class ClothsFragment extends Fragment {
 				String pcId;
 				listDataHeader = new ArrayList<String>();
 				listDataChild = new HashMap<String, List<String>>();
+				listDataChild1 = new HashMap<String, List<String>>();
 				for (int i = 0; i < parentCategory.length(); i++) {
 					JSONObject pc = parentCategory.getJSONObject(i);
 					prnt[i] = pc.getString(TAG_PCNAME);
 					pcId = pc.getString(TAG_PCid);
 					listDataHeader.add(prnt[i]);
 					List<String> pcName = new ArrayList<String>();
+					List<String> chidIdName = new ArrayList<String>();
 					ccontent = hs
 							.httpContent("http://192.168.8.160:8989/eshop/rest/subCategorybycatid/"
 									+ pcId);
 					JSONObject jsonObj1;
 					jsonObj1 = new JSONObject(ccontent);
 					childCategory = jsonObj1.getJSONArray(TAG_AADATA);
-					String[] chld = new String[100];
+					String[] chld = new String[childCategory.length()];
+					String[] chlId = new String[childCategory.length()];
 					for (int j = 0; j < childCategory.length(); j++) {
 						JSONObject cc = childCategory.getJSONObject(j);
 						chld[j] = cc.getString(TAG_CCNAME);
+						chlId[j] = cc.getString(TAG_CCid);
 						System.out.println(chld[j]);
 						pcName.add(chld[j]);
+						chidIdName.add(chlId[j]);
 					}
 					listDataChild.put(listDataHeader.get(i), pcName);
+					listDataChild1.put(listDataHeader.get(i), chidIdName);
 				}
 
 			} catch (Exception ex) {
@@ -124,7 +137,30 @@ public class ClothsFragment extends Fragment {
 			System.out.println("ListAdapter value is:" + listAdapter);
 			expListView.setAdapter(listAdapter);
 			// Close progress dialog
+			expListView.setOnChildClickListener(new OnChildClickListener() {
 
+				@Override
+				public boolean onChildClick(ExpandableListView parent, View v,
+						int groupPosition, int childPosition, long id) {
+					// TODO Auto-generated method stub
+					/*
+					 * Toast.makeText(getActivity(),
+					 * "The position of child category:"
+					 * +listDataChild1.get(listDataHeader.get(groupPosition))
+					 * .get(childPosition), Toast.LENGTH_SHORT).show();
+					 */
+					Intent i = new Intent(getActivity(),
+							ProductListViewActivity.class);
+					i.putExtra(
+							"ccId",
+							listDataChild1.get(
+									listDataHeader.get(groupPosition)).get(
+									childPosition));
+					startActivity(i);
+
+					return false;
+				}
+			});
 		}
 	}
 }

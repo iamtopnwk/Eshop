@@ -6,15 +6,27 @@
     <ImageView
         android:id="@+id/imageView1"
         android:layout_width="fill_parent"
-        android:layout_height="180dp"
-        android:src="@drawable/lapi" />
-
-    <ExpandableListView
-        android:id="@+id/expandableListView1"
-        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@+id/imageView1" >
-    </ExpandableListView>
+        android:src="@drawable/eshopper" />
 
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_below="@+id/imageView1"
+        android:orientation="vertical" >
+
+        <Button
+            android:id="@+id/btn1"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="5dp"
+            android:text="All LapTops Categories" />
+
+        <ListView
+            android:id="@+id/subCatLListView"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent" >
+        </ListView>
+    </LinearLayout>
 </RelativeLayout>

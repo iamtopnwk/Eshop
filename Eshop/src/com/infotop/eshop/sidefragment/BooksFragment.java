@@ -131,12 +131,11 @@ public class BooksFragment extends Fragment {
 					// String product = (String) adapter.getItem(position);
 					// pass Data to other Activity
 
-					if (position == 0) {
 						Intent i = new Intent(getActivity(),
 								ProductListViewActivity.class);
 						i.putExtra("ccId", ccId[position]);
 						startActivity(i);
-					}
+
 				}
 			});
 			// Close progress dialog
