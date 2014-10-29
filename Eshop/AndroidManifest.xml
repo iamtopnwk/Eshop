@@ -44,54 +44,13 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.infotop.eshop.EshopLoginActivity" />
         </activity>
-        <activity
-            android:name=".activities.BookListMainActivity"
-            android:label="@string/title_activity_book_list_main"
-            android:parentActivityName=".activities.EshopMainActivity" >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.infotop.eshop.activities.EshopMainActivity" />
-        </activity>
+       
         <activity
             android:name=".activities.BookDetailsActivity"
-            android:label="@string/title_activity_product_details"
-            android:parentActivityName=".activities.BookListMainActivity" >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.infotop.eshop.activities.BookListMainActivity" />
+            android:label="@string/title_activity_product_details" >
+           
         </activity>
-        <activity
-            android:name=".activities.ClothsMainActivity"
-            android:label="@string/title_activity_cloths_main"
-            android:parentActivityName=".activities.EshopMainActivity" >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.infotop.eshop.activities.EshopMainActivity" />
-        </activity>
-        <activity
-            android:name="com.infotop.eshop.activities.ClothDetailsActivity"
-            android:label="@string/title_activity_cloth_details"
-            android:parentActivityName=".activities.ClothsMainActivity" >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.infotop.eshop.activities.ClothsMainActivity" />
-        </activity>
-        <activity
-            android:name="com.infotop.eshop.activities.ElectronicsMainActivity"
-            android:label="@string/title_activity_electronics_details"
-            android:parentActivityName=".activities.EshopMainActivity" >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.infotop.eshop.activities.ElectronicsMainActivity" />
-        </activity>
-        <activity
-            android:name="com.infotop.eshop.activities.ElectronicsDetailsActivity"
-            android:label="@string/title_activity_electronics_details"
-            android:parentActivityName=".activities.ElectronicsMainActivity" >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.infotop.eshop.activities.ElectronicsMainActivity" />
-        </activity>
+      
         <activity
             android:name="com.infotop.eshop.activities.ProductListViewActivity"
             android:label="@string/title_activity_product_list_view" >

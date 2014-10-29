@@ -1,4 +1,4 @@
-package com.infotop.eshop.domain;
+package com.infotop.eshop.model;
 
 
 public class Person {

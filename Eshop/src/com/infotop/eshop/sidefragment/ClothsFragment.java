@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import org.apache.http.protocol.BasicHttpContext;
-import org.apache.http.protocol.HttpContext;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -17,14 +15,10 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ExpandableListView;
-import android.widget.Toast;
 import android.widget.ExpandableListView.OnChildClickListener;
 
 import com.infotop.eshop.R;
-import com.infotop.eshop.activities.BookDetailsActivity;
-import com.infotop.eshop.activities.ElectronicsMainActivity;
 import com.infotop.eshop.activities.ProductListViewActivity;
 import com.infotop.eshop.adapters.ExpandableListAdapter;
 import com.infotop.eshop.httpservice.HttpServiceHandler;

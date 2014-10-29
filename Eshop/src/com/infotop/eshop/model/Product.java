@@ -1,7 +1,7 @@
 /**
  *
  */
-package com.infotop.eshop.domain;
+package com.infotop.eshop.model;
 
 /**
  * @author Rajesh

@@ -56,12 +56,7 @@
     <string name="wish_list">Wish List</string>
     <string name="add_to_cart">Add To Cart</string>
     <string name="buy_item">Buy</string>
-    
-    <string name="title_activity_cloths_main">ClothsMainActivity</string>
-    <string name="title_activity_book_list_main">BookListMainActivity</string>
-      <string name="title_activity_electronics_details">ElectronicsMainActivity</string>
-    
-    <string name="title_activity_cloth_details">ClothDetailsActivity</string>
+ 
      <string name="title_activity_product_list_view">Products List</string>
      <string name="title_activity_product_grid_view">Products List</string>
    
