@@ -1,3 +1,7 @@
+/*
+ * Author: Pabitra
+ */
+
 package com.infotop.eshop.activities;
 
 //import com.infotop.eshop.activities.ProductDetailsHorizontalActivity;
@@ -41,7 +45,7 @@ public class BookDetailsActivity extends Activity {
 			"Mordern Love", "Flex Youth ", "Physics", "Multiply Bussiness",
 			"Money Savers", "It's your Time", "Redeployed", "Simple Learning",
 			"Still Soul", "BareFoot", "Miracle Morning", "Hooked",
-			"Blase Flaming", "Creating Games", "#D Book Mock up",
+			"Blase Flaming", "Creating Games", "3D Book Mock up",
 			"Never Look back", "Ebola", "Transformation", "Game Art Me" };
 
 	Integer[] imageId = { R.drawable.ic_book1, R.drawable.ic_book2,

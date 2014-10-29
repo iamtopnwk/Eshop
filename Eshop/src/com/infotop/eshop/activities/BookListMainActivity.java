@@ -1,3 +1,7 @@
+/*
+ * *Author: Pabitra
+ */
+
 package com.infotop.eshop.activities;
 
 import android.app.Activity;
