@@ -5,27 +5,39 @@
 
     <ImageView
         android:id="@+id/productImg"
-        android:layout_width="130dp"
-        android:layout_height="150dp" />
+        android:layout_width="75dp"
+        android:layout_height="75dp" 
+        android:src="@drawable/horror"/>
 
     <TextView
         android:id="@+id/product_Name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/productImg"
-        android:textStyle="bold" />
+        android:textStyle="bold" 
+        android:text="Heading"/>
 
     <TextView
         android:id="@+id/product_description"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
          android:layout_below="@+id/product_Name"
-        android:textStyle="italic" />
-
+         android:textColor="#a3a3a3"
+        android:textStyle="italic" 
+        android:text="Description"/>
+    <TextView
+        android:id="@+id/productpricestaticData"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/product_description"
+        android:text="Price:"
+        android:textColor="#00c0c0" />
     <TextView
         android:id="@+id/product_price"
         android:layout_below="@+id/product_description"
+        android:layout_toRightOf="@+id/productpricestaticData"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:text="122"/>
 
 </RelativeLayout>

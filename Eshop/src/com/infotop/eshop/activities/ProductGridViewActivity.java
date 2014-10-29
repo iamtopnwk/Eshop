@@ -5,12 +5,9 @@ import java.util.List;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
+
 import com.infotop.eshop.R;
-import com.infotop.eshop.R.drawable;
-import com.infotop.eshop.R.id;
-import com.infotop.eshop.R.layout;
-import com.infotop.eshop.R.menu;
-import com.infotop.eshop.adapters.ProductListAdapter;
+import com.infotop.eshop.adapters.CustomGridViewAdapter;
 import com.infotop.eshop.httpservice.HttpServiceHandler;
 
 import android.app.Activity;
@@ -22,12 +19,13 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ListView;
+import android.widget.GridView;
+import android.widget.ToggleButton;
 
-public class ProductListViewActivity extends Activity {
 
-	ProductListAdapter listAdapter;
-	ListView list;
+public class ProductGridViewActivity extends Activity {
+	CustomGridViewAdapter gridAdapter;
+	GridView grid;
 	String[] pdct;
 	Integer[] imgId;
 	String[] pdctId;
@@ -37,27 +35,30 @@ public class ProductListViewActivity extends Activity {
 	private static final String TAG_AADATA = "aaData";
 	private static final String TAG_PNAME = "productName";
 	private static final String TAG_PDESC = "productDescription";
-	private static final String TAG_PPRICE="priductPrice";
+	private static final String TAG_PPRICE = "priductPrice";
 	private static final String TAG_PID = "id";
 	static JSONObject jObj = null;
 	JSONArray childCategory = null;
 	Long totalRecords;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_product_list_view);
-		list = (ListView) findViewById(R.id.productListView);
+		setContentView(R.layout.activity_product_grid_view);
+		grid = (GridView) findViewById(R.id.productGridView);
 		subCatId = getIntent().getExtras().getString("ccId");
-		System.out.println("Product Subcategory id:"+ subCatId);
-		String serverURL = "http://192.168.8.160:8989/eshop/rest/productbycatid/" + subCatId;
+		System.out.println("Product Subcategory id:" + subCatId);
+		String serverURL = "http://192.168.8.160:8989/eshop/rest/productbycatid/"
+				+ subCatId;
 
 		// Use AsyncTask execute Method To Prevent ANR Problem
 		new LongOperation().execute(serverURL);
 	}
+
 	private class LongOperation extends AsyncTask<String, Void, Void> {
 		private String pcontent;
 		private ProgressDialog dialog = new ProgressDialog(
-				ProductListViewActivity.this);
+				ProductGridViewActivity.this);
 
 		protected void onPreExecute() {
 			// NOTE: You can call UI Element here.
@@ -76,7 +77,7 @@ public class ProductListViewActivity extends Activity {
 			try {
 				HttpServiceHandler hs = new HttpServiceHandler();
 				pcontent = hs.httpContent(urls[0]);
-				System.out.println("Product Content:"+pcontent);
+				System.out.println("Product Content:" + pcontent);
 				JSONObject jsonObj;
 				jsonObj = new JSONObject(pcontent);
 				childCategory = jsonObj.getJSONArray(TAG_AADATA);
@@ -84,17 +85,17 @@ public class ProductListViewActivity extends Activity {
 				imgId = new Integer[childCategory.length()];
 				pdctId = new String[childCategory.length()];
 				pdesc = new String[childCategory.length()];
-				price= new String[childCategory.length()];
+				price = new String[childCategory.length()];
 				List<String> ccName = new ArrayList<String>();
 				for (int i = 0; i < childCategory.length(); i++) {
 					JSONObject pc = childCategory.getJSONObject(i);
 					pdct[i] = pc.getString(TAG_PNAME);
 					pdctId[i] = pc.getString(TAG_PID);
 					pdesc[i] = pc.getString(TAG_PDESC);
-					price[i]=pc.getString(TAG_PPRICE);
+					price[i] = pc.getString(TAG_PPRICE);
 					ccName.add(pdct[i]);
-					System.out.println(pdct[i]);	
-						imgId[i] = R.drawable.productimg;
+					System.out.println(pdct[i]);
+					imgId[i] = R.drawable.productimg;
 				}
 
 			} catch (Exception ex) {
@@ -107,44 +108,48 @@ public class ProductListViewActivity extends Activity {
 		protected void onPostExecute(Void unused) {
 			dialog.dismiss();
 			// NOTE: You can call UI Element here.
-			listAdapter = new ProductListAdapter(ProductListViewActivity.this,
-					pdct, imgId, pdesc,price);
-			System.out.println("ListAdapter value is:" + listAdapter);
-			list.setAdapter(listAdapter);
-			list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+			gridAdapter = new CustomGridViewAdapter(
+					ProductGridViewActivity.this, pdct, imgId, pdesc, price);
+			System.out.println("ListAdapter value is:" + gridAdapter);
+			grid.setAdapter(gridAdapter);
+			grid.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 				@Override
 				public void onItemClick(AdapterView<?> parent, View view,
 						int position, long id) {
 					ArrayList<String> productData = new ArrayList<String>();
-					productData.add(pdctId[position]);
 					productData.add(pdct[position]);
+					productData.add(pdctId[position]);
 					productData.add(pdesc[position]);
 					productData.add(price[position]);
-					productData.add(imgId[position].toString());
+					productData.add((imgId[position]).toString());
 					// String product = (String) adapter.getItem(position);
 					// pass Data to other Activity
-						Intent i = new Intent(ProductListViewActivity.this,
-								BookDetailsActivity.class);
-						i.putStringArrayListExtra("productData", productData);
-						startActivity(i);
+
+					Intent i = new Intent(ProductGridViewActivity.this,
+							BookDetailsActivity.class);
+					i.putStringArrayListExtra("productData", productData);
+					startActivity(i);
+
 				}
 			});
 			// Close progress dialog
 		}
 
 	}
-	public void gridView(View view) {
 
-		System.out.println("Button is GridView");
-		Intent s = new Intent(ProductListViewActivity.this,
-				ProductGridViewActivity.class);
+	public void listViewdata(View view) {
+
+		System.out.println("Button is ListView");
+		Intent s = new Intent(ProductGridViewActivity.this,
+				ProductListViewActivity.class);
 		s.putExtra("ccId", subCatId);
 		startActivity(s);
 	}
+
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.product_list_view, menu);
+		getMenuInflater().inflate(R.menu.product_grid_view, menu);
 		return true;
 	}
 

@@ -6,7 +6,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.infotop.eshop.activities.ProductListViewActivity" >
+    tools:context="com.example.edeal.ProductGridViewActivity" >
 
     <LinearLayout
         android:layout_width="fill_parent"
@@ -20,18 +20,21 @@
             android:src="@drawable/eshopper" />
 
         <ImageButton
-            android:id="@+id/listviewbtn1"
+            android:id="@+id/gridviewbtn1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="220dp"
-            android:onClick="gridView"
+            android:onClick="listViewdata"
             android:src="@drawable/ic_action_view_as_list" />
-
-        <ListView
-            android:id="@+id/productListView"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent" >
-        </ListView>
+        <GridView
+            android:id="@+id/productGridView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+            android:numColumns="2" >
+        </GridView>
     </LinearLayout>
 
 </RelativeLayout>

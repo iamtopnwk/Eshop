@@ -96,6 +96,10 @@
             android:name="com.infotop.eshop.activities.ProductListViewActivity"
             android:label="@string/title_activity_product_list_view" >
         </activity>
+         <activity
+            android:name="com.infotop.eshop.activities.ProductGridViewActivity"
+            android:label="@string/title_activity_product_grid_view" >
+        </activity>
     </application>
 
 </manifest>
