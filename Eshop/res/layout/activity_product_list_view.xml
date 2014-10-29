@@ -25,7 +25,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="220dp"
             android:onClick="gridView"
-            android:src="@drawable/ic_action_view_as_list" />
+            android:src="@drawable/ic_action_view_as_grid" />
 
         <ListView
             android:id="@+id/productListView"
