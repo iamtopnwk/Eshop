@@ -99,7 +99,7 @@ public class BooksFragment extends Fragment {
 					} else if (chld[i].equals("Romantic")) {
 						imgId[i] = R.drawable.romantic;
 						System.out.println(imgId[i]);
-					} else if (chld[i].equals("Comdedy")) {
+					} else if (chld[i].equals("Adventure")) {
 						imgId[i] = R.drawable.comdedy;
 						System.out.println(imgId[i]);
 					} else if (chld[i].equals("Academics")) {
