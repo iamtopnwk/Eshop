@@ -80,15 +80,15 @@ public class EshopMainActivity extends Activity {
 		// Photos
 		navDrawerItems.add(new NavDrawerItem(navMenuTitles[2], navMenuIcons
 				.getResourceId(2, -1)));
-		// Communities, Will add a counter here
+		/*// Communities, Will add a counter here
 		navDrawerItems.add(new NavDrawerItem(navMenuTitles[3], navMenuIcons
 				.getResourceId(3, -1)));
 		// Pages
 		navDrawerItems.add(new NavDrawerItem(navMenuTitles[4], navMenuIcons
-				.getResourceId(4, -1)));
+				.getResourceId(4, -1)));*/
 		// What's hot, We will add a counter here
-		navDrawerItems.add(new NavDrawerItem(navMenuTitles[5], navMenuIcons
-				.getResourceId(5, -1)));
+		navDrawerItems.add(new NavDrawerItem(navMenuTitles[3], navMenuIcons
+				.getResourceId(3, -1)));
 		
 		// Recycle the typed array
 		navMenuIcons.recycle();
@@ -186,13 +186,13 @@ public class EshopMainActivity extends Activity {
 		case 2:
 			fragment = new ElectronicsFragment();
 			break;
-		case 3:
+/*		case 3:
 			fragment = new CommunityFragment();
 			break;
 		case 4:
 			fragment = new PagesFragment();
-			break;
-		case 5:
+			break;*/
+		case 3:
 			fragment = new ClothsFragment();
 			break;
 

@@ -34,8 +34,6 @@
         <item>首页</item>
         <item>找人</item>
         <item>图片</item>
-        <item>社区</item>
-        <item>页</item>
         <item>什么\的热</item>
     </string-array>
 
@@ -45,8 +43,6 @@
         <item>@drawable/ic_home</item>
         <item>@drawable/ic_people</item>
         <item>@drawable/ic_photos</item>
-        <item>@drawable/ic_communities</item>
-        <item>@drawable/ic_pages</item>
         <item>@drawable/ic_whats_hot</item>
     </array>
 
