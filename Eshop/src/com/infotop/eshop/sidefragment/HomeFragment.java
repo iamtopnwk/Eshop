@@ -4,20 +4,19 @@ package com.infotop.eshop.sidefragment;
 import com.infotop.eshop.R;
 import com.infotop.eshop.adapters.CustomListHorizontalAdapter;
 import com.infotop.eshop.adapters.HorizontalListView;
-
 import android.app.Fragment;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.AnalogClock;
-import android.widget.TabHost;
 import android.widget.ViewFlipper;
 
 public class HomeFragment extends Fragment {
 
-	private TabHost mTabHost;
+	
 	View rootView;
 	int mFlipping = 0 ;
 	CustomListHorizontalAdapter hAdapter;
@@ -70,16 +69,37 @@ Integer[] productImage = {
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view,
 					int position, long id) {
+				
+				
+				
+					Fragment fragment = null;
+					switch (position) {
+					
+					case 0:
+						fragment = new ClothsFragment();
+						break;
+					case 1:
+						fragment = new ElectronicsFragment();
+						break;
+					case 2:
+						fragment = new BooksFragment();
+						break;
+			
+					case 3:
+						fragment = new ClothsFragment();
+						break;
 
-				// String products = (String) hAdapter.getItem(position);
-				// pass Data to other Activity
-				/*Intent i = new Intent(ClothDetailsActivity.this,
-						ClothDetailsActivity.class);
-				i.putExtra("book_item", position);
-				startActivity(i);*/
+					default:
+						break;
+					}
 
-				// Toast.makeText(BooksListViewActivity.this, "You Clicked at "
-				// +web[+ position], Toast.LENGTH_SHORT).show();
+				FragmentManager fm =getFragmentManager();
+				FragmentTransaction transaction = fm.beginTransaction();
+				transaction.replace(R.id.frame_container, fragment);
+				transaction.addToBackStack(null);
+
+				transaction.commit();
+				
 			}
 		});
 	
