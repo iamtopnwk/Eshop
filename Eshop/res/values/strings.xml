@@ -11,6 +11,14 @@
     <string name="drawer_open">Slider Menu Opened</string>
     <string name="drawer_close">Slider Menu Closed</string>
 
+     <!-- Home -->
+    <string name="str_img1">Image1</string>
+    <string name="str_img2">Image2</string>
+    <string name="str_img3">Image3</string>
+    <string name="str_img4">Image4</string>
+    <string name="str_img5">Image5</string>
+    
+    
     <!-- Login -->
     <string name="ULogin">Login</string>
     <string name="UserName">UserEmail</string>

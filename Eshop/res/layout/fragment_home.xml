@@ -1,4 +1,153 @@
-<?xml version="1.0" encoding="utf-8"?>
+
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/bcgd" >
+
+    <ViewFlipper
+        android:id="@+id/flipper1"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:adjustViewBounds="true"
+        android:flipInterval="3000"
+        android:inAnimation="@android:anim/slide_in_left"
+        android:outAnimation="@android:anim/slide_out_right" >
+
+        <ImageView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:adjustViewBounds="true"
+            android:contentDescription="@string/str_img1"
+            android:scaleType="fitXY"
+            android:src="@drawable/offer" />
+
+        <ImageView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:adjustViewBounds="true"
+            android:contentDescription="@string/str_img2"
+            android:scaleType="fitXY"
+            android:src="@drawable/lapi" />
+
+        <ImageView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:adjustViewBounds="true"
+            android:contentDescription="@string/str_img3"
+            android:scaleType="fitXY"
+            android:src="@drawable/laptop" />
+
+        <ImageView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:adjustViewBounds="true"
+            android:contentDescription="@string/str_img4"
+            android:scaleType="fitXY"
+            android:src="@drawable/offer" />
+
+        <ImageView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:adjustViewBounds="true"
+            android:contentDescription="@string/str_img5"
+            android:scaleType="fitXY"
+            android:src="@drawable/tanishq" />
+    </ViewFlipper>
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="25dp"
+        android:layout_marginTop="120dp"
+        android:text="Shop By Department"
+        android:textColor="#000000"
+        android:typeface="serif" />
+
+    <com.infotop.eshop.adapters.HorizontalListView
+        android:id="@+id/listhorizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="123dp"
+        android:layout_marginTop="140dp" 
+        android:background="#ffffff"  />
+   
+
+      <TextView
+        android:id="@+id/text"
+        android:layout_width="fill_parent"
+        android:layout_height="25dp"
+        android:layout_marginTop="267dp"
+        android:text="Hot Offer"
+        android:textColor="#000000"
+        android:typeface="sans"
+        />
+    
+      <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/text" >
+    
+<RelativeLayout 
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" >
+   
+    <ImageView
+        android:id="@+id/img1"
+        android:layout_width="fill_parent"
+        android:layout_height="100dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/winter" />
+
+<LinearLayout
+     android:layout_gravity="center_horizontal"
+     android:layout_below="@+id/img1"
+     android:layout_width="fill_parent"
+     android:layout_height="100dp"
+     android:orientation="horizontal" 
+     >
+    
+     <ImageView
+         android:layout_marginTop="0dp"
+        android:layout_width="160dp"
+        android:layout_height="100dp"
+        android:src="@drawable/jl" 
+         android:scaleType="fitXY"/>
+      <ImageView
+          android:layout_marginTop="0dp"
+        android:layout_width="160dp"
+        android:layout_height="100dp"
+        android:src="@drawable/book"
+         android:scaleType="fitXY" />
+</LinearLayout>
+</RelativeLayout>
+</ScrollView>
+</RelativeLayout>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/scrollView1"
     android:layout_width="fill_parent"
@@ -33,4 +182,4 @@
             android:src="@drawable/girl3" />
     </LinearLayout>
 
-</ScrollView>
+</ScrollView> -->
