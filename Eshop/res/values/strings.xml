@@ -11,14 +11,13 @@
     <string name="drawer_open">Slider Menu Opened</string>
     <string name="drawer_close">Slider Menu Closed</string>
 
-     <!-- Home -->
+    <!-- Home -->
     <string name="str_img1">Image1</string>
     <string name="str_img2">Image2</string>
     <string name="str_img3">Image3</string>
     <string name="str_img4">Image4</string>
     <string name="str_img5">Image5</string>
-    
-    
+
     <!-- Login -->
     <string name="ULogin">Login</string>
     <string name="UserName">UserEmail</string>
@@ -59,14 +58,14 @@
     <string name="title_activity_eshop_login">Login</string>
     <string name="title_activity_register">Sign Up</string>
 
-    <!--  List View -->
+    <!-- List View -->
     <string name="title_activity_product_details">Book Details</string>
     <string name="wish_list">Wish List</string>
     <string name="add_to_cart">Add To Cart</string>
     <string name="buy_item">Buy</string>
- 
-     <string name="title_activity_product_list_view">Products List</string>
-     <string name="title_activity_product_grid_view">Products List</string>
-   
+    <string name="title_activity_product_list_view">Products List</string>
+    <string name="title_activity_product_grid_view">Products List</string>
+    <string name="title_activity_cart_list_main">CartList Items</string>
+    <string name="title_activity_wish_list_main">WishList Items</string>
 
 </resources>

@@ -2,7 +2,9 @@ package com.infotop.eshop.activities;
 
 import java.util.ArrayList;
 
+import com.infotop.eshop.CartListMainActivity;
 import com.infotop.eshop.R;
+import com.infotop.eshop.WishListMainActivity;
 import com.infotop.eshop.adapters.NavDrawerListAdapter;
 import com.infotop.eshop.model.NavDrawerItem;
 import com.infotop.eshop.sidefragment.CommunityFragment;
@@ -10,13 +12,13 @@ import com.infotop.eshop.sidefragment.BooksFragment;
 import com.infotop.eshop.sidefragment.ElectronicsFragment;
 import com.infotop.eshop.sidefragment.HomeFragment;
 import com.infotop.eshop.sidefragment.PagesFragment;
-
 import com.infotop.eshop.sidefragment.ClothsFragment;
 
 import android.app.Activity;
 import android.app.ActionBar;
 import android.app.Fragment;
 import android.app.FragmentManager;
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.content.res.TypedArray;
 import android.os.Bundle;
@@ -163,6 +165,28 @@ public class EshopMainActivity extends Activity {
 		}
 		// Handle action bar actions click
 		switch (item.getItemId()) {
+		case R.id.action_search:
+			return true;
+		case R.id.abCartList:
+			Intent i=new Intent(this,CartListMainActivity.class);
+			startActivity(i);
+			return true;
+		case R.id.abLogin:
+			Intent lgn=new Intent(this,EshopLoginActivity.class);
+			startActivity(lgn);
+			return true;
+		case R.id.abwishlist:
+			Intent wl=new Intent(this,WishListMainActivity.class);
+			startActivity(wl);
+			return true;
+		case R.id.abTrackOrder:
+			return true;
+		case R.id.abRateApp:
+			return true;
+		case R.id.abShareApp:
+			return true;
+		case R.id.abPolicies:
+			return true;
 		case R.id.action_settings:
 			return true;
 		default:
