@@ -2,9 +2,7 @@ package com.infotop.eshop.activities;
 
 import java.util.ArrayList;
 
-import com.infotop.eshop.CartListMainActivity;
 import com.infotop.eshop.R;
-import com.infotop.eshop.WishListMainActivity;
 import com.infotop.eshop.adapters.NavDrawerListAdapter;
 import com.infotop.eshop.model.NavDrawerItem;
 import com.infotop.eshop.sidefragment.CommunityFragment;

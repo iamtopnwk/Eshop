@@ -51,11 +51,11 @@
             android:label="@string/title_activity_product_grid_view" >
         </activity>
         <activity
-            android:name=".CartListMainActivity"
+            android:name="com.infotop.eshop.activities.CartListMainActivity"
             android:label="@string/title_activity_cart_list_main" >
         </activity>
         <activity
-            android:name=".WishListMainActivity"
+            android:name="com.infotop.eshop.activities.WishListMainActivity"
             android:label="@string/title_activity_wish_list_main" >
         </activity>
     </application>

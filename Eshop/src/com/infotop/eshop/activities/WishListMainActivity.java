@@ -1,6 +1,15 @@
-package com.infotop.eshop;
+package com.infotop.eshop.activities;
 
 import java.util.List;
+
+import com.infotop.eshop.R;
+import com.infotop.eshop.R.drawable;
+import com.infotop.eshop.R.id;
+import com.infotop.eshop.R.layout;
+import com.infotop.eshop.R.menu;
+import com.infotop.eshop.adapters.ProductListAdapter;
+import com.infotop.eshop.db.DatabaseHandler;
+import com.infotop.eshop.model.Wishlist;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -8,22 +17,18 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ListView;
 
-import com.infotop.eshop.adapters.ProductListAdapter;
-import com.infotop.eshop.db.DatabaseHandler;
-import com.infotop.eshop.model.Wishlist;
-
-public class CartListMainActivity extends Activity {
+public class WishListMainActivity extends Activity {
 	ProductListAdapter listAdapter;
 	ListView list;
 	String[] productId, productName, productDescription, productPrice;
 	Integer[] productImage;
-
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_cart_list_main);
-		list = (ListView) findViewById(R.id.cartListViewItems);
-		DatabaseHandler db = new DatabaseHandler(CartListMainActivity.this);
+		setContentView(R.layout.activity_wish_list_main);
+		list = (ListView) findViewById(R.id.wishListViewItems);
+		DatabaseHandler db = new DatabaseHandler(WishListMainActivity.this);
 		List<Wishlist> cartItems = db.getAllCartListItems();
 		int size = cartItems.size();
 		productId = new String[size];
@@ -38,15 +43,15 @@ public class CartListMainActivity extends Activity {
 			productPrice[i] = cartItems.get(i).getPrice();
 			productImage[i] = R.drawable.productimg;
 		}
-		listAdapter = new ProductListAdapter(CartListMainActivity.this,
-				productId, productImage, productDescription, productPrice);
+		listAdapter = new ProductListAdapter(WishListMainActivity.this,
+				productName, productImage, productDescription, productPrice);
 		list.setAdapter(listAdapter);
 	}
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.cart_list_main, menu);
+		getMenuInflater().inflate(R.menu.wish_list_main, menu);
 		return true;
 	}
 
