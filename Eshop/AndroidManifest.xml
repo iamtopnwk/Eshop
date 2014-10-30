@@ -44,8 +44,17 @@
         </activity>
         <activity
             android:name=".activities.ProductListViewActivity"
-            android:label="@string/title_activity_product_list_view" >
-        </activity>
+            android:label="@string/title_activity_product_list_view"
+            android:launchMode="singleTop">
+            
+            <intent-filter>
+                <action android:name="android.intent.action.SEARCH" />
+            </intent-filter>
+            <meta-data
+                android:name="android.app.searchable"
+                android:resource="@xml/searchable" />
+            
+            </activity>
         <activity
             android:name=".activities.ProductGridViewActivity"
             android:label="@string/title_activity_product_grid_view" >
