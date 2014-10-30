@@ -116,9 +116,9 @@ public class ProductGridViewActivity extends Activity {
 				@Override
 				public void onItemClick(AdapterView<?> parent, View view,
 						int position, long id) {
-					ArrayList<String> productData = new ArrayList<String>();
-					productData.add(pdct[position]);
+					ArrayList<String> productData = new ArrayList<String>();				
 					productData.add(pdctId[position]);
+					productData.add(pdct[position]);
 					productData.add(pdesc[position]);
 					productData.add(price[position]);
 					productData.add((imgId[position]).toString());
