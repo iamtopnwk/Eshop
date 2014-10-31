@@ -169,44 +169,16 @@ public class ProductListViewActivity extends Activity {
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.product_grid_view, menu);
-		return true;
+		getMenuInflater().inflate(R.menu.product_list_view, menu);
 		
 		
-	
-		/*SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
-        SearchView searchView = (SearchView) menu.findItem(R.id.action_search).getActionView();
-
-            searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
-            searchView.setIconifiedByDefault(false);  
-
-        SearchView.OnQueryTextListener textChangeListener = new SearchView.OnQueryTextListener();
-
-        {
-        	
-        	@Override
-            public boolean onQueryTextChange(String newText)
-            {
-                // this is your adapter that will be filtered
-                listAdapter.getFilter().filter(newText);
-                System.out.println("on text chnge text: "+newText);
-                return true;
-            }
-        	
-            @Override
-            public boolean onQueryTextSubmit(String query)
-            {
-                // this is your adapter that will be filtered
-                listAdapter.getFilter().filter(query);
-                System.out.println("on query submit: "+query);
-                return true;
-            }
-        };
-
-        searchView.setOnQueryTextListener(textChangeListener);
-
-        return super.onCreateOptionsMenu(menu);
-        */
+		SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
+        SearchView searchView = (SearchView) menu.findItem(R.id.action_search)
+                .getActionView();
+        searchView.setSearchableInfo(searchManager
+                .getSearchableInfo(getComponentName()));
+        
+        return true;
 	
 	}
 	
