@@ -2,7 +2,8 @@
     xmlns:android1="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:scrollbars="vertical" >
+    android:scrollbars="vertical" 
+    android:background="@drawable/backgnd1">
 
     <ImageView
         android:id="@+id/wishlistBtn"
