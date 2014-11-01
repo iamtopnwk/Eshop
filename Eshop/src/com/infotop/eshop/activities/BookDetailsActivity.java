@@ -9,6 +9,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
+import com.infotop.eshop.PaymentMainActivity;
 import com.infotop.eshop.R;
 import com.infotop.eshop.adapters.CustomListHorizontalAdapter;
 import com.infotop.eshop.adapters.HorizontalListView;
@@ -81,9 +82,11 @@ public class BookDetailsActivity extends Activity {
 	public void buyItem(View view) {
 		System.out.println("Add Buy Button");
 
-		Toast.makeText(BookDetailsActivity.this,
+		Intent in=new Intent(BookDetailsActivity.this,PaymentMainActivity.class);
+		startActivity(in);
+	/*	Toast.makeText(BookDetailsActivity.this,
 				"your item is booked and go to payment details",
-				Toast.LENGTH_SHORT).show();
+				Toast.LENGTH_SHORT).show();*/
 
 	}
 
