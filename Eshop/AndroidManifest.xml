@@ -40,7 +40,8 @@
         </activity>
         <activity
             android:name=".activities.BookDetailsActivity"
-            android:label="@string/title_activity_product_details" >
+            android:label="@string/title_activity_product_details"
+            android:uiOptions="splitActionBarWhenNarrow" >
         </activity>
         <activity
             android:name=".activities.ProductListViewActivity"
@@ -79,6 +80,7 @@
         <activity android:name="com.paypal.android.sdk.payments.LoginActivity" />
         <activity android:name="com.paypal.android.sdk.payments.PaymentMethodActivity" />
         <activity android:name="com.paypal.android.sdk.payments.PaymentConfirmActivity" />
+        <activity android:name="com.paypal.android.sdk.payments.PaymentCompletedActivity" />
         <activity android:name="com.paypal.android.sdk.payments.PayPalFuturePaymentActivity" />
         <activity android:name="com.paypal.android.sdk.payments.FuturePaymentConsentActivity" />
         <activity android:name="com.paypal.android.sdk.payments.FuturePaymentInfoActivity" />
@@ -88,6 +90,10 @@
             android:name="io.card.payment.CardIOActivity"
             android:configChanges="keyboardHidden|orientation" />
         <activity android:name="io.card.payment.DataEntryActivity" />
+        <activity
+            android:name=".PayConfirmActivity"
+            android:label="@string/title_activity_pay_confirm" >
+        </activity>
     </application>
 
 </manifest>

@@ -2,18 +2,7 @@ package com.infotop.eshop.activities;
 
 import java.util.ArrayList;
 
-import com.infotop.eshop.R;
-import com.infotop.eshop.adapters.NavDrawerListAdapter;
-import com.infotop.eshop.model.NavDrawerItem;
-import com.infotop.eshop.sidefragment.CommunityFragment;
-import com.infotop.eshop.sidefragment.BooksFragment;
-import com.infotop.eshop.sidefragment.ElectronicsFragment;
-import com.infotop.eshop.sidefragment.HomeFragment;
-import com.infotop.eshop.sidefragment.PagesFragment;
-import com.infotop.eshop.sidefragment.ClothsFragment;
-
 import android.app.Activity;
-import android.app.ActionBar;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.content.Intent;
@@ -23,15 +12,20 @@ import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.widget.DrawerLayout;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
-import android.os.Build;
+
+import com.infotop.eshop.R;
+import com.infotop.eshop.adapters.NavDrawerListAdapter;
+import com.infotop.eshop.model.NavDrawerItem;
+import com.infotop.eshop.sidefragment.BooksFragment;
+import com.infotop.eshop.sidefragment.ClothsFragment;
+import com.infotop.eshop.sidefragment.ElectronicsFragment;
+import com.infotop.eshop.sidefragment.HomeFragment;
 
 //Main Activity
 public class EshopMainActivity extends Activity {
@@ -80,16 +74,16 @@ public class EshopMainActivity extends Activity {
 		// Photos
 		navDrawerItems.add(new NavDrawerItem(navMenuTitles[2], navMenuIcons
 				.getResourceId(2, -1)));
-		/*// Communities, Will add a counter here
-		navDrawerItems.add(new NavDrawerItem(navMenuTitles[3], navMenuIcons
-				.getResourceId(3, -1)));
-		// Pages
-		navDrawerItems.add(new NavDrawerItem(navMenuTitles[4], navMenuIcons
-				.getResourceId(4, -1)));*/
+		/*
+		 * // Communities, Will add a counter here navDrawerItems.add(new
+		 * NavDrawerItem(navMenuTitles[3], navMenuIcons .getResourceId(3, -1)));
+		 * // Pages navDrawerItems.add(new NavDrawerItem(navMenuTitles[4],
+		 * navMenuIcons .getResourceId(4, -1)));
+		 */
 		// What's hot, We will add a counter here
 		navDrawerItems.add(new NavDrawerItem(navMenuTitles[3], navMenuIcons
 				.getResourceId(3, -1)));
-		
+
 		// Recycle the typed array
 		navMenuIcons.recycle();
 
@@ -143,17 +137,16 @@ public class EshopMainActivity extends Activity {
 			displayView(position);
 		}
 	}
-	
+
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
-	//	getMenuInflater().inflate(R.menu.main, menu);
+		// getMenuInflater().inflate(R.menu.main, menu);
 		MenuInflater inflater = getMenuInflater();
-	    inflater.inflate(R.menu.eshop_main, menu);
-	    return super.onCreateOptionsMenu(menu);
-		//return true;
+		inflater.inflate(R.menu.eshop_main, menu);
+		return super.onCreateOptionsMenu(menu);
+		// return true;
 	}
-
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
@@ -166,15 +159,15 @@ public class EshopMainActivity extends Activity {
 		case R.id.action_search:
 			return true;
 		case R.id.abCartList:
-			Intent i=new Intent(this,CartListMainActivity.class);
+			Intent i = new Intent(this, CartListMainActivity.class);
 			startActivity(i);
 			return true;
 		case R.id.abLogin:
-			Intent lgn=new Intent(this,EshopLoginActivity.class);
+			Intent lgn = new Intent(this, EshopLoginActivity.class);
 			startActivity(lgn);
 			return true;
 		case R.id.abwishlist:
-			Intent wl=new Intent(this,WishListMainActivity.class);
+			Intent wl = new Intent(this, WishListMainActivity.class);
 			startActivity(wl);
 			return true;
 		case R.id.abTrackOrder:
@@ -184,8 +177,6 @@ public class EshopMainActivity extends Activity {
 		case R.id.abShareApp:
 			return true;
 		case R.id.abPolicies:
-			return true;
-		case R.id.action_settings:
 			return true;
 		default:
 			return super.onOptionsItemSelected(item);
@@ -208,12 +199,10 @@ public class EshopMainActivity extends Activity {
 		case 2:
 			fragment = new ElectronicsFragment();
 			break;
-/*		case 3:
-			fragment = new CommunityFragment();
-			break;
-		case 4:
-			fragment = new PagesFragment();
-			break;*/
+		/*
+		 * case 3: fragment = new CommunityFragment(); break; case 4: fragment =
+		 * new PagesFragment(); break;
+		 */
 		case 3:
 			fragment = new ClothsFragment();
 			break;
@@ -264,4 +253,3 @@ public class EshopMainActivity extends Activity {
 	}
 
 }
-

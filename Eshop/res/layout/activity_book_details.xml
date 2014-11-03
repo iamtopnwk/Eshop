@@ -23,26 +23,6 @@
         android:text="Medium Text"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
-    <ImageButton
-        android:id="@+id/cartBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_marginBottom="48dp"
-        android:layout_marginLeft="40dp"
-        android:onClick="addToCart"
-        android:src="@drawable/cart" />
-
-    <ImageButton
-        android:id="@+id/buyBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/cartBtn"
-        android:layout_toRightOf="@+id/cartBtn"
-        android:onClick="buyItem"
-        android:src="@drawable/buy_now" />
-
     <ImageView
         android:id="@+id/logo"
         android:layout_width="150dp"

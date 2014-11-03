@@ -1,6 +1,7 @@
 package com.infotop.eshop;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 
 import org.json.JSONException;
 
@@ -24,11 +25,10 @@ import com.paypal.android.sdk.payments.PaymentConfirmation;
 public class PaymentMainActivity extends Activity {
 	private static final String TAG = "paymentExample";
 	private static final String CONFIG_ENVIRONMENT = PayPalConfiguration.ENVIRONMENT_NO_NETWORK;
-
+	ArrayList<String> s;
 	// note that these credentials will differ between live & sandbox
 	// environments.
 	private static final String CONFIG_CLIENT_ID = "ASfsBRBVYizvtodFwwdhEGWwa_DjNSRQDfstdadzgpMglWHYrEW_wpGm3GuE";
-
 	private static final int REQUEST_CODE_PAYMENT = 1;
 	private static PayPalConfiguration config = new PayPalConfiguration()
 			.environment(CONFIG_ENVIRONMENT)
@@ -47,6 +47,8 @@ public class PaymentMainActivity extends Activity {
 		Intent intent = new Intent(this, PayPalService.class);
 		intent.putExtra(PayPalService.EXTRA_PAYPAL_CONFIGURATION, config);
 		startService(intent);
+		s = getIntent().getExtras().getStringArrayList("purChaseItem");
+		
 	}
 
 	public void onBuyPressed(View pressed) {
@@ -67,11 +69,10 @@ public class PaymentMainActivity extends Activity {
 		 */
 
 		Intent intent = new Intent(PaymentMainActivity.this,
-				PaymentActivity.class);
-
+				PaymentActivity.class);	        
 		intent.putExtra(PaymentActivity.EXTRA_PAYMENT, thingToBuy);
-
 		startActivityForResult(intent, REQUEST_CODE_PAYMENT);
+
 	}
 	public void onCancelPressed(View pressed) {
 		Intent i = new Intent(PaymentMainActivity.this,
@@ -79,8 +80,8 @@ public class PaymentMainActivity extends Activity {
 		startActivity(i);
 	}
 	private PayPalPayment getThingToBuy(String paymentIntent) {
-		return new PayPalPayment(new BigDecimal("2.75"), "USD",
-				"hipster jeans", paymentIntent);
+		return new PayPalPayment(new BigDecimal(s.get(3)), "USD",
+				s.get(1), paymentIntent);
 	}
 
 	@Override
@@ -107,10 +108,12 @@ public class PaymentMainActivity extends Activity {
 						 * .com/paypal/rest-api-sdk-python/tree/master
 						 * /samples/mobile_backend
 						 */
-						Toast.makeText(
+						/*Toast.makeText(
 								getApplicationContext(),
 								"PaymentConfirmation info received from PayPal",
-								Toast.LENGTH_LONG).show();
+								Toast.LENGTH_LONG).show();*/
+						Intent i=new Intent(this,PayConfirmActivity.class);
+						startActivity(i);
 
 					} catch (JSONException e) {
 						Log.e(TAG, "an extremely unlikely failure occurred: ",

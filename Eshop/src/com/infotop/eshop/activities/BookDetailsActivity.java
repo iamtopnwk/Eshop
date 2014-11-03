@@ -63,7 +63,7 @@ public class BookDetailsActivity extends Activity {
 	}
 
 	// functionalities for cartBtn
-	public void addToCart(View view) {
+	/*public void addToCart(View view) {
 		System.out.println("Add Cart Button");
 		DatabaseHandler db = new DatabaseHandler(BookDetailsActivity.this);
 		Wishlist w = new Wishlist();
@@ -76,19 +76,19 @@ public class BookDetailsActivity extends Activity {
 		Toast.makeText(BookDetailsActivity.this, "Your Item is Added to Cart",
 				Toast.LENGTH_SHORT).show();
 
-	}
+	}*/
 
 	// functionalities for buyBtn
-	public void buyItem(View view) {
+/*	public void buyItem(View view) {
 		System.out.println("Add Buy Button");
 
 		Intent in=new Intent(BookDetailsActivity.this,PaymentMainActivity.class);
 		startActivity(in);
-	/*	Toast.makeText(BookDetailsActivity.this,
+		Toast.makeText(BookDetailsActivity.this,
 				"your item is booked and go to payment details",
-				Toast.LENGTH_SHORT).show();*/
+				Toast.LENGTH_SHORT).show();
 
-	}
+	}*/
 
 	// functionalities for wishlistBtn
 	public void addToWishlist(View view) {
@@ -120,10 +120,28 @@ public class BookDetailsActivity extends Activity {
 		// Handle action bar item clicks here. The action bar will
 		// automatically handle clicks on the Home/Up button, so long
 		// as you specify a parent activity in AndroidManifest.xml.
-		int id = item.getItemId();
-		if (id == R.id.action_settings) {
+		switch (item.getItemId()) {
+		case R.id.ab_abShareApp1:
 			return true;
+		case R.id.ab_addToCart:
+			DatabaseHandler db = new DatabaseHandler(BookDetailsActivity.this);
+			Wishlist w = new Wishlist();
+			w.setProductId(s.get(0));
+			w.setProductName(s.get(1));
+			w.setDescription(s.get(2));
+			w.setPrice(s.get(3));
+			w.setCreatedDate(new SimpleDateFormat("dd MMM yyyy").format(new Date()));
+			db.addCartList(w);
+			Toast.makeText(BookDetailsActivity.this, "Your Item is Added to Cart",
+					Toast.LENGTH_SHORT).show();
+			return true;
+		case R.id.ab_purChaseItem:
+			Intent in=new Intent(BookDetailsActivity.this,PaymentMainActivity.class);
+			in.putStringArrayListExtra("purChaseItem", s);
+			startActivity(in);
+			return true;
+		default:
+			return super.onOptionsItemSelected(item);
 		}
-		return super.onOptionsItemSelected(item);
 	}
 }
