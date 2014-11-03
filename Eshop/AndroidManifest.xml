@@ -68,7 +68,7 @@
             android:label="@string/title_activity_wish_list_main" >
         </activity>
         <activity
-            android:name=".PaymentMainActivity"
+            android:name="com.infotop.eshop.activities.PaymentMainActivity"
             android:label="@string/title_activity_payment_main" >
         </activity>
 
@@ -90,8 +90,7 @@
             android:name="io.card.payment.CardIOActivity"
             android:configChanges="keyboardHidden|orientation" />
         <activity android:name="io.card.payment.DataEntryActivity" />
-        <activity
-            android:name=".PayConfirmActivity"
+        <activity android:name="com.infotop.eshop.activities.PayConfirmActivity.PayConfirmActivity"
             android:label="@string/title_activity_pay_confirm" >
         </activity>
     </application>
