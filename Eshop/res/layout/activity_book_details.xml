@@ -1,64 +1,142 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:android1="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:scrollbars="vertical" 
-    android:background="@drawable/backgnd1">
+    android:background="@drawable/backgnd1" >
 
     <ImageView
-        android:id="@+id/wishlistBtn"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentTop="true"
-        android:onClick="addToWishlist"
-        android:src="@drawable/icon_wishlist" />
-
-    <TextView
-        android:id="@+id/bookName1"
-        android:layout_width="wrap_content"
+        android:id="@+id/imageView1"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@+id/wishlistBtn"
-        android:text="Medium Text"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
+        android:src="@drawable/eshopper" />
+        <ScrollView
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_below="@+id/imageView1" 
+            android:layout_marginTop="20dp"
+        android:background="#e7e7e8">
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent" >
 
-    <ImageView
-        android:id="@+id/logo"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:layout_below="@+id/bookName1"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp"
-        android:src="@drawable/horror" />
 
-    <TextView
-        android:id="@+id/authorName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/logo"
-        android:layout_marginTop="20dp"
-        android:text="Author Name"
-        android:textColor="#a3a3a3"
-        android:textStyle="italic" >
-    </TextView>
 
-    <TextView
-        android:id="@+id/pricestatic"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@+id/authorName"
-        android:text="Price:"
-        android:textColor="#00c0c0" />
+            <ImageView
+                android:id="@+id/wishlistBtn"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentTop="true"
+                android:onClick="addToWishlist"
+                android:src="@drawable/icon_wishlist" />
 
-    <TextView
-        android:id="@+id/price"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/authorName"
-        android:layout_toRightOf="@+id/pricestatic"
-        android:text="122"
-        android:textColor="#00c0c0" />
+            <TextView
+                android:id="@+id/bookName1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:text="Medium Text"
+                android:textColor="#040404"
+                android:textSize="18dip"
+                android:textStyle="bold"
+                android:typeface="sans" />
 
+            <ImageView
+                android:id="@+id/logo"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:layout_below="@+id/bookName1"
+                android:layout_centerHorizontal="true"
+                android:layout_marginLeft="25dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/image_bdr"
+                android:padding="3dip" />
+
+            <LinearLayout
+                android:id="@+id/thumbnail"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/logo"
+                android:layout_marginTop="20dp" >
+
+                <ImageView
+                    android:id="@+id/logo1"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginLeft="25dp"
+                    android:background="@drawable/image_bdr"
+                    android:padding="3dip"
+                    android:src="@drawable/productimg" />
+
+                <ImageView
+                    android:id="@+id/logo2"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_centerHorizontal="true"
+                    android:background="@drawable/image_bdr"
+                    android:padding="3dip"
+                    android:src="@drawable/productimg" />
+
+                <ImageView
+                    android:id="@+id/logo3"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_centerHorizontal="true"
+                    android:background="@drawable/image_bdr"
+                    android:padding="3dip"
+                    android:src="@drawable/productimg" />
+
+                <ImageView
+                    android:id="@+id/logo4"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_centerHorizontal="true"
+                    android:background="@drawable/image_bdr"
+                    android:padding="3dip"
+                    android:src="@drawable/productimg" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/authorName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/thumbnail"
+                android:layout_marginLeft="25dp"
+                android:layout_marginTop="20dp"
+                android:text="Author Name"
+                android:textColor="#343434"
+                android:textSize="15dip"
+                android:textStyle="italic" />
+
+            <TextView
+                android:id="@+id/pricestatic"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/authorName"
+                android:layout_marginLeft="25dp"
+                android:text="Price:"
+                android:textColor="#10bcc9"
+                android:textSize="12dip"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/authorName"
+                android:layout_toRightOf="@+id/pricestatic"
+                android:text="122"
+                android:textColor="#10bcc9"
+                android:textSize="12dip"
+                android:textStyle="bold" />
+
+            <RatingBar
+                android:id="@+id/ratingBar1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/pricestatic"
+                android:layout_below="@+id/pricestatic" />
+        
+    </RelativeLayout>
+</ScrollView>
 </RelativeLayout>
