@@ -28,7 +28,10 @@
         <ListView
             android:id="@+id/subCatListView"
             android:layout_width="fill_parent"
-            android:layout_height="fill_parent" >
+            android:layout_height="fill_parent"
+             android:divider="#b5b5b5"
+            android:dividerHeight="1dp"
+            android:listSelector="@drawable/prolist_selector" >
         </ListView>
     </LinearLayout>
 

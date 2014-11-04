@@ -1,28 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent" >
+    android:layout_height="wrap_content"
+    android:background="@drawable/prolist_selector"
+    android:orientation="horizontal"
+    android:padding="5dip"  >
 
+     <LinearLayout
+        android:id="@+id/thumbnail1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_marginRight="5dip"
+        android:background="@drawable/image_bdr"
+        android:padding="3dip" >
     <ImageView
         android:id="@+id/subimg"
-        android:layout_width="75dp"
-        android:layout_height="75dp" />
-
+        android:layout_width="70dip"
+        android:layout_height="70dip" 
+        android:background="@drawable/image_bdr"/>
+</LinearLayout>
     <TextView
         android:id="@+id/subCategory"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="90dp"
-        android:layout_toRightOf="@+id/img"
+        android:textColor="#040404"
+        android:typeface="sans"
+        android:textSize="15dip"
+        android:text="Default"
+        android:layout_alignTop="@+id/thumbnail1"
+        android:layout_toRightOf="@+id/thumbnail1"
         android:textStyle="bold" />
 
     <TextView
         android:id="@+id/subCategoryDesc"
-        android:layout_width="wrap_content"
+         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/subCategory"
-        android:layout_marginLeft="90dp" 
-        android:textColor="#a3a3a3"
+        android:textColor="#343434"
+        android:textSize="10dip"
+        android:layout_toRightOf="@+id/thumbnail1"
+        android:text="Just gona stand there and ..."
         android:textStyle="italic"/>
 
 </RelativeLayout>

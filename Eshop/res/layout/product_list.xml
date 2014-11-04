@@ -1,19 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent" >
+    android:layout_height="wrap_content"
+    android:background="@drawable/prolist_selector"
+    android:orientation="horizontal"
+    android:padding="5dip" >
 
-    <ImageView
-        android:id="@+id/productImg"
-        android:layout_width="75dp"
-        android:layout_height="75dp" />
+    <LinearLayout
+        android:id="@+id/thumbnail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_marginRight="5dip"
+        android:background="@drawable/image_bdr"
+        android:padding="3dip" >
+
+        <ImageView
+            android:id="@+id/productImg"
+            android:layout_width="70dip"
+            android:layout_height="70dip"
+            android:background="@drawable/image_bdr" />
+    </LinearLayout>
 
     <TextView
         android:id="@+id/productName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="30dp"
-        android:layout_toRightOf="@+id/productImg"
+        android:textColor="#040404"
+        android:typeface="sans"
+        android:textSize="15dip"
+        android:text="Default"
+        android:layout_alignTop="@+id/thumbnail"
+        android:layout_toRightOf="@+id/thumbnail"
         android:textStyle="bold" />
 
     <TextView
@@ -21,26 +39,40 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/productName"
-        android:layout_marginLeft="110dp"
-        android:textColor="#a3a3a3"
+        android:textColor="#343434"
+        android:textSize="10dip"
+        android:layout_toRightOf="@+id/thumbnail"
+        android:text="Just gona stand there and ..."
         android:textStyle="italic" />
-   
+
     <TextView
         android:id="@+id/productpricestaticData"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/productDesc"
-        android:layout_marginLeft="110dp"
+        android:layout_below="@id/productDesc"
+        android:gravity="right"
         android:text="Price:"
-        android:textColor="#00c0c0" />
-    
+        android:layout_marginLeft="85dip"
+        android:textSize="10dip"
+        android:textColor="#10bcc9"
+        android:textStyle="bold"
+       />
+
     <TextView
         android:id="@+id/productprice"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_toRightOf="@+id/productprice"
-        android:layout_below="@+id/productDesc"
-         android:layout_marginLeft="150dp"
-        android:textColor="#00c0c0" />
+        android:text="122"
+        android:layout_toRightOf="@+id/productpricestaticData"
+        android:layout_below="@id/productDesc"
+         android:textSize="10dip"
+        android:textColor="#10bcc9"
+        android:textStyle="bold" />
+    
+    <ImageView android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/arrow"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"/>
 
 </RelativeLayout>
