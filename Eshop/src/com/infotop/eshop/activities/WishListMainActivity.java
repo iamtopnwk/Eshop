@@ -29,7 +29,7 @@ public class WishListMainActivity extends Activity {
 		setContentView(R.layout.activity_wish_list_main);
 		list = (ListView) findViewById(R.id.wishListViewItems);
 		DatabaseHandler db = new DatabaseHandler(WishListMainActivity.this);
-		List<Wishlist> cartItems = db.getAllCartListItems();
+		List<Wishlist> cartItems = db.getAllWishListItems();
 		int size = cartItems.size();
 		productId = new String[size];
 		productName = new String[size];
