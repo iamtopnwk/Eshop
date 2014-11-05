@@ -6,9 +6,11 @@ import com.infotop.eshop.R.layout;
 import com.infotop.eshop.R.menu;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 public class PayConfirmActivity extends Activity {
 
@@ -16,6 +18,11 @@ public class PayConfirmActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_pay_confirm);
+	}
+	
+	public void onHomePressed(View view){
+		Intent i=new Intent(this, EshopMainActivity.class);
+		startActivity(i);
 	}
 
 	@Override

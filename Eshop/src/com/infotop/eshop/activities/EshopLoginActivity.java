@@ -68,4 +68,6 @@ public class EshopLoginActivity extends Activity {
 		}
 		return super.onOptionsItemSelected(item);
 	}
+	
+	
 }
