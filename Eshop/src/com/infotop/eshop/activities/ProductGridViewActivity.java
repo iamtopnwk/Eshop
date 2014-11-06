@@ -9,6 +9,9 @@ import org.json.JSONObject;
 import com.infotop.eshop.R;
 import com.infotop.eshop.adapters.CustomGridViewAdapter;
 import com.infotop.eshop.httpservice.HttpServiceHandler;
+import com.nostra13.universalimageloader.core.DisplayImageOptions;
+import com.nostra13.universalimageloader.core.ImageLoader;
+import com.nostra13.universalimageloader.core.display.RoundedBitmapDisplayer;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
@@ -31,20 +34,32 @@ public class ProductGridViewActivity extends Activity {
 	String[] pdctId;
 	String[] pdesc;
 	String[] price;
+	String[] imageUrl;
 	String subCatId;
 	private static final String TAG_AADATA = "aaData";
 	private static final String TAG_PNAME = "productName";
 	private static final String TAG_PDESC = "productDescription";
 	private static final String TAG_PPRICE = "priductPrice";
 	private static final String TAG_PID = "id";
+	private static final String TAG_IMGURL = "imageUrl";
 	static JSONObject jObj = null;
 	JSONArray childCategory = null;
 	Long totalRecords;
+	protected ImageLoader loader = ImageLoader.getInstance();
+	DisplayImageOptions op;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_product_grid_view);
+		 op = new DisplayImageOptions.Builder()
+         .showStubImage(R.drawable.notavailable)
+         .showImageForEmptyUri(R.drawable.notavailable)
+         .showImageOnFail(R.drawable.notavailable)
+         .cacheInMemory()
+         .cacheOnDisc()
+         .displayer(new RoundedBitmapDisplayer(20))
+         .build();
 		grid = (GridView) findViewById(R.id.productGridView);
 		subCatId = getIntent().getExtras().getString("ccId");
 		System.out.println("Product Subcategory id:" + subCatId);
@@ -86,6 +101,7 @@ public class ProductGridViewActivity extends Activity {
 				pdctId = new String[childCategory.length()];
 				pdesc = new String[childCategory.length()];
 				price = new String[childCategory.length()];
+				imageUrl=new String[childCategory.length()];
 				List<String> ccName = new ArrayList<String>();
 				for (int i = 0; i < childCategory.length(); i++) {
 					JSONObject pc = childCategory.getJSONObject(i);
@@ -94,8 +110,9 @@ public class ProductGridViewActivity extends Activity {
 					pdesc[i] = pc.getString(TAG_PDESC);
 					price[i] = pc.getString(TAG_PPRICE);
 					ccName.add(pdct[i]);
+					imageUrl[i]=pc.getString(TAG_IMGURL);
 					System.out.println(pdct[i]);
-					imgId[i] = R.drawable.productimg;
+					//imgId[i] = R.drawable.productimg;
 				}
 
 			} catch (Exception ex) {
@@ -109,7 +126,7 @@ public class ProductGridViewActivity extends Activity {
 			dialog.dismiss();
 			// NOTE: You can call UI Element here.
 			gridAdapter = new CustomGridViewAdapter(
-					ProductGridViewActivity.this, pdct, imgId, pdesc, price);
+					ProductGridViewActivity.this, pdct, imageUrl, pdesc, price,op);
 			System.out.println("ListAdapter value is:" + gridAdapter);
 			grid.setAdapter(gridAdapter);
 			grid.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -121,7 +138,7 @@ public class ProductGridViewActivity extends Activity {
 					productData.add(pdct[position]);
 					productData.add(pdesc[position]);
 					productData.add(price[position]);
-					productData.add((imgId[position]).toString());
+					productData.add((imageUrl[position]).toString());
 					// String product = (String) adapter.getItem(position);
 					// pass Data to other Activity
 

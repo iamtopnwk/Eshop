@@ -10,6 +10,9 @@ import com.infotop.eshop.R.menu;
 import com.infotop.eshop.adapters.ProductListAdapter;
 import com.infotop.eshop.db.DatabaseHandler;
 import com.infotop.eshop.model.Wishlist;
+import com.nostra13.universalimageloader.core.DisplayImageOptions;
+import com.nostra13.universalimageloader.core.ImageLoader;
+import com.nostra13.universalimageloader.core.display.RoundedBitmapDisplayer;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -21,12 +24,21 @@ public class WishListMainActivity extends Activity {
 	ProductListAdapter listAdapter;
 	ListView list;
 	String[] productId, productName, productDescription, productPrice;
-	Integer[] productImage;
-	
+	String[] productImage;
+	protected ImageLoader loader = ImageLoader.getInstance();
+	DisplayImageOptions op;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_wish_list_main);
+		op = new DisplayImageOptions.Builder()
+        .showStubImage(R.drawable.notavailable)
+        .showImageForEmptyUri(R.drawable.notavailable)
+        .showImageOnFail(R.drawable.notavailable)
+        .cacheInMemory()
+        .cacheOnDisc()
+        .displayer(new RoundedBitmapDisplayer(20))
+        .build();
 		list = (ListView) findViewById(R.id.wishListViewItems);
 		DatabaseHandler db = new DatabaseHandler(WishListMainActivity.this);
 		List<Wishlist> cartItems = db.getAllWishListItems();
@@ -35,16 +47,16 @@ public class WishListMainActivity extends Activity {
 		productName = new String[size];
 		productDescription = new String[size];
 		productPrice = new String[size];
-		productImage = new Integer[size];
+		productImage = new String[size];
 		for (int i = 0; i < size; i++) {
 			productId[i] = cartItems.get(i).getProductId();
 			productName[i] = cartItems.get(i).getProductName();
 			productDescription[i] = cartItems.get(i).getDescription();
 			productPrice[i] = cartItems.get(i).getPrice();
-			productImage[i] = R.drawable.productimg;
+			//productImage[i] = R.drawable.productimg;
 		}
 		listAdapter = new ProductListAdapter(WishListMainActivity.this,
-				productName, productImage, productDescription, productPrice);
+				productName, productImage, productDescription, productPrice,op);
 		list.setAdapter(listAdapter);
 	}
 

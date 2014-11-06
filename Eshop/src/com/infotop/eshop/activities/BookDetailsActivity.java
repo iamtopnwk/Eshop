@@ -14,6 +14,9 @@ import com.infotop.eshop.adapters.CustomListHorizontalAdapter;
 import com.infotop.eshop.adapters.HorizontalListView;
 import com.infotop.eshop.db.DatabaseHandler;
 import com.infotop.eshop.model.Wishlist;
+import com.nostra13.universalimageloader.core.DisplayImageOptions;
+import com.nostra13.universalimageloader.core.ImageLoader;
+import com.nostra13.universalimageloader.core.display.RoundedBitmapDisplayer;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -42,53 +45,43 @@ public class BookDetailsActivity extends Activity {
 	ImageButton buyBtn1;
 	ImageButton wishlistBtn1;
 	ArrayList<String> s;
+	DisplayImageOptions op;
+	protected ImageLoader loader = ImageLoader.getInstance();
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		final ViewHolder holder;
 		setContentView(R.layout.activity_book_details);
+		op = new DisplayImageOptions.Builder()
+        .showStubImage(R.drawable.notavailable)
+        .showImageForEmptyUri(R.drawable.notavailable)
+        .showImageOnFail(R.drawable.notavailable)
+        .cacheInMemory()
+        .cacheOnDisc()
+        .displayer(new RoundedBitmapDisplayer(20))
+        .build();
 		// Get data from EshopMainActivity
 		s = getIntent().getExtras().getStringArrayList("productData");
 		System.out.println("Product Name:" + s.get(0));
-		TextView tv = (TextView) findViewById(R.id.bookName1);
-		TextView tv1 = (TextView) findViewById(R.id.authorName);
-		TextView tv2 = (TextView) findViewById(R.id.price);
-		ImageView iv = (ImageView) findViewById(R.id.logo);
-		tv.setText(s.get(1));
-		tv1.setText(s.get(2));
-		tv2.setText(s.get(3));
-		iv.setImageResource(Integer.valueOf(s.get(4)));
+		holder = new ViewHolder();
+		holder.txtTitle=(TextView) findViewById(R.id.bookName1);
+		holder.txtTitle1 = (TextView) findViewById(R.id.authorName);
+		holder.txtTitle2= (TextView) findViewById(R.id.price);
+		holder.imageView = (ImageView) findViewById(R.id.logo);
+		
+		holder.txtTitle.setText(s.get(1));
+		holder.txtTitle1.setText(s.get(2));
+		holder.txtTitle2.setText(s.get(3));
+		loader.displayImage(s.get(4), holder.imageView, op, null);
 
 	}
-
-	// functionalities for cartBtn
-	/*public void addToCart(View view) {
-		System.out.println("Add Cart Button");
-		DatabaseHandler db = new DatabaseHandler(BookDetailsActivity.this);
-		Wishlist w = new Wishlist();
-		w.setProductId(s.get(0));
-		w.setProductName(s.get(1));
-		w.setDescription(s.get(2));
-		w.setPrice(s.get(3));
-		w.setCreatedDate(new SimpleDateFormat("dd MMM yyyy").format(new Date()));
-		db.addCartList(w);
-		Toast.makeText(BookDetailsActivity.this, "Your Item is Added to Cart",
-				Toast.LENGTH_SHORT).show();
-
-	}*/
-
-	// functionalities for buyBtn
-/*	public void buyItem(View view) {
-		System.out.println("Add Buy Button");
-
-		Intent in=new Intent(BookDetailsActivity.this,PaymentMainActivity.class);
-		startActivity(in);
-		Toast.makeText(BookDetailsActivity.this,
-				"your item is booked and go to payment details",
-				Toast.LENGTH_SHORT).show();
-
-	}*/
-
+	private class ViewHolder {
+		public TextView txtTitle;
+		public TextView txtTitle1;
+		public TextView txtTitle2;
+		public ImageView imageView;
+	}
 	// functionalities for wishlistBtn
 	public void addToWishlist(View view) {
 

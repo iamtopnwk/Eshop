@@ -1,10 +1,12 @@
 package com.infotop.eshop.activities;
 
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
+
 import com.infotop.eshop.R;
 import com.infotop.eshop.R.drawable;
 import com.infotop.eshop.R.id;
@@ -12,12 +14,16 @@ import com.infotop.eshop.R.layout;
 import com.infotop.eshop.R.menu;
 import com.infotop.eshop.adapters.ProductListAdapter;
 import com.infotop.eshop.httpservice.HttpServiceHandler;
+import com.nostra13.universalimageloader.core.DisplayImageOptions;
+import com.nostra13.universalimageloader.core.ImageLoader;
+import com.nostra13.universalimageloader.core.display.RoundedBitmapDisplayer;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
-
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.app.ActionBar;
@@ -47,26 +53,38 @@ public class ProductListViewActivity extends Activity {
 	String[] pdctId;
 	String[] pdesc;
 	String[] price;
+	String[] imageUrl;
+	Bitmap[] bmp;
 	String subCatId;
 	private static final String TAG_AADATA = "aaData";
 	private static final String TAG_PNAME = "productName";
 	private static final String TAG_PDESC = "productDescription";
 	private static final String TAG_PPRICE="priductPrice";
 	private static final String TAG_PID = "id";
+	private static final String TAG_IMGURL = "imageUrl";
 	static JSONObject jObj = null;
 	JSONArray childCategory = null;
 	Long totalRecords;
+	protected ImageLoader loader = ImageLoader.getInstance();
+	DisplayImageOptions op;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_product_list_view);
-		
+		 
 		// get the action bar
 		  ActionBar actionBar=getActionBar();
 
 		  // Enabling Back navigation on Action Bar icon
 		  actionBar.setDisplayHomeAsUpEnabled(true);
-
+		  op = new DisplayImageOptions.Builder()
+          .showStubImage(R.drawable.notavailable)
+          .showImageForEmptyUri(R.drawable.notavailable)
+          .showImageOnFail(R.drawable.notavailable)
+          .cacheInMemory()
+          .cacheOnDisc()
+          .displayer(new RoundedBitmapDisplayer(20))
+          .build();
 
 		
 		
@@ -105,10 +123,11 @@ public class ProductListViewActivity extends Activity {
 				jsonObj = new JSONObject(pcontent);
 				childCategory = jsonObj.getJSONArray(TAG_AADATA);
 				pdct = new String[childCategory.length()];
-				imgId = new Integer[childCategory.length()];
+				//imgId = new Integer[childCategory.length()];
 				pdctId = new String[childCategory.length()];
 				pdesc = new String[childCategory.length()];
 				price= new String[childCategory.length()];
+				imageUrl=new String[childCategory.length()];
 				List<String> ccName = new ArrayList<String>();
 				for (int i = 0; i < childCategory.length(); i++) {
 					JSONObject pc = childCategory.getJSONObject(i);
@@ -117,8 +136,8 @@ public class ProductListViewActivity extends Activity {
 					pdesc[i] = pc.getString(TAG_PDESC);
 					price[i]=pc.getString(TAG_PPRICE);
 					ccName.add(pdct[i]);
-					System.out.println(pdct[i]);	
-						imgId[i] = R.drawable.productimg;
+					imageUrl[i]=pc.getString(TAG_IMGURL);
+					System.out.println("Image Url:"+imageUrl[i]);	
 				}
 
 			} catch (Exception ex) {
@@ -132,7 +151,7 @@ public class ProductListViewActivity extends Activity {
 			dialog.dismiss();
 			// NOTE: You can call UI Element here.
 			listAdapter = new ProductListAdapter(ProductListViewActivity.this,
-					pdct, imgId, pdesc,price);
+					pdct, imageUrl, pdesc,price,op);
 			System.out.println("ListAdapter value is:" + listAdapter);
 			list.setAdapter(listAdapter);
 			list.setTextFilterEnabled(true);
@@ -145,7 +164,7 @@ public class ProductListViewActivity extends Activity {
 					productData.add(pdct[position]);
 					productData.add(pdesc[position]);
 					productData.add(price[position]);
-					productData.add(imgId[position].toString());
+					productData.add(imageUrl[position]);
 					// String product = (String) adapter.getItem(position);
 					// pass Data to other Activity
 						Intent i = new Intent(ProductListViewActivity.this,
