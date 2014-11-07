@@ -14,6 +14,8 @@ import com.infotop.eshop.R.layout;
 import com.infotop.eshop.R.menu;
 import com.infotop.eshop.adapters.ProductListAdapter;
 import com.infotop.eshop.httpservice.HttpServiceHandler;
+
+
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.display.RoundedBitmapDisplayer;
@@ -27,13 +29,17 @@ import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.app.ActionBar;
+import android.text.Editable;
+import android.text.TextWatcher;
 //import android.support.v7.widget.SearchView;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.SimpleAdapter;
 
 
 
@@ -67,6 +73,7 @@ public class ProductListViewActivity extends Activity {
 	Long totalRecords;
 	protected ImageLoader loader = ImageLoader.getInstance();
 	DisplayImageOptions op;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -95,6 +102,9 @@ public class ProductListViewActivity extends Activity {
 
 		// Use AsyncTask execute Method To Prevent ANR Problem
 		new LongOperation().execute(serverURL);
+
+		
+        
 	}
 	private class LongOperation extends AsyncTask<String, Void, Void> {
 		private String pcontent;
@@ -190,13 +200,6 @@ public class ProductListViewActivity extends Activity {
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.product_list_view, menu);
 		
-		
-		SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
-        SearchView searchView = (SearchView) menu.findItem(R.id.action_search)
-                .getActionView();
-        searchView.setSearchableInfo(searchManager
-                .getSearchableInfo(getComponentName()));
-        
         return true;
 	
 	}

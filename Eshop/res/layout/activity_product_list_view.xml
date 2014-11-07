@@ -4,8 +4,11 @@
     android:layout_height="match_parent"
     android:background="@drawable/backgnd1"
     tools:context="com.infotop.eshop.activities.ProductListViewActivity" >
-
-    <ImageView
+   
+    
+    
+    
+     <ImageView
         android:id="@+id/imageView1"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
