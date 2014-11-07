@@ -134,9 +134,78 @@
                 android:id="@+id/ratingBar1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                
                 android:layout_alignLeft="@+id/pricestatic"
                 android:layout_below="@+id/pricestatic" />
-        
-    </RelativeLayout>
+           
+            <LinearLayout 
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingTop="10dp"
+                android:layout_below="@+id/ratingBar1">
+                
+                <Button 
+                    android:id="@+id/starheading"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="USER RATINGS AND REVIEWS"
+                    android:background="#9933CC"
+                    android:textColor="#669900"
+                    android:textSize="20dp"
+                    android:textStyle="bold"/>
+                
+                
+               <TextView 
+                   android:id="@+id/star5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="20dp"
+                    android:text="5 star:"
+                    android:textColor="#FFBB33"
+                    android:textSize="20dp"
+                    android:textStyle="italic"/>
+              
+               <TextView 
+                   android:id="@+id/star4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="20dp"
+                    android:text="4 star:"
+                    android:textColor="#FFBB33"
+                    android:textSize="20dp"
+                    android:textStyle="italic"/>
+                <TextView 
+                    android:id="@+id/star3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="20dp"
+                    android:text="3 star:"
+                    android:textColor="#FFBB33"
+                    android:textSize="20dp"
+                    android:textStyle="italic"/>
+               <TextView 
+                   android:id="@+id/star2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="20dp"
+                    android:text="2 star:"
+                    android:textColor="#FFBB33"
+                    android:textSize="20dp"
+                    android:textStyle="italic"/>
+               <TextView 
+                   android:id="@+id/star1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="20dp"
+                    android:text="1 star:"
+                    android:textColor="#FFBB33"
+                    android:textSize="20dp"
+                    android:textStyle="italic"/>
+                    
+                  
+            </LinearLayout>
+           
+        </RelativeLayout>
 </ScrollView>
 </RelativeLayout>
