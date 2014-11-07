@@ -48,23 +48,10 @@
         </activity>
         <activity
             android:name="com.infotop.eshop.activities.ProductListViewActivity"
-            android:label="@string/title_activity_product_list_view"
-            android:launchMode="singleTop" >
-            <meta-data
-                android:name="android.app.default_searchable"
-                android:value="com.infotop.eshop.activities.SearchResultsActivity" />
+            android:label="@string/title_activity_product_list_view">
+           
         </activity>
-        <!-- Search results activity -->
-        <activity android:name="com.infotop.eshop.activities.SearchResultsActivity"
-            android:parentActivityName="com.infotop.eshop.activities.ProductListViewActivity" >
-            <intent-filter>
-                <action android:name="android.intent.action.SEARCH" />
-            </intent-filter>
- 
-            <meta-data
-                android:name="android.app.searchable"
-                android:resource="@xml/searchable" />
-        </activity>
+        
         
         <activity
             android:name="com.infotop.eshop.activities.ProductGridViewActivity"
