@@ -151,7 +151,7 @@ public class ProductListViewActivity extends Activity {
 			dialog.dismiss();
 			// NOTE: You can call UI Element here.
 			listAdapter = new ProductListAdapter(ProductListViewActivity.this,
-					pdct, imageUrl, pdesc,price,op);
+					pdctId,pdct, imageUrl, pdesc,price,op);
 			System.out.println("ListAdapter value is:" + listAdapter);
 			list.setAdapter(listAdapter);
 			list.setTextFilterEnabled(true);
@@ -177,6 +177,9 @@ public class ProductListViewActivity extends Activity {
 		}
 
 	}
+	/*public void wishlistMethod(View view){
+		System.out.println("Wish list button clicked....");
+	}*/
 	public void gridView(View view) {
 
 		System.out.println("Button is GridView");

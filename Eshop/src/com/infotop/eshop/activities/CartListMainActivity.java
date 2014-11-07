@@ -56,7 +56,7 @@ public class CartListMainActivity extends Activity {
 			//productImage[i] = R.drawable.productimg;
 		}
 		listAdapter = new ProductListAdapter(CartListMainActivity.this,
-				productName, productImage, productDescription, productPrice,op);
+				productId,productName, productImage, productDescription, productPrice,op);
 		list.setAdapter(listAdapter);
 	}
 
