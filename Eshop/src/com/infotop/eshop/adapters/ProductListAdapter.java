@@ -32,12 +32,11 @@ public class ProductListAdapter extends ArrayAdapter<String> {
 	private final String[] price;
 	private final String[] pdctId;
 	private final DisplayImageOptions op;
-	int positionId;
 	protected ImageLoader loader = ImageLoader.getInstance();
 
-	public ProductListAdapter(Activity context,String[] pdctId, String[] productName,
-			String[] imageUrl, String[] desc, String[] price,
-			DisplayImageOptions op) {
+	public ProductListAdapter(Activity context, String[] pdctId,
+			String[] productName, String[] imageUrl, String[] desc,
+			String[] price, DisplayImageOptions op) {
 
 		super(context, R.layout.product_list, productName);
 		this.context = context;
@@ -51,13 +50,11 @@ public class ProductListAdapter extends ArrayAdapter<String> {
 
 	@Override
 	public View getView(int position, View view, ViewGroup parent) {
-		positionId=position;
 		View rowView = view;
 		final ViewHolder holder;
 		if (rowView == null) {
 			rowView = context.getLayoutInflater().inflate(
 					R.layout.product_list, parent, false);
-			System.out.println("Cate Context value is:" + context);
 			holder = new ViewHolder();
 			holder.txtTitle = (TextView) rowView.findViewById(R.id.productName);
 			holder.txtTitle1 = (TextView) rowView
@@ -72,27 +69,31 @@ public class ProductListAdapter extends ArrayAdapter<String> {
 		} else {
 			holder = (ViewHolder) rowView.getTag();
 		}
+		final int id = position;
 		holder.txtTitle.setText(productName[position]);
 		holder.txtTitle1.setText(desc[position]);
 		holder.txtTitle2.setText(price[position]);
 		loader.displayImage(imageUrl[position], holder.imageView, op, null);
-		holder.imgwishlistbtn.setOnClickListener(new OnClickListener() {
+		holder.imgwishlistbtn.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-             System.out.println("Wish list button listener click");
-             DatabaseHandler db = new DatabaseHandler(context);
-     		Wishlist w = new Wishlist();
-     		w.setProductId(pdctId[positionId]);
-     		w.setProductName(productName[positionId]);
-     		w.setDescription(desc[positionId]);
-     		w.setPrice(price[positionId]);
-     		w.setCreatedDate(new SimpleDateFormat("dd MMM yyyy").format(new Date()));
 
-     		db.addWishList(w);
-     		System.out.println("Add WishList Button of product id:"+pdctId[positionId]);
+				/*System.out.println("Wish list button listener click"
+						+ productName[id]);
+				System.out.println("Wish list button listener click"
+						+ pdctId[id]);*/
 
-     		Toast.makeText(context,
-     				"Your item is added to Wish List", Toast.LENGTH_SHORT).show();
+				DatabaseHandler db = new DatabaseHandler(context);
+				Wishlist w = new Wishlist();
+				w.setProductId(pdctId[id]);
+				w.setProductName(productName[id]);
+				w.setDescription(desc[id]);
+				w.setPrice(price[id]);
+				w.setCreatedDate(new SimpleDateFormat("dd MMM yyyy")
+						.format(new Date()));
+				db.addWishList(w);
+				Toast.makeText(context, "Your item is added to Wish List",
+						Toast.LENGTH_SHORT).show();
 			}
 		});
 		return rowView;
