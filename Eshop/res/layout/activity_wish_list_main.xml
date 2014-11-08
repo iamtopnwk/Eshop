@@ -9,7 +9,14 @@
     tools:context="com.infotop.eshop.activities.WishListMainActivity" 
     android:background="@drawable/backgnd1">
 
+    <ImageView
+        android:id="@+id/imageView1"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:src="@drawable/eshopper" />
+    
     <LinearLayout
+        android:layout_below="@+id/imageView1"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:orientation="vertical" >
@@ -22,14 +29,17 @@
         <ListView
             android:id="@+id/wishListViewItems"
             android:layout_width="fill_parent"
-            android:layout_height="fill_parent" >
+            android:layout_height="fill_parent"
+            android:divider="#b5b5b5"
+            android:dividerHeight="1dp"
+            android:listSelector="@drawable/prolist_selector" >
         </ListView>
-         <ImageView android:id="@+id/delete"
+        <!--  <ImageView android:id="@+id/delete"
          android:layout_width="wrap_content"
          android:layout_height="wrap_content"
          android:layout_alignParentRight="true"
          android:src="@drawable/delete"
-         />
+         /> -->
     </LinearLayout>
 
 </RelativeLayout>

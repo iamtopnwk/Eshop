@@ -77,12 +77,6 @@ public class ProductListAdapter extends ArrayAdapter<String> {
 		holder.imgwishlistbtn.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-
-				/*System.out.println("Wish list button listener click"
-						+ productName[id]);
-				System.out.println("Wish list button listener click"
-						+ pdctId[id]);*/
-
 				DatabaseHandler db = new DatabaseHandler(context);
 				Wishlist w = new Wishlist();
 				w.setProductId(pdctId[id]);
