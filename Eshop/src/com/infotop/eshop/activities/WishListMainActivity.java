@@ -8,6 +8,7 @@ import com.infotop.eshop.R.id;
 import com.infotop.eshop.R.layout;
 import com.infotop.eshop.R.menu;
 import com.infotop.eshop.adapters.ProductListAdapter;
+import com.infotop.eshop.adapters.WishListAdapter;
 import com.infotop.eshop.db.DatabaseHandler;
 import com.infotop.eshop.model.Wishlist;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
@@ -21,7 +22,7 @@ import android.view.MenuItem;
 import android.widget.ListView;
 
 public class WishListMainActivity extends Activity {
-	ProductListAdapter listAdapter;
+	WishListAdapter listAdapter;
 	ListView list;
 	String[] productId, productName, productDescription, productPrice;
 	String[] productImage;
@@ -55,9 +56,10 @@ public class WishListMainActivity extends Activity {
 			productPrice[i] = cartItems.get(i).getPrice();
 			//productImage[i] = R.drawable.productimg;
 		}
-		listAdapter = new ProductListAdapter(WishListMainActivity.this,
-				productName, productImage, productDescription, productPrice,op);
+		listAdapter = new WishListAdapter(WishListMainActivity.this,
+				productId,productName, productImage, productDescription, productPrice,op);
 		list.setAdapter(listAdapter);
+
 	}
 
 	@Override

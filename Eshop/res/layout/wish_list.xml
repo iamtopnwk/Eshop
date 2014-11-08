@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" >
+
+    <ImageView
+        android:id="@+id/productImg"
+        android:layout_width="75dp"
+        android:layout_height="75dp" />
+
+    <TextView
+        android:id="@+id/productName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:layout_toRightOf="@+id/productImg"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/productDesc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/productName"
+        android:layout_marginLeft="110dp"
+        android:textColor="#a3a3a3"
+        android:textStyle="italic" />
+   
+    <TextView
+        android:id="@+id/productpricestaticData"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/productDesc"
+        android:layout_marginLeft="110dp"
+        android:text="Price:"
+        android:textColor="#00c0c0" />
+    
+    <TextView
+        android:id="@+id/productprice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/productprice"
+        android:layout_below="@+id/productDesc"
+         android:layout_marginLeft="150dp"
+        android:textColor="#00c0c0" />
+     <ImageView android:id="@+id/delete"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_alignParentRight="true"
+         android:src="@drawable/delete"
+         />
+   
+
+</RelativeLayout>

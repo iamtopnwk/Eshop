@@ -142,4 +142,23 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 	    // return contact list
 	    return wishListData;
 	}
+	
+	/*public void deleteWishListItem(Wishlist wishlist){
+		SQLiteDatabase db=this.getWritableDatabase();
+		db.delete(TABLE_WISHLIST, KEY_PRODUCTID + " = ?",
+				new String[] { String.valueOf(wishlist.getId()) });
+		  db.close();
+		
+	}
+	*/
+	
+	public void deleteWishListItem(String productId) {
+		SQLiteDatabase db = this.getWritableDatabase();
+		String deleteQuery = "delete from " + TABLE_WISHLIST + " where "
+				+ KEY_PRODUCTID + "='" + productId + "'";
+		
+		db.execSQL(deleteQuery);
+		db.close();
+		}
+	
 }
