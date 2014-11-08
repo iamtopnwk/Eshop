@@ -55,7 +55,7 @@ public class WishListMainActivity extends Activity {
 			productPrice[i] = cartItems.get(i).getPrice();
 			//productImage[i] = R.drawable.productimg;
 		}
-		listAdapter = new ProductListAdapter(WishListMainActivity.this,
+		listAdapter = new ProductListAdapter(WishListMainActivity.this,productId,
 				productName, productImage, productDescription, productPrice,op);
 		list.setAdapter(listAdapter);
 	}
