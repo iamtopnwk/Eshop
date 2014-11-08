@@ -46,19 +46,20 @@ public class WishListMainActivity extends Activity {
         .build();
 		list = (ListView) findViewById(R.id.wishListViewItems);
 		DatabaseHandler db = new DatabaseHandler(WishListMainActivity.this);
-		List<Wishlist> cartItems = db.getAllWishListItems();
-		int size = cartItems.size();
+		List<Wishlist> wishlistItems = db.getAllWishListItems();
+		int size = wishlistItems.size();
 		productId = new String[size];
 		productName = new String[size];
 		productDescription = new String[size];
 		productPrice = new String[size];
 		productImage = new String[size];
 		for (int i = 0; i < size; i++) {
-			productId[i] = cartItems.get(i).getProductId();
-			productName[i] = cartItems.get(i).getProductName();
-			productDescription[i] = cartItems.get(i).getDescription();
-			productPrice[i] = cartItems.get(i).getPrice();
-			//productImage[i] = R.drawable.productimg;
+			productId[i] = wishlistItems.get(i).getProductId();
+			productName[i] = wishlistItems.get(i).getProductName();
+			productDescription[i] = wishlistItems.get(i).getDescription();
+			productPrice[i] = wishlistItems.get(i).getPrice();
+			productImage[i] = wishlistItems.get(i).getImageUrl();
+			System.out.println("Wishlist product Image Url's:"+productImage[i]);
 		}
 		listAdapter = new WishListAdapter(WishListMainActivity.this,
 				productId,productName, productImage, productDescription, productPrice,op);

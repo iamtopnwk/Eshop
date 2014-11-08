@@ -63,7 +63,6 @@ public class BookDetailsActivity extends Activity {
         .build();
 		// Get data from EshopMainActivity
 		s = getIntent().getExtras().getStringArrayList("productData");
-		System.out.println("Product Name:" + s.get(0));
 		holder = new ViewHolder();
 		holder.txtTitle=(TextView) findViewById(R.id.bookName1);
 		holder.txtTitle1 = (TextView) findViewById(R.id.authorName);
@@ -91,6 +90,7 @@ public class BookDetailsActivity extends Activity {
 		w.setProductName(s.get(1));
 		w.setDescription(s.get(2));
 		w.setPrice(s.get(3));
+		w.setImageUrl(s.get(4));
 		w.setCreatedDate(new SimpleDateFormat("dd MMM yyyy").format(new Date()));
 
 		db.addWishList(w);
@@ -122,6 +122,7 @@ public class BookDetailsActivity extends Activity {
 			w.setProductName(s.get(1));
 			w.setDescription(s.get(2));
 			w.setPrice(s.get(3));
+			w.setImageUrl(s.get(4));
 			w.setCreatedDate(new SimpleDateFormat("dd MMM yyyy").format(new Date()));
 			db.addCartList(w);
 			Toast.makeText(BookDetailsActivity.this, "Your Item is Added to Cart",

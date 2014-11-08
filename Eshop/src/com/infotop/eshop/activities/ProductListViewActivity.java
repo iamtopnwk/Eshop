@@ -128,7 +128,6 @@ public class ProductListViewActivity extends Activity {
 			try {
 				HttpServiceHandler hs = new HttpServiceHandler();
 				pcontent = hs.httpContent(urls[0]);
-				System.out.println("Product Content:"+pcontent);
 				JSONObject jsonObj;
 				jsonObj = new JSONObject(pcontent);
 				childCategory = jsonObj.getJSONArray(TAG_AADATA);
