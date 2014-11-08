@@ -1,11 +1,15 @@
 package com.infotop.eshop.activities;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.infotop.eshop.R;
@@ -58,6 +62,25 @@ public class CartListMainActivity extends Activity {
 		listAdapter = new ProductListAdapter(CartListMainActivity.this,
 				productId,productName, productImage, productDescription, productPrice,op);
 		list.setAdapter(listAdapter);
+		list.setTextFilterEnabled(true);
+		list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+			@Override
+			public void onItemClick(AdapterView<?> parent, View view,
+					int position, long id) {
+				ArrayList<String> productData = new ArrayList<String>();
+				productData.add(productId[position]);
+				productData.add(productName[position]);
+				productData.add(productDescription[position]);
+				productData.add(productPrice[position]);
+				productData.add(productImage[position]);
+				// String product = (String) adapter.getItem(position);
+				// pass Data to other Activity
+					Intent i = new Intent(CartListMainActivity.this,
+							BookDetailsActivity.class);
+					i.putStringArrayListExtra("productData", productData);
+					startActivity(i);
+			}
+		});
 	}
 
 	@Override
