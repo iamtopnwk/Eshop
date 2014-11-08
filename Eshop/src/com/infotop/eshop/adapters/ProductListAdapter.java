@@ -83,6 +83,7 @@ public class ProductListAdapter extends ArrayAdapter<String> {
 				w.setProductName(productName[id]);
 				w.setDescription(desc[id]);
 				w.setPrice(price[id]);
+				w.setImageUrl(imageUrl[id]);
 				w.setCreatedDate(new SimpleDateFormat("dd MMM yyyy")
 						.format(new Date()));
 				db.addWishList(w);

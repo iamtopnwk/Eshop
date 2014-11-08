@@ -28,6 +28,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 	private static final String KEY_DESCRIPTION = "description";
 	private static final String KEY_PRICE = "price";
 	private static final String KEY_CATID = "categoryId";
+	private static final String KEY_IMAGEURL="imageUrl";
 	private static final String KEY_CREATEDATE = "createdDate";
 
 	public DatabaseHandler(Context context) {
@@ -39,12 +40,12 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 		// TODO Auto-generated method stub
 		String CREATE_CONTACTS_TABLE = "CREATE TABLE " + TABLE_WISHLIST + "("
 				+ KEY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +KEY_PRODUCTID + " TEXT,"+ KEY_NAME + " TEXT,"
-				+ KEY_DESCRIPTION+" TEXT,"+KEY_PRICE+" TEXT," + KEY_CATID + " TEXT," + KEY_CREATEDATE + " TEXT" + ")";
+				+ KEY_DESCRIPTION+" TEXT,"+KEY_PRICE+" TEXT," + KEY_CATID + " TEXT," + KEY_IMAGEURL + " TEXT," + KEY_CREATEDATE + " TEXT" + ")";
 		db.execSQL(CREATE_CONTACTS_TABLE);
 		
 		String CREATE_CONTACTS_TABLE1 = "CREATE TABLE " + TABLE_CARTLIST + "("
 				+ KEY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +KEY_PRODUCTID + " TEXT,"+ KEY_NAME + " TEXT,"
-				+ KEY_DESCRIPTION+" TEXT,"+KEY_PRICE+" TEXT," + KEY_CATID + " TEXT," + KEY_CREATEDATE + " TEXT" + ")";
+				+ KEY_DESCRIPTION+" TEXT,"+KEY_PRICE+" TEXT," + KEY_CATID + " TEXT,"+ KEY_IMAGEURL + " TEXT," + KEY_CREATEDATE + " TEXT" + ")";
 		db.execSQL(CREATE_CONTACTS_TABLE1);
 
 	}
@@ -66,6 +67,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 		values.put(KEY_DESCRIPTION, wishlist.getDescription());
 		values.put(KEY_PRICE, wishlist.getPrice());
 		values.put(KEY_CATID, wishlist.getCategoryId());
+		values.put(KEY_IMAGEURL, wishlist.getImageUrl());
 		values.put(KEY_CREATEDATE, wishlist.getCreatedDate());
 		// Inserting Row
 		db.insert(TABLE_WISHLIST, null, values);
@@ -81,6 +83,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 		values.put(KEY_DESCRIPTION, wishlist.getDescription());
 		values.put(KEY_PRICE, wishlist.getPrice());
 		values.put(KEY_CATID, wishlist.getCategoryId());
+		values.put(KEY_IMAGEURL, wishlist.getImageUrl());
 		values.put(KEY_CREATEDATE, wishlist.getCreatedDate());
 		// Inserting Row
 		db.insert(TABLE_CARTLIST, null, values);
@@ -107,7 +110,8 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 	        	wList.setDescription(cursor.getString(3));
 	        	wList.setPrice(cursor.getString(4));
 	        	wList.setCategoryId(cursor.getString(5));
-	        	wList.setCreatedDate(cursor.getString(6));
+	        	wList.setImageUrl(cursor.getString(6));
+	        	wList.setCreatedDate(cursor.getString(7));
 	        	wishListData.add(wList);
 	        } while (cursor.moveToNext());
 	    }
@@ -134,7 +138,8 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 	        	wList.setDescription(cursor.getString(3));
 	        	wList.setPrice(cursor.getString(4));
 	        	wList.setCategoryId(cursor.getString(5));
-	        	wList.setCreatedDate(cursor.getString(6));
+	        	wList.setImageUrl(cursor.getString(6));
+	        	wList.setCreatedDate(cursor.getString(7));
 	        	wishListData.add(wList);
 	        } while (cursor.moveToNext());
 	    }

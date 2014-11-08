@@ -140,20 +140,16 @@
            
             <LinearLayout 
                 android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="fill_parent"
                 android:orientation="vertical"
                 android:paddingTop="10dp"
                 android:layout_below="@+id/ratingBar1">
                 
                 <Button 
                     android:id="@+id/starheading"
-                    android:layout_width="wrap_content"
+                    android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:text="USER RATINGS AND REVIEWS"
-                    android:background="#9933CC"
-                    android:textColor="#669900"
-                    android:textSize="20dp"
-                    android:textStyle="bold"/>
+                    android:text="USER RATINGS AND REVIEWS"/>
               
                <TextView 
                    android:id="@+id/star5"
@@ -165,6 +161,7 @@
                     android:textSize="20dp"
                     android:textStyle="italic"/>
               
+               
                <TextView 
                    android:id="@+id/star4"
                     android:layout_width="wrap_content"
@@ -201,7 +198,27 @@
                     android:textColor="#FFBB33"
                     android:textSize="20dp"
                     android:textStyle="italic"/>
-                    
+               <TextView 
+                   android:id="@+id/like"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:paddingTop="10dp"
+                    android:text="Likes:"
+                    android:textColor="#669900"
+                    android:textSize="20dp"
+                    />
+               <TextView 
+                   android:id="@+id/comment"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:paddingTop="10dp"
+                    android:text="Comments:"
+                    android:textColor="#669900"
+                    android:textSize="20dp"
+                    />
+               
+              
+                  
                   
             </LinearLayout>
            

@@ -3,10 +3,55 @@
     tools:context="com.infotop.eshop.ProductListViewActivity" >
 
     <item
-        android:id="@+id/action_settings"
-        android:orderInCategory="100"
-        android:showAsAction="never"
-        android:title="@string/action_settings"/>
+        android:id="@+id/action_search"
+        android:actionViewClass="android.widget.SearchView"
+        android:icon="@drawable/ic_action_search"
+        android:showAsAction="always|collapseActionView"
+        android:title="@string/action_search"/>
+    <item
+        android:id="@+id/abCartList"
+        android:icon="@drawable/ic_cart"
+        android:showAsAction="always"
+        android:title="CartList"/>
+    <item
+        android:id="@+id/abOverflow"
+        android:icon="@drawable/ic_action_overflow"
+        android:showAsAction="always"
+        android:title="@string/action_overflow">
+        <menu>
+            <item
+                android:id="@+id/abLogin"
+                android:icon="@drawable/ic_action_person"
+                android:showAsAction="ifRoom"
+                android:title="Login"/>
+            <item
+                android:id="@+id/abwishlist"
+                android:icon="@drawable/ic_action_favorite"
+                android:showAsAction="never"
+                android:title="wishlist"/>
+            <item
+                android:id="@+id/abTrackOrder"
+                android:icon="@drawable/ic_action_share"
+                android:showAsAction="never"
+                android:title="Track Order"/>
+            <item
+                android:id="@+id/abRateApp"
+                android:icon="@drawable/ic_action_labels"
+                android:showAsAction="never"
+                android:title="Rate App"/>
+            <item
+                android:id="@+id/abShareApp"
+                android:icon="@drawable/ic_action_share"
+                android:showAsAction="never"
+                android:title="Share App"/>
+            <item
+                android:id="@+id/abPolicies"
+                android:icon="@drawable/ic_action_view_as_list"
+                android:showAsAction="never"
+                android:title="Policies"/>
+        </menu>
+    </item>
+
     
    
  

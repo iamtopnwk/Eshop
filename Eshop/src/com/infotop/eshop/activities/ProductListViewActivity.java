@@ -128,7 +128,6 @@ public class ProductListViewActivity extends Activity {
 			try {
 				HttpServiceHandler hs = new HttpServiceHandler();
 				pcontent = hs.httpContent(urls[0]);
-				System.out.println("Product Content:"+pcontent);
 				JSONObject jsonObj;
 				jsonObj = new JSONObject(pcontent);
 				childCategory = jsonObj.getJSONArray(TAG_AADATA);
@@ -212,10 +211,31 @@ public class ProductListViewActivity extends Activity {
 		// Handle action bar item clicks here. The action bar will
 		// automatically handle clicks on the Home/Up button, so long
 		// as you specify a parent activity in AndroidManifest.xml.
-		int id = item.getItemId();
-		if (id == R.id.action_settings) {
+		switch (item.getItemId()) {
+		case R.id.action_search:
 			return true;
+		case R.id.abCartList:
+			Intent i = new Intent(this, CartListMainActivity.class);
+			startActivity(i);
+			return true;
+		case R.id.abLogin:
+			Intent lgn = new Intent(this, EshopLoginActivity.class);
+			startActivity(lgn);
+			return true;
+		case R.id.abwishlist:
+			Intent wl = new Intent(this, WishListMainActivity.class);
+			startActivity(wl);
+			return true;
+		case R.id.abTrackOrder:
+			return true;
+		case R.id.abRateApp:
+			return true;
+		case R.id.abShareApp:
+			return true;
+		case R.id.abPolicies:
+			return true;
+		default:
+			return super.onOptionsItemSelected(item);
 		}
-		return super.onOptionsItemSelected(item);
 	}
 }
