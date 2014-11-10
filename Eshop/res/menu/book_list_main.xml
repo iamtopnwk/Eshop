@@ -5,15 +5,15 @@
     <item
         android:id="@+id/ab_abShareApp1"
         android:icon="@drawable/ic_action_share"
-        android:showAsAction="ifRoom"
+        android:showAsAction="always"
         android:title="Share App"/>
     <item
         android:id="@+id/ab_addToCart"
-        android:showAsAction="ifRoom"
+        android:showAsAction="always"
         android:title="Add to cart"/>
     <item
         android:id="@+id/ab_purChaseItem"
-        android:showAsAction="ifRoom"
+        android:showAsAction="always"
         android:title="Buy"/>
 
 </menu>
