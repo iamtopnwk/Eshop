@@ -1,8 +1,13 @@
 package com.infotop.eshop.adapters;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import com.infotop.eshop.R;
 import com.infotop.eshop.R.id;
 import com.infotop.eshop.R.layout;
+import com.infotop.eshop.db.DatabaseHandler;
+import com.infotop.eshop.model.Wishlist;
 import com.infotop.eshop.sidefragment.BooksFragment;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
@@ -15,6 +20,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class CustomGridViewAdapter extends ArrayAdapter<String> {
 
@@ -23,10 +29,11 @@ public class CustomGridViewAdapter extends ArrayAdapter<String> {
 	private final String[] imageUrl;
 	private final String[] description;
 	private final String[] price;
+	private final String[] productId;
 	private final DisplayImageOptions op;
 	protected ImageLoader loader = ImageLoader.getInstance();
 
-	public CustomGridViewAdapter(Activity context, String[] productName,
+	public CustomGridViewAdapter(Activity context, String[] productId, String[] productName,
 			String[] imageUrl, String[] description, String[] price,
 			DisplayImageOptions op) {
 
@@ -36,6 +43,7 @@ public class CustomGridViewAdapter extends ArrayAdapter<String> {
 		this.imageUrl = imageUrl;
 		this.description = description;
 		this.price = price;
+		this.productId = productId;
 		this.op = op;
 	}
 
@@ -57,14 +65,34 @@ public class CustomGridViewAdapter extends ArrayAdapter<String> {
 					.findViewById(R.id.product_price);
 			holder.imageView = (ImageView) rowView
 					.findViewById(R.id.productImg);
+			holder.imgwishlistbtn = (ImageView) rowView
+					.findViewById(R.id.imgwishlistbtn);
 			rowView.setTag(holder);
 		} else {
 			holder = (ViewHolder) rowView.getTag();
 		}
+		final int id = position;
 		holder.txtTitle.setText(productName[position]);
 		holder.txtTitle1.setText(description[position]);
 		holder.txtTitle2.setText(price[position]);
 		loader.displayImage(imageUrl[position], holder.imageView, op, null);
+		holder.imgwishlistbtn.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				DatabaseHandler db = new DatabaseHandler(context);
+				Wishlist w = new Wishlist();
+				w.setProductId(productId[id]);
+				w.setProductName(productName[id]);
+				w.setDescription(description[id]);
+				w.setPrice(price[id]);
+				w.setImageUrl(imageUrl[id]);
+				w.setCreatedDate(new SimpleDateFormat("dd MMM yyyy")
+						.format(new Date()));
+				db.addWishList(w);
+				Toast.makeText(context, "Your item is added to Wish List",
+						Toast.LENGTH_SHORT).show();
+			}
+		});
 		return rowView;
 	}
 
@@ -73,6 +101,7 @@ public class CustomGridViewAdapter extends ArrayAdapter<String> {
 		public TextView txtTitle1;
 		public TextView txtTitle2;
 		public ImageView imageView;
+		public ImageView imgwishlistbtn;
 	}
 
 }

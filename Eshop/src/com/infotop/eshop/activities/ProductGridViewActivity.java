@@ -49,19 +49,18 @@ public class ProductGridViewActivity extends Activity {
 	protected ImageLoader loader = ImageLoader.getInstance();
 	DisplayImageOptions op;
 	ImageButton ib;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_product_grid_view);
-		 ib=(ImageButton) findViewById(R.id.gridviewbtn1);
-		 op = new DisplayImageOptions.Builder()
-         .showStubImage(R.drawable.notavailable)
-         .showImageForEmptyUri(R.drawable.notavailable)
-         .showImageOnFail(R.drawable.notavailable)
-         .cacheInMemory()
-         .cacheOnDisc()
-         .displayer(new RoundedBitmapDisplayer(20))
-         .build();
+		ib = (ImageButton) findViewById(R.id.gridviewbtn1);
+		op = new DisplayImageOptions.Builder()
+				.showStubImage(R.drawable.notavailable)
+				.showImageForEmptyUri(R.drawable.notavailable)
+				.showImageOnFail(R.drawable.notavailable).cacheInMemory()
+				.cacheOnDisc().displayer(new RoundedBitmapDisplayer(20))
+				.build();
 		grid = (GridView) findViewById(R.id.productGridView);
 		subCatId = getIntent().getExtras().getString("ccId");
 		System.out.println("Product Subcategory id:" + subCatId);
@@ -103,7 +102,7 @@ public class ProductGridViewActivity extends Activity {
 				pdctId = new String[childCategory.length()];
 				pdesc = new String[childCategory.length()];
 				price = new String[childCategory.length()];
-				imageUrl=new String[childCategory.length()];
+				imageUrl = new String[childCategory.length()];
 				List<String> ccName = new ArrayList<String>();
 				for (int i = 0; i < childCategory.length(); i++) {
 					JSONObject pc = childCategory.getJSONObject(i);
@@ -112,9 +111,9 @@ public class ProductGridViewActivity extends Activity {
 					pdesc[i] = pc.getString(TAG_PDESC);
 					price[i] = pc.getString(TAG_PPRICE);
 					ccName.add(pdct[i]);
-					imageUrl[i]=pc.getString(TAG_IMGURL);
+					imageUrl[i] = pc.getString(TAG_IMGURL);
 					System.out.println(pdct[i]);
-					//imgId[i] = R.drawable.productimg;
+					// imgId[i] = R.drawable.productimg;
 				}
 
 			} catch (Exception ex) {
@@ -128,7 +127,8 @@ public class ProductGridViewActivity extends Activity {
 			dialog.dismiss();
 			// NOTE: You can call UI Element here.
 			gridAdapter = new CustomGridViewAdapter(
-					ProductGridViewActivity.this, pdct, imageUrl, pdesc, price,op);
+					ProductGridViewActivity.this, pdctId, pdct, imageUrl,
+					pdesc, price, op);
 			System.out.println("ListAdapter value is:" + gridAdapter);
 			grid.setAdapter(gridAdapter);
 			grid.setOnTouchListener(new OnTouchListener() {
@@ -138,13 +138,13 @@ public class ProductGridViewActivity extends Activity {
 					// TODO Auto-generated method stub
 					ib.setVisibility(v.VISIBLE);
 					return false;
-				}}
-					);
+				}
+			});
 			grid.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 				@Override
 				public void onItemClick(AdapterView<?> parent, View view,
 						int position, long id) {
-					ArrayList<String> productData = new ArrayList<String>();				
+					ArrayList<String> productData = new ArrayList<String>();
 					productData.add(pdctId[position]);
 					productData.add(pdct[position]);
 					productData.add(pdesc[position]);
@@ -186,10 +186,31 @@ public class ProductGridViewActivity extends Activity {
 		// Handle action bar item clicks here. The action bar will
 		// automatically handle clicks on the Home/Up button, so long
 		// as you specify a parent activity in AndroidManifest.xml.
-		int id = item.getItemId();
-		if (id == R.id.action_settings) {
+		switch (item.getItemId()) {
+		case R.id.action_search:
 			return true;
+		case R.id.abCartList:
+			Intent i = new Intent(this, CartListMainActivity.class);
+			startActivity(i);
+			return true;
+		case R.id.abLogin:
+			Intent lgn = new Intent(this, EshopLoginActivity.class);
+			startActivity(lgn);
+			return true;
+		case R.id.abwishlist:
+			Intent wl = new Intent(this, WishListMainActivity.class);
+			startActivity(wl);
+			return true;
+		case R.id.abTrackOrder:
+			return true;
+		case R.id.abRateApp:
+			return true;
+		case R.id.abShareApp:
+			return true;
+		case R.id.abPolicies:
+			return true;
+		default:
+			return super.onOptionsItemSelected(item);
 		}
-		return super.onOptionsItemSelected(item);
 	}
 }
