@@ -2,36 +2,43 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.edeal.ProductGridViewActivity" 
-    android:background="@drawable/backgnd1">
+    android:background="@drawable/backgnd1"
+    tools:context="com.infotop.eshop.activities.ProductGridViewActivity" >
 
     <ImageView
-            android:id="@+id/imageView1"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:src="@drawable/eshopper" />
-    
+        android:id="@+id/imageView1"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:src="@drawable/eshopper" />
+
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
+        android:layout_below="@+id/imageView1"
+        android:layout_marginTop="20dp"
         android:orientation="vertical" >
-        
-        <ImageButton
-            android:id="@+id/gridviewbtn1"
-            android:layout_width="30dip"
-            android:layout_height="30dip"
-            android:layout_gravity="right"
-            android:onClick="listViewdata"
-            android:src="@drawable/ic_action_view_as_list" />
 
         <GridView
             android:id="@+id/productGridView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="#e7e7e8"
-            android:numColumns="2" >
-
+            android:horizontalSpacing="1dp"
+            android:numColumns="auto_fit"
+            android:stretchMode="columnWidth"
+            android:verticalSpacing="1dp" >
         </GridView>
     </LinearLayout>
+
+    <ImageButton
+        android:id="@+id/gridviewbtn1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="100dp"
+        android:onClick="listViewdata"
+        android:src="@drawable/ic_action_view_as_list"
+        android:visibility="invisible" />
 
 </RelativeLayout>

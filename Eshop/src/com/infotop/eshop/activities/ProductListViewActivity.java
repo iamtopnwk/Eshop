@@ -28,6 +28,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.IBinder;
 import android.app.ActionBar;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -35,9 +36,12 @@ import android.text.TextWatcher;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.View.OnTouchListener;
 import android.widget.AdapterView;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 
@@ -73,12 +77,13 @@ public class ProductListViewActivity extends Activity {
 	Long totalRecords;
 	protected ImageLoader loader = ImageLoader.getInstance();
 	DisplayImageOptions op;
+	ImageButton ib;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_product_list_view);
-		 
+		 ib=(ImageButton) findViewById(R.id.listviewbtn1);
 		// get the action bar
 		  ActionBar actionBar=getActionBar();
 
@@ -164,6 +169,15 @@ public class ProductListViewActivity extends Activity {
 			System.out.println("ListAdapter value is:" + listAdapter);
 			list.setAdapter(listAdapter);
 			list.setTextFilterEnabled(true);
+			list.setOnTouchListener(new OnTouchListener() {
+
+				@Override
+				public boolean onTouch(View v, MotionEvent arg1) {
+					// TODO Auto-generated method stub
+					ib.setVisibility(v.VISIBLE);
+					return false;
+				}}
+					);
 			list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 				@Override
 				public void onItemClick(AdapterView<?> parent, View view,

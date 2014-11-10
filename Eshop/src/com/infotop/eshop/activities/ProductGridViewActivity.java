@@ -6,13 +6,6 @@ import java.util.List;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-import com.infotop.eshop.R;
-import com.infotop.eshop.adapters.CustomGridViewAdapter;
-import com.infotop.eshop.httpservice.HttpServiceHandler;
-import com.nostra13.universalimageloader.core.DisplayImageOptions;
-import com.nostra13.universalimageloader.core.ImageLoader;
-import com.nostra13.universalimageloader.core.display.RoundedBitmapDisplayer;
-
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -20,11 +13,19 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.View.OnTouchListener;
 import android.widget.AdapterView;
 import android.widget.GridView;
-import android.widget.ToggleButton;
+import android.widget.ImageButton;
 
+import com.infotop.eshop.R;
+import com.infotop.eshop.adapters.CustomGridViewAdapter;
+import com.infotop.eshop.httpservice.HttpServiceHandler;
+import com.nostra13.universalimageloader.core.DisplayImageOptions;
+import com.nostra13.universalimageloader.core.ImageLoader;
+import com.nostra13.universalimageloader.core.display.RoundedBitmapDisplayer;
 
 public class ProductGridViewActivity extends Activity {
 	CustomGridViewAdapter gridAdapter;
@@ -47,11 +48,12 @@ public class ProductGridViewActivity extends Activity {
 	Long totalRecords;
 	protected ImageLoader loader = ImageLoader.getInstance();
 	DisplayImageOptions op;
-
+	ImageButton ib;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_product_grid_view);
+		 ib=(ImageButton) findViewById(R.id.gridviewbtn1);
 		 op = new DisplayImageOptions.Builder()
          .showStubImage(R.drawable.notavailable)
          .showImageForEmptyUri(R.drawable.notavailable)
@@ -129,6 +131,15 @@ public class ProductGridViewActivity extends Activity {
 					ProductGridViewActivity.this, pdct, imageUrl, pdesc, price,op);
 			System.out.println("ListAdapter value is:" + gridAdapter);
 			grid.setAdapter(gridAdapter);
+			grid.setOnTouchListener(new OnTouchListener() {
+
+				@Override
+				public boolean onTouch(View v, MotionEvent arg1) {
+					// TODO Auto-generated method stub
+					ib.setVisibility(v.VISIBLE);
+					return false;
+				}}
+					);
 			grid.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 				@Override
 				public void onItemClick(AdapterView<?> parent, View view,
