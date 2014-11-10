@@ -3,9 +3,12 @@
     tools:context="com.infotop.eshop.CartListMainActivity" >
 
     <item
-        android:id="@+id/action_settings"
-        android:orderInCategory="100"
-        android:showAsAction="never"
-        android:title="@string/action_settings"/>
+        android:id="@+id/ab_deleteFromCart"
+        android:showAsAction="always"
+        android:title="Delete from cart"/>
+    <item
+        android:id="@+id/ab_purChaseItem"
+        android:showAsAction="always"
+        android:title="Buy"/>
 
 </menu>

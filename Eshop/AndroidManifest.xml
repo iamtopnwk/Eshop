@@ -46,7 +46,14 @@
             android:label="@string/title_activity_product_details"
             android:uiOptions="splitActionBarWhenNarrow" >
         </activity>
-        <activity
+        
+         <activity
+            android:name="com.infotop.eshop.activities.CartListMainActivity"
+            android:label="@string/title_activity_cart_list_main"
+            android:uiOptions="splitActionBarWhenNarrow" >
+        </activity>
+       
+         <activity
             android:name="com.infotop.eshop.activities.ProductListViewActivity"
             android:label="@string/title_activity_product_list_view">
            
@@ -57,10 +64,7 @@
             android:name="com.infotop.eshop.activities.ProductGridViewActivity"
             android:label="@string/title_activity_product_grid_view" >
         </activity>
-        <activity
-            android:name="com.infotop.eshop.activities.CartListMainActivity"
-            android:label="@string/title_activity_cart_list_main" >
-        </activity>
+       
         <activity
             android:name="com.infotop.eshop.activities.WishListMainActivity"
             android:label="@string/title_activity_wish_list_main" >
