@@ -70,5 +70,6 @@
     <string name="title_activity_wish_list_main">WishList Items</string>
     <string name="title_activity_payment_main">PaymentMainActivity</string>
     <string name="title_activity_pay_confirm">PayConfirmActivity</string>
+    <string name="title_activity_eshop_policies">EshopPoliciesActivity</string>
 
 </resources>

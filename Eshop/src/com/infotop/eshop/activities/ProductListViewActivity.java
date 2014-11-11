@@ -247,6 +247,8 @@ public class ProductListViewActivity extends Activity {
 		case R.id.abShareApp:
 			return true;
 		case R.id.abPolicies:
+			Intent policy = new Intent(this, EshopPoliciesActivity.class);
+			startActivity(policy);
 			return true;
 		default:
 			return super.onOptionsItemSelected(item);
