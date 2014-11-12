@@ -49,6 +49,11 @@
                 android:icon="@drawable/ic_action_view_as_list"
                 android:showAsAction="never"
                 android:title="Policies"/>
+             <item
+                android:id="@+id/abContactUs"
+                android:icon="@drawable/ic_action_call"
+                android:showAsAction="never"
+                android:title="ContactUs"/>
         </menu>
     </item>
 

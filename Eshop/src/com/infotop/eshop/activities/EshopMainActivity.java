@@ -178,6 +178,10 @@ public class EshopMainActivity extends Activity {
 			return true;
 		case R.id.abPolicies:
 			return true;
+		case R.id.abContactUs:
+			Intent cu = new Intent(this, ContactUsActivity.class);
+			startActivity(cu);
+			return true;
 		default:
 			return super.onOptionsItemSelected(item);
 		}

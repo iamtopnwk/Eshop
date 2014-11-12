@@ -35,8 +35,7 @@
         android:textSize="11dp"
         android:layout_marginLeft="4dp"
         android:layout_gravity="center_horizontal|bottom"
-        android:background="#000000"
-        android:alpha="0.5"
+        android:background="#73000000"
         />
      </FrameLayout>
      </RelativeLayout>
