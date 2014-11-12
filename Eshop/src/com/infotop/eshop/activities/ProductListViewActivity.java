@@ -12,6 +12,7 @@ import com.infotop.eshop.R.drawable;
 import com.infotop.eshop.R.id;
 import com.infotop.eshop.R.layout;
 import com.infotop.eshop.R.menu;
+import com.infotop.eshop.Utilities.UserSessionManager;
 import com.infotop.eshop.adapters.ProductListAdapter;
 import com.infotop.eshop.httpservice.HttpServiceHandler;
 
@@ -249,6 +250,16 @@ public class ProductListViewActivity extends Activity {
 		case R.id.abPolicies:
 			Intent policy = new Intent(this, EshopPoliciesActivity.class);
 			startActivity(policy);
+			return true;
+		case R.id.abContactUs:
+			Intent cu = new Intent(this, ContactUsActivity.class);
+			startActivity(cu);
+			return true;
+		case R.id.logOut:
+			UserSessionManager us = new UserSessionManager(this);
+			us.logoutUser();
+			Intent lout = new Intent(this, EshopMainActivity.class);
+			startActivity(lout);
 			return true;
 		default:
 			return super.onOptionsItemSelected(item);

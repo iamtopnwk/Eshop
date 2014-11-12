@@ -21,6 +21,7 @@ import android.widget.GridView;
 import android.widget.ImageButton;
 
 import com.infotop.eshop.R;
+import com.infotop.eshop.Utilities.UserSessionManager;
 import com.infotop.eshop.adapters.CustomGridViewAdapter;
 import com.infotop.eshop.httpservice.HttpServiceHandler;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
@@ -208,6 +209,18 @@ public class ProductGridViewActivity extends Activity {
 		case R.id.abShareApp:
 			return true;
 		case R.id.abPolicies:
+			Intent policy = new Intent(this, EshopPoliciesActivity.class);
+			startActivity(policy);
+			return true;
+		case R.id.abContactUs:
+			Intent cu = new Intent(this, ContactUsActivity.class);
+			startActivity(cu);
+			return true;
+		case R.id.logOut:
+			UserSessionManager us = new UserSessionManager(this);
+			us.logoutUser();
+			Intent lout = new Intent(this, EshopMainActivity.class);
+			startActivity(lout);
 			return true;
 		default:
 			return super.onOptionsItemSelected(item);
