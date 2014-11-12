@@ -7,26 +7,49 @@ import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.protocol.BasicHttpContext;
 import org.apache.http.protocol.HttpContext;
+import org.json.JSONObject;
 
 public class HttpServiceHandler {
-	private String pcontent;
+	private String result;
+	private HttpClient client = new DefaultHttpClient();
+	private HttpContext localContext = new BasicHttpContext();
+	private HttpGet httpGet;
+	private HttpResponse response;
+	private HttpEntity entity;
+	private HttpPost post;
 
 	public String httpContent(String url) {
 		try {
-
-			HttpClient client = new DefaultHttpClient();
-			HttpContext localContext = new BasicHttpContext();
-			HttpGet httpGet = new HttpGet(url);
-			HttpResponse response = client.execute(httpGet, localContext);
-			HttpEntity entity = response.getEntity();
-			pcontent = getASCIIContentFromEntity(entity);
+			httpGet = new HttpGet(url);
+			response = client.execute(httpGet, localContext);
+			entity = response.getEntity();
+			result = getASCIIContentFromEntity(entity);
 		} catch (Exception e) {
 			System.out.println("Exception e:" + e.getMessage());
 		}
-		return pcontent;
+		return result;
+	}
+
+	public String httpPost(String url, String jsonData) {
+		try {
+			StringEntity se = new StringEntity(jsonData);
+			post = new HttpPost(url);
+			post.setEntity(se);
+			post.setHeader("Accept", "application/json");
+			post.setHeader("Content-type", "application/json");
+			response = client.execute(post);
+			entity = response.getEntity();
+			result = getASCIIContentFromEntity(entity);
+
+		} catch (Exception e) {
+			System.out.println("Exception e:" + e.getMessage());
+		}
+		return result;
 	}
 
 	private String getASCIIContentFromEntity(HttpEntity entity)

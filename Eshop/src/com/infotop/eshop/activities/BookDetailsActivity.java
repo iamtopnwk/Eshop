@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.Date;
 
 import com.infotop.eshop.R;
+import com.infotop.eshop.Utilities.UserSessionManager;
 import com.infotop.eshop.adapters.CustomListHorizontalAdapter;
 import com.infotop.eshop.adapters.HorizontalListView;
 import com.infotop.eshop.db.DatabaseHandler;
@@ -54,33 +55,33 @@ public class BookDetailsActivity extends Activity {
 		final ViewHolder holder;
 		setContentView(R.layout.activity_book_details);
 		op = new DisplayImageOptions.Builder()
-        .showStubImage(R.drawable.notavailable)
-        .showImageForEmptyUri(R.drawable.notavailable)
-        .showImageOnFail(R.drawable.notavailable)
-        .cacheInMemory()
-        .cacheOnDisc()
-        .displayer(new RoundedBitmapDisplayer(20))
-        .build();
+				.showStubImage(R.drawable.notavailable)
+				.showImageForEmptyUri(R.drawable.notavailable)
+				.showImageOnFail(R.drawable.notavailable).cacheInMemory()
+				.cacheOnDisc().displayer(new RoundedBitmapDisplayer(20))
+				.build();
 		// Get data from EshopMainActivity
 		s = getIntent().getExtras().getStringArrayList("productData");
 		holder = new ViewHolder();
-		holder.txtTitle=(TextView) findViewById(R.id.bookName1);
+		holder.txtTitle = (TextView) findViewById(R.id.bookName1);
 		holder.txtTitle1 = (TextView) findViewById(R.id.authorName);
-		holder.txtTitle2= (TextView) findViewById(R.id.price);
+		holder.txtTitle2 = (TextView) findViewById(R.id.price);
 		holder.imageView = (ImageView) findViewById(R.id.logo);
-		
+
 		holder.txtTitle.setText(s.get(1));
 		holder.txtTitle1.setText(s.get(2));
 		holder.txtTitle2.setText(s.get(3));
 		loader.displayImage(s.get(4), holder.imageView, op, null);
 
 	}
+
 	private class ViewHolder {
 		public TextView txtTitle;
 		public TextView txtTitle1;
 		public TextView txtTitle2;
 		public ImageView imageView;
 	}
+
 	// functionalities for wishlistBtn
 	public void addToWishlist(View view) {
 
@@ -123,15 +124,21 @@ public class BookDetailsActivity extends Activity {
 			w.setDescription(s.get(2));
 			w.setPrice(s.get(3));
 			w.setImageUrl(s.get(4));
-			w.setCreatedDate(new SimpleDateFormat("dd MMM yyyy").format(new Date()));
+			w.setCreatedDate(new SimpleDateFormat("dd MMM yyyy")
+					.format(new Date()));
 			db.addCartList(w);
-			Toast.makeText(BookDetailsActivity.this, "Your Item is Added to Cart",
-					Toast.LENGTH_SHORT).show();
+			Toast.makeText(BookDetailsActivity.this,
+					"Your Item is Added to Cart", Toast.LENGTH_SHORT).show();
 			return true;
 		case R.id.ab_purChaseItem:
-			Intent in=new Intent(BookDetailsActivity.this,PaymentMainActivity.class);
-			in.putStringArrayListExtra("purChaseItem", s);
-			startActivity(in);
+			UserSessionManager us = new UserSessionManager(this);
+			Boolean result = us.checkLogin();
+			if (result == false) {
+				Intent in = new Intent(BookDetailsActivity.this,
+						PaymentMainActivity.class);
+				in.putStringArrayListExtra("purChaseItem", s);
+				startActivity(in);
+			}
 			return true;
 		default:
 			return super.onOptionsItemSelected(item);
