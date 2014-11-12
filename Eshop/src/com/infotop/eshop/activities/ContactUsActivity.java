@@ -3,9 +3,12 @@ package com.infotop.eshop.activities;
 import com.infotop.eshop.R;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 
 public class ContactUsActivity extends Activity {
 
@@ -13,6 +16,15 @@ public class ContactUsActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_contact_us);
+		Button order =(Button)findViewById(R.id.order);
+		order.setOnClickListener(new View.OnClickListener() {
+             public void onClick(View v) {
+                
+                 Intent i = new Intent(ContactUsActivity.this, EshopMainActivity.class);
+                 startActivity(i);
+             }
+         });
+     
 	}
 
 	@Override
