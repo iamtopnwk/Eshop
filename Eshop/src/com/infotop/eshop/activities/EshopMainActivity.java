@@ -143,8 +143,17 @@ public class EshopMainActivity extends Activity {
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
 		// getMenuInflater().inflate(R.menu.main, menu);
-		MenuInflater inflater = getMenuInflater();
-		inflater.inflate(R.menu.eshop_main, menu);
+		//MenuInflater inflater = getMenuInflater();
+		getMenuInflater().inflate(R.menu.eshop_main, menu);
+		MenuItem logInitem = menu.findItem(R.id.abLogin);
+		MenuItem logOutitem = menu.findItem(R.id.logOut);
+		UserSessionManager usMgr = new UserSessionManager(this);
+		if(!usMgr.isUserLoggedIn()){
+			logOutitem.setVisible(false);
+		}
+		else{
+			logInitem.setTitle(usMgr.getUserDetails().get("name"));
+		}
 		return super.onCreateOptionsMenu(menu);
 		// return true;
 	}

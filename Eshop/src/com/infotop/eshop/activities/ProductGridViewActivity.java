@@ -179,6 +179,15 @@ public class ProductGridViewActivity extends Activity {
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.product_grid_view, menu);
+		MenuItem logInitem = menu.findItem(R.id.abLogin);
+		MenuItem logOutitem = menu.findItem(R.id.logOut);
+		UserSessionManager usMgr = new UserSessionManager(this);
+		if(!usMgr.isUserLoggedIn()){
+			logOutitem.setVisible(false);
+		}
+		else{
+			logInitem.setTitle(usMgr.getUserDetails().get("name"));
+		}
 		return true;
 	}
 
