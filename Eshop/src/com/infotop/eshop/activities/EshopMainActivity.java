@@ -46,6 +46,7 @@ public class EshopMainActivity extends Activity {
 
 	private ArrayList<NavDrawerItem> navDrawerItems;
 	private NavDrawerListAdapter adapter;
+	UserSessionManager usMgr;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -147,7 +148,7 @@ public class EshopMainActivity extends Activity {
 		getMenuInflater().inflate(R.menu.eshop_main, menu);
 		MenuItem logInitem = menu.findItem(R.id.abLogin);
 		MenuItem logOutitem = menu.findItem(R.id.logOut);
-		UserSessionManager usMgr = new UserSessionManager(this);
+		 usMgr = new UserSessionManager(this);
 		if(!usMgr.isUserLoggedIn()){
 			logOutitem.setVisible(false);
 		}
@@ -177,8 +178,16 @@ public class EshopMainActivity extends Activity {
 			startActivity(lgn);
 			return true;
 		case R.id.abwishlist:
-			Intent wl = new Intent(this, WishListMainActivity.class);
-			startActivity(wl);
+			
+			 usMgr = new UserSessionManager(this);
+			 if(!usMgr.isUserLoggedIn()){
+				 
+				 Intent lgn1 = new Intent(this, WishListLoginActivity.class);
+				 startActivity(lgn1);
+			 } else{
+				 Intent wl = new Intent(this, WishListMainActivity.class);
+				 startActivity(wl);
+			 }
 			return true;
 		case R.id.abTrackOrder:
 			return true;

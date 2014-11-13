@@ -1,12 +1,11 @@
 package com.infotop.eshop.activities;
 
-import com.infotop.eshop.R;
-import com.infotop.eshop.R.id;
-import com.infotop.eshop.R.layout;
-import com.infotop.eshop.R.menu;
+import org.json.JSONObject;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -14,20 +13,20 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.infotop.eshop.R;
+import com.infotop.eshop.httpservice.HttpServiceHandler;
+
 public class RegisterActivity extends Activity {
 
-	private EditText userName,userEmail,userPwd,userCPwd,userBAdd,userSAdd,userMobile;
-	//private EditText userEmail;
-	//private EditText userPwd;
-	//private EditText userCPwd;
-	//private EditText userBAdd;
-	//private EditText userSAdd;
-	//private EditText userMobile;
+	private EditText userName, userEmail, userPwd, userCPwd, userBAdd,
+			userSAdd, userMobile;
+	private String serverURL;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_register);
+		serverURL = "http://192.168.8.160:8989/eshop/rest/registration";
 	}
 
 	public void getRegisterPage(View view) {
@@ -54,15 +53,68 @@ public class RegisterActivity extends Activity {
 			userMobile.setError("Mobile Number is required!");
 		} else if (userPwd.getText().toString()
 				.equals(userCPwd.getText().toString())) {
-			Toast.makeText(getApplicationContext(), "Successfully Registered",
-					Toast.LENGTH_SHORT).show();
-			Intent intent = new Intent(this, EshopLoginActivity.class);
-			startActivity(intent);
-
+			new LongOperation().execute(serverURL);
 		} else {
 			Toast.makeText(getApplicationContext(),
 					"Both paswords should be same", Toast.LENGTH_SHORT).show();
 		}
+	}
+
+	private class LongOperation extends AsyncTask<String, Void, Void> {
+		private String pcontent;
+		private ProgressDialog dialog = new ProgressDialog(
+				RegisterActivity.this);
+
+		protected void onPreExecute() {
+			// NOTE: You can call UI Element here.
+
+			// Start Progress Dialog (Message)
+			dialog.show();
+
+		}
+
+		@Override
+		protected Void doInBackground(String... urls) {
+			String jsonData = "";
+			// Send data
+			try {
+				HttpServiceHandler hs = new HttpServiceHandler();
+				JSONObject json = new JSONObject();
+				json.accumulate("userName", userName.getText().toString());
+				json.accumulate("emailId", userEmail.getText().toString());
+				json.accumulate("password", userPwd.getText().toString());
+				json.accumulate("shippingAddress", userSAdd.getText()
+						.toString());
+				json.accumulate("billingAddress", userBAdd.getText().toString());
+				json.accumulate("mobileNumber", userMobile.getText().toString());
+				jsonData = json.toString();
+				pcontent = hs.httpPost(urls[0], jsonData);
+				System.out.println("Executed data:" + pcontent);
+				dialog.dismiss();
+				// textView.setText("wrong credentials");
+
+			} catch (Exception ex) {
+				System.out.println("Exception e:" + ex.getMessage());
+			}
+			/*****************************************************/
+			return null;
+		}
+
+		protected void onPostExecute(Void unused) {
+			Toast.makeText(getApplicationContext(),
+					"Your Registration has been done successfully",
+					Toast.LENGTH_SHORT).show();
+			if (pcontent.equalsIgnoreCase("Success")) {
+				Intent intent = new Intent(RegisterActivity.this,
+						EshopLoginActivity.class);
+				startActivity(intent);
+			} else {
+				Toast.makeText(getApplicationContext(), "Connection error",
+						Toast.LENGTH_SHORT).show();
+			}
+			// Close progress dialog
+		}
+
 	}
 
 	@Override

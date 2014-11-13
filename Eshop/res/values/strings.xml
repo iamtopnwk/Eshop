@@ -75,5 +75,6 @@
     <string name="title_activity_empty_cart_list">EmptyCartListActivity</string>
     <string name="empty_list">No items found here.Please Login bellow.</string>
     <string name="Uslogin">Login Here</string>
+    <string name="title_activity_wish_list_login">WishListLoginActivity</string>
 
 </resources>

@@ -101,6 +101,10 @@
             android:name=".EmptyCartListActivity"
             android:label="@string/title_activity_empty_cart_list" >
         </activity>
+        <activity    
+            android:name=".activities.WishListLoginActivity"
+            android:label="@string/title_activity_wish_list_login" >
+        </activity>
     </application>
 
 </manifest>
