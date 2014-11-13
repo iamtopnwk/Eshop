@@ -72,5 +72,8 @@
     <string name="title_activity_pay_confirm">PayConfirmActivity</string>
     <string name="title_activity_contact_us">Contact Us</string>
     <string name="title_activity_eshop_policies">EshopPoliciesActivity</string>
+    <string name="title_activity_empty_cart_list">EmptyCartListActivity</string>
+    <string name="empty_list">No items found here.Please Login bellow.</string>
+    <string name="Uslogin">Login Here</string>
 
 </resources>

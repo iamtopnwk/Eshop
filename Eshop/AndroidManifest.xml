@@ -94,8 +94,12 @@
             android:label="@string/title_activity_contact_us" >
         </activity>
         <activity
-            android:name="com.infotop.eshop.activities.EshopPoliciesActivity"
+            android:name=".activities.EshopPoliciesActivity"
             android:label="@string/title_activity_eshop_policies" >
+        </activity>
+        <activity
+            android:name=".EmptyCartListActivity"
+            android:label="@string/title_activity_empty_cart_list" >
         </activity>
     </application>
 
