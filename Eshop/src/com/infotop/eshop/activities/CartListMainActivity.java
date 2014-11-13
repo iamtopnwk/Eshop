@@ -37,6 +37,7 @@ public class CartListMainActivity extends Activity {
 	String[] productImage;
 	protected ImageLoader loader = ImageLoader.getInstance();
 	DisplayImageOptions op;
+	ArrayList<String> s;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -132,7 +133,7 @@ public class CartListMainActivity extends Activity {
 			return true;
 		case R.id.ab_purChaseItem:
 			Intent in=new Intent(CartListMainActivity.this,PaymentMainActivity.class);
-			//in.putStringArrayListExtra("purChaseItem", list);
+			in.putStringArrayListExtra("purChaseItem", s);
 			startActivity(in);
 			return true;
 		default:
