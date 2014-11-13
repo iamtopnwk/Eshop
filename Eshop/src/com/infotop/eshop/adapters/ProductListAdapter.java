@@ -18,8 +18,9 @@ import android.widget.Toast;
 import com.infotop.eshop.R;
 import com.infotop.eshop.Utilities.UserSessionManager;
 import com.infotop.eshop.activities.BookDetailsActivity;
+import com.infotop.eshop.activities.EshopLoginActivity;
 import com.infotop.eshop.activities.ProductListViewActivity;
-import com.infotop.eshop.activities.WishListLoginActivity;
+import com.infotop.eshop.activities.NoItemFoundActivity;
 import com.infotop.eshop.activities.WishListMainActivity;
 import com.infotop.eshop.db.DatabaseHandler;
 import com.infotop.eshop.model.Wishlist;
@@ -97,7 +98,7 @@ public class ProductListAdapter extends ArrayAdapter<String> {
 				Toast.makeText(context, "Your item is added to Wish List",
 						Toast.LENGTH_SHORT).show();
 				 }else{
-					 Intent intent = new Intent(context,WishListLoginActivity.class);
+					 Intent intent = new Intent(context,EshopLoginActivity.class);
 						context.startActivity(intent);
 					
 				 }

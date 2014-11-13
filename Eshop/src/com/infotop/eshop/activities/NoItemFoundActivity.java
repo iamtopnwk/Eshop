@@ -11,33 +11,33 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 
-public class WishListLoginActivity extends Activity {
+public class NoItemFoundActivity extends Activity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_wish_list_login);
+		setContentView(R.layout.activity_no_item_found);
 		
 		Button logIn =(Button)findViewById(R.id.logIn);
 		logIn.setOnClickListener(new View.OnClickListener() {
              public void onClick(View v) {
                 
-                 Intent i = new Intent(WishListLoginActivity.this, EshopLoginActivity.class);
+                 Intent i = new Intent(NoItemFoundActivity.this, EshopLoginActivity.class);
                  startActivity(i);
              }
          });
 		
-		Button signUp =(Button)findViewById(R.id.signUp);
-		signUp.setOnClickListener(new OnClickListener() {
+		/*Button shop =(Button)findViewById(R.id.shop);
+		shop.setOnClickListener(new OnClickListener() {
 			
 			@Override
 			public void onClick(View v) {
-				Intent i=new Intent(WishListLoginActivity.this,RegisterActivity.class);
+				Intent i=new Intent(WishListLoginActivity.this,EshopMainActivity.class);
 				startActivity(i);
 			
 				
 			}
-		});
+		});*/
 		
      
 	}

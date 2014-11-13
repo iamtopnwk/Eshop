@@ -44,7 +44,7 @@ public class BookDetailsActivity extends Activity {
 	// adding CartButton,WishlistButton,BuyButton
 	ImageButton cartBtn1;
 	ImageButton buyBtn1;
-	ImageButton wishlistBtn1;
+	//ImageButton wishlistBtn1;
 	ArrayList<String> s;
 	DisplayImageOptions op;
 	protected ImageLoader loader = ImageLoader.getInstance();
@@ -84,7 +84,9 @@ public class BookDetailsActivity extends Activity {
 
 	// functionalities for wishlistBtn
 	public void addToWishlist(View view) {
-
+		
+		UserSessionManager usMgr = new UserSessionManager(BookDetailsActivity.this);
+		 if(usMgr.isUserLoggedIn()){
 		DatabaseHandler db = new DatabaseHandler(BookDetailsActivity.this);
 		Wishlist w = new Wishlist();
 		w.setProductId(s.get(0));
@@ -99,7 +101,12 @@ public class BookDetailsActivity extends Activity {
 
 		Toast.makeText(BookDetailsActivity.this,
 				"Your item is added to Wish List", Toast.LENGTH_SHORT).show();
-	}
+	}else{
+		 Intent intent = new Intent(BookDetailsActivity.this,EshopLoginActivity.class);
+			startActivity(intent);
+		
+	 }
+}
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {

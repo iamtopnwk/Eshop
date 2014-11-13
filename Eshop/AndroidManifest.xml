@@ -98,8 +98,8 @@
             android:label="@string/title_activity_eshop_policies" >
         </activity>
         <activity
-            android:name=".activities.WishListLoginActivity"
-            android:label="@string/title_activity_wish_list_login" >
+            android:name=".activities.NoItemFoundActivity"
+            android:label="@string/title_activity_no_item_found" >
         </activity>
     </application>
 

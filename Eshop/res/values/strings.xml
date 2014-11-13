@@ -72,6 +72,6 @@
     <string name="title_activity_pay_confirm">PayConfirmActivity</string>
     <string name="title_activity_contact_us">Contact Us</string>
     <string name="title_activity_eshop_policies">EshopPoliciesActivity</string>
-    <string name="title_activity_wish_list_login">WishListLoginActivity</string>
+    <string name="title_activity_no_item_found">NoItemFoundActivity</string>
 
 </resources>

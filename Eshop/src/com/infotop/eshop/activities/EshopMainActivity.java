@@ -182,7 +182,7 @@ public class EshopMainActivity extends Activity {
 			 usMgr = new UserSessionManager(this);
 			 if(!usMgr.isUserLoggedIn()){
 				 
-				 Intent lgn1 = new Intent(this, WishListLoginActivity.class);
+				 Intent lgn1 = new Intent(this, NoItemFoundActivity.class);
 				 startActivity(lgn1);
 			 } else{
 				 Intent wl = new Intent(this, WishListMainActivity.class);

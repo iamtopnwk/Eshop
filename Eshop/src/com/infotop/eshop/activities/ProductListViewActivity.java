@@ -246,8 +246,15 @@ public class ProductListViewActivity extends Activity {
 			startActivity(lgn);
 			return true;
 		case R.id.abwishlist:
-			Intent wl = new Intent(this, WishListMainActivity.class);
-			startActivity(wl);
+			UserSessionManager usMgr = new UserSessionManager(this);
+			 if(!usMgr.isUserLoggedIn()){
+				 
+				 Intent lgn1 = new Intent(this, NoItemFoundActivity.class);
+				 startActivity(lgn1);
+			 } else{
+				 Intent wl = new Intent(this, WishListMainActivity.class);
+				 startActivity(wl);
+			 }
 			return true;
 		case R.id.abTrackOrder:
 			return true;
