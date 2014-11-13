@@ -53,7 +53,7 @@ public class EshopMainActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_eshop_main);
 		mTitle = mDrawerTitle = getTitle();
-
+		usMgr=new UserSessionManager(this);
 		// load slide menu items
 		navMenuTitles = getResources().getStringArray(R.array.nav_drawer_items);
 
@@ -148,7 +148,7 @@ public class EshopMainActivity extends Activity {
 		getMenuInflater().inflate(R.menu.eshop_main, menu);
 		MenuItem logInitem = menu.findItem(R.id.abLogin);
 		MenuItem logOutitem = menu.findItem(R.id.logOut);
-		usMgr = new UserSessionManager(this);
+		//usMgr = new UserSessionManager(this);
 		if (!usMgr.isUserLoggedIn()) {
 			logOutitem.setVisible(false);
 		} else {
@@ -169,7 +169,7 @@ public class EshopMainActivity extends Activity {
 		case R.id.action_search:
 			return true;
 		case R.id.abCartList:
-			usMgr = new UserSessionManager(this);
+			//usMgr = new UserSessionManager(this);
 			if (!usMgr.isUserLoggedIn()) {
 				Intent lgn1 = new Intent(this, NoItemFoundActivity.class);
 				startActivity(lgn1);
@@ -186,7 +186,7 @@ public class EshopMainActivity extends Activity {
 			return true;
 		case R.id.abwishlist:
 
-			usMgr = new UserSessionManager(this);
+			//usMgr = new UserSessionManager(this);
 			if (!usMgr.isUserLoggedIn()) {
 
 				Intent lgn1 = new Intent(this, NoItemFoundActivity.class);

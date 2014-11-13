@@ -105,11 +105,11 @@
     <string name="title_activity_product_grid_view">Products List</string>
     <string name="title_activity_cart_list_main">CartList Items</string>
     <string name="title_activity_wish_list_main">WishList Items</string>
-    <string name="title_activity_payment_main">PaymentMainActivity</string>
-    <string name="title_activity_pay_confirm">PayConfirmActivity</string>
+    <string name="title_activity_payment_main">Make Payment</string>
+    <string name="title_activity_pay_confirm">Confirm Payment</string>
     <string name="title_activity_contact_us">Contact Us</string>
-    <string name="title_activity_eshop_policies">EshopPoliciesActivity</string>
-    <string name="title_activity_no_item_found">NoItemFoundActivity</string>
+    <string name="title_activity_eshop_policies">Policies</string>
+    <string name="title_activity_no_item_found">Sorry</string>
     <string name="Uslogin">Login Here</string>
 
 </resources>
