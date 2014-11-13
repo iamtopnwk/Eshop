@@ -8,17 +8,16 @@ package com.infotop.eshop.activities;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-
 import com.infotop.eshop.R;
-import com.infotop.eshop.Utilities.UserSessionManager;
 import com.infotop.eshop.adapters.CustomListHorizontalAdapter;
 import com.infotop.eshop.adapters.HorizontalListView;
 import com.infotop.eshop.db.DatabaseHandler;
 import com.infotop.eshop.model.Wishlist;
+import com.infotop.eshop.utilities.UserSessionManager;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.display.RoundedBitmapDisplayer;
-
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -37,6 +36,7 @@ import android.widget.Toast;
 //import com.infotop.bookslistview.BooksListViewActivity;
 //import com.infotop.bookslistview.R;
 
+@SuppressLint("SimpleDateFormat")
 public class BookDetailsActivity extends Activity {
 
 	Long position = null;

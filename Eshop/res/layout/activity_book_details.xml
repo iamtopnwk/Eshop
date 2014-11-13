@@ -7,24 +7,26 @@
         android:id="@+id/imageView1"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
+        android:contentDescription="@string/app_name"
         android:src="@drawable/eshopper" />
+
     <ScrollView
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:layout_below="@+id/imageView1" 
-            android:layout_marginTop="20dp"
-        android:background="@drawable/loginbg">
-    <RelativeLayout
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent" >
+        android:layout_height="fill_parent"
+        android:layout_below="@+id/imageView1"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/loginbg" >
 
-
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content" >
 
             <ImageView
                 android:id="@+id/wishlistBtn"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
-                android:layout_alignParentEnd="true"
+                android:contentDescription="@string/wish_list"
+                android:layout_alignParentRight="true"
                 android:layout_alignParentTop="true"
                 android:onClick="addToWishlist"
                 android:src="@drawable/icon_wishlist" />
@@ -36,7 +38,7 @@
                 android:layout_alignParentLeft="true"
                 android:text="@string/stmediumtext"
                 android:textColor="#040404"
-                android:textSize="18dip"
+                android:textSize="18sp"
                 android:textStyle="bold"
                 android:typeface="sans" />
 
@@ -46,6 +48,7 @@
                 android:layout_height="150dp"
                 android:layout_below="@+id/bookName1"
                 android:layout_centerHorizontal="true"
+                android:contentDescription="@string/app_name"
                 android:layout_marginLeft="25dp"
                 android:layout_marginTop="20dp"
                 android:background="@drawable/image_bdr"
@@ -62,7 +65,7 @@
                     android:id="@+id/logo1"
                     android:layout_width="60dp"
                     android:layout_height="60dp"
-                    android:layout_centerHorizontal="true"
+                    android:contentDescription="@string/app_name"
                     android:layout_marginLeft="25dp"
                     android:background="@drawable/image_bdr"
                     android:padding="3dip"
@@ -72,7 +75,7 @@
                     android:id="@+id/logo2"
                     android:layout_width="60dp"
                     android:layout_height="60dp"
-                    android:layout_centerHorizontal="true"
+                    android:contentDescription="@string/app_name"
                     android:background="@drawable/image_bdr"
                     android:padding="3dip"
                     android:src="@drawable/productimg" />
@@ -81,7 +84,7 @@
                     android:id="@+id/logo3"
                     android:layout_width="60dp"
                     android:layout_height="60dp"
-                    android:layout_centerHorizontal="true"
+                    android:contentDescription="@string/app_name"
                     android:background="@drawable/image_bdr"
                     android:padding="3dip"
                     android:src="@drawable/productimg" />
@@ -90,7 +93,7 @@
                     android:id="@+id/logo4"
                     android:layout_width="60dp"
                     android:layout_height="60dp"
-                    android:layout_centerHorizontal="true"
+                    android:contentDescription="@string/app_name"
                     android:background="@drawable/image_bdr"
                     android:padding="3dip"
                     android:src="@drawable/productimg" />
@@ -105,7 +108,7 @@
                 android:layout_marginTop="20dp"
                 android:text="@string/stauthorname"
                 android:textColor="#343434"
-                android:textSize="15dip"
+                android:textSize="15sp"
                 android:textStyle="italic" />
 
             <TextView
@@ -116,7 +119,7 @@
                 android:layout_marginLeft="25dp"
                 android:text="@string/stprice"
                 android:textColor="#10bcc9"
-                android:textSize="12dip"
+                android:textSize="12sp"
                 android:textStyle="bold" />
 
             <TextView
@@ -125,104 +128,101 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/authorName"
                 android:layout_toRightOf="@+id/pricestatic"
-                android:text="122"
                 android:textColor="#10bcc9"
-                android:textSize="12dip"
+                android:textSize="12sp"
                 android:textStyle="bold" />
 
             <RatingBar
                 android:id="@+id/ratingBar1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:scaleX="0.6"
-                android:scaleY="0.6"
                 android:layout_alignLeft="@+id/pricestatic"
-                android:layout_below="@+id/pricestatic" />
-           
-            <LinearLayout 
+                android:layout_below="@+id/pricestatic"
+                android:scaleX="0.6"
+                android:scaleY="0.6" />
+
+            <LinearLayout
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
+                android:layout_below="@+id/ratingBar1"
                 android:orientation="vertical"
-                android:paddingTop="10dp"
-                android:layout_below="@+id/ratingBar1">
-                
-                <Button 
+                android:paddingTop="10dp" >
+
+                <Button
                     android:id="@+id/starheading"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/ratingsreviews"/>
-              
-               <TextView 
-                   android:id="@+id/star5"
+                    android:text="@string/ratingsreviews" />
+
+                <TextView
+                    android:id="@+id/star5"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="20dp"
                     android:text="@string/fivestar"
                     android:textColor="#FFBB33"
-                    android:textSize="20dp"
-                    android:textStyle="italic"/>
-              
-               
-               <TextView 
-                   android:id="@+id/star4"
+                    android:textSize="20sp"
+                    android:textStyle="italic" />
+
+                <TextView
+                    android:id="@+id/star4"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="20dp"
                     android:text="@string/fourstar"
                     android:textColor="#FFBB33"
-                    android:textSize="20dp"
-                    android:textStyle="italic"/>
-                <TextView 
+                    android:textSize="20sp"
+                    android:textStyle="italic" />
+
+                <TextView
                     android:id="@+id/star3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="20dp"
                     android:text="@string/threestar"
                     android:textColor="#FFBB33"
-                    android:textSize="20dp"
-                    android:textStyle="italic"/>
-               <TextView 
-                   android:id="@+id/star2"
+                    android:textSize="20sp"
+                    android:textStyle="italic" />
+
+                <TextView
+                    android:id="@+id/star2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="20dp"
                     android:text="@string/twostar"
                     android:textColor="#FFBB33"
-                    android:textSize="20dp"
-                    android:textStyle="italic"/>
-               <TextView 
-                   android:id="@+id/star1"
+                    android:textSize="20sp"
+                    android:textStyle="italic" />
+
+                <TextView
+                    android:id="@+id/star1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="20dp"
                     android:text="@string/onestar"
                     android:textColor="#FFBB33"
-                    android:textSize="20dp"
-                    android:textStyle="italic"/>
-               <TextView 
-                   android:id="@+id/like"
-                   android:layout_width="wrap_content"
-                   android:layout_height="wrap_content"
-                   android:paddingTop="10dp"
+                    android:textSize="20sp"
+                    android:textStyle="italic" />
+
+                <TextView
+                    android:id="@+id/like"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="10sp"
                     android:text="@string/likes"
                     android:textColor="#669900"
-                    android:textSize="20dp"
-                    />
-               <TextView 
-                   android:id="@+id/comment"
-                   android:layout_width="wrap_content"
-                   android:layout_height="wrap_content"
-                   android:paddingTop="10dp"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:id="@+id/comment"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="10sp"
                     android:text="@string/comments"
                     android:textColor="#669900"
-                    android:textSize="20dp"
-                    />
-               
-              
-                  
-                  
+                    android:textSize="20sp" />
             </LinearLayout>
-           
         </RelativeLayout>
-</ScrollView>
+    </ScrollView>
+
 </RelativeLayout>

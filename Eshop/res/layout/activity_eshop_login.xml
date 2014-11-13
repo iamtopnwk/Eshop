@@ -21,6 +21,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
+            android:contentDescription="@string/app_name"
             android:src="@drawable/ic_launcher" >
         </ImageView>
     </TableRow>
@@ -31,7 +32,7 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:text="@string/ULogin"
-        android:textSize="24dp"
+        android:textSize="24sp"
         android:textStyle="bold" >
     </TextView>
 
@@ -47,12 +48,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/UserName"
-            android:textSize="16dp" />
+            android:textSize="16sp" />
 
         <EditText
             android:id="@+id/editText1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:hint=""
             android:ems="10" >
         </EditText>
     </TableRow>
@@ -69,7 +71,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/Password"
-            android:textSize="16dp" />
+            android:textSize="16sp" />
 
         <EditText
             android:id="@+id/editText2"
@@ -98,7 +100,7 @@
             android:layout_marginTop="30dp"
             android:onClick="signUp"
             android:text="@string/Rsignup"
-            android:textSize="16dp" />
+            android:textSize="16sp" />
     </LinearLayout>
 
 </TableLayout>

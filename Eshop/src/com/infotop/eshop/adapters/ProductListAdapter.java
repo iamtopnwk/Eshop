@@ -16,7 +16,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.infotop.eshop.R;
-import com.infotop.eshop.Utilities.UserSessionManager;
 import com.infotop.eshop.activities.BookDetailsActivity;
 import com.infotop.eshop.activities.EshopLoginActivity;
 import com.infotop.eshop.activities.ProductListViewActivity;
@@ -24,10 +23,11 @@ import com.infotop.eshop.activities.NoItemFoundActivity;
 import com.infotop.eshop.activities.WishListMainActivity;
 import com.infotop.eshop.db.DatabaseHandler;
 import com.infotop.eshop.model.Wishlist;
+import com.infotop.eshop.utilities.UserSessionManager;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
-@SuppressLint({ "ViewHolder", "InflateParams" })
+@SuppressLint({ "ViewHolder", "InflateParams", "SimpleDateFormat" })
 public class ProductListAdapter extends ArrayAdapter<String> {
 
 	private final Activity context;

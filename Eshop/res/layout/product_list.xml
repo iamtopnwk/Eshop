@@ -28,7 +28,7 @@
         android:layout_height="wrap_content"
         android:textColor="#040404"
         android:typeface="sans"
-        android:textSize="15dip"
+        android:textSize="15sp"
         android:text="@string/hello_world"
         android:layout_alignTop="@+id/thumbnail"
         android:layout_toRightOf="@+id/thumbnail"
@@ -40,7 +40,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/productName"
         android:textColor="#343434"
-        android:textSize="10dip"
+        android:textSize="12sp"
         android:layout_toRightOf="@+id/thumbnail"
         android:text="@string/hello_world"
         android:textStyle="italic" />
@@ -53,7 +53,7 @@
         android:gravity="right"
         android:text="@string/stprice"
         android:layout_marginLeft="85dip"
-        android:textSize="10dip"
+        android:textSize="12sp"
         android:textColor="#10bcc9"
         android:textStyle="bold"
        />
@@ -64,7 +64,7 @@
         android:layout_height="wrap_content"
         android:layout_toRightOf="@+id/productpricestaticData"
         android:layout_below="@id/productDesc"
-         android:textSize="10dip"
+         android:textSize="12sp"
         android:textColor="#10bcc9"
         android:textStyle="bold" />
     

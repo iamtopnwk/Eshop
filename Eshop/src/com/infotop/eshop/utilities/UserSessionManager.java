@@ -1,15 +1,15 @@
-package com.infotop.eshop.Utilities;
+package com.infotop.eshop.utilities;
 
 import java.util.HashMap;
-
 import com.infotop.eshop.activities.EshopLoginActivity;
 import com.infotop.eshop.activities.EshopMainActivity;
-
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 
+@SuppressLint("CommitPrefEdits")
 public class UserSessionManager {
     
     // Shared Preferences reference

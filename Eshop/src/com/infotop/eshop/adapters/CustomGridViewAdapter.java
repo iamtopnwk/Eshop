@@ -6,11 +6,11 @@ import java.util.Date;
 import com.infotop.eshop.R;
 import com.infotop.eshop.R.id;
 import com.infotop.eshop.R.layout;
-import com.infotop.eshop.Utilities.UserSessionManager;
 import com.infotop.eshop.activities.EshopLoginActivity;
 import com.infotop.eshop.db.DatabaseHandler;
 import com.infotop.eshop.model.Wishlist;
 import com.infotop.eshop.sidefragment.BooksFragment;
+import com.infotop.eshop.utilities.UserSessionManager;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
@@ -25,6 +25,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+@SuppressLint("SimpleDateFormat")
 public class CustomGridViewAdapter extends ArrayAdapter<String> {
 
 	private final Activity context;

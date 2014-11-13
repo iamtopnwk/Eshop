@@ -24,7 +24,7 @@
         android:layout_marginTop="20dp"
          android:textColor="#040404"
         android:typeface="sans"
-        android:textSize="20dip"
+        android:textSize="20sp"
         android:text="@string/pay_Confirm" 
         android:textStyle="bold"/>
     

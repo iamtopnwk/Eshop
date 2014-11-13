@@ -1,4 +1,4 @@
-package com.infotop.eshop.Utilities;
+package com.infotop.eshop.utilities;
 
 import com.nostra13.universalimageloader.cache.disc.naming.Md5FileNameGenerator;
 import com.nostra13.universalimageloader.core.ImageLoader;

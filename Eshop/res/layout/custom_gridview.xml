@@ -20,7 +20,7 @@
             android:id="@+id/productImg"
             android:layout_width="75dip"
             android:layout_height="75dip"
-            android:background="@drawable/image_bdr"/>
+            android:background="@drawable/image_bdr" />
     </LinearLayout>
 
     <TextView
@@ -30,9 +30,9 @@
         android:layout_below="@+id/thumbnail"
         android:layout_marginLeft="15dip"
         android:textColor="#040404"
-        android:typeface="sans"
-        android:textSize="12dip"
-        android:textStyle="bold" />
+        android:textSize="14sp"
+        android:textStyle="bold"
+        android:typeface="sans" />
 
     <TextView
         android:id="@+id/product_description"
@@ -41,7 +41,7 @@
         android:layout_below="@+id/product_Name"
         android:layout_marginLeft="15dip"
         android:textColor="#343434"
-        android:textSize="10dip"
+        android:textSize="12sp"
         android:textStyle="italic" />
 
     <TextView
@@ -51,9 +51,9 @@
         android:layout_below="@+id/product_description"
         android:layout_marginLeft="15dip"
         android:text="@string/stprice"
-       android:textSize="10dip"
         android:textColor="#10bcc9"
-        android:textStyle="bold"/>
+        android:textSize="12sp"
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/product_price"
@@ -61,13 +61,16 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/product_description"
         android:layout_toRightOf="@+id/productpricestaticData"
-        android:textSize="10dip"
         android:textColor="#10bcc9"
+        android:textSize="12sp"
         android:textStyle="bold" />
-     <ImageView android:layout_width="30dp"
-        android:layout_height="30dp"
+
+    <ImageView
         android:id="@+id/imgwishlistbtn"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
         android:layout_toRightOf="@+id/thumbnail"
-        android:src="@drawable/icon_wishlist"/>
+        android:contentDescription="@string/wish_list"
+        android:src="@drawable/icon_wishlist" />
 
 </RelativeLayout>
