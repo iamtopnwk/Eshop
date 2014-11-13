@@ -5,6 +5,7 @@ import java.util.Date;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -15,8 +16,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.infotop.eshop.R;
+import com.infotop.eshop.Utilities.UserSessionManager;
 import com.infotop.eshop.activities.BookDetailsActivity;
 import com.infotop.eshop.activities.ProductListViewActivity;
+import com.infotop.eshop.activities.WishListLoginActivity;
+import com.infotop.eshop.activities.WishListMainActivity;
 import com.infotop.eshop.db.DatabaseHandler;
 import com.infotop.eshop.model.Wishlist;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
@@ -77,6 +81,9 @@ public class ProductListAdapter extends ArrayAdapter<String> {
 		holder.imgwishlistbtn.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
+				
+				UserSessionManager usMgr = new UserSessionManager(context);
+				 if(usMgr.isUserLoggedIn()){
 				DatabaseHandler db = new DatabaseHandler(context);
 				Wishlist w = new Wishlist();
 				w.setProductId(pdctId[id]);
@@ -89,6 +96,11 @@ public class ProductListAdapter extends ArrayAdapter<String> {
 				db.addWishList(w);
 				Toast.makeText(context, "Your item is added to Wish List",
 						Toast.LENGTH_SHORT).show();
+				 }else{
+					 Intent intent = new Intent(context,WishListLoginActivity.class);
+						context.startActivity(intent);
+					
+				 }
 			}
 		});
 		return rowView;
