@@ -50,7 +50,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/product_description"
         android:layout_marginLeft="15dip"
-        android:text="Price:"
+        android:text="@string/stprice"
        android:textSize="10dip"
         android:textColor="#10bcc9"
         android:textStyle="bold"/>

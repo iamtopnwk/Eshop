@@ -23,7 +23,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="5dp"
             android:layout_marginTop="5dp"
-            android:text="All Books Categories" />
+            android:text="@string/allbksCategry" />
 
         <ListView
             android:id="@+id/subCatListView"

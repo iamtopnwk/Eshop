@@ -29,7 +29,7 @@
         android:textColor="#040404"
         android:typeface="sans"
         android:textSize="15dip"
-        android:text="Default"
+        android:text="@string/hello_world"
         android:layout_alignTop="@+id/thumbnail"
         android:layout_toRightOf="@+id/thumbnail"
         android:textStyle="bold" />
@@ -42,7 +42,7 @@
         android:textColor="#343434"
         android:textSize="10dip"
         android:layout_toRightOf="@+id/thumbnail"
-        android:text="Just gona stand there and ..."
+        android:text="@string/hello_world"
         android:textStyle="italic" />
 
     <TextView
@@ -51,7 +51,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/productDesc"
         android:gravity="right"
-        android:text="Price:"
+        android:text="@string/stprice"
         android:layout_marginLeft="85dip"
         android:textSize="10dip"
         android:textColor="#10bcc9"
@@ -62,7 +62,6 @@
         android:id="@+id/productprice"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="122"
         android:layout_toRightOf="@+id/productpricestaticData"
         android:layout_below="@id/productDesc"
          android:textSize="10dip"

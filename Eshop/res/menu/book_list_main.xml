@@ -6,14 +6,14 @@
         android:id="@+id/ab_abShareApp1"
         android:icon="@drawable/ic_action_share"
         android:showAsAction="always"
-        android:title="Share App"/>
+        android:title="@string/ac_ShareApp"/>
     <item
         android:id="@+id/ab_addToCart"
         android:showAsAction="always"
-        android:title="Add to cart"/>
+        android:title="@string/add_to_cart"/>
     <item
         android:id="@+id/ab_purChaseItem"
         android:showAsAction="always"
-        android:title="Buy"/>
+        android:title="@string/buy_item"/>
 
 </menu>

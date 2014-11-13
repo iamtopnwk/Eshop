@@ -24,7 +24,7 @@
                 android:id="@+id/wishlistBtn"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
-                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
                 android:layout_alignParentTop="true"
                 android:onClick="addToWishlist"
                 android:src="@drawable/icon_wishlist" />
@@ -34,7 +34,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
-                android:text="Medium Text"
+                android:text="@string/stmediumtext"
                 android:textColor="#040404"
                 android:textSize="18dip"
                 android:textStyle="bold"
@@ -103,7 +103,7 @@
                 android:layout_below="@+id/thumbnail"
                 android:layout_marginLeft="25dp"
                 android:layout_marginTop="20dp"
-                android:text="Author Name"
+                android:text="@string/stauthorname"
                 android:textColor="#343434"
                 android:textSize="15dip"
                 android:textStyle="italic" />
@@ -114,7 +114,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/authorName"
                 android:layout_marginLeft="25dp"
-                android:text="Price:"
+                android:text="@string/stprice"
                 android:textColor="#10bcc9"
                 android:textSize="12dip"
                 android:textStyle="bold" />
@@ -150,14 +150,14 @@
                     android:id="@+id/starheading"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:text="USER RATINGS AND REVIEWS"/>
+                    android:text="@string/ratingsreviews"/>
               
                <TextView 
                    android:id="@+id/star5"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="20dp"
-                    android:text="5 star:"
+                    android:text="@string/fivestar"
                     android:textColor="#FFBB33"
                     android:textSize="20dp"
                     android:textStyle="italic"/>
@@ -168,7 +168,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="20dp"
-                    android:text="4 star:"
+                    android:text="@string/fourstar"
                     android:textColor="#FFBB33"
                     android:textSize="20dp"
                     android:textStyle="italic"/>
@@ -177,7 +177,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="20dp"
-                    android:text="3 star:"
+                    android:text="@string/threestar"
                     android:textColor="#FFBB33"
                     android:textSize="20dp"
                     android:textStyle="italic"/>
@@ -186,7 +186,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="20dp"
-                    android:text="2 star:"
+                    android:text="@string/twostar"
                     android:textColor="#FFBB33"
                     android:textSize="20dp"
                     android:textStyle="italic"/>
@@ -195,7 +195,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="20dp"
-                    android:text="1 star:"
+                    android:text="@string/onestar"
                     android:textColor="#FFBB33"
                     android:textSize="20dp"
                     android:textStyle="italic"/>
@@ -204,7 +204,7 @@
                    android:layout_width="wrap_content"
                    android:layout_height="wrap_content"
                    android:paddingTop="10dp"
-                    android:text="Likes:"
+                    android:text="@string/likes"
                     android:textColor="#669900"
                     android:textSize="20dp"
                     />
@@ -213,7 +213,7 @@
                    android:layout_width="wrap_content"
                    android:layout_height="wrap_content"
                    android:paddingTop="10dp"
-                    android:text="Comments:"
+                    android:text="@string/comments"
                     android:textColor="#669900"
                     android:textSize="20dp"
                     />

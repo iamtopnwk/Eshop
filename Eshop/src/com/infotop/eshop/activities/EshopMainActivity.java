@@ -144,15 +144,14 @@ public class EshopMainActivity extends Activity {
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
 		// getMenuInflater().inflate(R.menu.main, menu);
-		//MenuInflater inflater = getMenuInflater();
+		// MenuInflater inflater = getMenuInflater();
 		getMenuInflater().inflate(R.menu.eshop_main, menu);
 		MenuItem logInitem = menu.findItem(R.id.abLogin);
 		MenuItem logOutitem = menu.findItem(R.id.logOut);
-		 usMgr = new UserSessionManager(this);
-		if(!usMgr.isUserLoggedIn()){
+		usMgr = new UserSessionManager(this);
+		if (!usMgr.isUserLoggedIn()) {
 			logOutitem.setVisible(false);
-		}
-		else{
+		} else {
 			logInitem.setTitle(usMgr.getUserDetails().get("name"));
 		}
 		return super.onCreateOptionsMenu(menu);
@@ -171,30 +170,31 @@ public class EshopMainActivity extends Activity {
 			return true;
 		case R.id.abCartList:
 			usMgr = new UserSessionManager(this);
-			 if(!usMgr.isUserLoggedIn()){
-				 
-				 Intent lgn1 = new Intent(this, NoItemFoundActivity.class);
-				 startActivity(lgn1);
-			 } else{
-				 Intent wl = new Intent(this, CartListMainActivity.class);
-				 startActivity(wl);
-			 }
+			if (!usMgr.isUserLoggedIn()) {
+				Intent lgn1 = new Intent(this, NoItemFoundActivity.class);
+				startActivity(lgn1);
+			} else {
+				Intent wl = new Intent(this, CartListMainActivity.class);
+				startActivity(wl);
+			}
 			return true;
 		case R.id.abLogin:
-			Intent lgn = new Intent(this, EshopLoginActivity.class);
-			startActivity(lgn);
+			if (!usMgr.isUserLoggedIn()) {
+				Intent lgn = new Intent(this, EshopLoginActivity.class);
+				startActivity(lgn);
+			}
 			return true;
 		case R.id.abwishlist:
-			
-			 usMgr = new UserSessionManager(this);
-			 if(!usMgr.isUserLoggedIn()){
-				 
-				 Intent lgn1 = new Intent(this, NoItemFoundActivity.class);
-				 startActivity(lgn1);
-			 } else{
-				 Intent wl = new Intent(this, WishListMainActivity.class);
-				 startActivity(wl);
-			 }
+
+			usMgr = new UserSessionManager(this);
+			if (!usMgr.isUserLoggedIn()) {
+
+				Intent lgn1 = new Intent(this, NoItemFoundActivity.class);
+				startActivity(lgn1);
+			} else {
+				Intent wl = new Intent(this, WishListMainActivity.class);
+				startActivity(wl);
+			}
 			return true;
 		case R.id.abTrackOrder:
 			return true;

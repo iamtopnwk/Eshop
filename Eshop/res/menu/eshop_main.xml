@@ -12,7 +12,7 @@
         android:id="@+id/abCartList"
         android:icon="@drawable/ic_cart"
         android:showAsAction="always"
-        android:title="CartList"/>
+        android:title="@string/ac_cartList"/>
     <item
         android:id="@+id/abOverflow"
         android:icon="@drawable/ic_action_overflow"
@@ -23,42 +23,42 @@
                 android:id="@+id/abLogin"
                 android:icon="@drawable/ic_action_person"
                 android:showAsAction="ifRoom"
-                android:title="Login"/>
+                android:title="@string/ac_Login"/>
             <item
                 android:id="@+id/abwishlist"
                 android:icon="@drawable/ic_action_favorite"
                 android:showAsAction="never"
-                android:title="wishlist"/>
+                android:title="@string/ac_wishlist"/>
             <item
                 android:id="@+id/abTrackOrder"
                 android:icon="@drawable/ic_action_share"
                 android:showAsAction="never"
-                android:title="Track Order"/>
+                android:title="@string/ac_TrackOrder"/>
             <item
                 android:id="@+id/abRateApp"
                 android:icon="@drawable/ic_action_labels"
                 android:showAsAction="never"
-                android:title="Rate App"/>
+                android:title="@string/ac_RateApp"/>
             <item
                 android:id="@+id/abShareApp"
                 android:icon="@drawable/ic_action_share"
                 android:showAsAction="never"
-                android:title="Share App"/>
+                android:title="@string/ac_ShareApp"/>
             <item
                 android:id="@+id/abPolicies"
                 android:icon="@drawable/ic_action_view_as_list"
                 android:showAsAction="never"
-                android:title="Policies"/>
+                android:title="@string/ac_Policies"/>
              <item
                 android:id="@+id/abContactUs"
                 android:icon="@drawable/ic_action_call"
                 android:showAsAction="never"
-                android:title="ContactUs"/>
+                android:title="@string/ac_ContactUs"/>
              <item
                 android:id="@+id/logOut"
                 android:icon="@drawable/ic_action_person"
                 android:showAsAction="never"
-                android:title="LogOut"/>
+                android:title="@string/ac_LogOut"/>
         </menu>
     </item>
 

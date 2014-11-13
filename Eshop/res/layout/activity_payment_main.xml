@@ -13,6 +13,7 @@
         android:id="@+id/imageView1"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
+        android:contentDescription="@string/app_name"
         android:src="@drawable/eshopper" />
       
     <TextView
@@ -24,7 +25,7 @@
          android:textColor="#040404"
         android:typeface="sans"
         android:textSize="20dip"
-        android:text="Confirmation Status" 
+        android:text="@string/pay_Confirm" 
         android:textStyle="bold"/>
     
     <Button
@@ -34,7 +35,7 @@
            android:layout_height="wrap_content"
            android:layout_marginTop="20dp"
            android:onClick="onBuyPressed"
-           android:text="Confirm Your puchase" />
+           android:text="@string/pay_ConfirmMsg" />
     
     <Button
          android:layout_below="@+id/buyItBtn"
@@ -43,6 +44,6 @@
            android:layout_height="wrap_content"
            android:layout_marginTop="20dp"
            android:onClick="onCancelPressed"
-           android:text="Not Confirm" />
+           android:text="@string/pay_ConfirmNMsg" />
 
 </RelativeLayout>
