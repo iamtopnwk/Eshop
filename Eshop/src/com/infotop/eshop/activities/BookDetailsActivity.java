@@ -47,6 +47,7 @@ public class BookDetailsActivity extends Activity {
 	ImageButton wishlistBtn1;
 	ArrayList<String> s;
 	DisplayImageOptions op;
+	UserSessionManager usMgr;
 	protected ImageLoader loader = ImageLoader.getInstance();
 
 	@Override
@@ -117,18 +118,26 @@ public class BookDetailsActivity extends Activity {
 		case R.id.ab_abShareApp1:
 			return true;
 		case R.id.ab_addToCart:
-			DatabaseHandler db = new DatabaseHandler(BookDetailsActivity.this);
-			Wishlist w = new Wishlist();
-			w.setProductId(s.get(0));
-			w.setProductName(s.get(1));
-			w.setDescription(s.get(2));
-			w.setPrice(s.get(3));
-			w.setImageUrl(s.get(4));
-			w.setCreatedDate(new SimpleDateFormat("dd MMM yyyy")
-					.format(new Date()));
-			db.addCartList(w);
-			Toast.makeText(BookDetailsActivity.this,
-					"Your Item is Added to Cart", Toast.LENGTH_SHORT).show();
+			usMgr = new UserSessionManager(this);
+			 if(!usMgr.isUserLoggedIn()){
+				 
+				 Intent lgn1 = new Intent(this, WishListLoginActivity.class);
+				 startActivity(lgn1);
+			 } else{
+				 DatabaseHandler db = new DatabaseHandler(BookDetailsActivity.this);
+					Wishlist w = new Wishlist();
+					w.setProductId(s.get(0));
+					w.setProductName(s.get(1));
+					w.setDescription(s.get(2));
+					w.setPrice(s.get(3));
+					w.setImageUrl(s.get(4));
+					w.setCreatedDate(new SimpleDateFormat("dd MMM yyyy")
+							.format(new Date()));
+					db.addCartList(w);
+					Toast.makeText(BookDetailsActivity.this,
+							"Your Item is Added to Cart", Toast.LENGTH_SHORT).show();
+			 }
+			
 			return true;
 		case R.id.ab_purChaseItem:
 			UserSessionManager us = new UserSessionManager(this);

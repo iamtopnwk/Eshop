@@ -50,7 +50,7 @@ public class ProductGridViewActivity extends Activity {
 	protected ImageLoader loader = ImageLoader.getInstance();
 	DisplayImageOptions op;
 	ImageButton ib;
-
+	UserSessionManager usMgr;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -200,8 +200,15 @@ public class ProductGridViewActivity extends Activity {
 		case R.id.action_search:
 			return true;
 		case R.id.abCartList:
-			Intent i = new Intent(this, CartListMainActivity.class);
-			startActivity(i);
+			usMgr = new UserSessionManager(this);
+			 if(!usMgr.isUserLoggedIn()){
+				 
+				 Intent lgn1 = new Intent(this, WishListLoginActivity.class);
+				 startActivity(lgn1);
+			 } else{
+				 Intent wl = new Intent(this, CartListMainActivity.class);
+				 startActivity(wl);
+			 }
 			return true;
 		case R.id.abLogin:
 			Intent lgn = new Intent(this, EshopLoginActivity.class);
