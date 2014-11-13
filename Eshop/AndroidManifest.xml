@@ -97,6 +97,7 @@
             android:name=".activities.EshopPoliciesActivity"
             android:label="@string/title_activity_eshop_policies" >
         </activity>
+
         <activity
             android:name=".activities.NoItemFoundActivity"
             android:label="@string/title_activity_no_item_found" >

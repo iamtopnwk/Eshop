@@ -71,7 +71,13 @@
     <string name="title_activity_payment_main">PaymentMainActivity</string>
     <string name="title_activity_pay_confirm">PayConfirmActivity</string>
     <string name="title_activity_contact_us">Contact Us</string>
+
     <string name="title_activity_eshop_policies">EshopPoliciesActivity</string>
     <string name="title_activity_no_item_found">NoItemFoundActivity</string>
+
+   
+  
+    <string name="Uslogin">Login Here</string>
+   
 
 </resources>
