@@ -128,7 +128,7 @@ public class BookDetailsActivity extends Activity {
 			usMgr = new UserSessionManager(this);
 			 if(!usMgr.isUserLoggedIn()){
 				 
-				 Intent lgn1 = new Intent(this, NoItemFoundActivity.class);
+				 Intent lgn1 = new Intent(this, EshopLoginActivity.class);
 				 startActivity(lgn1);
 			 } else{
 				 DatabaseHandler db = new DatabaseHandler(BookDetailsActivity.this);
