@@ -115,9 +115,9 @@ public class CartListMainActivity extends Activity {
 		// as you specify a parent activity in AndroidManifest.xml.
 		switch (item.getItemId()) {
 		
-		case R.id.ab_deleteFromCart:
-			DatabaseHandler db = new DatabaseHandler(CartListMainActivity.this);
-			Wishlist w = new Wishlist();
+		//case R.id.ab_deleteFromCart:
+		//	DatabaseHandler db = new DatabaseHandler(CartListMainActivity.this);
+			//Wishlist w = new Wishlist();
 			//CartListAdapter bAdapter;    
 			
 			//db.addCartList(w);
@@ -130,7 +130,7 @@ public class CartListMainActivity extends Activity {
 			db.addCartList(w);
 			Toast.makeText(BookDetailsActivity.this, "Your Item is Added to Cart",
 					Toast.LENGTH_SHORT).show();*/
-			return true;
+			//return true;
 		case R.id.ab_purChaseItem:
 			Intent in=new Intent(CartListMainActivity.this,PaymentMainActivity.class);
 			in.putStringArrayListExtra("purChaseItem", s);

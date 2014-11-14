@@ -156,4 +156,12 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 		db.close();
 		}
 	
+	public void deleteCartListItem(String productId) {
+		SQLiteDatabase db = this.getWritableDatabase();
+		String deleteQuery = "delete from " + TABLE_CARTLIST + " where "
+				+ KEY_PRODUCTID + "='" + productId + "'";
+		
+		db.execSQL(deleteQuery);
+		db.close();
+		}
 }

@@ -2,13 +2,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.infotop.eshop.CartListMainActivity" >
 
-    <item
-        android:id="@+id/ab_deleteFromCart"
-        android:showAsAction="always"
-        android:title="Delete from cart"/>
+    
     <item
         android:id="@+id/ab_purChaseItem"
         android:showAsAction="always"
-        android:title="Buy"/>
+        android:title="PLACE ORDER"/>
+        
 
 </menu>

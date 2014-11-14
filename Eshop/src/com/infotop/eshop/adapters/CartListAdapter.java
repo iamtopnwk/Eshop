@@ -1,22 +1,27 @@
     package com.infotop.eshop.adapters;
 
-	import java.text.SimpleDateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 
-	import android.annotation.SuppressLint;
+import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.CheckBox;
+
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.infotop.eshop.R;
+import com.infotop.eshop.activities.CartListMainActivity;
+import com.infotop.eshop.db.DatabaseHandler;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
@@ -28,11 +33,11 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 		private final String[] desc;
 		private final String[] imageUrl;
 		private final String[] price;
-		private final String[] pdctId;
+		private final String[] productId;
 		private final DisplayImageOptions op;
 		protected ImageLoader loader = ImageLoader.getInstance();
 
-		public CartListAdapter(Activity context, String[] pdctId,
+		public CartListAdapter(Activity context, String[] productId,
 				String[] productName, String[] imageUrl, String[] desc,
 				String[] price, DisplayImageOptions op) {
 
@@ -42,7 +47,7 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 			this.imageUrl = imageUrl;
 			this.desc = desc;
 			this.price = price;
-			this.pdctId = pdctId;
+			this.productId = productId;
 			this.op = op;
 		}
 
@@ -64,8 +69,8 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 						.findViewById(R.id.productImg);
 				/*//holder.imgwishlistbtn = (ImageView) rowView
 						.findViewById(R.id.imgwishlistbtn);*/
-				holder.checkBox = (CheckBox) rowView
-						 .findViewById(R.id.checkBox1);
+				holder.imageView1 = (ImageView) rowView
+						 .findViewById(R.id.delete);
 				//Toast.makeText(view.getContext() + isCheckedOrNot(holder.checkBox ), Toast.LENGTH_LONG).show();
 				rowView.setTag(holder);
 			} else {
@@ -76,18 +81,48 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 			holder.txtTitle1.setText(desc[position]);
 			holder.txtTitle2.setText(price[position]);
 			loader.displayImage(imageUrl[position], holder.imageView, op, null);
-			holder.checkBox.setOnClickListener( new View.OnClickListener() { 
+			holder.imageView1.setOnClickListener( new View.OnClickListener() { 
 			     public void onClick(View v) { 
-			      CheckBox cb = (CheckBox) v ; 
-			      Toast.makeText(context,
-			       "Clicked on Checkbox: " + pdctId[id] +
-			       " is " + cb.isChecked(),
-			       Toast.LENGTH_LONG).show();
-			    
-			     } 
-			    });
-			
-			return rowView;
+			    	 AlertDialog.Builder alertDialog = new AlertDialog.Builder(
+								context);
+						alertDialog.setTitle("Confirm Delete...");
+						alertDialog.setMessage("Are you sure you want delete this?");
+						alertDialog.setPositiveButton("YES",
+								new DialogInterface.OnClickListener() {
+									public void onClick(DialogInterface dialog,
+											int which) {
+										DatabaseHandler db = new DatabaseHandler(
+												context);
+										db.deleteCartListItem(productId[id]);
+										// myadapter.notifyDataSetChanged();
+										((Activity) context).finish();
+										Intent intent = new Intent(context,
+												CartListMainActivity.class);
+										context.startActivity(intent);
+									}
+								});
+
+						alertDialog.setNegativeButton("NO",
+								new DialogInterface.OnClickListener() {
+									public void onClick(DialogInterface dialog,
+											int which) {
+										// Write your code here to execute after dialog
+										// Toast.makeText(getApplicationContext(),
+										// "You clicked on NO",
+										// Toast.LENGTH_SHORT).show();
+										dialog.cancel();
+									}
+								});
+
+						// Showing Alert Message
+						alertDialog.show();
+
+						// TODO Auto-generated method stub
+
+					}
+				});
+
+				return rowView;
 
 		}
 
@@ -96,7 +131,7 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 			public TextView txtTitle1;
 			public TextView txtTitle2;
 			public ImageView imageView;
-		    public CheckBox checkBox;
+			public ImageView imageView1;
 			//public ImageView imgwishlistbtn;
 		}
 	
