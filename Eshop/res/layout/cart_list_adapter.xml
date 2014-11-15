@@ -63,7 +63,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/productDesc"
         android:layout_toRightOf="@+id/productpricestaticData"
-        android:text="122"
+        android:text="122" 
         android:textColor="#10bcc9"
         android:textSize="10dip"
         android:textStyle="bold" />

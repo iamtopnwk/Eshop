@@ -41,7 +41,7 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 				String[] productName, String[] imageUrl, String[] desc,
 				String[] price, DisplayImageOptions op) {
 
-			super(context, R.layout.cart_list, productName);
+			super(context, R.layout.cart_list_adapter, productName);
 			this.context = context;
 			this.productName = productName;
 			this.imageUrl = imageUrl;
@@ -58,7 +58,7 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 			final ViewHolder holder;
 			if (rowView == null) {
 				rowView = context.getLayoutInflater().inflate(
-						R.layout.cart_list, parent, false);
+						R.layout.cart_list_adapter, parent, false);
 				holder = new ViewHolder();
 				holder.txtTitle = (TextView) rowView.findViewById(R.id.productName);
 				holder.txtTitle1 = (TextView) rowView
