@@ -133,7 +133,7 @@ public class CartListMainActivity extends Activity {
 			//return true;
 		case R.id.ab_purChaseItem:
 			Intent in=new Intent(CartListMainActivity.this,PaymentMainActivity.class);
-			in.putStringArrayListExtra("purChaseItem", s);
+			//in.putStringArrayListExtra("purChaseItem", s);
 			startActivity(in);
 			return true;
 		default:
