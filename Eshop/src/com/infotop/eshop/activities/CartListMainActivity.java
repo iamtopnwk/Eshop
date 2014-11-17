@@ -15,6 +15,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.CheckBox;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.infotop.eshop.R;
@@ -35,9 +36,13 @@ public class CartListMainActivity extends Activity {
 	ListView list;
 	String[] productId, productName, productDescription, productPrice;
 	String[] productImage;
+	Double totalAmount;
 	protected ImageLoader loader = ImageLoader.getInstance();
 	DisplayImageOptions op;
-	ArrayList<String> s;
+	//ArrayList<String> s;
+	int position;
+	TextView grand_Total;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -54,6 +59,7 @@ public class CartListMainActivity extends Activity {
         .displayer(new RoundedBitmapDisplayer(20))
         .build();
 		list = (ListView) findViewById(R.id.cartListViewItems);
+		
 		DatabaseHandler db = new DatabaseHandler(CartListMainActivity.this);
 		List<Wishlist> cartItems = db.getAllCartListItems();
 		int size = cartItems.size();
@@ -62,14 +68,18 @@ public class CartListMainActivity extends Activity {
 		productDescription = new String[size];
 		productPrice = new String[size];
 		productImage = new String[size];
-		for (int i = 0; i < size; i++) {
+		totalAmount=0D;
+		for (int i = 0; i < size; i++) 
+		   {
 			productId[i] = cartItems.get(i).getProductId();
 			productName[i] = cartItems.get(i).getProductName();
 			productDescription[i] = cartItems.get(i).getDescription();
 			productPrice[i] = cartItems.get(i).getPrice();
+			totalAmount=totalAmount+Double.valueOf(cartItems.get(i).getPrice());
 			productImage[i] = cartItems.get(i).getImageUrl();
 			System.out.println("Cart product Image Url's:"+productImage[i]);
-		}
+		    }
+		
 		listAdapter = new CartListAdapter(CartListMainActivity.this,
 				productId,productName, productImage, productDescription, productPrice,op);
 		list.setAdapter(listAdapter);
@@ -81,9 +91,6 @@ public class CartListMainActivity extends Activity {
 					int position, long id) {
 				
 				 listAdapter = (CartListAdapter) parent.getAdapter();
-				
-				 
-				
 				
 				ArrayList<String> productData = new ArrayList<String>();
 				productData.add(productId[position]);
@@ -99,6 +106,15 @@ public class CartListMainActivity extends Activity {
 					startActivity(i);
 			}
 		});
+		
+		
+		
+       grand_Total=(TextView)findViewById(R.id.grand_total);
+		
+		
+         System.out.println(totalAmount);
+		 grand_Total.setText(totalAmount.toString());
+		
 	}
 
 	@Override
@@ -132,8 +148,16 @@ public class CartListMainActivity extends Activity {
 					Toast.LENGTH_SHORT).show();*/
 			//return true;
 		case R.id.ab_purChaseItem:
+			
+			ArrayList<String> s = new ArrayList<String>();
+			s.add(productId[position]);
+			s.add(productName[position]);
+			s.add(productDescription[position]);
+			s.add(productPrice[position]);
+			s.add(productImage[position]);
+			
 			Intent in=new Intent(CartListMainActivity.this,PaymentMainActivity.class);
-			//in.putStringArrayListExtra("purChaseItem", s);
+			in.putStringArrayListExtra("cartItemsBuy", s);
 			startActivity(in);
 			return true;
 		default:
