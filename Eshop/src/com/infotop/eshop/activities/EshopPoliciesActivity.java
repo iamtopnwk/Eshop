@@ -30,7 +30,7 @@ public class EshopPoliciesActivity extends Activity {
  
         // get the listview
         expListView = (ExpandableListView) findViewById(R.id.lvExp);
- 
+        expListView.setGroupIndicator(null);
         // preparing list data
         prepareListData();
  

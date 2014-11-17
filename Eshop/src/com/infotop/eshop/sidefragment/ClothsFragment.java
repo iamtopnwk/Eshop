@@ -49,6 +49,7 @@ public class ClothsFragment extends Fragment {
 				false);
 		expListView = (ExpandableListView) rootView
 				.findViewById(R.id.expandableListView1);
+		expListView.setGroupIndicator(null);
 		// WebServer Request URL
 		String serverURL = "http://192.168.8.160:8989/eshop/rest/ccategory/" + 3;
 
