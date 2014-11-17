@@ -27,6 +27,7 @@ public class PaymentMainActivity extends Activity {
 	private static final String TAG = "paymentExample";
 	private static final String CONFIG_ENVIRONMENT = PayPalConfiguration.ENVIRONMENT_NO_NETWORK;
 	ArrayList<String> s;
+	ArrayList<String>s1;
 	// note that these credentials will differ between live & sandbox
 	// environments.
 	private static final String CONFIG_CLIENT_ID = "ASfsBRBVYizvtodFwwdhEGWwa_DjNSRQDfstdadzgpMglWHYrEW_wpGm3GuE";
@@ -49,7 +50,7 @@ public class PaymentMainActivity extends Activity {
 		intent.putExtra(PayPalService.EXTRA_PAYPAL_CONFIGURATION, config);
 		startService(intent);
 		s = getIntent().getExtras().getStringArrayList("purChaseItem");
-		
+		s1=getIntent().getExtras().getStringArrayList("cartItemsBuy");
 	}
 
 	public void onBuyPressed(View pressed) {
@@ -63,16 +64,28 @@ public class PaymentMainActivity extends Activity {
 		 * Also, to include additional payment details and an item list, see
 		 * getStuffToBuy() below.
 		 */
-		PayPalPayment thingToBuy = getThingToBuy(PayPalPayment.PAYMENT_INTENT_SALE);
+		
+		
+		
 
 		/*
 		 * See getStuffToBuy(..) for examples of some available payment options.
 		 */
-
+       if(s!=null){
+    	   PayPalPayment thingToBuy = getThingToBuy(PayPalPayment.PAYMENT_INTENT_SALE);
 		Intent intent = new Intent(PaymentMainActivity.this,
 				PaymentActivity.class);	        
 		intent.putExtra(PaymentActivity.EXTRA_PAYMENT, thingToBuy);
 		startActivityForResult(intent, REQUEST_CODE_PAYMENT);
+       }
+		else if(s1!=null){
+			PayPalPayment thingToBuy1 = getThingToBuy1(PayPalPayment.PAYMENT_INTENT_SALE);
+			
+			Intent intent = new Intent(PaymentMainActivity.this,
+					PaymentActivity.class);	        
+			intent.putExtra(PaymentActivity.EXTRA_PAYMENT, thingToBuy1);
+			startActivityForResult(intent, REQUEST_CODE_PAYMENT);
+		}
 
 	}
 	public void onCancelPressed(View pressed) {
@@ -81,10 +94,16 @@ public class PaymentMainActivity extends Activity {
 		startActivity(i);
 	}
 	private PayPalPayment getThingToBuy(String paymentIntent) {
+		
 		return new PayPalPayment(new BigDecimal(s.get(3)), "USD",
 				s.get(1), paymentIntent);
+		
 	}
-
+   private PayPalPayment getThingToBuy1(String paymentIntent) {
+		
+		return new PayPalPayment(new BigDecimal(s1.get(2)), "USD",
+				s1.get(1), paymentIntent);
+}
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		if (requestCode == REQUEST_CODE_PAYMENT) {

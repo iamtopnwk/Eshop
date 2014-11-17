@@ -37,6 +37,7 @@ public class CartListMainActivity extends Activity {
 	String[] productId, productName, productDescription, productPrice;
 	String[] productImage;
 	Double totalAmount;
+	String grandTotal;
 	protected ImageLoader loader = ImageLoader.getInstance();
 	DisplayImageOptions op;
 	//ArrayList<String> s;
@@ -148,16 +149,15 @@ public class CartListMainActivity extends Activity {
 					Toast.LENGTH_SHORT).show();*/
 			//return true;
 		case R.id.ab_purChaseItem:
-			
-			ArrayList<String> s = new ArrayList<String>();
-			s.add(productId[position]);
-			s.add(productName[position]);
-			s.add(productDescription[position]);
-			s.add(productPrice[position]);
-			s.add(productImage[position]);
+			grandTotal=totalAmount.toString();
+			String allAmount="Total Amount";
+			ArrayList<String> s1 = new ArrayList<String>();
+			s1.add(productId[position]);
+			s1.add(allAmount);
+			s1.add(grandTotal);
 			
 			Intent in=new Intent(CartListMainActivity.this,PaymentMainActivity.class);
-			in.putStringArrayListExtra("cartItemsBuy", s);
+			in.putStringArrayListExtra("cartItemsBuy", s1);
 			startActivity(in);
 			return true;
 		default:
