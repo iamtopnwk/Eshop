@@ -11,15 +11,20 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ExpandableListView;
+import android.widget.ExpandableListView.OnGroupClickListener;
 import android.widget.TextView;
+import android.widget.Toast;
+import android.widget.ExpandableListView.OnChildClickListener;
 
 import com.infotop.eshop.R;
 import com.infotop.eshop.adapters.ExpandableListAdapter;
 import com.infotop.eshop.model.NavDrawerItem;
 
 public class SubListCategoryActivity extends Activity {
-	
+
 	private ArrayList<String> parentItems = new ArrayList<String>();
 	private ArrayList<String> childItems = new ArrayList<String>();
 	private static final String TAG_DOCS = "docs";
@@ -35,51 +40,51 @@ public class SubListCategoryActivity extends Activity {
 	String[] categoryName;
 	String[] categoryParentId;
 	List<String> uuidPosition;
-	
+	HashMap<String, List<String>> childData;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_sub_list_category);
-		
+
 		// Create Expandable List and set it's properties
 		ExpandableListView expandableList = (ExpandableListView) findViewById(R.id.catexpeId);
 		expandableList.setGroupIndicator(null);
-		expandableList.setClickable(true);
-		TextView tv=(TextView) findViewById(R.id.selectedTextView);
+		//expandableList.setClickable(true);
+		TextView tv = (TextView) findViewById(R.id.selectedTextView);
 		try {
-		selectedParentId=getIntent().getExtras().getString("UUID");
-		jsondata=getIntent().getExtras().getString("jsonData");
-		System.out.println("Postion of uuid"+selectedParentId);
-		System.out.println(jsondata);
-		
-		JSONObject jsonObj;
-		jsonObj = new JSONObject(jsondata).getJSONObject(TAG_RESPONSE);
-		childCategory = jsonObj.getJSONArray(TAG_DOCS);
-		uuidData = new String[childCategory.length()];
-		categoryName = new String[childCategory.length()];
-		categoryParentId = new String[childCategory.length()];
-		uuidPosition=new ArrayList<String>();
-		for (int i = 0; i < childCategory.length(); i++) {
-			JSONObject pc = childCategory.getJSONObject(i);
-			categoryName[i] = pc.getString(TAG_CNAME);
-			if(pc.getString(TAG_UUID).equals(selectedParentId)){
-				tv.setText("In"+pc.getString(TAG_CNAME));
+			selectedParentId = getIntent().getExtras().getString("UUID");
+			jsondata = getIntent().getExtras().getString("jsonData");
+			System.out.println("Postion of uuid" + selectedParentId);
+			System.out.println(jsondata);
+
+			JSONObject jsonObj;
+			jsonObj = new JSONObject(jsondata).getJSONObject(TAG_RESPONSE);
+			childCategory = jsonObj.getJSONArray(TAG_DOCS);
+			uuidData = new String[childCategory.length()];
+			categoryName = new String[childCategory.length()];
+			categoryParentId = new String[childCategory.length()];
+			uuidPosition = new ArrayList<String>();
+			for (int i = 0; i < childCategory.length(); i++) {
+				JSONObject pc = childCategory.getJSONObject(i);
+				categoryName[i] = pc.getString(TAG_CNAME);
+				if (pc.getString(TAG_UUID).equals(selectedParentId)) {
+					tv.setText("In" + pc.getString(TAG_CNAME));
+				}
+				if (pc.getString(TAG_CPID).equals(selectedParentId)) {
+					uuidPosition.add(pc.getString(TAG_UUID));
+					parentItems.add(pc.getString(TAG_CNAME));
+				}
 			}
-			if (pc.getString(TAG_CPID).equals(selectedParentId)) {
-				uuidPosition.add(pc.getString(TAG_UUID));
-				parentItems.add(pc.getString(TAG_CNAME));
-			}
-		}
-		}
-		catch(Exception e){
-			System.out.println("Exception:"+e.getMessage());
+		} catch (Exception e) {
+			System.out.println("Exception:" + e.getMessage());
 		}
 		// Set The Child Data
 		childItems.add("ABC");
 		childItems.add("BBC");
 		childItems.add("CBC");
 
-		HashMap<String, List<String>> childData = new HashMap<String, List<String>>();
+	    childData = new HashMap<String, List<String>>();
 		childData.put(parentItems.get(0), childItems);
 
 		// Create the Adapter
@@ -88,9 +93,28 @@ public class SubListCategoryActivity extends Activity {
 
 		// Set the Adapter to expandableList
 		expandableList.setAdapter(adapter);
-		// expandableList.setOnChildClickListener(this);
-	}
+		expandableList.setOnGroupClickListener(new OnGroupClickListener() {
+			@Override
+			public boolean onGroupClick(ExpandableListView parent, View v,
+					int groupPosition, long id) {
+				Toast.makeText(getApplicationContext(),
+						"The position of parent category:"+ parentItems.get(groupPosition), Toast.LENGTH_SHORT).show();
+				return false;
 
+			}
+		});
+		expandableList.setOnChildClickListener(new OnChildClickListener() {
+			@Override
+			public boolean onChildClick(ExpandableListView parent, View v,
+					int groupPosition, int childPosition, long id) {
+						Toast.makeText(getApplicationContext(),
+								"The position of child category:"
+								  +childData.get(parentItems.get(groupPosition))
+								 .get(childPosition), Toast.LENGTH_SHORT).show();
+						return false;
+					}
+				});
+	}
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
