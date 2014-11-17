@@ -180,7 +180,8 @@ public class EshopMainActivity extends Activity {
 				public void onItemClick(AdapterView<?> parent, View view,
 						int position, long id) {
 					Intent i=new Intent(getApplicationContext(),SubListCategoryActivity.class);
-					//i.putExtra("UUID", uuidPosition.get(position));
+					i.putExtra("UUID", uuidPosition.get(position));
+					i.putExtra("jsonData", pcontent);
 					startActivity(i);
 					//System.out.println("Item id:"+position);
 					// Toast.makeText(getApplicationContext(),"The position of child category:"+uuidPosition.get(position), Toast.LENGTH_SHORT).show();
