@@ -5,9 +5,11 @@
 package com.infotop.eshop.activities;
 
 //import com.infotop.eshop.activities.ProductDetailsHorizontalActivity;
+import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+
 import com.infotop.eshop.R;
 import com.infotop.eshop.adapters.CustomListHorizontalAdapter;
 import com.infotop.eshop.adapters.HorizontalListView;
@@ -17,10 +19,13 @@ import com.infotop.eshop.utilities.UserSessionManager;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.display.RoundedBitmapDisplayer;
+
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -42,9 +47,6 @@ public class BookDetailsActivity extends Activity {
 	Long position = null;
 
 	// adding CartButton,WishlistButton,BuyButton
-	ImageButton cartBtn1;
-	ImageButton buyBtn1;
-	//ImageButton wishlistBtn1;
 	ArrayList<String> s;
 	DisplayImageOptions op;
 	UserSessionManager usMgr;
@@ -123,6 +125,40 @@ public class BookDetailsActivity extends Activity {
 		// as you specify a parent activity in AndroidManifest.xml.
 		switch (item.getItemId()) {
 		case R.id.ab_abShareApp1:
+			
+			
+			Intent sharingIntent = new Intent(Intent.ACTION_SEND);
+			sharingIntent.setType("text/plain");
+			sharingIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET);
+	 
+	     
+			sharingIntent.putExtra(Intent.EXTRA_SUBJECT, "Sending from Esop");
+			sharingIntent.putExtra(Intent.EXTRA_TEXT, "hiii");
+	 
+	        startActivity(Intent.createChooser(sharingIntent, "Share link!"));
+			
+			//Wishlist w = new Wishlist();
+			
+			//sharingIntent.setType("image/*");
+
+
+			//w.setImageUrl(s.get(0));
+			 
+			/*String imagePath = Environment.getExternalStorageDirectory()
+			            + "w.getImageUrl()";
+			
+			File imageFileToShare = new File(imagePath);
+			Uri screenshotUri = Uri.fromFile(imageFileToShare);
+			
+			
+			sharingIntent.putExtra(Intent.EXTRA_STREAM, screenshotUri);
+			
+		
+			System.out.println("ooooooooooooooooooooooooooooooo"+screenshotUri);
+			startActivity(Intent.createChooser(sharingIntent, "Share image using"));
+			        */
+
+			
 			return true;
 		case R.id.ab_addToCart:
 			usMgr = new UserSessionManager(this);
@@ -131,16 +167,16 @@ public class BookDetailsActivity extends Activity {
 				 Intent lgn1 = new Intent(this, EshopLoginActivity.class);
 				 startActivity(lgn1);
 			 } else{
-				 DatabaseHandler db = new DatabaseHandler(BookDetailsActivity.this);
-					Wishlist w = new Wishlist();
-					w.setProductId(s.get(0));
-					w.setProductName(s.get(1));
-					w.setDescription(s.get(2));
-					w.setPrice(s.get(3));
-					w.setImageUrl(s.get(4));
-					w.setCreatedDate(new SimpleDateFormat("dd MMM yyyy")
+				 DatabaseHandler db1 = new DatabaseHandler(BookDetailsActivity.this);
+					Wishlist w1 = new Wishlist();
+					w1.setProductId(s.get(0));
+					w1.setProductName(s.get(1));
+					w1.setDescription(s.get(2));
+					w1.setPrice(s.get(3));
+					w1.setImageUrl(s.get(4));
+					w1.setCreatedDate(new SimpleDateFormat("dd MMM yyyy")
 							.format(new Date()));
-					db.addCartList(w);
+					db1.addCartList(w1);
 					Toast.makeText(BookDetailsActivity.this,
 							"Your Item is Added to Cart", Toast.LENGTH_SHORT).show();
 			 }
