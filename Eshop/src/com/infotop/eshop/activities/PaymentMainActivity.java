@@ -79,11 +79,11 @@ public class PaymentMainActivity extends Activity {
 		startActivityForResult(intent, REQUEST_CODE_PAYMENT);
        }
 		else if(s1!=null){
-			PayPalPayment thingToBuy1 = getThingToBuy1(PayPalPayment.PAYMENT_INTENT_SALE);
+			PayPalPayment thingToBuyAll = getThingToBuyAll(PayPalPayment.PAYMENT_INTENT_SALE);
 			
 			Intent intent = new Intent(PaymentMainActivity.this,
 					PaymentActivity.class);	        
-			intent.putExtra(PaymentActivity.EXTRA_PAYMENT, thingToBuy1);
+			intent.putExtra(PaymentActivity.EXTRA_PAYMENT, thingToBuyAll);
 			startActivityForResult(intent, REQUEST_CODE_PAYMENT);
 		}
 
@@ -99,7 +99,7 @@ public class PaymentMainActivity extends Activity {
 				s.get(1), paymentIntent);
 		
 	}
-   private PayPalPayment getThingToBuy1(String paymentIntent) {
+   private PayPalPayment getThingToBuyAll(String paymentIntent) {
 		
 		return new PayPalPayment(new BigDecimal(s1.get(2)), "USD",
 				s1.get(1), paymentIntent);
