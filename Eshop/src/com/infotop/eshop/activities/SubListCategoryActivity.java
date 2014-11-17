@@ -26,7 +26,7 @@ import com.infotop.eshop.model.NavDrawerItem;
 public class SubListCategoryActivity extends Activity {
 
 	private ArrayList<String> parentItems = new ArrayList<String>();
-	private ArrayList<String> childItems = new ArrayList<String>();
+	private ArrayList<String> childItems;
 	private static final String TAG_DOCS = "docs";
 	private static final String TAG_RESPONSE = "response";
 	private static final String TAG_CNAME = "categoryName";
@@ -34,12 +34,14 @@ public class SubListCategoryActivity extends Activity {
 	private static final String TAG_UUID = "uuid";
 	private static final String TAG_DeleteFlag = "deleteFlag";
 	String selectedParentId;
+	String selectedUuid;
 	String jsondata;
 	JSONArray childCategory = null;
 	String[] uuidData;
 	String[] categoryName;
 	String[] categoryParentId;
 	List<String> uuidPosition;
+	int count = 0;
 	HashMap<String, List<String>> childData;
 
 	@Override
@@ -50,14 +52,12 @@ public class SubListCategoryActivity extends Activity {
 		// Create Expandable List and set it's properties
 		ExpandableListView expandableList = (ExpandableListView) findViewById(R.id.catexpeId);
 		expandableList.setGroupIndicator(null);
-		//expandableList.setClickable(true);
+		// expandableList.setClickable(true);
 		TextView tv = (TextView) findViewById(R.id.selectedTextView);
 		try {
 			selectedParentId = getIntent().getExtras().getString("UUID");
 			jsondata = getIntent().getExtras().getString("jsonData");
-			System.out.println("Postion of uuid" + selectedParentId);
-			System.out.println(jsondata);
-
+			childData = new HashMap<String, List<String>>();
 			JSONObject jsonObj;
 			jsonObj = new JSONObject(jsondata).getJSONObject(TAG_RESPONSE);
 			childCategory = jsonObj.getJSONArray(TAG_DOCS);
@@ -72,20 +72,23 @@ public class SubListCategoryActivity extends Activity {
 					tv.setText("In" + pc.getString(TAG_CNAME));
 				}
 				if (pc.getString(TAG_CPID).equals(selectedParentId)) {
-					uuidPosition.add(pc.getString(TAG_UUID));
+					selectedUuid = pc.getString(TAG_UUID);
+					uuidPosition.add(selectedUuid);
 					parentItems.add(pc.getString(TAG_CNAME));
+					childItems = new ArrayList<String>();
+					for (int j = 0; j < childCategory.length(); j++) {
+						JSONObject sc = childCategory.getJSONObject(j);
+						if (sc.getString(TAG_CPID).equals(selectedUuid)) {
+							childItems.add(sc.getString(TAG_CNAME));
+						}
+					}
+					childData.put(parentItems.get(count), childItems);
+					count++;
 				}
 			}
 		} catch (Exception e) {
 			System.out.println("Exception:" + e.getMessage());
 		}
-		// Set The Child Data
-		childItems.add("ABC");
-		childItems.add("BBC");
-		childItems.add("CBC");
-
-	    childData = new HashMap<String, List<String>>();
-		childData.put(parentItems.get(0), childItems);
 
 		// Create the Adapter
 		ExpandableListAdapter adapter = new ExpandableListAdapter(this,
@@ -97,8 +100,11 @@ public class SubListCategoryActivity extends Activity {
 			@Override
 			public boolean onGroupClick(ExpandableListView parent, View v,
 					int groupPosition, long id) {
-				Toast.makeText(getApplicationContext(),
-						"The position of parent category:"+ parentItems.get(groupPosition), Toast.LENGTH_SHORT).show();
+				Toast.makeText(
+						getApplicationContext(),
+						"The position of parent category:"
+								+ parentItems.get(groupPosition),
+						Toast.LENGTH_SHORT).show();
 				return false;
 
 			}
@@ -107,13 +113,15 @@ public class SubListCategoryActivity extends Activity {
 			@Override
 			public boolean onChildClick(ExpandableListView parent, View v,
 					int groupPosition, int childPosition, long id) {
-						Toast.makeText(getApplicationContext(),
-								"The position of child category:"
-								  +childData.get(parentItems.get(groupPosition))
-								 .get(childPosition), Toast.LENGTH_SHORT).show();
-						return false;
-					}
-				});
+				Toast.makeText(
+						getApplicationContext(),
+						"The position of child category:"
+								+ childData.get(parentItems.get(groupPosition))
+										.get(childPosition), Toast.LENGTH_SHORT)
+						.show();
+				return false;
+			}
+		});
 	}
 
 	@Override
