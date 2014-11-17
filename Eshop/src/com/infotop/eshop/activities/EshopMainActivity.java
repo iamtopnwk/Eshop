@@ -1,13 +1,19 @@
 package com.infotop.eshop.activities;
 
 import java.util.ArrayList;
+import java.util.List;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentManager;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.content.res.TypedArray;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.widget.DrawerLayout;
@@ -15,12 +21,17 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.View.OnTouchListener;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.infotop.eshop.R;
 import com.infotop.eshop.adapters.NavDrawerListAdapter;
+import com.infotop.eshop.adapters.ProductListAdapter;
+import com.infotop.eshop.httpservice.HttpServiceHandler;
 import com.infotop.eshop.model.NavDrawerItem;
 import com.infotop.eshop.sidefragment.BooksFragment;
 import com.infotop.eshop.sidefragment.ClothsFragment;
@@ -30,6 +41,18 @@ import com.infotop.eshop.utilities.UserSessionManager;
 
 //Main Activity
 public class EshopMainActivity extends Activity {
+
+	private static final String TAG_DOCS = "docs";
+	private static final String TAG_RESPONSE = "response";
+	private static final String TAG_CNAME = "categoryName";
+	private static final String TAG_CPID = "categoryParentId";
+	private static final String TAG_UUID = "uuid";
+	private static final String TAG_DeleteFlag = "deleteFlag";
+	JSONArray childCategory = null;
+	String[] uuidData;
+	String[] categoryName;
+	String[] categoryParentId;
+
 	private DrawerLayout mDrawerLayout;
 	private ListView mDrawerList;
 	private ActionBarDrawerToggle mDrawerToggle;
@@ -39,7 +62,7 @@ public class EshopMainActivity extends Activity {
 
 	// used to store app title
 	private CharSequence mTitle;
-
+	List<String> uuidPosition;
 	// slide menu items
 	private String[] navMenuTitles;
 	private TypedArray navMenuIcons;
@@ -52,8 +75,13 @@ public class EshopMainActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_eshop_main);
+		String serverURL = "http://192.168.8.160:8983/solr/collection1/select?q=*%3A*&rows=100&wt=json&indent=true";
+
+		// Use AsyncTask execute Method To Prevent ANR Problem
+		new LongOperation().execute(serverURL);
+
 		mTitle = mDrawerTitle = getTitle();
-		usMgr=new UserSessionManager(this);
+		usMgr = new UserSessionManager(this);
 		// load slide menu items
 		navMenuTitles = getResources().getStringArray(R.array.nav_drawer_items);
 
@@ -67,34 +95,6 @@ public class EshopMainActivity extends Activity {
 		navDrawerItems = new ArrayList<NavDrawerItem>();
 
 		// adding nav drawer items to array
-		// Home
-		navDrawerItems.add(new NavDrawerItem(navMenuTitles[0], navMenuIcons
-				.getResourceId(0, -1)));
-		// Find People
-		navDrawerItems.add(new NavDrawerItem(navMenuTitles[1], navMenuIcons
-				.getResourceId(1, -1)));
-		// Photos
-		navDrawerItems.add(new NavDrawerItem(navMenuTitles[2], navMenuIcons
-				.getResourceId(2, -1)));
-		/*
-		 * // Communities, Will add a counter here navDrawerItems.add(new
-		 * NavDrawerItem(navMenuTitles[3], navMenuIcons .getResourceId(3, -1)));
-		 * // Pages navDrawerItems.add(new NavDrawerItem(navMenuTitles[4],
-		 * navMenuIcons .getResourceId(4, -1)));
-		 */
-		// What's hot, We will add a counter here
-		navDrawerItems.add(new NavDrawerItem(navMenuTitles[3], navMenuIcons
-				.getResourceId(3, -1)));
-
-		// Recycle the typed array
-		navMenuIcons.recycle();
-
-		mDrawerList.setOnItemClickListener(new SlideMenuClickListener());
-
-		// setting the nav drawer list adapter
-		adapter = new NavDrawerListAdapter(getApplicationContext(),
-				navDrawerItems);
-		mDrawerList.setAdapter(adapter);
 
 		// enabling action bar app icon and behaving it as toggle button
 		getActionBar().setDisplayHomeAsUpEnabled(true);
@@ -127,6 +127,68 @@ public class EshopMainActivity extends Activity {
 		}
 	}
 
+	private class LongOperation extends AsyncTask<String, Void, Void> {
+		private String pcontent;
+
+		protected void onPreExecute() {
+			// NOTE: You can call UI Element here.
+
+			// Start Progress Dialog (Message)
+
+		}
+
+		@Override
+		protected Void doInBackground(String... urls) {
+
+			// Send data
+			try {
+				HttpServiceHandler hs = new HttpServiceHandler();
+				pcontent = hs.httpContent(urls[0]);
+				System.out.println("*********Content*******");
+				//System.out.println(pcontent);
+				JSONObject jsonObj;
+				jsonObj = new JSONObject(pcontent).getJSONObject(TAG_RESPONSE);
+				childCategory = jsonObj.getJSONArray(TAG_DOCS);
+				uuidData = new String[childCategory.length()];
+				categoryName = new String[childCategory.length()];
+				categoryParentId = new String[childCategory.length()];
+				uuidPosition=new ArrayList<String>();
+				for (int i = 0; i < childCategory.length(); i++) {
+					JSONObject pc = childCategory.getJSONObject(i);
+					categoryName[i] = pc.getString(TAG_CNAME);
+					if (pc.getString(TAG_CPID).equals("0")) {
+						navDrawerItems.add(new NavDrawerItem(categoryName[i]));
+						uuidPosition.add(pc.getString(TAG_UUID));
+					}
+				}
+
+			} catch (Exception ex) {
+				System.out.println("Exception e:" + ex.getMessage());
+			}
+			/*****************************************************/
+			return null;
+		}
+
+		protected void onPostExecute(Void unused) {
+				// setting the nav drawer list adapter
+			adapter = new NavDrawerListAdapter(getApplicationContext(),
+					navDrawerItems);
+			mDrawerList.setAdapter(adapter);
+			// Close progress dialog
+			mDrawerList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+				@Override
+				public void onItemClick(AdapterView<?> parent, View view,
+						int position, long id) {
+					Intent i=new Intent(getApplicationContext(),SubListCategoryActivity.class);
+					//i.putExtra("UUID", uuidPosition.get(position));
+					startActivity(i);
+					//System.out.println("Item id:"+position);
+					// Toast.makeText(getApplicationContext(),"The position of child category:"+uuidPosition.get(position), Toast.LENGTH_SHORT).show();
+				}
+			});
+		}
+	}
+
 	/**
 	 * Slide menu item click listener
 	 * */
@@ -148,7 +210,7 @@ public class EshopMainActivity extends Activity {
 		getMenuInflater().inflate(R.menu.eshop_main, menu);
 		MenuItem logInitem = menu.findItem(R.id.abLogin);
 		MenuItem logOutitem = menu.findItem(R.id.logOut);
-		//usMgr = new UserSessionManager(this);
+		// usMgr = new UserSessionManager(this);
 		if (!usMgr.isUserLoggedIn()) {
 			logOutitem.setVisible(false);
 		} else {
@@ -169,7 +231,7 @@ public class EshopMainActivity extends Activity {
 		case R.id.action_search:
 			return true;
 		case R.id.abCartList:
-			//usMgr = new UserSessionManager(this);
+			// usMgr = new UserSessionManager(this);
 			if (!usMgr.isUserLoggedIn()) {
 				Intent lgn1 = new Intent(this, NoItemFoundActivity.class);
 				startActivity(lgn1);
@@ -186,7 +248,7 @@ public class EshopMainActivity extends Activity {
 			return true;
 		case R.id.abwishlist:
 
-			//usMgr = new UserSessionManager(this);
+			// usMgr = new UserSessionManager(this);
 			if (!usMgr.isUserLoggedIn()) {
 
 				Intent lgn1 = new Intent(this, NoItemFoundActivity.class);

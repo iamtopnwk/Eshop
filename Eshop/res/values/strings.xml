@@ -58,7 +58,7 @@
     <string name="desc_list_item_icon">Item Icon</string>
     <string name="title_activity_eshop_login">Login</string>
     <string name="title_activity_register">Sign Up</string>
-    
+
     <!-- Book Details page -->
     <string name="likes">Likes:</string>
     <string name="comments">Comments:</string>
@@ -71,31 +71,29 @@
     <string name="stprice">Price:</string>
     <string name="stauthorname">Author Name</string>
     <string name="stmediumtext">Medium Text</string>
-    
-     <!-- Action bar menu icons -->
-     <string name="ac_cartList">CartList</string>
-     <string name="ac_Login">Login</string>
-     <string name="ac_wishlist">Wishlist</string>
-     <string name="ac_TrackOrder">Track Order</string>
-     <string name="ac_RateApp">Rate App</string>
-     <string name="ac_ShareApp">Share App</string>
-     <string name="ac_Policies">Policies</string>
-     <string name="ac_ContactUs">ContactUs</string>
-     <string name="ac_LogOut">LogOut</string>
 
-     <!-- Payment confirm page -->
-      <string name="pay_Confirm">Confirmation Status</string>
-      <string name="pay_ConfirmMsg">Confirm Your puchase</string>
-      <string name="pay_ConfirmNMsg">Cancel</string>
-      
-      <!-- List Items -->
-      <string name="hd_wishlist">Wish List Items</string>
-      <string name="shpbydepart">Shop By Department</string>
-      <string name="offerZone">Offers Zone</string>
-      <string name="allbksCategry">All Books Categories</string>
-      
+    <!-- Action bar menu icons -->
+    <string name="ac_cartList">CartList</string>
+    <string name="ac_Login">Login</string>
+    <string name="ac_wishlist">Wishlist</string>
+    <string name="ac_TrackOrder">Track Order</string>
+    <string name="ac_RateApp">Rate App</string>
+    <string name="ac_ShareApp">Share App</string>
+    <string name="ac_Policies">Policies</string>
+    <string name="ac_ContactUs">ContactUs</string>
+    <string name="ac_LogOut">LogOut</string>
 
-     
+    <!-- Payment confirm page -->
+    <string name="pay_Confirm">Confirmation Status</string>
+    <string name="pay_ConfirmMsg">Confirm Your puchase</string>
+    <string name="pay_ConfirmNMsg">Cancel</string>
+
+    <!-- List Items -->
+    <string name="hd_wishlist">Wish List Items</string>
+    <string name="shpbydepart">Shop By Department</string>
+    <string name="offerZone">Offers Zone</string>
+    <string name="allbksCategry">All Books Categories</string>
+
     <!-- List View -->
     <string name="title_activity_product_details">Book Details</string>
     <string name="wish_list">Wish List</string>
@@ -111,5 +109,6 @@
     <string name="title_activity_eshop_policies">Policies</string>
     <string name="title_activity_no_item_found">Sorry</string>
     <string name="Uslogin">Login Here</string>
+    <string name="title_activity_sub_list_category">SubListCategoryActivity</string>
 
 </resources>
