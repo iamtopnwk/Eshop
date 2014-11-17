@@ -30,28 +30,39 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content" >
         </ListView>
-       <LinearLayout 
+       <RelativeLayout
            android:layout_below="@+id/cartListViewItems"
            android:layout_width="fill_parent"
-           android:layout_height="fill_parent"
-           android:orientation="vertical"
-           android:background="#FFBB33">
+           android:layout_height="wrap_content"
+          android:background="#FFBB33">
         <TextView 
-            
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:paddingLeft="20dp"
             android:text="ORDER SUMMARY"
             android:paddingTop="10dp"/>
         <TextView 
-            android:id="@+id/grand_total"
+            android:id="@+id/grand_total1"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:text="Grand Total="
             android:paddingBottom="30dp"
             android:paddingTop="30dp"
-            android:gravity="center"/>
-        </LinearLayout>
+            android:paddingLeft="45dp"
+            />
+        
+        <TextView 
+            android:id="@+id/grand_total"
+            android:layout_toRightOf="@+id/grand_tatoal1"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:textSize="15sp"
+            android:paddingLeft="150dp"
+            android:paddingTop="30dp"
+            android:paddingBottom="30dp"
+            
+            />
+        </RelativeLayout>
     </LinearLayout>
     
     
