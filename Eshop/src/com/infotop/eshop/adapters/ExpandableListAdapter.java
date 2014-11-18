@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 public class ExpandableListAdapter extends BaseExpandableListAdapter {
@@ -90,6 +91,13 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
  
         TextView lblListHeader = (TextView) convertView
                 .findViewById(R.id.lblListHeader);
+        ImageView iv=(ImageView) convertView.findViewById(R.id.listHeaderImage);
+        if(getChildrenCount(groupPosition)==0){
+        	iv.setVisibility(convertView.INVISIBLE);
+        }
+        else{
+        	iv.setVisibility(convertView.VISIBLE);
+        }
         lblListHeader.setTypeface(null, Typeface.BOLD);
         lblListHeader.setText(headerTitle);
  
