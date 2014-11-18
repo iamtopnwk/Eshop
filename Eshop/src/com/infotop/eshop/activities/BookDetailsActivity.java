@@ -126,14 +126,15 @@ public class BookDetailsActivity extends Activity {
 		switch (item.getItemId()) {
 		case R.id.ab_abShareApp1:
 			
-			
+			Wishlist w = new Wishlist();
+			w.setProductName(s.get(1));
 			Intent sharingIntent = new Intent(Intent.ACTION_SEND);
 			sharingIntent.setType("text/plain");
 			sharingIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET);
 	 
 	     
 			sharingIntent.putExtra(Intent.EXTRA_SUBJECT, "Sending from Esop");
-			sharingIntent.putExtra(Intent.EXTRA_TEXT, "hiii");
+			sharingIntent.putExtra(Intent.EXTRA_TEXT, w.getProductName());
 	 
 	        startActivity(Intent.createChooser(sharingIntent, "Share link!"));
 			
