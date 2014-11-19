@@ -38,12 +38,13 @@ public class ProductGridViewActivity extends Activity {
 	String[] price;
 	String[] imageUrl;
 	String subCatId;
-	private static final String TAG_AADATA = "aaData";
+	private static final String TAG_RESPONSE = "response";
+	private static final String TAG_DOCS = "docs";
 	private static final String TAG_PNAME = "productName";
 	private static final String TAG_PDESC = "productDescription";
-	private static final String TAG_PPRICE = "priductPrice";
-	private static final String TAG_PID = "id";
-	private static final String TAG_IMGURL = "imageUrl";
+	private static final String TAG_PPRICE = "productPrice";
+	private static final String TAG_PID = "uuid";
+	private static final String TAG_IMGURL = "image";
 	static JSONObject jObj = null;
 	JSONArray childCategory = null;
 	Long totalRecords;
@@ -65,8 +66,7 @@ public class ProductGridViewActivity extends Activity {
 		grid = (GridView) findViewById(R.id.productGridView);
 		subCatId = getIntent().getExtras().getString("ccId");
 		System.out.println("Product Subcategory id:" + subCatId);
-		String serverURL = "http://192.168.8.160:8989/eshop/rest/productbycatid/"
-				+ subCatId;
+		String serverURL = "http://192.168.8.160:8983/solr/collection1/select?q=categoryId%3A*&fq=categoryId%3A"+subCatId+"&rows=100&wt=json&indent=true";
 
 		// Use AsyncTask execute Method To Prevent ANR Problem
 		new LongOperation().execute(serverURL);
@@ -96,8 +96,8 @@ public class ProductGridViewActivity extends Activity {
 				pcontent = hs.httpContent(urls[0]);
 				System.out.println("Product Content:" + pcontent);
 				JSONObject jsonObj;
-				jsonObj = new JSONObject(pcontent);
-				childCategory = jsonObj.getJSONArray(TAG_AADATA);
+				jsonObj = new JSONObject(pcontent).getJSONObject(TAG_RESPONSE);
+				childCategory = jsonObj.getJSONArray(TAG_DOCS);
 				pdct = new String[childCategory.length()];
 				imgId = new Integer[childCategory.length()];
 				pdctId = new String[childCategory.length()];

@@ -8,6 +8,7 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -121,12 +122,16 @@ public class SubListCategoryActivity extends Activity {
 			@Override
 			public boolean onChildClick(ExpandableListView parent, View v,
 					int groupPosition, int childPosition, long id) {
-				Toast.makeText(
+				/*Toast.makeText(
 						getApplicationContext(),
 						"The position of child category:"
 								+ childData1.get(parentItems.get(groupPosition))
 										.get(childPosition), Toast.LENGTH_SHORT)
-						.show();
+						.show();*/
+				
+				Intent i=new Intent(getApplicationContext(),ProductListViewActivity.class);
+				i.putExtra("ccId",  childData1.get(parentItems.get(groupPosition)).get(childPosition));
+				startActivity(i);
 				return false;
 			}
 		});
