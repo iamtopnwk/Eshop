@@ -108,11 +108,9 @@ public class SubListCategoryActivity extends Activity {
 			public boolean onGroupClick(ExpandableListView parent, View v,
 					int groupPosition, long id) {
 				if (childData.get(parentItems.get(groupPosition)).size() == 0) {
-					Toast.makeText(
-							getApplicationContext(),
-							"There is no childs for this parent"
-									+ parentUuids.get(groupPosition),
-							Toast.LENGTH_SHORT).show();
+					Intent i=new Intent(getApplicationContext(),ProductListViewActivity.class);
+					i.putExtra("ccId",  parentUuids.get(groupPosition));
+					startActivity(i);
 				}
 				return false;
 
