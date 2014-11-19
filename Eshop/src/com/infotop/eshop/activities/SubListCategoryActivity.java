@@ -12,21 +12,21 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ExpandableListView;
+import android.widget.ExpandableListView.OnChildClickListener;
 import android.widget.ExpandableListView.OnGroupClickListener;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.ExpandableListView.OnChildClickListener;
 
 import com.infotop.eshop.R;
 import com.infotop.eshop.adapters.ExpandableListAdapter;
-import com.infotop.eshop.model.NavDrawerItem;
 
 public class SubListCategoryActivity extends Activity {
 
 	private ArrayList<String> parentItems = new ArrayList<String>();
+	private ArrayList<String> parentUuids = new ArrayList<String>();
 	private ArrayList<String> childItems;
+	private ArrayList<String> childUuids;
 	private static final String TAG_DOCS = "docs";
 	private static final String TAG_RESPONSE = "response";
 	private static final String TAG_CNAME = "categoryName";
@@ -43,6 +43,7 @@ public class SubListCategoryActivity extends Activity {
 	List<String> uuidPosition;
 	int count = 0;
 	HashMap<String, List<String>> childData;
+	HashMap<String, List<String>> childData1;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -58,6 +59,7 @@ public class SubListCategoryActivity extends Activity {
 			selectedParentId = getIntent().getExtras().getString("UUID");
 			jsondata = getIntent().getExtras().getString("jsonData");
 			childData = new HashMap<String, List<String>>();
+			childData1 = new HashMap<String, List<String>>();
 			JSONObject jsonObj;
 			jsonObj = new JSONObject(jsondata).getJSONObject(TAG_RESPONSE);
 			childCategory = jsonObj.getJSONArray(TAG_DOCS);
@@ -75,14 +77,18 @@ public class SubListCategoryActivity extends Activity {
 					selectedUuid = pc.getString(TAG_UUID);
 					uuidPosition.add(selectedUuid);
 					parentItems.add(pc.getString(TAG_CNAME));
+					parentUuids.add(pc.getString(TAG_UUID));
 					childItems = new ArrayList<String>();
+					childUuids = new ArrayList<String>();
 					for (int j = 0; j < childCategory.length(); j++) {
 						JSONObject sc = childCategory.getJSONObject(j);
 						if (sc.getString(TAG_CPID).equals(selectedUuid)) {
 							childItems.add(sc.getString(TAG_CNAME));
+							childUuids.add(sc.getString(TAG_UUID));
 						}
 					}
 					childData.put(parentItems.get(count), childItems);
+					childData1.put(parentItems.get(count), childUuids);
 					count++;
 				}
 			}
@@ -100,11 +106,13 @@ public class SubListCategoryActivity extends Activity {
 			@Override
 			public boolean onGroupClick(ExpandableListView parent, View v,
 					int groupPosition, long id) {
-				Toast.makeText(
-						getApplicationContext(),
-						"The position of parent category:"
-								+ parentItems.get(groupPosition),
-						Toast.LENGTH_SHORT).show();
+				if (childData.get(parentItems.get(groupPosition)).size() == 0) {
+					Toast.makeText(
+							getApplicationContext(),
+							"There is no childs for this parent"
+									+ parentUuids.get(groupPosition),
+							Toast.LENGTH_SHORT).show();
+				}
 				return false;
 
 			}
@@ -116,7 +124,7 @@ public class SubListCategoryActivity extends Activity {
 				Toast.makeText(
 						getApplicationContext(),
 						"The position of child category:"
-								+ childData.get(parentItems.get(groupPosition))
+								+ childData1.get(parentItems.get(groupPosition))
 										.get(childPosition), Toast.LENGTH_SHORT)
 						.show();
 				return false;
