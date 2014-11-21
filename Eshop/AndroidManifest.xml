@@ -66,6 +66,8 @@
             android:name=".activities.PaymentMainActivity"
             android:label="@string/title_activity_payment_main" >
         </activity>
+        
+       
 
         <service
             android:name="com.paypal.android.sdk.payments.PayPalService"
@@ -102,12 +104,16 @@
             android:label="@string/title_activity_no_item_found" >
         </activity>
         <activity
-            android:name="com.infotop.eshop.activities.SubListCategoryActivity"
+            android:name=".activities.SubListCategoryActivity"
             android:label="@string/title_activity_sub_list_category"
             android:parentActivityName=".activities.EshopMainActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.infotop.eshop.activities.EshopMainActivity" />
+        </activity>
+        <activity
+            android:name=".activities.ZoomActivity"
+            android:label="@string/title_activity_zoom" >
         </activity>
     </application>
 

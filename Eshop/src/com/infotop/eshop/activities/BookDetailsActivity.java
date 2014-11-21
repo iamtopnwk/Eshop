@@ -75,7 +75,15 @@ public class BookDetailsActivity extends Activity {
 		holder.txtTitle1.setText(s.get(2));
 		holder.txtTitle2.setText(s.get(3));
 		loader.displayImage(s.get(4), holder.imageView, op, null);
-
+		
+		holder.imageView.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                
+                Intent i = new Intent(BookDetailsActivity.this, ZoomActivity.class);
+                i.putExtra("image", s.get(4));
+                startActivity(i);
+            }
+        });
 	}
 
 	private class ViewHolder {

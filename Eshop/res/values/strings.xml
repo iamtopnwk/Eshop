@@ -110,5 +110,6 @@
     <string name="title_activity_no_item_found">Sorry</string>
     <string name="Uslogin">Login Here</string>
     <string name="title_activity_sub_list_category">SubListCategoryActivity</string>
+    <string name="title_activity_zoom">Zoom</string>
 
 </resources>
