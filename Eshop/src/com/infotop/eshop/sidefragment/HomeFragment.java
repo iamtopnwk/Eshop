@@ -24,17 +24,23 @@ public class HomeFragment extends Fragment {
 	
 	
 	String[] productName = { 
-			"Fashion &\n Accessories", 
-			"Electronics &\n Appliances", 
+			"Men", 
+			"Women",
+			"Kids",
+			"Laptops &\n Appliances", 
+			"Mobiles",
 			"Books & \n Entertainment ", 
-			"Cloths &\n Accessories",
+			
 	};
 
 Integer[] productImage = { 
 		R.drawable.cloth, 
+		R.drawable.girlcloth,
+		R.drawable.kids,
+		R.drawable.laptops,
 		R.drawable.mobile,
 	    R.drawable.book, 
-	    R.drawable.girlcloth,
+	   
 	 };
 
 	@Override
