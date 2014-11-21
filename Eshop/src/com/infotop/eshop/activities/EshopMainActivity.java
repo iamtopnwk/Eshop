@@ -21,6 +21,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.infotop.eshop.R;
 import com.infotop.eshop.adapters.NavDrawerListAdapter;
@@ -205,6 +207,10 @@ public class EshopMainActivity extends Activity {
 		} else {
 			logInitem.setTitle(usMgr.getUserDetails().get("name"));
 		}
+		RelativeLayout badgeLayout = (RelativeLayout) menu.findItem(R.id.abCartList).getActionView();
+	    TextView tv = (TextView) badgeLayout.findViewById(R.id.actionbar_notifcation_textview);
+	    tv.setText("12");
+
 		return super.onCreateOptionsMenu(menu);
 		// return true;
 	}
