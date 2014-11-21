@@ -24,24 +24,23 @@ public class HomeFragment extends Fragment {
 	
 	
 	String[] productName = { 
-			"Men", 
-			"Women",
-			"Kids",
-			"Laptops &\n Appliances", 
-			"Mobiles",
+			"Laptops &\n Appliances",
 			"Books & \n Entertainment ", 
-			
-	};
+			"Mobiles",
+			"Kids",
+			"Men", 
+			"Women"
+		};
 
 Integer[] productImage = { 
-		R.drawable.cloth, 
-		R.drawable.girlcloth,
-		R.drawable.kids,
 		R.drawable.laptops,
-		R.drawable.mobile,
 	    R.drawable.book, 
-	   
-	 };
+	    R.drawable.mobile,
+	    R.drawable.kids,   
+		R.drawable.cloth, 
+		R.drawable.girlcloth
+		
+   };
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
