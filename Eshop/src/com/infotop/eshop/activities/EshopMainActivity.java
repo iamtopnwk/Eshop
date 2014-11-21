@@ -63,6 +63,7 @@ public class EshopMainActivity extends Activity {
 	// used to store app title
 	private CharSequence mTitle;
 	List<String> uuidPosition;
+	List<String> parentCategoryName;
 	// slide menu items
 	private String[] navMenuTitles;
 	private TypedArray navMenuIcons;
@@ -153,12 +154,14 @@ public class EshopMainActivity extends Activity {
 				categoryName = new String[childCategory.length()];
 				categoryParentId = new String[childCategory.length()];
 				uuidPosition=new ArrayList<String>();
+				parentCategoryName=new ArrayList<String>();
 				for (int i = 0; i < childCategory.length(); i++) {
 					JSONObject pc = childCategory.getJSONObject(i);
 					categoryName[i] = pc.getString(TAG_CNAME);
 					if (pc.getString(TAG_CPID).equals("0")) {
 						navDrawerItems.add(new NavDrawerItem(categoryName[i]));
 						uuidPosition.add(pc.getString(TAG_UUID));
+						parentCategoryName.add(pc.getString(TAG_CNAME));
 					}
 				}
 
@@ -181,6 +184,7 @@ public class EshopMainActivity extends Activity {
 						int position, long id) {
 					Intent i=new Intent(getApplicationContext(),SubListCategoryActivity.class);
 					i.putExtra("UUID", uuidPosition.get(position));
+					i.putExtra("CategoryName", parentCategoryName.get(position));
 					i.putExtra("jsonData", pcontent);
 					startActivity(i);
 					//System.out.println("Item id:"+position);
