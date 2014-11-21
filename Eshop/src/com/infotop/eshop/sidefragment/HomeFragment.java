@@ -74,7 +74,7 @@ public class HomeFragment extends Fragment {
 			mFlipping = 0;
 
 		}
-
+		System.gc();
 		return rootView;
 	}
 

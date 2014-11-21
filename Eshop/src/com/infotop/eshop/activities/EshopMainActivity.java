@@ -27,9 +27,6 @@ import com.infotop.eshop.R;
 import com.infotop.eshop.adapters.NavDrawerListAdapter;
 import com.infotop.eshop.httpservice.HttpServiceHandler;
 import com.infotop.eshop.model.NavDrawerItem;
-import com.infotop.eshop.sidefragment.BooksFragment;
-import com.infotop.eshop.sidefragment.ClothsFragment;
-import com.infotop.eshop.sidefragment.ElectronicsFragment;
 import com.infotop.eshop.sidefragment.HomeFragment;
 import com.infotop.eshop.utilities.UserSessionManager;
 
@@ -120,6 +117,7 @@ public class EshopMainActivity extends Activity {
 			// on first time display view for first nav item
 			displayView(0);
 		}
+		System.gc();
 	}
 
 	private class LongOperation extends AsyncTask<String, Void, Void> {
@@ -296,7 +294,7 @@ public class EshopMainActivity extends Activity {
 		case 0:
 			fragment = new HomeFragment();
 			break;
-			
+
 		default:
 			break;
 		}

@@ -3,27 +3,23 @@ package com.infotop.eshop.adapters;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import com.infotop.eshop.R;
-import com.infotop.eshop.R.id;
-import com.infotop.eshop.R.layout;
-import com.infotop.eshop.activities.EshopLoginActivity;
-import com.infotop.eshop.db.DatabaseHandler;
-import com.infotop.eshop.model.Wishlist;
-import com.infotop.eshop.sidefragment.BooksFragment;
-import com.infotop.eshop.utilities.UserSessionManager;
-import com.nostra13.universalimageloader.core.DisplayImageOptions;
-import com.nostra13.universalimageloader.core.ImageLoader;
-
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.infotop.eshop.R;
+import com.infotop.eshop.activities.EshopLoginActivity;
+import com.infotop.eshop.db.DatabaseHandler;
+import com.infotop.eshop.model.Wishlist;
+import com.infotop.eshop.utilities.UserSessionManager;
+import com.nostra13.universalimageloader.core.DisplayImageOptions;
+import com.nostra13.universalimageloader.core.ImageLoader;
 
 @SuppressLint("SimpleDateFormat")
 public class CustomGridViewAdapter extends ArrayAdapter<String> {
@@ -37,9 +33,9 @@ public class CustomGridViewAdapter extends ArrayAdapter<String> {
 	private final DisplayImageOptions op;
 	protected ImageLoader loader = ImageLoader.getInstance();
 
-	public CustomGridViewAdapter(Activity context, String[] productId, String[] productName,
-			String[] imageUrl, String[] description, String[] price,
-			DisplayImageOptions op) {
+	public CustomGridViewAdapter(Activity context, String[] productId,
+			String[] productName, String[] imageUrl, String[] description,
+			String[] price, DisplayImageOptions op) {
 
 		super(context, R.layout.custom_gridview, productName);
 		this.context = context;
@@ -62,7 +58,8 @@ public class CustomGridViewAdapter extends ArrayAdapter<String> {
 					R.layout.custom_gridview, parent, false);
 			System.out.println("Cate Context value is:" + context);
 			holder = new ViewHolder();
-			holder.txtTitle = (TextView) rowView.findViewById(R.id.product_Name);
+			holder.txtTitle = (TextView) rowView
+					.findViewById(R.id.product_Name);
 			holder.txtTitle1 = (TextView) rowView
 					.findViewById(R.id.product_description);
 			holder.txtTitle2 = (TextView) rowView
@@ -83,26 +80,27 @@ public class CustomGridViewAdapter extends ArrayAdapter<String> {
 		holder.imgwishlistbtn.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				
+
 				UserSessionManager usMgr = new UserSessionManager(context);
-				 if(usMgr.isUserLoggedIn()){
-				DatabaseHandler db = new DatabaseHandler(context);
-				Wishlist w = new Wishlist();
-				w.setProductId(productId[id]);
-				w.setProductName(productName[id]);
-				w.setDescription(description[id]);
-				w.setPrice(price[id]);
-				w.setImageUrl(imageUrl[id]);
-				w.setCreatedDate(new SimpleDateFormat("dd MMM yyyy")
-						.format(new Date()));
-				db.addWishList(w);
-				Toast.makeText(context, "Your item is added to Wish List",
-						Toast.LENGTH_SHORT).show();
-			} else{
-				 Intent intent = new Intent(context,EshopLoginActivity.class);
+				if (usMgr.isUserLoggedIn()) {
+					DatabaseHandler db = new DatabaseHandler(context);
+					Wishlist w = new Wishlist();
+					w.setProductId(productId[id]);
+					w.setProductName(productName[id]);
+					w.setDescription(description[id]);
+					w.setPrice(price[id]);
+					w.setImageUrl(imageUrl[id]);
+					w.setCreatedDate(new SimpleDateFormat("dd MMM yyyy")
+							.format(new Date()));
+					db.addWishList(w);
+					Toast.makeText(context, "Your item is added to Wish List",
+							Toast.LENGTH_SHORT).show();
+				} else {
+					Intent intent = new Intent(context,
+							EshopLoginActivity.class);
 					context.startActivity(intent);
-				
-			 }
+
+				}
 			}
 		});
 		return rowView;
