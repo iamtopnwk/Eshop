@@ -9,7 +9,6 @@ import org.json.JSONObject;
 import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentManager;
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.content.res.TypedArray;
@@ -19,18 +18,13 @@ import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.widget.DrawerLayout;
 import android.util.Log;
 import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.MotionEvent;
 import android.view.View;
-import android.view.View.OnTouchListener;
 import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import com.infotop.eshop.R;
 import com.infotop.eshop.adapters.NavDrawerListAdapter;
-import com.infotop.eshop.adapters.ProductListAdapter;
 import com.infotop.eshop.httpservice.HttpServiceHandler;
 import com.infotop.eshop.model.NavDrawerItem;
 import com.infotop.eshop.sidefragment.BooksFragment;
@@ -146,15 +140,15 @@ public class EshopMainActivity extends Activity {
 				HttpServiceHandler hs = new HttpServiceHandler();
 				pcontent = hs.httpContent(urls[0]);
 				System.out.println("*********Content*******");
-				//System.out.println(pcontent);
+				// System.out.println(pcontent);
 				JSONObject jsonObj;
 				jsonObj = new JSONObject(pcontent).getJSONObject(TAG_RESPONSE);
 				childCategory = jsonObj.getJSONArray(TAG_DOCS);
 				uuidData = new String[childCategory.length()];
 				categoryName = new String[childCategory.length()];
 				categoryParentId = new String[childCategory.length()];
-				uuidPosition=new ArrayList<String>();
-				parentCategoryName=new ArrayList<String>();
+				uuidPosition = new ArrayList<String>();
+				parentCategoryName = new ArrayList<String>();
 				for (int i = 0; i < childCategory.length(); i++) {
 					JSONObject pc = childCategory.getJSONObject(i);
 					categoryName[i] = pc.getString(TAG_CNAME);
@@ -173,24 +167,28 @@ public class EshopMainActivity extends Activity {
 		}
 
 		protected void onPostExecute(Void unused) {
-				// setting the nav drawer list adapter
+			// setting the nav drawer list adapter
 			adapter = new NavDrawerListAdapter(getApplicationContext(),
 					navDrawerItems);
 			mDrawerList.setAdapter(adapter);
 			// Close progress dialog
-			mDrawerList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-				@Override
-				public void onItemClick(AdapterView<?> parent, View view,
-						int position, long id) {
-					Intent i=new Intent(getApplicationContext(),SubListCategoryActivity.class);
-					i.putExtra("UUID", uuidPosition.get(position));
-					i.putExtra("CategoryName", parentCategoryName.get(position));
-					i.putExtra("jsonData", pcontent);
-					startActivity(i);
-					//System.out.println("Item id:"+position);
-					// Toast.makeText(getApplicationContext(),"The position of child category:"+uuidPosition.get(position), Toast.LENGTH_SHORT).show();
-				}
-			});
+			mDrawerList
+					.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+						@Override
+						public void onItemClick(AdapterView<?> parent,
+								View view, int position, long id) {
+							Intent i = new Intent(getApplicationContext(),
+									SubListCategoryActivity.class);
+							i.putExtra("UUID", uuidPosition.get(position));
+							i.putExtra("CategoryName",
+									parentCategoryName.get(position));
+							i.putExtra("jsonData", pcontent);
+							startActivity(i);
+							// System.out.println("Item id:"+position);
+							// Toast.makeText(getApplicationContext(),"The position of child category:"+uuidPosition.get(position),
+							// Toast.LENGTH_SHORT).show();
+						}
+					});
 		}
 	}
 
@@ -298,20 +296,7 @@ public class EshopMainActivity extends Activity {
 		case 0:
 			fragment = new HomeFragment();
 			break;
-		case 1:
-			fragment = new BooksFragment();
-			break;
-		case 2:
-			fragment = new ElectronicsFragment();
-			break;
-		/*
-		 * case 3: fragment = new CommunityFragment(); break; case 4: fragment =
-		 * new PagesFragment(); break;
-		 */
-		case 3:
-			fragment = new ClothsFragment();
-			break;
-
+			
 		default:
 			break;
 		}
