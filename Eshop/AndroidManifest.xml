@@ -24,14 +24,18 @@
             android:name=".activities.EshopLoginActivity"
             android:label="@string/app_name" >
         </activity>
-        <activity
-            android:name=".activities.EshopMainActivity"
+         <activity
+            android:name="com.infotop.eshop.activities.SplashScreen"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name=".activities.EshopMainActivity"
+            android:label="@string/app_name" >       
         </activity>
         <activity
             android:name=".activities.RegisterActivity"
@@ -111,10 +115,13 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.infotop.eshop.activities.EshopMainActivity" />
         </activity>
+
         <activity
             android:name=".activities.ZoomActivity"
             android:label="@string/title_activity_zoom" >
         </activity>
+       
+
     </application>
 
 </manifest>

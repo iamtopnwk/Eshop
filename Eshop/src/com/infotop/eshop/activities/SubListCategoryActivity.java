@@ -16,6 +16,7 @@ import android.view.View;
 import android.widget.ExpandableListView;
 import android.widget.ExpandableListView.OnChildClickListener;
 import android.widget.ExpandableListView.OnGroupClickListener;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -34,7 +35,7 @@ public class SubListCategoryActivity extends Activity {
 	private static final String TAG_CPID = "categoryParentId";
 	private static final String TAG_UUID = "uuid";
 	private static final String TAG_DeleteFlag = "deleteFlag";
-	String selectedParentId;
+	String selectedParentId,parentCategoryName;
 	String selectedUuid;
 	String jsondata;
 	JSONArray childCategory = null;
@@ -45,20 +46,25 @@ public class SubListCategoryActivity extends Activity {
 	int count = 0;
 	HashMap<String, List<String>> childData;
 	HashMap<String, List<String>> childData1;
+	ImageView imageview1,imageview2,imageview3;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_sub_list_category);
-
+		
 		// Create Expandable List and set it's properties
 		ExpandableListView expandableList = (ExpandableListView) findViewById(R.id.catexpeId);
 		expandableList.setGroupIndicator(null);
 		// expandableList.setClickable(true);
 		TextView tv = (TextView) findViewById(R.id.selectedTextView);
+		selectedParentId = getIntent().getExtras().getString("UUID");
+		jsondata = getIntent().getExtras().getString("jsonData");
+		parentCategoryName = getIntent().getExtras().getString("CategoryName");
+		tv.setText("In "+parentCategoryName);
+		
 		try {
-			selectedParentId = getIntent().getExtras().getString("UUID");
-			jsondata = getIntent().getExtras().getString("jsonData");
+			
 			childData = new HashMap<String, List<String>>();
 			childData1 = new HashMap<String, List<String>>();
 			JSONObject jsonObj;
@@ -71,9 +77,9 @@ public class SubListCategoryActivity extends Activity {
 			for (int i = 0; i < childCategory.length(); i++) {
 				JSONObject pc = childCategory.getJSONObject(i);
 				categoryName[i] = pc.getString(TAG_CNAME);
-				if (pc.getString(TAG_UUID).equals(selectedParentId)) {
+				/*if (pc.getString(TAG_UUID).equals(selectedParentId)) {
 					tv.setText("In" + pc.getString(TAG_CNAME));
-				}
+				}*/
 				if (pc.getString(TAG_CPID).equals(selectedParentId)) {
 					selectedUuid = pc.getString(TAG_UUID);
 					uuidPosition.add(selectedUuid);
