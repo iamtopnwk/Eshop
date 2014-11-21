@@ -26,16 +26,14 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 
 public class WishListMainActivity extends Activity {
-	WishListAdapter listAdapter;
-	ListView list;
-	String[] productId, productName, productDescription, productPrice;
-	String[] productImage;
-	protected ImageLoader loader = ImageLoader.getInstance();
+	String[] productId, productName, productDescription, productPrice,productImage;
 	DisplayImageOptions op;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_wish_list_main);
+		WishListAdapter listAdapter;
+		ListView list;
 		op = new DisplayImageOptions.Builder()
         .showStubImage(R.drawable.notavailable)
         .showImageForEmptyUri(R.drawable.notavailable)
@@ -103,5 +101,11 @@ public class WishListMainActivity extends Activity {
 			return true;
 		}
 		return super.onOptionsItemSelected(item);
+	}
+	@Override
+	protected void onDestroy() {
+		// TODO Auto-generated method stub
+		System.gc();
+		super.onDestroy();
 	}
 }

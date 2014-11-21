@@ -1,116 +1,89 @@
 package com.infotop.eshop.activities;
 
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-import com.infotop.eshop.R;
-import com.infotop.eshop.adapters.ProductListAdapter;
-import com.infotop.eshop.httpservice.HttpServiceHandler;
-
-
-import com.infotop.eshop.utilities.UserSessionManager;
-import com.nostra13.universalimageloader.core.DisplayImageOptions;
-import com.nostra13.universalimageloader.core.ImageLoader;
-import com.nostra13.universalimageloader.core.display.RoundedBitmapDisplayer;
-
+import android.annotation.SuppressLint;
+import android.app.ActionBar;
 import android.app.Activity;
 import android.app.ProgressDialog;
-import android.content.Context;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.os.IBinder;
-import android.app.ActionBar;
-import android.text.Editable;
-import android.text.TextWatcher;
 //import android.support.v7.widget.SearchView;
 import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnTouchListener;
 import android.widget.AdapterView;
-import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ListView;
-import android.widget.SimpleAdapter;
 
+import com.infotop.eshop.R;
+import com.infotop.eshop.adapters.ProductListAdapter;
+import com.infotop.eshop.httpservice.HttpServiceHandler;
+import com.infotop.eshop.utilities.UserSessionManager;
+import com.nostra13.universalimageloader.core.DisplayImageOptions;
+import com.nostra13.universalimageloader.core.display.RoundedBitmapDisplayer;
 
-
-import android.app.SearchManager;
-import android.widget.ArrayAdapter;
-import android.widget.SearchView;
-import android.widget.AdapterView.OnItemClickListener;
-
-
-
+@SuppressLint("ClickableViewAccessibility")
 public class ProductListViewActivity extends Activity {
 
-	ProductListAdapter listAdapter;
-	ListView list;
-	String[] pdct;
-	Integer[] imgId;
-	String[] pdctId;
-	String[] pdesc;
-	String[] price;
-	String[] imageUrl;
-	Bitmap[] bmp;
-	String subCatId;
 	private static final String TAG_RESPONSE = "response";
 	private static final String TAG_DOCS = "docs";
 	private static final String TAG_PNAME = "productName";
 	private static final String TAG_PDESC = "productDescription";
-	private static final String TAG_PPRICE="productPrice";
+	private static final String TAG_PPRICE = "productPrice";
 	private static final String TAG_PID = "uuid";
 	private static final String TAG_IMGURL = "image";
-	static JSONObject jObj = null;
-	JSONArray childCategory = null;
-	Long totalRecords;
-	protected ImageLoader loader = ImageLoader.getInstance();
+	ListView list;
+	String subCatId;
 	DisplayImageOptions op;
 	ImageButton ib;
 	UserSessionManager usMgr;
+
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_product_list_view);
-		 ib=(ImageButton) findViewById(R.id.listviewbtn1);
+		ib = (ImageButton) findViewById(R.id.listviewbtn1);
 		// get the action bar
-		  ActionBar actionBar=getActionBar();
+		ActionBar actionBar = getActionBar();
 
-		  // Enabling Back navigation on Action Bar icon
-		  actionBar.setDisplayHomeAsUpEnabled(true);
-		  op = new DisplayImageOptions.Builder()
-          .showStubImage(R.drawable.notavailable)
-          .showImageForEmptyUri(R.drawable.notavailable)
-          .showImageOnFail(R.drawable.notavailable)
-          .cacheInMemory()
-          .cacheOnDisc()
-          .displayer(new RoundedBitmapDisplayer(20))
-          .build();
+		// Enabling Back navigation on Action Bar icon
+		actionBar.setDisplayHomeAsUpEnabled(true);
+		op = new DisplayImageOptions.Builder()
+				.showStubImage(R.drawable.notavailable)
+				.showImageForEmptyUri(R.drawable.notavailable)
+				.showImageOnFail(R.drawable.notavailable).cacheInMemory()
+				.cacheOnDisc().displayer(new RoundedBitmapDisplayer(20))
+				.build();
 
-		
-		
 		list = (ListView) findViewById(R.id.productListView);
 		subCatId = getIntent().getExtras().getString("ccId");
-		System.out.println("Product Subcategory id:"+ subCatId);
-		String serverURL = "http://192.168.8.160:8983/solr/collection1/select?q=categoryId%3A*&fq=categoryId%3A"+subCatId+"&rows=100&wt=json&indent=true";
+		System.out.println("Product Subcategory id:" + subCatId);
+		String serverURL = "http://192.168.8.160:8983/solr/collection1/select?q=categoryId%3A*&fq=categoryId%3A"
+				+ subCatId + "&rows=100&wt=json&indent=true";
 
 		// Use AsyncTask execute Method To Prevent ANR Problem
 		new LongOperation().execute(serverURL);
 
-		
-        
 	}
+
 	private class LongOperation extends AsyncTask<String, Void, Void> {
-		private String pcontent;
+
+		ProductListAdapter listAdapter;
+		String[] pdct;
+		String[] pdctId;
+		String[] pdesc;
+		String[] price;
+		String[] imageUrl;
+
 		private ProgressDialog dialog = new ProgressDialog(
 				ProductListViewActivity.this);
 
@@ -126,33 +99,34 @@ public class ProductListViewActivity extends Activity {
 
 		@Override
 		protected Void doInBackground(String... urls) {
-
+			JSONArray childCategory = null;
+			String pcontent;
 			// Send data
 			try {
 				HttpServiceHandler hs = new HttpServiceHandler();
 				pcontent = hs.httpContent(urls[0]);
-				System.out.println("pcontent:"+pcontent);
 				JSONObject jsonObj;
 				jsonObj = new JSONObject(pcontent).getJSONObject(TAG_RESPONSE);
-				//jsonObj = new JSONObject(jsondata).getJSONObject(TAG_RESPONSE);
+				// jsonObj = new
+				// JSONObject(jsondata).getJSONObject(TAG_RESPONSE);
 				childCategory = jsonObj.getJSONArray(TAG_DOCS);
-				
+
 				pdct = new String[childCategory.length()];
-				//imgId = new Integer[childCategory.length()];
+				// imgId = new Integer[childCategory.length()];
 				pdctId = new String[childCategory.length()];
 				pdesc = new String[childCategory.length()];
-				price= new String[childCategory.length()];
-				imageUrl=new String[childCategory.length()];
+				price = new String[childCategory.length()];
+				imageUrl = new String[childCategory.length()];
 				List<String> ccName = new ArrayList<String>();
 				for (int i = 0; i < childCategory.length(); i++) {
 					JSONObject pc = childCategory.getJSONObject(i);
 					pdct[i] = pc.getString(TAG_PNAME);
 					pdctId[i] = pc.getString(TAG_PID);
 					pdesc[i] = pc.getString(TAG_PDESC);
-					price[i]=pc.getString(TAG_PPRICE);
+					price[i] = pc.getString(TAG_PPRICE);
 					ccName.add(pdct[i]);
-					imageUrl[i]=pc.getString(TAG_IMGURL);
-					System.out.println("Image Url:"+imageUrl[i]);	
+					imageUrl[i] = pc.getString(TAG_IMGURL);
+					System.out.println("Image Url:" + imageUrl[i]);
 				}
 
 			} catch (Exception ex) {
@@ -166,8 +140,7 @@ public class ProductListViewActivity extends Activity {
 			dialog.dismiss();
 			// NOTE: You can call UI Element here.
 			listAdapter = new ProductListAdapter(ProductListViewActivity.this,
-					pdctId,pdct,imageUrl,pdesc,price,op);
-			System.out.println("ListAdapter value is:" + listAdapter);
+					pdctId, pdct, imageUrl, pdesc, price, op);
 			list.setAdapter(listAdapter);
 			list.setTextFilterEnabled(true);
 			list.setOnTouchListener(new OnTouchListener() {
@@ -177,8 +150,8 @@ public class ProductListViewActivity extends Activity {
 					// TODO Auto-generated method stub
 					ib.setVisibility(v.VISIBLE);
 					return false;
-				}}
-					);
+				}
+			});
 			list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 				@Override
 				public void onItemClick(AdapterView<?> parent, View view,
@@ -191,19 +164,21 @@ public class ProductListViewActivity extends Activity {
 					productData.add(imageUrl[position]);
 					// String product = (String) adapter.getItem(position);
 					// pass Data to other Activity
-						Intent i = new Intent(ProductListViewActivity.this,
-								BookDetailsActivity.class);
-						i.putStringArrayListExtra("productData", productData);
-						startActivity(i);
+					Intent i = new Intent(ProductListViewActivity.this,
+							BookDetailsActivity.class);
+					i.putStringArrayListExtra("productData", productData);
+					startActivity(i);
 				}
 			});
 			// Close progress dialog
 		}
 
 	}
-	/*public void wishlistMethod(View view){
-		System.out.println("Wish list button clicked....");
-	}*/
+
+	/*
+	 * public void wishlistMethod(View view){
+	 * System.out.println("Wish list button clicked...."); }
+	 */
 	public void gridView(View view) {
 
 		System.out.println("Button is GridView");
@@ -212,6 +187,7 @@ public class ProductListViewActivity extends Activity {
 		s.putExtra("ccId", subCatId);
 		startActivity(s);
 	}
+
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
@@ -219,16 +195,15 @@ public class ProductListViewActivity extends Activity {
 		MenuItem logInitem = menu.findItem(R.id.abLogin);
 		MenuItem logOutitem = menu.findItem(R.id.logOut);
 		UserSessionManager usMgr = new UserSessionManager(this);
-		if(!usMgr.isUserLoggedIn()){
+		if (!usMgr.isUserLoggedIn()) {
 			logOutitem.setVisible(false);
-		}
-		else{
+		} else {
 			logInitem.setTitle(usMgr.getUserDetails().get("name"));
 		}
-        return true;
-	
+		return true;
+
 	}
-	
+
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		// Handle action bar item clicks here. The action bar will
@@ -239,14 +214,14 @@ public class ProductListViewActivity extends Activity {
 			return true;
 		case R.id.abCartList:
 			usMgr = new UserSessionManager(this);
-			 if(!usMgr.isUserLoggedIn()){
-				 
-				 Intent lgn1 = new Intent(this, NoItemFoundActivity.class);
-				 startActivity(lgn1);
-			 } else{
-				 Intent wl = new Intent(this, CartListMainActivity.class);
-				 startActivity(wl);
-			 }
+			if (!usMgr.isUserLoggedIn()) {
+
+				Intent lgn1 = new Intent(this, NoItemFoundActivity.class);
+				startActivity(lgn1);
+			} else {
+				Intent wl = new Intent(this, CartListMainActivity.class);
+				startActivity(wl);
+			}
 			return true;
 		case R.id.abLogin:
 			Intent lgn = new Intent(this, EshopLoginActivity.class);
@@ -254,14 +229,14 @@ public class ProductListViewActivity extends Activity {
 			return true;
 		case R.id.abwishlist:
 			UserSessionManager usMgr = new UserSessionManager(this);
-			 if(!usMgr.isUserLoggedIn()){
-				 
-				 Intent lgn1 = new Intent(this, NoItemFoundActivity.class);
-				 startActivity(lgn1);
-			 } else{
-				 Intent wl = new Intent(this, WishListMainActivity.class);
-				 startActivity(wl);
-			 }
+			if (!usMgr.isUserLoggedIn()) {
+
+				Intent lgn1 = new Intent(this, NoItemFoundActivity.class);
+				startActivity(lgn1);
+			} else {
+				Intent wl = new Intent(this, WishListMainActivity.class);
+				startActivity(wl);
+			}
 			return true;
 		case R.id.abTrackOrder:
 			return true;
@@ -286,5 +261,12 @@ public class ProductListViewActivity extends Activity {
 		default:
 			return super.onOptionsItemSelected(item);
 		}
+	}
+	
+	@Override
+	protected void onDestroy() {
+		// TODO Auto-generated method stub
+		System.gc();
+		super.onDestroy();
 	}
 }

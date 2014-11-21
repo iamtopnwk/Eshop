@@ -6,6 +6,7 @@ import java.util.List;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -25,19 +26,11 @@ import com.infotop.eshop.adapters.CustomGridViewAdapter;
 import com.infotop.eshop.httpservice.HttpServiceHandler;
 import com.infotop.eshop.utilities.UserSessionManager;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
-import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.display.RoundedBitmapDisplayer;
 
+@SuppressLint("ClickableViewAccessibility")
 public class ProductGridViewActivity extends Activity {
-	CustomGridViewAdapter gridAdapter;
-	GridView grid;
-	String[] pdct;
-	Integer[] imgId;
-	String[] pdctId;
-	String[] pdesc;
-	String[] price;
-	String[] imageUrl;
-	String subCatId;
+
 	private static final String TAG_RESPONSE = "response";
 	private static final String TAG_DOCS = "docs";
 	private static final String TAG_PNAME = "productName";
@@ -45,13 +38,12 @@ public class ProductGridViewActivity extends Activity {
 	private static final String TAG_PPRICE = "productPrice";
 	private static final String TAG_PID = "uuid";
 	private static final String TAG_IMGURL = "image";
-	static JSONObject jObj = null;
-	JSONArray childCategory = null;
-	Long totalRecords;
-	protected ImageLoader loader = ImageLoader.getInstance();
+	GridView grid;
+	String subCatId;
 	DisplayImageOptions op;
 	ImageButton ib;
 	UserSessionManager usMgr;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -66,14 +58,21 @@ public class ProductGridViewActivity extends Activity {
 		grid = (GridView) findViewById(R.id.productGridView);
 		subCatId = getIntent().getExtras().getString("ccId");
 		System.out.println("Product Subcategory id:" + subCatId);
-		String serverURL = "http://192.168.8.160:8983/solr/collection1/select?q=categoryId%3A*&fq=categoryId%3A"+subCatId+"&rows=100&wt=json&indent=true";
+		String serverURL = "http://192.168.8.160:8983/solr/collection1/select?q=categoryId%3A*&fq=categoryId%3A"
+				+ subCatId + "&rows=100&wt=json&indent=true";
 
 		// Use AsyncTask execute Method To Prevent ANR Problem
 		new LongOperation().execute(serverURL);
 	}
 
 	private class LongOperation extends AsyncTask<String, Void, Void> {
-		private String pcontent;
+		CustomGridViewAdapter gridAdapter;
+		String[] pdct;
+		String[] pdctId;
+		String[] pdesc;
+		String[] price;
+		String[] imageUrl;
+
 		private ProgressDialog dialog = new ProgressDialog(
 				ProductGridViewActivity.this);
 
@@ -89,17 +88,16 @@ public class ProductGridViewActivity extends Activity {
 
 		@Override
 		protected Void doInBackground(String... urls) {
-
+			JSONArray childCategory = null;
+			String pcontent;
 			// Send data
 			try {
 				HttpServiceHandler hs = new HttpServiceHandler();
 				pcontent = hs.httpContent(urls[0]);
-				System.out.println("Product Content:" + pcontent);
 				JSONObject jsonObj;
 				jsonObj = new JSONObject(pcontent).getJSONObject(TAG_RESPONSE);
 				childCategory = jsonObj.getJSONArray(TAG_DOCS);
 				pdct = new String[childCategory.length()];
-				imgId = new Integer[childCategory.length()];
 				pdctId = new String[childCategory.length()];
 				pdesc = new String[childCategory.length()];
 				price = new String[childCategory.length()];
@@ -113,8 +111,6 @@ public class ProductGridViewActivity extends Activity {
 					price[i] = pc.getString(TAG_PPRICE);
 					ccName.add(pdct[i]);
 					imageUrl[i] = pc.getString(TAG_IMGURL);
-					System.out.println(pdct[i]);
-					// imgId[i] = R.drawable.productimg;
 				}
 
 			} catch (Exception ex) {
@@ -130,10 +126,8 @@ public class ProductGridViewActivity extends Activity {
 			gridAdapter = new CustomGridViewAdapter(
 					ProductGridViewActivity.this, pdctId, pdct, imageUrl,
 					pdesc, price, op);
-			System.out.println("ListAdapter value is:" + gridAdapter);
 			grid.setAdapter(gridAdapter);
 			grid.setOnTouchListener(new OnTouchListener() {
-
 				@Override
 				public boolean onTouch(View v, MotionEvent arg1) {
 					// TODO Auto-generated method stub
@@ -182,10 +176,9 @@ public class ProductGridViewActivity extends Activity {
 		MenuItem logInitem = menu.findItem(R.id.abLogin);
 		MenuItem logOutitem = menu.findItem(R.id.logOut);
 		UserSessionManager usMgr = new UserSessionManager(this);
-		if(!usMgr.isUserLoggedIn()){
+		if (!usMgr.isUserLoggedIn()) {
 			logOutitem.setVisible(false);
-		}
-		else{
+		} else {
 			logInitem.setTitle(usMgr.getUserDetails().get("name"));
 		}
 		return true;
@@ -201,14 +194,14 @@ public class ProductGridViewActivity extends Activity {
 			return true;
 		case R.id.abCartList:
 			usMgr = new UserSessionManager(this);
-			 if(!usMgr.isUserLoggedIn()){
-				 
-				 Intent lgn1 = new Intent(this, NoItemFoundActivity.class);
-				 startActivity(lgn1);
-			 } else{
-				 Intent wl = new Intent(this, CartListMainActivity.class);
-				 startActivity(wl);
-			 }
+			if (!usMgr.isUserLoggedIn()) {
+
+				Intent lgn1 = new Intent(this, NoItemFoundActivity.class);
+				startActivity(lgn1);
+			} else {
+				Intent wl = new Intent(this, CartListMainActivity.class);
+				startActivity(wl);
+			}
 			return true;
 		case R.id.abLogin:
 			Intent lgn = new Intent(this, EshopLoginActivity.class);
@@ -216,14 +209,14 @@ public class ProductGridViewActivity extends Activity {
 			return true;
 		case R.id.abwishlist:
 			UserSessionManager usMgr = new UserSessionManager(this);
-			 if(!usMgr.isUserLoggedIn()){
-				 
-				 Intent lgn1 = new Intent(this, NoItemFoundActivity.class);
-				 startActivity(lgn1);
-			 } else{
-				 Intent wl = new Intent(this, WishListMainActivity.class);
-				 startActivity(wl);
-			 }
+			if (!usMgr.isUserLoggedIn()) {
+
+				Intent lgn1 = new Intent(this, NoItemFoundActivity.class);
+				startActivity(lgn1);
+			} else {
+				Intent wl = new Intent(this, WishListMainActivity.class);
+				startActivity(wl);
+			}
 			return true;
 		case R.id.abTrackOrder:
 			return true;
@@ -248,5 +241,12 @@ public class ProductGridViewActivity extends Activity {
 		default:
 			return super.onOptionsItemSelected(item);
 		}
+	}
+	
+	@Override
+	protected void onDestroy() {
+		// TODO Auto-generated method stub
+		System.gc();
+		super.onDestroy();
 	}
 }

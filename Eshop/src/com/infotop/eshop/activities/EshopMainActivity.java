@@ -11,7 +11,6 @@ import android.app.Fragment;
 import android.app.FragmentManager;
 import android.content.Intent;
 import android.content.res.Configuration;
-import android.content.res.TypedArray;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
@@ -38,29 +37,17 @@ public class EshopMainActivity extends Activity {
 	private static final String TAG_CNAME = "categoryName";
 	private static final String TAG_CPID = "categoryParentId";
 	private static final String TAG_UUID = "uuid";
-	private static final String TAG_DeleteFlag = "deleteFlag";
-	JSONArray childCategory = null;
-	String[] uuidData;
-	String[] categoryName;
-	String[] categoryParentId;
-
 	private DrawerLayout mDrawerLayout;
 	private ListView mDrawerList;
 	private ActionBarDrawerToggle mDrawerToggle;
-
 	// nav drawer title
 	private CharSequence mDrawerTitle;
-
 	// used to store app title
 	private CharSequence mTitle;
-	List<String> uuidPosition;
-	List<String> parentCategoryName;
 	// slide menu items
 	private String[] navMenuTitles;
-	private TypedArray navMenuIcons;
-
+	// private TypedArray navMenuIcons;
 	private ArrayList<NavDrawerItem> navDrawerItems;
-	private NavDrawerListAdapter adapter;
 	UserSessionManager usMgr;
 
 	@Override
@@ -78,11 +65,11 @@ public class EshopMainActivity extends Activity {
 		navMenuTitles = getResources().getStringArray(R.array.nav_drawer_items);
 
 		// nav drawer icons from resources
-		//navMenuIcons = getResources().obtainTypedArray(R.array.nav_drawer_icons);
+		// navMenuIcons =
+		// getResources().obtainTypedArray(R.array.nav_drawer_icons);
 
 		mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
 		mDrawerList = (ListView) findViewById(R.id.list_slidermenu);
-
 		navDrawerItems = new ArrayList<NavDrawerItem>();
 
 		// adding nav drawer items to array
@@ -121,17 +108,20 @@ public class EshopMainActivity extends Activity {
 
 	private class LongOperation extends AsyncTask<String, Void, Void> {
 		private String pcontent;
+		List<String> uuidPosition;
+		List<String> parentCategoryName;
+
+		private NavDrawerListAdapter adapter;
 
 		protected void onPreExecute() {
 			// NOTE: You can call UI Element here.
-
 			// Start Progress Dialog (Message)
-
 		}
 
 		@Override
 		protected Void doInBackground(String... urls) {
-
+			JSONArray childCategory = null;
+			String[] categoryName;
 			// Send data
 			try {
 				HttpServiceHandler hs = new HttpServiceHandler();
@@ -141,9 +131,7 @@ public class EshopMainActivity extends Activity {
 				JSONObject jsonObj;
 				jsonObj = new JSONObject(pcontent).getJSONObject(TAG_RESPONSE);
 				childCategory = jsonObj.getJSONArray(TAG_DOCS);
-				uuidData = new String[childCategory.length()];
 				categoryName = new String[childCategory.length()];
-				categoryParentId = new String[childCategory.length()];
 				uuidPosition = new ArrayList<String>();
 				parentCategoryName = new ArrayList<String>();
 				for (int i = 0; i < childCategory.length(); i++) {
@@ -192,6 +180,7 @@ public class EshopMainActivity extends Activity {
 	/**
 	 * Slide menu item click listener
 	 * */
+	@SuppressWarnings("unused")
 	private class SlideMenuClickListener implements
 			ListView.OnItemClickListener {
 		@Override
@@ -338,5 +327,10 @@ public class EshopMainActivity extends Activity {
 		// Pass any configuration change to the drawer toggls
 		mDrawerToggle.onConfigurationChanged(newConfig);
 	}
-
+	@Override
+	protected void onDestroy() {
+		// TODO Auto-generated method stub
+		System.gc();
+		super.onDestroy();
+	}
 }

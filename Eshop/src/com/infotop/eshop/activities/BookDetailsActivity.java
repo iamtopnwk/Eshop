@@ -48,14 +48,16 @@ public class BookDetailsActivity extends Activity {
 
 	// adding CartButton,WishlistButton,BuyButton
 	ArrayList<String> s;
-	DisplayImageOptions op;
+	
 	UserSessionManager usMgr;
-	protected ImageLoader loader = ImageLoader.getInstance();
+	
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		final ViewHolder holder;
+		DisplayImageOptions op;
+		ImageLoader loader = ImageLoader.getInstance();
 		setContentView(R.layout.activity_book_details);
 		op = new DisplayImageOptions.Builder()
 				.showStubImage(R.drawable.notavailable)
@@ -204,5 +206,11 @@ public class BookDetailsActivity extends Activity {
 		default:
 			return super.onOptionsItemSelected(item);
 		}
+	}
+	@Override
+	protected void onDestroy() {
+		System.gc();
+		// TODO Auto-generated method stub
+		super.onDestroy();
 	}
 }

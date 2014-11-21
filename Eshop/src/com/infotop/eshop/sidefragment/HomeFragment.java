@@ -144,4 +144,10 @@ public class HomeFragment extends Fragment {
 			});
 		}
 	}
+	@Override
+	public void onDestroy() {
+		// TODO Auto-generated method stub
+		System.gc();
+		super.onDestroy();
+	}
 }
