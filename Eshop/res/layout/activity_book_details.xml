@@ -33,10 +33,13 @@
 
             <TextView
                 android:id="@+id/bookName1"
-                android:layout_width="wrap_content"
+                android:layout_width="245dp"
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
                 android:text="@string/stmediumtext"
+                android:fitsSystemWindows="true"
+                android:singleLine="false"
+                
                 android:textColor="#040404"
                 android:textSize="18sp"
                 android:textStyle="bold"
