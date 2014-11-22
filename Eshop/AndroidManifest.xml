@@ -57,6 +57,7 @@
         <activity
             android:name=".activities.ProductListViewActivity"
             android:label="@string/title_activity_product_list_view" >
+            
         </activity>
         <activity
             android:name=".activities.ProductGridViewActivity"

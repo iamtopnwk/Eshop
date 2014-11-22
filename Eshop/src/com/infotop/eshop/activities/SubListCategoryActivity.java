@@ -20,6 +20,7 @@ import android.widget.TextView;
 
 import com.infotop.eshop.R;
 import com.infotop.eshop.adapters.ExpandableListAdapter;
+import com.infotop.eshop.utilities.UserSessionManager;
 
 public class SubListCategoryActivity extends Activity {
 
@@ -35,6 +36,7 @@ public class SubListCategoryActivity extends Activity {
 	int count = 0;
 	HashMap<String, List<String>> childData;
 	HashMap<String, List<String>> childData1;
+	UserSessionManager usMgr;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +46,7 @@ public class SubListCategoryActivity extends Activity {
 		String[] categoryName;
 		List<String> uuidPosition;
 		JSONArray childCategory = null;
+		usMgr=new UserSessionManager(this);
 		// Create Expandable List and set it's properties
 		ExpandableListView expandableList = (ExpandableListView) findViewById(R.id.catexpeId);
 		expandableList.setGroupIndicator(null);
@@ -140,6 +143,15 @@ public class SubListCategoryActivity extends Activity {
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.sub_list_category, menu);
+		
+		MenuItem logInitem = menu.findItem(R.id.abLogin);
+		MenuItem logOutitem = menu.findItem(R.id.logOut);
+		// usMgr = new UserSessionManager(this);
+		if (!usMgr.isUserLoggedIn()) {
+			logOutitem.setVisible(false);
+		} else {
+			logInitem.setTitle(usMgr.getUserDetails().get("name"));
+		}
 		return true;
 	}
 
@@ -148,12 +160,67 @@ public class SubListCategoryActivity extends Activity {
 		// Handle action bar item clicks here. The action bar will
 		// automatically handle clicks on the Home/Up button, so long
 		// as you specify a parent activity in AndroidManifest.xml.
-		int id = item.getItemId();
-		if (id == R.id.action_settings) {
+		//int id = item.getItemId();
+		//if (id == R.id.action_settings) {
+			//return true;
+		//}
+		switch (item.getItemId()) {
+		case R.id.action_search:
 			return true;
+	case R.id.abCartList:
+		// usMgr = new UserSessionManager(this);
+		if (!usMgr.isUserLoggedIn()) {
+			Intent lgn1 = new Intent(this, NoItemFoundActivity.class);
+			startActivity(lgn1);
+		} else {
+			Intent wl = new Intent(this, CartListMainActivity.class);
+			startActivity(wl);
 		}
+		return true;
+	case R.id.abLogin:
+		if (!usMgr.isUserLoggedIn()) {
+			Intent lgn = new Intent(this, EshopLoginActivity.class);
+			startActivity(lgn);
+		}
+		return true;
+	case R.id.abwishlist:
+
+		// usMgr = new UserSessionManager(this);
+		if (!usMgr.isUserLoggedIn()) {
+
+			Intent lgn1 = new Intent(this, NoItemFoundActivity.class);
+			startActivity(lgn1);
+		} else {
+			Intent wl = new Intent(this, WishListMainActivity.class);
+			startActivity(wl);
+		}
+		return true;
+	case R.id.abTrackOrder:
+		return true;
+	case R.id.abRateApp:
+		return true;
+	case R.id.abShareApp:
+		return true;
+	case R.id.abPolicies:
+		Intent policy = new Intent(this, EshopPoliciesActivity.class);
+		startActivity(policy);
+		return true;
+	case R.id.abContactUs:
+		Intent cu = new Intent(this, ContactUsActivity.class);
+		startActivity(cu);
+		return true;
+	case R.id.logOut:
+		UserSessionManager us = new UserSessionManager(this);
+		us.logoutUser();
+		Intent lout = new Intent(this, EshopMainActivity.class);
+		startActivity(lout);
+		return true;
+	default:
 		return super.onOptionsItemSelected(item);
 	}
+	}
+		
+	
 	@Override
 	protected void onDestroy() {
 		// TODO Auto-generated method stub
