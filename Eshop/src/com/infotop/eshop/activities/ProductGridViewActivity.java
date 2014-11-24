@@ -25,7 +25,11 @@ import com.infotop.eshop.R;
 import com.infotop.eshop.adapters.CustomGridViewAdapter;
 import com.infotop.eshop.httpservice.HttpServiceHandler;
 import com.infotop.eshop.utilities.UserSessionManager;
+import com.nostra13.universalimageloader.cache.memory.impl.LruMemoryCache;
+import com.nostra13.universalimageloader.cache.memory.impl.WeakMemoryCache;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
+import com.nostra13.universalimageloader.core.ImageLoader;
+import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.nostra13.universalimageloader.core.display.RoundedBitmapDisplayer;
 
 @SuppressLint("ClickableViewAccessibility")
@@ -52,17 +56,18 @@ public class ProductGridViewActivity extends Activity {
 		op = new DisplayImageOptions.Builder()
 				.showStubImage(R.drawable.notavailable)
 				.showImageForEmptyUri(R.drawable.notavailable)
-				.showImageOnFail(R.drawable.notavailable).cacheInMemory()
-				.cacheOnDisc().displayer(new RoundedBitmapDisplayer(20))
+				.showImageOnFail(R.drawable.notavailable).cacheInMemory(true)
+				.cacheOnDisc(true).displayer(new RoundedBitmapDisplayer(20))
 				.build();
+			
 		grid = (GridView) findViewById(R.id.productGridView);
 		subCatId = getIntent().getExtras().getString("ccId");
-		System.out.println("Product Subcategory id:" + subCatId);
 		String serverURL = "http://192.168.8.160:8983/solr/collection1/select?q=categoryId%3A*&fq=categoryId%3A"
 				+ subCatId + "&rows=100&wt=json&indent=true";
 
 		// Use AsyncTask execute Method To Prevent ANR Problem
 		new LongOperation().execute(serverURL);
+		
 	}
 
 	private class LongOperation extends AsyncTask<String, Void, Void> {
@@ -127,6 +132,7 @@ public class ProductGridViewActivity extends Activity {
 					ProductGridViewActivity.this, pdctId, pdct, imageUrl,
 					pdesc, price, op);
 			grid.setAdapter(gridAdapter);
+			System.gc();
 			grid.setOnTouchListener(new OnTouchListener() {
 				@Override
 				public boolean onTouch(View v, MotionEvent arg1) {
@@ -243,10 +249,4 @@ public class ProductGridViewActivity extends Activity {
 		}
 	}
 	
-	@Override
-	protected void onDestroy() {
-		// TODO Auto-generated method stub
-		System.gc();
-		super.onDestroy();
-	}
 }

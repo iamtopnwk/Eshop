@@ -27,8 +27,16 @@ import com.infotop.eshop.R;
 import com.infotop.eshop.adapters.ProductListAdapter;
 import com.infotop.eshop.httpservice.HttpServiceHandler;
 import com.infotop.eshop.utilities.UserSessionManager;
+import com.nostra13.universalimageloader.cache.disc.impl.UnlimitedDiscCache;
+import com.nostra13.universalimageloader.cache.disc.naming.HashCodeFileNameGenerator;
+import com.nostra13.universalimageloader.cache.memory.impl.LruMemoryCache;
+import com.nostra13.universalimageloader.cache.memory.impl.WeakMemoryCache;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
+import com.nostra13.universalimageloader.core.ImageLoader;
+import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
+import com.nostra13.universalimageloader.core.decode.BaseImageDecoder;
 import com.nostra13.universalimageloader.core.display.RoundedBitmapDisplayer;
+import com.nostra13.universalimageloader.core.download.BaseImageDownloader;
 
 @SuppressLint("ClickableViewAccessibility")
 public class ProductListViewActivity extends Activity {
@@ -46,7 +54,6 @@ public class ProductListViewActivity extends Activity {
 	ImageButton ib;
 	UserSessionManager usMgr;
 
-	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -54,26 +61,24 @@ public class ProductListViewActivity extends Activity {
 		ib = (ImageButton) findViewById(R.id.listviewbtn1);
 		// get the action bar
 		ActionBar actionBar = getActionBar();
-		
 
 		// Enabling Back navigation on Action Bar icon
 		actionBar.setDisplayHomeAsUpEnabled(true);
 		op = new DisplayImageOptions.Builder()
 				.showStubImage(R.drawable.notavailable)
 				.showImageForEmptyUri(R.drawable.notavailable)
-				.showImageOnFail(R.drawable.notavailable).cacheInMemory()
-				.cacheOnDisc().displayer(new RoundedBitmapDisplayer(20))
+				.showImageOnFail(R.drawable.notavailable).cacheInMemory(true)
+				.cacheOnDisc(true).displayer(new RoundedBitmapDisplayer(20))
 				.build();
-
+	
 		list = (ListView) findViewById(R.id.productListView);
 		subCatId = getIntent().getExtras().getString("ccId");
-		System.out.println("Product Subcategory id:" + subCatId);
 		String serverURL = "http://192.168.8.160:8983/solr/collection1/select?q=categoryId%3A*&fq=categoryId%3A"
 				+ subCatId + "&rows=100&wt=json&indent=true";
 
 		// Use AsyncTask execute Method To Prevent ANR Problem
 		new LongOperation().execute(serverURL);
-
+		
 	}
 
 	private class LongOperation extends AsyncTask<String, Void, Void> {
@@ -127,7 +132,6 @@ public class ProductListViewActivity extends Activity {
 					price[i] = pc.getString(TAG_PPRICE);
 					ccName.add(pdct[i]);
 					imageUrl[i] = pc.getString(TAG_IMGURL);
-					System.out.println("Image Url:" + imageUrl[i]);
 				}
 
 			} catch (Exception ex) {
@@ -144,6 +148,7 @@ public class ProductListViewActivity extends Activity {
 					pdctId, pdct, imageUrl, pdesc, price, op);
 			list.setAdapter(listAdapter);
 			list.setTextFilterEnabled(true);
+			System.gc();
 			list.setOnTouchListener(new OnTouchListener() {
 
 				@Override
@@ -263,11 +268,5 @@ public class ProductListViewActivity extends Activity {
 			return super.onOptionsItemSelected(item);
 		}
 	}
-	
-	@Override
-	protected void onDestroy() {
-		// TODO Auto-generated method stub
-		System.gc();
-		super.onDestroy();
-	}
+
 }

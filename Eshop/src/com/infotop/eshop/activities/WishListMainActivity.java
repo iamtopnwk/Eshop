@@ -12,8 +12,10 @@ import com.infotop.eshop.adapters.ProductListAdapter;
 import com.infotop.eshop.adapters.WishListAdapter;
 import com.infotop.eshop.db.DatabaseHandler;
 import com.infotop.eshop.model.Wishlist;
+import com.nostra13.universalimageloader.cache.memory.impl.WeakMemoryCache;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
+import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.nostra13.universalimageloader.core.display.RoundedBitmapDisplayer;
 
 import android.app.Activity;
@@ -26,8 +28,10 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 
 public class WishListMainActivity extends Activity {
-	String[] productId, productName, productDescription, productPrice,productImage;
+	String[] productId, productName, productDescription, productPrice,
+			productImage;
 	DisplayImageOptions op;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -35,13 +39,12 @@ public class WishListMainActivity extends Activity {
 		WishListAdapter listAdapter;
 		ListView list;
 		op = new DisplayImageOptions.Builder()
-        .showStubImage(R.drawable.notavailable)
-        .showImageForEmptyUri(R.drawable.notavailable)
-        .showImageOnFail(R.drawable.notavailable)
-        .cacheInMemory()
-        .cacheOnDisc()
-        .displayer(new RoundedBitmapDisplayer(20))
-        .build();
+				.showStubImage(R.drawable.notavailable)
+				.showImageForEmptyUri(R.drawable.notavailable)
+				.showImageOnFail(R.drawable.notavailable).cacheInMemory(true)
+				.cacheOnDisc(true).displayer(new RoundedBitmapDisplayer(20))
+				.build();
+
 		list = (ListView) findViewById(R.id.wishListViewItems);
 		DatabaseHandler db = new DatabaseHandler(WishListMainActivity.this);
 		List<Wishlist> wishlistItems = db.getAllWishListItems();
@@ -57,10 +60,11 @@ public class WishListMainActivity extends Activity {
 			productDescription[i] = wishlistItems.get(i).getDescription();
 			productPrice[i] = wishlistItems.get(i).getPrice();
 			productImage[i] = wishlistItems.get(i).getImageUrl();
-			System.out.println("Wishlist product Image Url's:"+productImage[i]);
+			System.out.println("Wishlist product Image Url's:"
+					+ productImage[i]);
 		}
-		listAdapter = new WishListAdapter(WishListMainActivity.this,
-				productId,productName, productImage, productDescription, productPrice,op);
+		listAdapter = new WishListAdapter(WishListMainActivity.this, productId,
+				productName, productImage, productDescription, productPrice, op);
 		list.setAdapter(listAdapter);
 		list.setTextFilterEnabled(true);
 		list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -75,13 +79,13 @@ public class WishListMainActivity extends Activity {
 				productData.add(productImage[position]);
 				// String product = (String) adapter.getItem(position);
 				// pass Data to other Activity
-					Intent i = new Intent(WishListMainActivity.this,
-							BookDetailsActivity.class);
-					i.putStringArrayListExtra("productData", productData);
-					startActivity(i);
+				Intent i = new Intent(WishListMainActivity.this,
+						BookDetailsActivity.class);
+				i.putStringArrayListExtra("productData", productData);
+				startActivity(i);
 			}
 		});
-
+		System.gc();
 	}
 
 	@Override
@@ -102,10 +106,5 @@ public class WishListMainActivity extends Activity {
 		}
 		return super.onOptionsItemSelected(item);
 	}
-	@Override
-	protected void onDestroy() {
-		// TODO Auto-generated method stub
-		System.gc();
-		super.onDestroy();
-	}
+
 }

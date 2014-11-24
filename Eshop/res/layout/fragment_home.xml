@@ -14,6 +14,7 @@
         android:outAnimation="@android:anim/slide_out_right" >
 
         <ImageView
+            android:id="@+id/homeviewflipper1"
             android:layout_width="fill_parent"
             android:layout_height="100dp"
             android:adjustViewBounds="true"
@@ -22,6 +23,7 @@
             android:src="@drawable/offer" />
 
         <ImageView
+            android:id="@+id/homeviewflipper2"
             android:layout_width="fill_parent"
             android:layout_height="100dp"
             android:adjustViewBounds="true"
@@ -30,6 +32,7 @@
             android:src="@drawable/img_laptops" />
 
         <ImageView
+            android:id="@+id/homeviewflipper3"
             android:layout_width="fill_parent"
             android:layout_height="100dp"
             android:adjustViewBounds="true"
@@ -38,6 +41,7 @@
             android:src="@drawable/img_cloths" />
 
         <ImageView
+            android:id="@+id/homeviewflipper4"
             android:layout_width="fill_parent"
             android:layout_height="100dp"
             android:layout_gravity="center_horizontal"
@@ -47,6 +51,7 @@
             android:src="@drawable/img_books" />
 
         <ImageView
+            android:id="@+id/homeviewflipper5"
             android:layout_width="fill_parent"
             android:layout_height="100dp"
             android:layout_gravity="center_horizontal"

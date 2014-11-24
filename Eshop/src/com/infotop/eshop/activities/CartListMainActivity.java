@@ -17,7 +17,11 @@ import com.infotop.eshop.R;
 import com.infotop.eshop.adapters.CartListAdapter;
 import com.infotop.eshop.db.DatabaseHandler;
 import com.infotop.eshop.model.Wishlist;
+import com.nostra13.universalimageloader.cache.memory.impl.LruMemoryCache;
+import com.nostra13.universalimageloader.cache.memory.impl.WeakMemoryCache;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
+import com.nostra13.universalimageloader.core.ImageLoader;
+import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.nostra13.universalimageloader.core.display.RoundedBitmapDisplayer;
 
 public class CartListMainActivity extends Activity {
@@ -41,9 +45,10 @@ public class CartListMainActivity extends Activity {
 		op = new DisplayImageOptions.Builder()
 				.showStubImage(R.drawable.notavailable)
 				.showImageForEmptyUri(R.drawable.notavailable)
-				.showImageOnFail(R.drawable.notavailable).cacheInMemory()
-				.cacheOnDisc().displayer(new RoundedBitmapDisplayer(20))
+				.showImageOnFail(R.drawable.notavailable).cacheInMemory(true)
+				.cacheOnDisc(true).displayer(new RoundedBitmapDisplayer(20))
 				.build();
+			
 		list = (ListView) findViewById(R.id.cartListViewItems);
 
 		DatabaseHandler db = new DatabaseHandler(CartListMainActivity.this);
@@ -97,7 +102,7 @@ public class CartListMainActivity extends Activity {
 
 		System.out.println(totalAmount);
 		grand_Total.setText(totalAmount.toString());
-
+		
 	}
 
 	@Override
@@ -147,10 +152,4 @@ public class CartListMainActivity extends Activity {
 		}
 	}
 	
-	@Override
-	protected void onDestroy() {
-		// TODO Auto-generated method stub
-		System.gc();
-		super.onDestroy();
-	}
 }

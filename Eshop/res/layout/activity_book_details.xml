@@ -25,21 +25,20 @@
                 android:id="@+id/wishlistBtn"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
-                android:contentDescription="@string/wish_list"
                 android:layout_alignParentRight="true"
                 android:layout_alignParentTop="true"
+                android:contentDescription="@string/wish_list"
                 android:onClick="addToWishlist"
                 android:src="@drawable/icon_wishlist" />
 
             <TextView
                 android:id="@+id/bookName1"
-                android:layout_width="245dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
                 android:text="@string/stmediumtext"
                 android:fitsSystemWindows="true"
                 android:singleLine="false"
-                
                 android:textColor="#040404"
                 android:textSize="18sp"
                 android:textStyle="bold"
@@ -51,56 +50,52 @@
                 android:layout_height="150dp"
                 android:layout_below="@+id/bookName1"
                 android:layout_centerHorizontal="true"
-                android:contentDescription="@string/app_name"
                 android:layout_marginLeft="25dp"
                 android:layout_marginTop="20dp"
-                 android:scaleType="matrix"
                 android:background="@drawable/image_bdr"
-                android:padding="3dip" />
+                android:contentDescription="@string/app_name"
+                android:padding="3dip"
+                android:scaleType="matrix" />
 
             <LinearLayout
                 android:id="@+id/thumbnail"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/logo"
-                android:layout_marginTop="20dp" 
-                android:layout_marginLeft="35dp">
+                android:layout_marginLeft="35dp"
+                android:layout_marginTop="20dp" >
 
                 <ImageView
                     android:id="@+id/logo1"
                     android:layout_width="60dp"
                     android:layout_height="60dp"
-                    android:contentDescription="@string/app_name"
                     android:background="@drawable/image_bdr"
-                    android:padding="3dip"
-                    android:src="@drawable/productimg" />
+                    android:contentDescription="@string/app_name"
+                    android:padding="3dip" />
 
                 <ImageView
                     android:id="@+id/logo2"
                     android:layout_width="60dp"
                     android:layout_height="60dp"
-                    android:contentDescription="@string/app_name"
                     android:background="@drawable/image_bdr"
-                    android:padding="3dip"
-                    android:src="@drawable/productimg" />
+                    android:contentDescription="@string/app_name"
+                    android:padding="3dip" />
 
                 <ImageView
                     android:id="@+id/logo3"
                     android:layout_width="60dp"
                     android:layout_height="60dp"
-                    android:contentDescription="@string/app_name"
                     android:background="@drawable/image_bdr"
-                    android:padding="3dip"
-                    android:src="@drawable/productimg" />
+                    android:contentDescription="@string/app_name"
+                    android:padding="3dip" />
 
                 <ImageView
                     android:id="@+id/logo4"
                     android:layout_width="60dp"
                     android:layout_height="60dp"
-                    android:contentDescription="@string/app_name"
                     android:background="@drawable/image_bdr"
-                    android:padding="3dip"
-                    android:src="@drawable/productimg" />
+                    android:contentDescription="@string/app_name"
+                    android:padding="3dip" />
             </LinearLayout>
 
             <TextView

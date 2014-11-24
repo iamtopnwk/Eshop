@@ -21,8 +21,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
 
 import com.infotop.eshop.R;
 import com.infotop.eshop.adapters.NavDrawerListAdapter;
@@ -109,7 +107,7 @@ public class EshopMainActivity extends Activity {
 	}
 
 	private class LongOperation extends AsyncTask<String, Void, Void> {
-		private String pcontent;
+		
 		List<String> uuidPosition;
 		List<String> parentCategoryName;
 
@@ -124,6 +122,7 @@ public class EshopMainActivity extends Activity {
 		protected Void doInBackground(String... urls) {
 			JSONArray childCategory = null;
 			String[] categoryName;
+			String pcontent;
 			// Send data
 			try {
 				HttpServiceHandler hs = new HttpServiceHandler();
@@ -169,7 +168,7 @@ public class EshopMainActivity extends Activity {
 							i.putExtra("UUID", uuidPosition.get(position));
 							i.putExtra("CategoryName",
 									parentCategoryName.get(position));
-							i.putExtra("jsonData", pcontent);
+							//i.putExtra("jsonData", pcontent);
 							startActivity(i);
 							// System.out.println("Item id:"+position);
 							// Toast.makeText(getApplicationContext(),"The position of child category:"+uuidPosition.get(position),
@@ -207,11 +206,6 @@ public class EshopMainActivity extends Activity {
 		} else {
 			logInitem.setTitle(usMgr.getUserDetails().get("name"));
 		}
-		/*Cart item notification
-		RelativeLayout badgeLayout = (RelativeLayout) menu.findItem(R.id.abCartList).getActionView();
-	    TextView tv = (TextView) badgeLayout.findViewById(R.id.actionbar_notifcation_textview);
-	    tv.setText("12");*/
-
 		return super.onCreateOptionsMenu(menu);
 		// return true;
 	}
@@ -334,10 +328,5 @@ public class EshopMainActivity extends Activity {
 		// Pass any configuration change to the drawer toggls
 		mDrawerToggle.onConfigurationChanged(newConfig);
 	}
-	@Override
-	protected void onDestroy() {
-		// TODO Auto-generated method stub
-		System.gc();
-		super.onDestroy();
-	}
+	
 }

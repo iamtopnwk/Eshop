@@ -16,13 +16,18 @@ import com.infotop.eshop.adapters.HorizontalListView;
 import com.infotop.eshop.db.DatabaseHandler;
 import com.infotop.eshop.model.Wishlist;
 import com.infotop.eshop.utilities.UserSessionManager;
+import com.nostra13.universalimageloader.cache.memory.impl.LruMemoryCache;
+import com.nostra13.universalimageloader.cache.memory.impl.WeakMemoryCache;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
+import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.nostra13.universalimageloader.core.display.RoundedBitmapDisplayer;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -44,14 +49,11 @@ import android.widget.Toast;
 @SuppressLint("SimpleDateFormat")
 public class BookDetailsActivity extends Activity {
 
-	Long position = null;
-
 	// adding CartButton,WishlistButton,BuyButton
 	ArrayList<String> s;
 	
 	UserSessionManager usMgr;
 	
-
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -62,9 +64,10 @@ public class BookDetailsActivity extends Activity {
 		op = new DisplayImageOptions.Builder()
 				.showStubImage(R.drawable.notavailable)
 				.showImageForEmptyUri(R.drawable.notavailable)
-				.showImageOnFail(R.drawable.notavailable).cacheInMemory()
-				.cacheOnDisc().displayer(new RoundedBitmapDisplayer(20))
+				.showImageOnFail(R.drawable.notavailable).cacheInMemory(true)
+				.cacheOnDisc(true).displayer(new RoundedBitmapDisplayer(20))
 				.build();
+				
 		// Get data from EshopMainActivity
 		s = getIntent().getExtras().getStringArrayList("productData");
 		holder = new ViewHolder();
@@ -72,10 +75,18 @@ public class BookDetailsActivity extends Activity {
 		holder.txtTitle1 = (TextView) findViewById(R.id.authorName);
 		holder.txtTitle2 = (TextView) findViewById(R.id.price);
 		holder.imageView = (ImageView) findViewById(R.id.logo);
-
+        holder.imageView1=(ImageView) findViewById(R.id.logo1);
+        holder.imageView2=(ImageView) findViewById(R.id.logo2);
+        holder.imageView3=(ImageView) findViewById(R.id.logo3);
+        holder.imageView4=(ImageView) findViewById(R.id.logo4);
 		holder.txtTitle.setText(s.get(1));
 		holder.txtTitle1.setText(s.get(2));
 		holder.txtTitle2.setText(s.get(3));
+		Bitmap bMap = BitmapFactory.decodeResource(getResources(), R.drawable.productimg);
+		holder.imageView1.setImageBitmap(bMap);
+		holder.imageView2.setImageBitmap(bMap);
+		holder.imageView3.setImageBitmap(bMap);
+		holder.imageView4.setImageBitmap(bMap);
 		loader.displayImage(s.get(4), holder.imageView, op, null);
 		
 		holder.imageView.setOnClickListener(new View.OnClickListener() {
@@ -86,6 +97,7 @@ public class BookDetailsActivity extends Activity {
                 startActivity(i);
             }
         });
+		
 	}
 
 	private class ViewHolder {
@@ -93,6 +105,10 @@ public class BookDetailsActivity extends Activity {
 		public TextView txtTitle1;
 		public TextView txtTitle2;
 		public ImageView imageView;
+		public ImageView imageView1;
+		public ImageView imageView2;
+		public ImageView imageView3;
+		public ImageView imageView4;
 	}
 
 	// functionalities for wishlistBtn
@@ -206,11 +222,5 @@ public class BookDetailsActivity extends Activity {
 		default:
 			return super.onOptionsItemSelected(item);
 		}
-	}
-	@Override
-	protected void onDestroy() {
-		System.gc();
-		// TODO Auto-generated method stub
-		super.onDestroy();
 	}
 }
