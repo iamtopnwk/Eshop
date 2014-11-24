@@ -41,13 +41,13 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:paddingLeft="20dp"
-            android:text="ORDER SUMMARY"
+            android:text="@string/order_summary"
             android:paddingTop="10dp"/>
         <TextView 
             android:id="@+id/grand_total1"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:text="Grand Total="
+            android:text="@string/grand_total"
             android:paddingBottom="30dp"
             android:paddingTop="30dp"
             android:paddingLeft="45dp"

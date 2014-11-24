@@ -33,7 +33,7 @@
 
             <TextView
                 android:id="@+id/bookName1"
-                android:layout_width="wrap_content"
+                android:layout_width="250dp"
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
                 android:text="@string/stmediumtext"
@@ -41,8 +41,8 @@
                 android:singleLine="false"
                 android:textColor="#040404"
                 android:textSize="18sp"
-                android:textStyle="bold"
-                android:typeface="sans" />
+                android:textStyle="normal"
+                android:typeface="normal" />
 
             <ImageView
                 android:id="@+id/logo"
@@ -117,9 +117,9 @@
                 android:layout_below="@+id/authorName"
                 android:layout_marginLeft="25dp"
                 android:text="@string/stprice"
-                android:textColor="#10bcc9"
-                android:textSize="12sp"
-                android:textStyle="bold" />
+                android:textColor="#FF0000"
+                android:textSize="20sp"
+                android:textStyle="normal" />
 
             <TextView
                 android:id="@+id/price"
@@ -127,9 +127,9 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/authorName"
                 android:layout_toRightOf="@+id/pricestatic"
-                android:textColor="#10bcc9"
-                android:textSize="12sp"
-                android:textStyle="bold" />
+                android:textColor="#FF0000"
+                android:textSize="20sp"
+                android:textStyle="normal" />
 
             <RatingBar
                 android:id="@+id/ratingBar1"
@@ -159,7 +159,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="20dp"
                     android:text="@string/fivestar"
-                    android:textColor="#FFBB33"
+                  
                     android:textSize="20sp"
                     android:textStyle="italic" />
 
@@ -169,7 +169,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="20dp"
                     android:text="@string/fourstar"
-                    android:textColor="#FFBB33"
+                    
                     android:textSize="20sp"
                     android:textStyle="italic" />
 
@@ -179,7 +179,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="20dp"
                     android:text="@string/threestar"
-                    android:textColor="#FFBB33"
+                    
                     android:textSize="20sp"
                     android:textStyle="italic" />
 
@@ -189,7 +189,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="20dp"
                     android:text="@string/twostar"
-                    android:textColor="#FFBB33"
+                    
                     android:textSize="20sp"
                     android:textStyle="italic" />
 
@@ -199,10 +199,10 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="20dp"
                     android:text="@string/onestar"
-                    android:textColor="#FFBB33"
+                    
                     android:textSize="20sp"
                     android:textStyle="italic" />
-
+<!--  
                 <TextView
                     android:id="@+id/like"
                     android:layout_width="wrap_content"
@@ -220,6 +220,8 @@
                     android:text="@string/comments"
                     android:textColor="#669900"
                     android:textSize="20sp" />
+                    
+                                                        -->
             </LinearLayout>
         </RelativeLayout>
     </ScrollView>
