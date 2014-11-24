@@ -8,12 +8,15 @@ import org.json.JSONObject;
 
 import android.app.Fragment;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.ImageView;
 import android.widget.ViewFlipper;
 
 import com.infotop.eshop.R;
@@ -34,7 +37,6 @@ public class HomeFragment extends Fragment {
 	private static final String TAG_CPID = "categoryParentId";
 	private static final String TAG_UUID = "uuid";
 	private static final String TAG_DeleteFlag = "deleteFlag";
-	private String pcontent;
 	JSONArray childCategory = null;
 	String[] uuidData;
 	String[] categoryName;
@@ -55,6 +57,25 @@ public class HomeFragment extends Fragment {
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		rootView = inflater.inflate(R.layout.fragment_home, container, false);
+		ImageView iv1,iv2,iv3,iv4,iv5;
+		iv1=(ImageView) rootView.findViewById(R.id.homeviewflipper1);
+		iv2=(ImageView) rootView.findViewById(R.id.homeviewflipper2);
+		iv3=(ImageView) rootView.findViewById(R.id.homeviewflipper3);
+		iv4=(ImageView) rootView.findViewById(R.id.homeviewflipper4);
+		iv5=(ImageView) rootView.findViewById(R.id.homeviewflipper5);
+	
+		Bitmap b1 = BitmapFactory.decodeResource(getResources(), R.drawable.offer);
+		Bitmap b2 = BitmapFactory.decodeResource(getResources(), R.drawable.img_laptops);
+		Bitmap b3 = BitmapFactory.decodeResource(getResources(), R.drawable.img_cloths);
+		Bitmap b4 = BitmapFactory.decodeResource(getResources(), R.drawable.img_books);
+		Bitmap b5 = BitmapFactory.decodeResource(getResources(), R.drawable.tanishq);
+
+		iv1.setImageBitmap(b1);
+		iv2.setImageBitmap(b2);
+		iv3.setImageBitmap(b3);
+		iv4.setImageBitmap(b4);
+		iv5.setImageBitmap(b5);
+		
 		String serverURL = "http://192.168.8.160:8983/solr/collection1/select?q=categoryParentId%3A*&rows=1000&wt=json&indent=true";
 
 		// Use AsyncTask execute Method To Prevent ANR Problem
@@ -79,18 +100,10 @@ public class HomeFragment extends Fragment {
 	}
 
 	private class LongOperation extends AsyncTask<String, Void, Void> {
-		private String pcontent;
-
-		protected void onPreExecute() {
-			// NOTE: You can call UI Element here.
-
-			// Start Progress Dialog (Message)
-
-		}
 
 		@Override
 		protected Void doInBackground(String... urls) {
-
+		    String pcontent;
 			// Send data
 			try {
 				HttpServiceHandler hs = new HttpServiceHandler();
@@ -128,6 +141,7 @@ public class HomeFragment extends Fragment {
 			// Adapter Object set to a list
 			list = (HorizontalListView) rootView.findViewById(R.id.listhorizontal);
 			list.setAdapter(hAdapter);
+			System.gc();
 			// Click to any item
 			list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 				@Override
@@ -138,16 +152,10 @@ public class HomeFragment extends Fragment {
 							SubListCategoryActivity.class);
 					i.putExtra("UUID", uuidPosition.get(position));
 					i.putExtra("CategoryName", parentCategoryName.get(position));
-					i.putExtra("jsonData", pcontent);
+					//i.putExtra("jsonData", pcontent);
 					startActivity(i);
 				}
 			});
 		}
-	}
-	@Override
-	public void onDestroy() {
-		// TODO Auto-generated method stub
-		System.gc();
-		super.onDestroy();
 	}
 }
