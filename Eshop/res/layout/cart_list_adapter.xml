@@ -24,7 +24,7 @@
 
     <TextView
         android:id="@+id/productName"
-        android:layout_width="250dp"
+        android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:layout_alignTop="@+id/thumbnail"
         android:layout_toRightOf="@+id/thumbnail"
@@ -36,7 +36,7 @@
 
     <TextView
         android:id="@+id/productDesc"
-        android:layout_width="wrap_content"
+        android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:layout_below="@+id/productName"
         android:layout_toRightOf="@+id/thumbnail"
