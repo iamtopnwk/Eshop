@@ -24,7 +24,7 @@
 
     <TextView
         android:id="@+id/productName"
-        android:layout_width="wrap_content"
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:layout_alignTop="@+id/thumbnail"
         android:layout_toRightOf="@+id/thumbnail"
@@ -36,7 +36,7 @@
 
     <TextView
         android:id="@+id/productDesc"
-        android:layout_width="wrap_content"
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:layout_below="@+id/productName"
         android:layout_toRightOf="@+id/thumbnail"
@@ -53,7 +53,7 @@
         android:layout_marginLeft="85dip"
         android:gravity="right"
         android:text="@string/stprice"
-        android:textColor="#10bcc9"
+        android:textColor="#FF0000"
         android:textSize="12sp"
         android:textStyle="bold" />
 
@@ -63,7 +63,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/productDesc"
         android:layout_toRightOf="@+id/productpricestaticData"
-        android:textColor="#10bcc9"
+        android:textColor="#FF0000"
         android:textSize="12sp"
         android:textStyle="bold" />
 
