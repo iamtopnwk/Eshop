@@ -55,7 +55,7 @@ public class HomeFragment extends Fragment {
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		rootView = inflater.inflate(R.layout.fragment_home, container, false);
-		String serverURL = "http://192.168.8.158:8983/solr/collection1/select?q=categoryParentId%3A*&rows=1000&wt=json&indent=true";
+		String serverURL = "http://192.168.8.160:8983/solr/collection1/select?q=categoryParentId%3A*&rows=1000&wt=json&indent=true";
 
 		// Use AsyncTask execute Method To Prevent ANR Problem
 		new LongOperation().execute(serverURL);
