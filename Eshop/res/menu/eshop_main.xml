@@ -10,10 +10,9 @@
         android:title="@string/action_search"/>
     <item
         android:id="@+id/abCartList"
-        
-        android:actionLayout="@layout/actionbar_badge_layout"
         android:checkable="true"
         android:showAsAction="always"
+        android:icon="@drawable/ic_cart"
         android:title="@string/ac_cartList"/>
     <item
         android:id="@+id/abOverflow"

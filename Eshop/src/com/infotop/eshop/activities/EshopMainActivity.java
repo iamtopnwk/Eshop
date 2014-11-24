@@ -207,9 +207,10 @@ public class EshopMainActivity extends Activity {
 		} else {
 			logInitem.setTitle(usMgr.getUserDetails().get("name"));
 		}
+		/*Cart item notification
 		RelativeLayout badgeLayout = (RelativeLayout) menu.findItem(R.id.abCartList).getActionView();
 	    TextView tv = (TextView) badgeLayout.findViewById(R.id.actionbar_notifcation_textview);
-	    tv.setText("12");
+	    tv.setText("12");*/
 
 		return super.onCreateOptionsMenu(menu);
 		// return true;
