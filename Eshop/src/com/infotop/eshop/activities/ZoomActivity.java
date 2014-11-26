@@ -38,6 +38,7 @@ public class ZoomActivity extends Activity {
 		 String s = getIntent().getExtras().getString("image");
 		   ImageView imageView = (ImageView) findViewById(R.id.imageView1);
 	       loader.displayImage(s, imageView); 
+	       
 	       imageView.setOnTouchListener(new View.OnTouchListener() {
 				@Override 
 				public boolean onTouch(View v, MotionEvent event) {
