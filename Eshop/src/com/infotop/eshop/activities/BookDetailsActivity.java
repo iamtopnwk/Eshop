@@ -25,6 +25,7 @@ import com.nostra13.universalimageloader.core.display.RoundedBitmapDisplayer;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -35,6 +36,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -51,15 +53,19 @@ public class BookDetailsActivity extends Activity {
 
 	// adding CartButton,WishlistButton,BuyButton
 	ArrayList<String> s;
+
 	String productIdSpecification;
+
+	private static final int SELECT_PICTURE = 1;
+
 	UserSessionManager usMgr;
 	String childCategoryName;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		final ViewHolder holder;
-		DisplayImageOptions op;
-		ImageLoader loader = ImageLoader.getInstance();
+		final DisplayImageOptions op;
+		final ImageLoader loader = ImageLoader.getInstance();
 		setContentView(R.layout.activity_book_details);
 		op = new DisplayImageOptions.Builder()
 				.showStubImage(R.drawable.notavailable)
@@ -84,13 +90,23 @@ public class BookDetailsActivity extends Activity {
 		holder.txtTitle.setText(s.get(1));
 		holder.txtTitle1.setText(s.get(2));
 		holder.txtTitle2.setText(s.get(3));
-		Bitmap bMap = BitmapFactory.decodeResource(getResources(), R.drawable.productimg);
+		/*Bitmap bMap = BitmapFactory.decodeResource(getResources(), R.drawable.productimg);
 		holder.imageView1.setImageBitmap(bMap);
 		holder.imageView2.setImageBitmap(bMap);
 		holder.imageView3.setImageBitmap(bMap);
-		holder.imageView4.setImageBitmap(bMap);
+		holder.imageView4.setImageBitmap(bMap);*/
 		loader.displayImage(s.get(4), holder.imageView, op, null);
+
 		System.out.println("pabitra id:"+s.get(0));
+
+		
+		loader.displayImage(s.get(4), holder.imageView1, op, null);
+		loader.displayImage(s.get(5), holder.imageView2, op, null);
+		loader.displayImage(s.get(6), holder.imageView3, op, null);
+		loader.displayImage(s.get(7), holder.imageView4, op, null);
+		
+		
+
 		holder.imageView.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 
@@ -102,7 +118,36 @@ public class BookDetailsActivity extends Activity {
 		
 		productIdSpecification=s.get(0);
 		
+		 holder.imageView1.setOnClickListener(new View.OnClickListener() {
+	            public void onClick(View v) {
+	            	
+	            	loader.displayImage(s.get(4), holder.imageView, op, null); 	
+             }
+         });
+		
+		 holder.imageView2.setOnClickListener(new View.OnClickListener() {
+	            public void onClick(View v) {
+	            	
+	            	loader.displayImage(s.get(5), holder.imageView, op, null); 	
+                }
+            });
+		 
+		 holder.imageView3.setOnClickListener(new View.OnClickListener() {
+	            public void onClick(View v) {
+	            	
+	            	loader.displayImage(s.get(6), holder.imageView, op, null); 	
+             }
+         });
+		 holder.imageView4.setOnClickListener(new View.OnClickListener() {
+	            public void onClick(View v) {
+	            	
+	            	loader.displayImage(s.get(7), holder.imageView, op, null); 	
+             }
+         });
+		
 	}
+	
+	
 
 	private class ViewHolder {
 		public TextView txtTitle;
