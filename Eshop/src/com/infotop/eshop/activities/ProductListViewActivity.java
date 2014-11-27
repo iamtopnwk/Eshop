@@ -53,7 +53,7 @@ public class ProductListViewActivity extends Activity {
 	DisplayImageOptions op;
 	ImageButton ib;
 	UserSessionManager usMgr;
-
+	String chilCategoryName;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -73,6 +73,8 @@ public class ProductListViewActivity extends Activity {
 	
 		list = (ListView) findViewById(R.id.productListView);
 		subCatId = getIntent().getExtras().getString("ccId");
+		 chilCategoryName=getIntent().getExtras().getString("childCategoryName");
+		 System.out.println("ChildNameProductList:"+chilCategoryName);
 		String serverURL = "http://192.168.8.160:8983/solr/collection1/select?q=categoryId%3A*&fq=categoryId%3A"
 				+ subCatId + "&rows=100&wt=json&indent=true";
 
@@ -173,6 +175,7 @@ public class ProductListViewActivity extends Activity {
 					Intent i = new Intent(ProductListViewActivity.this,
 							BookDetailsActivity.class);
 					i.putStringArrayListExtra("productData", productData);
+					i.putExtra("childCategoryName", chilCategoryName);
 					startActivity(i);
 				}
 			});
@@ -191,6 +194,7 @@ public class ProductListViewActivity extends Activity {
 		Intent s = new Intent(ProductListViewActivity.this,
 				ProductGridViewActivity.class);
 		s.putExtra("ccId", subCatId);
+		s.putExtra("childCategoryName", chilCategoryName);
 		startActivity(s);
 	}
 

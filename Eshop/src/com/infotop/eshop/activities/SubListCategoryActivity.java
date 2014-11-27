@@ -36,8 +36,7 @@ public class SubListCategoryActivity extends Activity {
 	HashMap<String, List<String>> listDataChild1;
 	ExpandableListView expandableList;
 	UserSessionManager usMgr;
-
-	@Override
+    
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_sub_list_category);
@@ -125,6 +124,7 @@ public class SubListCategoryActivity extends Activity {
 						Intent i = new Intent(getApplicationContext(),
 								ProductListViewActivity.class);
 						i.putExtra("ccId", parentUuids.get(groupPosition));
+						i.putExtra("childCategoryName", listDataHeader.get(groupPosition));
 						startActivity(i);
 					}
 					return false;
@@ -148,6 +148,7 @@ public class SubListCategoryActivity extends Activity {
 					i.putExtra("ccId",
 							listDataChild1.get(parentItems.get(groupPosition))
 									.get(childPosition));
+					i.putExtra("childCategoryName", listDataHeader.get(groupPosition));
 					startActivity(i);
 					return false;
 				}

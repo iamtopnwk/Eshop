@@ -1,0 +1,173 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.infotop.eshop.activities.SpecificationLaptopActivity" >
+    
+     
+    
+  <ScrollView
+      android:layout_width="fill_parent"
+      android:layout_height="fill_parent"
+      android:scrollbars="horizontal"
+      android:layout_weight="1" > 
+
+   <TableLayout
+           
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:shrinkColumns="*"  android:stretchColumns="*" android:background="#ffffff">
+
+                        <!-- Row 1 with single column -->
+                        <TableRow
+                            android:id="@+id/tableRow1"
+                            android:layout_height="wrap_content"
+                            android:layout_width="fill_parent"
+                            android:gravity="center_horizontal">
+
+                            <TextView
+                                android:layout_width="match_parent" android:layout_height="wrap_content"
+                                android:textSize="18dp" android:text="General Specification"  android:layout_span="3"
+                                android:padding="18dip" android:background="#b0b0b0"
+                                android:textColor="#000"/>
+
+                       </TableRow>
+           <!-- Row 2 with 3 columns -->
+
+                        <TableRow
+                            android:id="@+id/tableRow2"
+                            android:layout_height="wrap_content"
+                            android:layout_width="match_parent">
+                            <TextView
+                                android:id="@+id/TextView01" android:text="Brand"
+                                android:layout_weight="1" android:background="#dcdcdc"
+                                android:textColor="#000000"
+                                android:padding="20dip" android:gravity="left"/>
+                            <TextView
+                                android:id="@+id/brand_mobile" 
+                                android:layout_weight="1" android:background="#d3d3d3"
+                                android:textColor="#000000"
+                                android:padding="20dip" android:gravity="center"/>
+                            
+                        </TableRow>
+         <!-- Row 3 with 2 columns -->
+                        <TableRow
+                            android:id="@+id/tableRow3"
+                            android:layout_height="wrap_content"
+                            android:layout_width="fill_parent"
+                            android:gravity="center_horizontal">
+                            <TextView
+                                android:id="@+id/TextView04" android:text="Model"
+                                android:layout_weight="1"  android:background="#dcdcdc"
+                                android:textColor="#000000"
+                                android:padding="18dip" android:gravity="left"/>
+                     
+                            <TextView
+                                android:id="@+id/model_mobile" 
+                                android:layout_weight="1" android:background="#d3d3d3"
+                                android:textColor="#000000"
+                                android:padding="18dip" android:gravity="center"/>
+                        </TableRow>
+                        
+                        <TableRow
+                            android:id="@+id/tableRow4"
+                            android:layout_height="wrap_content"
+                            android:layout_width="fill_parent"
+                            android:gravity="center_horizontal">
+                            <TextView
+                                android:id="@+id/TextView06" android:text="Type"
+                                android:layout_weight="1"  android:background="#dcdcdc"
+                                android:textColor="#000000"
+                                android:padding="18dip" android:gravity="left"/>
+                     
+                            <TextView
+                                android:id="@+id/type_mobile" 
+                                android:layout_weight="1" android:background="#d3d3d3"
+                                android:textColor="#000000"
+                                android:padding="18dip" android:gravity="center"/>
+                        </TableRow>
+                        <TableRow
+                            android:id="@+id/tableRow5"
+                            android:layout_height="wrap_content"
+                            android:layout_width="match_parent">
+                            <TextView
+                                android:id="@+id/TextView08" android:text="Touchscreen"
+                                android:layout_weight="1" android:background="#dcdcdc"
+                                android:textColor="#000000"
+                                android:padding="20dip" android:gravity="left"/>
+                            <TextView
+                                android:id="@+id/touchscreen_mobile" 
+                                android:layout_weight="1" android:background="#d3d3d3"
+                                android:textColor="#000000"
+                                android:padding="20dip" android:gravity="center"/>
+                            
+                        </TableRow>
+                        <TableRow
+                            android:id="@+id/tableRow6"
+                            android:layout_height="wrap_content"
+                            android:layout_width="match_parent">
+                            <TextView
+                                android:id="@+id/TextView10" android:text="Sim Type"
+                                android:layout_weight="1" android:background="#dcdcdc"
+                                android:textColor="#000000"
+                                android:padding="20dip" android:gravity="left"/>
+                            <TextView
+                                android:id="@+id/simtype_mobile" 
+                                android:layout_weight="1" android:background="#d3d3d3"
+                                android:textColor="#000000"
+                                android:padding="20dip" android:gravity="center"/>
+                            
+                        </TableRow>
+                        <TableRow
+                            android:id="@+id/tableRow7"
+                            android:layout_height="wrap_content"
+                            android:layout_width="match_parent">
+                            <TextView
+                                android:id="@+id/TextView12" android:text="Call Features"
+                                android:layout_weight="1" android:background="#dcdcdc"
+                                android:textColor="#000000"
+                                android:padding="20dip" android:gravity="left"/>
+                            <TextView
+                                android:id="@+id/call_features_mobile" 
+                                android:layout_weight="1" android:background="#d3d3d3"
+                                android:textColor="#000000"
+                                android:padding="20dip" android:gravity="center"/>
+                            
+                        </TableRow>
+                        <TableRow
+                            android:id="@+id/tableRow8"
+                            android:layout_height="wrap_content"
+                            android:layout_width="match_parent">
+                            <TextView
+                                android:id="@+id/TextView14" android:text="Warrenty"
+                                android:layout_weight="1" android:background="#dcdcdc"
+                                android:textColor="#000000"
+                                android:padding="20dip" android:gravity="left"/>
+                            <TextView
+                                android:id="@+id/warrenty_mobile" 
+                                android:layout_weight="1" android:background="#d3d3d3"
+                                android:textColor="#000000"
+                                android:padding="20dip" android:gravity="center"/>
+                            
+                        </TableRow>
+                        <TableRow
+                            android:id="@+id/tableRow9"
+                            android:layout_height="wrap_content"
+                            android:layout_width="match_parent">
+                            <TextView
+                                android:id="@+id/TextView16" android:text="Battery Backup"
+                                android:layout_weight="1" android:background="#dcdcdc"
+                                android:textColor="#000000"
+                                android:padding="20dip" android:gravity="left"/>
+                            <TextView
+                                android:id="@+id/battery_backup_mobile" 
+                                android:layout_weight="1" android:background="#d3d3d3"
+                                android:textColor="#000000"
+                                android:padding="20dip" android:gravity="center"/>
+                            
+                        </TableRow>
+                        
+        </TableLayout>
+        
+        </ScrollView> 
+</RelativeLayout>
