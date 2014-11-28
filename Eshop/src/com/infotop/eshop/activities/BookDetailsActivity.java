@@ -59,7 +59,11 @@ public class BookDetailsActivity extends Activity {
 	private static final int SELECT_PICTURE = 1;
 
 	UserSessionManager usMgr;
+
+	int count=0;
+
 	String childCategoryName;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -109,9 +113,16 @@ public class BookDetailsActivity extends Activity {
 
 		holder.imageView.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                
                 Intent i = new Intent(BookDetailsActivity.this, ZoomActivity.class);
-                i.putExtra("image", s.get(4));
+            
+                ArrayList<String> sl=new ArrayList<String>();
+                sl.add(s.get(4));
+                sl.add(s.get(5));
+                sl.add(s.get(6));
+                sl.add(s.get(7));
+                i.putStringArrayListExtra("list", sl);
+                i.putExtra("count", count);
+               
                 startActivity(i);
             }
         });
@@ -120,27 +131,27 @@ public class BookDetailsActivity extends Activity {
 		
 		 holder.imageView1.setOnClickListener(new View.OnClickListener() {
 	            public void onClick(View v) {
-	            	
+	            	count=0;
 	            	loader.displayImage(s.get(4), holder.imageView, op, null); 	
              }
          });
 		
 		 holder.imageView2.setOnClickListener(new View.OnClickListener() {
 	            public void onClick(View v) {
-	            	
+	            	count=1;
 	            	loader.displayImage(s.get(5), holder.imageView, op, null); 	
                 }
             });
 		 
 		 holder.imageView3.setOnClickListener(new View.OnClickListener() {
 	            public void onClick(View v) {
-	            	
+	            	count=2;
 	            	loader.displayImage(s.get(6), holder.imageView, op, null); 	
              }
          });
 		 holder.imageView4.setOnClickListener(new View.OnClickListener() {
 	            public void onClick(View v) {
-	            	
+	            	count=3;
 	            	loader.displayImage(s.get(7), holder.imageView, op, null); 	
              }
          });
