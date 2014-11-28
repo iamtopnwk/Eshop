@@ -53,9 +53,17 @@ public class BookDetailsActivity extends Activity {
 
 	// adding CartButton,WishlistButton,BuyButton
 	ArrayList<String> s;
+
+	String productIdSpecification;
+
 	private static final int SELECT_PICTURE = 1;
+
 	UserSessionManager usMgr;
+
 	int count=0;
+
+	String childCategoryName;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -72,6 +80,8 @@ public class BookDetailsActivity extends Activity {
 				
 		// Get data from EshopMainActivity
 		s = getIntent().getExtras().getStringArrayList("productData");
+		childCategoryName=getIntent().getExtras().getString("childCategoryName");
+		System.out.println("ChildCategoryName:"+childCategoryName);
 		holder = new ViewHolder();
 		holder.txtTitle = (TextView) findViewById(R.id.bookName1);
 		holder.txtTitle1 = (TextView) findViewById(R.id.authorName);
@@ -90,6 +100,9 @@ public class BookDetailsActivity extends Activity {
 		holder.imageView3.setImageBitmap(bMap);
 		holder.imageView4.setImageBitmap(bMap);*/
 		loader.displayImage(s.get(4), holder.imageView, op, null);
+
+		System.out.println("pabitra id:"+s.get(0));
+
 		
 		loader.displayImage(s.get(4), holder.imageView1, op, null);
 		loader.displayImage(s.get(5), holder.imageView2, op, null);
@@ -97,6 +110,7 @@ public class BookDetailsActivity extends Activity {
 		loader.displayImage(s.get(7), holder.imageView4, op, null);
 		
 		
+
 		holder.imageView.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Intent i = new Intent(BookDetailsActivity.this, ZoomActivity.class);
@@ -112,6 +126,8 @@ public class BookDetailsActivity extends Activity {
                 startActivity(i);
             }
         });
+		
+		productIdSpecification=s.get(0);
 		
 		 holder.imageView1.setOnClickListener(new View.OnClickListener() {
 	            public void onClick(View v) {
@@ -179,8 +195,45 @@ public class BookDetailsActivity extends Activity {
 			startActivity(intent);
 		
 	 }
+		 
+		 
+		 
 }
-
+	 public void getSpecification(View view){
+		 if("Pendrives".equalsIgnoreCase(childCategoryName)){
+		 Intent intSpecification= new Intent(this,SpecificationMouseActivity.class);
+		 intSpecification.putExtra("idspec", productIdSpecification);
+		 startActivity(intSpecification);
+		 }
+		 else if("Laptops".equalsIgnoreCase(childCategoryName)){
+			 Intent intSpecification= new Intent(this,SpecificationLaptopActivity.class);
+			 intSpecification.putExtra("idspec", productIdSpecification);
+			 startActivity(intSpecification);
+		 }
+		 else if("Mouse".equalsIgnoreCase(childCategoryName)){
+			 Intent intSpecification= new Intent(this,SpecificationMouseActivity.class);
+			 intSpecification.putExtra("idspec", productIdSpecification);
+			 startActivity(intSpecification);
+		 }
+		 else if("Smart Phones".equalsIgnoreCase(childCategoryName)){
+			 Intent intSpecification= new Intent(this,SpecificationMobileActivity.class);
+			 intSpecification.putExtra("idspec", productIdSpecification);
+			 startActivity(intSpecification);
+		 }
+		 else if("Feature Phones".equalsIgnoreCase(childCategoryName)){
+			 Intent intSpecification= new Intent(this,SpecificationMobileActivity.class);
+			 intSpecification.putExtra("idspec", productIdSpecification);
+			 startActivity(intSpecification);
+		 }
+		 else if("Sarees".equalsIgnoreCase(childCategoryName)){
+			 Intent intSpecification= new Intent(this,SpecificationClothActivity.class);
+			 intSpecification.putExtra("idspec", productIdSpecification);
+			 startActivity(intSpecification);
+		 }
+	
+	
+	 
+	  }
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.

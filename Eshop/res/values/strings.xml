@@ -47,12 +47,15 @@
 
     <!-- Nav Drawer List Item Icons -->
     <!-- Keep them in order as the titles are in -->
- <!--    <array name="nav_drawer_icons">
+    <!--
+    <array name="nav_drawer_icons">
         <item>@drawable/ic_home</item>
         <item>@drawable/ic_people</item>
         <item>@drawable/ic_photos</item>
         <item>@drawable/ic_whats_hot</item>
-    </array> -->
+    </array>
+    -->
+
 
     <!-- Content Description -->
     <string name="desc_list_item_icon">Item Icon</string>
@@ -71,6 +74,7 @@
     <string name="stprice">Price: $</string>
     <string name="stauthorname">Author Name</string>
     <string name="stmediumtext">Medium Text</string>
+    <string name="specification">Specification   ></string>
 
     <!-- Action bar menu icons -->
     <string name="ac_cartList">CartList</string>
@@ -110,14 +114,16 @@
     <string name="title_activity_no_item_found">Sorry</string>
     <string name="Uslogin">Login Here</string>
     <string name="title_activity_sub_list_category">SubListCategoryActivity</string>
-
     <string name="title_activity_zoom">Zoom</string>
-
     <string name="title_activity_splash_screen">SplashScreen</string>
-    
-    
+
     <!-- Cart List Items -->
     <string name="grand_total">Grand Total=</string>
     <string name="order_summary">ORDER SUMMARY</string>
+    <string name="title_activity_product_specification">ProductSpecificationActivity</string>
+    <string name="title_activity_specification_cloth">SpecificationClothActivity</string>
+    <string name="title_activity_specification_mobile">SpecificationMobileActivity</string>
+    <string name="title_activity_specification_pendrive">SpecificationPendriveActivity</string>
+    <string name="title_activity_specification_mouse">SpecificationMouseActivity</string>
 
 </resources>

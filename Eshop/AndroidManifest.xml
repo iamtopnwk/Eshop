@@ -17,16 +17,16 @@
     <application
         android:name=".utilities.App"
         android:allowBackup="true"
-        android:largeHeap="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
+        
         android:theme="@style/AppTheme" >
         <activity
             android:name=".activities.EshopLoginActivity"
             android:label="@string/app_name" >
         </activity>
-         <activity
-            android:name="com.infotop.eshop.activities.SplashScreen"
+        <activity
+            android:name=".activities.SplashScreen"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -36,7 +36,7 @@
         </activity>
         <activity
             android:name=".activities.EshopMainActivity"
-            android:label="@string/app_name" >       
+            android:label="@string/app_name" >
         </activity>
         <activity
             android:name=".activities.RegisterActivity"
@@ -58,7 +58,6 @@
         <activity
             android:name=".activities.ProductListViewActivity"
             android:label="@string/title_activity_product_list_view" >
-            
         </activity>
         <activity
             android:name=".activities.ProductGridViewActivity"
@@ -72,8 +71,6 @@
             android:name=".activities.PaymentMainActivity"
             android:label="@string/title_activity_payment_main" >
         </activity>
-        
-       
 
         <service
             android:name="com.paypal.android.sdk.payments.PayPalService"
@@ -117,13 +114,32 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.infotop.eshop.activities.EshopMainActivity" />
         </activity>
-
         <activity
             android:name=".activities.ZoomActivity"
             android:label="@string/title_activity_zoom" >
         </activity>
        
-
+        <activity
+            android:name=".activities.SpecificationLaptopActivity"
+            android:label="@string/title_activity_product_specification">
+            
+        </activity>
+        <activity
+            android:name=".activities.SpecificationClothActivity"
+            android:label="@string/title_activity_specification_cloth" >
+        </activity>
+        <activity
+            android:name=".activities.SpecificationMobileActivity"
+            android:label="@string/title_activity_specification_mobile" >
+        </activity>
+        <activity
+            android:name=".activities.SpecificationPendriveActivity"
+            android:label="@string/title_activity_specification_pendrive" >
+        </activity>
+        <activity
+            android:name="com.infotop.eshop.activities.SpecificationMouseActivity"
+            android:label="@string/title_activity_specification_mouse" >
+        </activity>
     </application>
 
 </manifest>
