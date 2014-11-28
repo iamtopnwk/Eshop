@@ -48,9 +48,6 @@ public class ProductListViewActivity extends Activity {
 	private static final String TAG_PPRICE = "productPrice";
 	private static final String TAG_PID = "uuid";
 	private static final String TAG_IMGURL = "image";
-	private static final String TAG_IMGURL1 = "image1";
-	private static final String TAG_IMGURL2 = "image2";
-	private static final String TAG_IMGURL3 = "image3";
 	
 	ListView list;
 	String subCatId;
@@ -79,7 +76,7 @@ public class ProductListViewActivity extends Activity {
 		subCatId = getIntent().getExtras().getString("ccId");
 		 chilCategoryName=getIntent().getExtras().getString("childCategoryName");
 		 System.out.println("ChildNameProductList:"+chilCategoryName);
-		String serverURL = "http://192.168.8.160:8983/solr/collection1/select?q=categoryId%3A*&fq=categoryId%3A"
+		String serverURL = "http://192.168.8.160:8983/solr/collection1/select?q=categoryid%3A*&fq=categoryid%3A"
 				+ subCatId + "&rows=100&wt=json&indent=true";
 
 		// Use AsyncTask execute Method To Prevent ANR Problem
@@ -95,10 +92,7 @@ public class ProductListViewActivity extends Activity {
 		String[] pdesc;
 		String[] price;
 		String[] imageUrl;
-		String[] imageUrl1;
-		String[] imageUrl2;
-		String[] imageUrl3;
-
+	
 		private ProgressDialog dialog = new ProgressDialog(
 				ProductListViewActivity.this);
 
@@ -132,9 +126,6 @@ public class ProductListViewActivity extends Activity {
 				pdesc = new String[childCategory.length()];
 				price = new String[childCategory.length()];
 				imageUrl = new String[childCategory.length()];
-				imageUrl1 = new String[childCategory.length()];
-				imageUrl2 = new String[childCategory.length()];
-				imageUrl3 = new String[childCategory.length()];
 				List<String> ccName = new ArrayList<String>();
 				for (int i = 0; i < childCategory.length(); i++) {
 					JSONObject pc = childCategory.getJSONObject(i);
@@ -144,9 +135,6 @@ public class ProductListViewActivity extends Activity {
 					price[i] = pc.getString(TAG_PPRICE);
 					ccName.add(pdct[i]);
 					imageUrl[i] = pc.getString(TAG_IMGURL);
-					imageUrl1[i] = pc.getString(TAG_IMGURL1);
-					imageUrl2[i] = pc.getString(TAG_IMGURL2);
-					imageUrl3[i] = pc.getString(TAG_IMGURL3);
 				}
 
 			} catch (Exception ex) {
@@ -183,9 +171,9 @@ public class ProductListViewActivity extends Activity {
 					productData.add(pdesc[position]);
 					productData.add(price[position]);
 					productData.add(imageUrl[position]);
-					productData.add(imageUrl1[position]);
+					/*productData.add(imageUrl1[position]);
 					productData.add(imageUrl2[position]);
-					productData.add(imageUrl3[position]);
+					productData.add(imageUrl3[position]);*/
 					// String product = (String) adapter.getItem(position);
 					// pass Data to other Activity
 					Intent i = new Intent(ProductListViewActivity.this,

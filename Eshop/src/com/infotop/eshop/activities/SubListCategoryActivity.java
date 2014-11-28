@@ -121,6 +121,7 @@ public class SubListCategoryActivity extends Activity {
 						int groupPosition, long id) {
 					if (listDataChild.get(parentItems.get(groupPosition))
 							.size() == 0) {
+						System.out.println("Group Value is:"+parentUuids.get(groupPosition));
 						Intent i = new Intent(getApplicationContext(),
 								ProductListViewActivity.class);
 						i.putExtra("ccId", parentUuids.get(groupPosition));
