@@ -165,12 +165,12 @@ public class ProductListViewActivity extends Activity {
 				@Override
 				public void onItemClick(AdapterView<?> parent, View view,
 						int position, long id) {
-					ArrayList<String> productData = new ArrayList<String>();
-					productData.add(pdctId[position]);
-					productData.add(pdct[position]);
-					productData.add(pdesc[position]);
-					productData.add(price[position]);
-					productData.add(imageUrl[position]);
+					//ArrayList<String> productData = new ArrayList<String>();
+					//productData.add(pdctId[position]);
+					//productData.add(pdct[position]);
+					//productData.add(pdesc[position]);
+					//productData.add(price[position]);
+					//productData.add(imageUrl[position]);
 					/*productData.add(imageUrl1[position]);
 					productData.add(imageUrl2[position]);
 					productData.add(imageUrl3[position]);*/
@@ -178,7 +178,8 @@ public class ProductListViewActivity extends Activity {
 					// pass Data to other Activity
 					Intent i = new Intent(ProductListViewActivity.this,
 							BookDetailsActivity.class);
-					i.putStringArrayListExtra("productData", productData);
+					//i.putStringArrayListExtra("productData", productData);
+					i.putExtra("productId", pdctId[position]);
 					i.putExtra("childCategoryName", chilCategoryName);
 					startActivity(i);
 				}

@@ -9,11 +9,17 @@ import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 import com.infotop.eshop.R;
 import com.infotop.eshop.adapters.CustomListHorizontalAdapter;
 import com.infotop.eshop.adapters.HorizontalListView;
+import com.infotop.eshop.adapters.ProductListAdapter;
 import com.infotop.eshop.db.DatabaseHandler;
+import com.infotop.eshop.httpservice.HttpServiceHandler;
 import com.infotop.eshop.model.Wishlist;
 import com.infotop.eshop.utilities.UserSessionManager;
 import com.nostra13.universalimageloader.cache.memory.impl.LruMemoryCache;
@@ -26,16 +32,20 @@ import com.nostra13.universalimageloader.core.display.RoundedBitmapDisplayer;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.Dialog;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.View.OnTouchListener;
 import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -52,24 +62,36 @@ import android.widget.Toast;
 public class BookDetailsActivity extends Activity {
 
 	// adding CartButton,WishlistButton,BuyButton
-	ArrayList<String> s;
-
+	//ArrayList<String> s;
+	ViewHolder holder;
+	DisplayImageOptions op;
 	String productIdSpecification;
-
+	private static final String TAG_PNAME = "productName";
+	private static final String TAG_IMGTYPE = "imageType";
+	private static final String TAG_PDESC = "productDescription";
+	private static final String TAG_PPRICE = "productPrice";
+	private static final String TAG_PID = "uuid";
+	private static final String TAG_IMGURL = "image";
+	private static final String TAG_IMAGELIST="imageList";
+	private static final String TAG_IMGVALUE="imageValue";
 	private static final int SELECT_PICTURE = 1;
-
+	ImageLoader loader = ImageLoader.getInstance();
+private String productName;
+private String productDescription;
+private String productPrice;
 	UserSessionManager usMgr;
+	 ArrayList<String> imageUrls=new ArrayList<String>();
 
 	int count=0;
 
 	String childCategoryName;
-
+    String productUUid;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		final ViewHolder holder;
-		final DisplayImageOptions op;
-		final ImageLoader loader = ImageLoader.getInstance();
+		//final ViewHolder holder;
+		/*final DisplayImageOptions op;*/
+		//final ImageLoader loader = ImageLoader.getInstance();
 		setContentView(R.layout.activity_book_details);
 		op = new DisplayImageOptions.Builder()
 				.showStubImage(R.drawable.notavailable)
@@ -79,8 +101,126 @@ public class BookDetailsActivity extends Activity {
 				.build();
 				
 		// Get data from EshopMainActivity
-		s = getIntent().getExtras().getStringArrayList("productData");
-		childCategoryName=getIntent().getExtras().getString("childCategoryName");
+		//s = getIntent().getExtras().getStringArrayList("productData");
+		productUUid=getIntent().getExtras().getString("productId");
+		
+		String serverURL = "http://192.168.21.212:8989/eshop/rest/productByuuid/"+productUUid;
+
+		// Use AsyncTask execute Method To Prevent ANR Problem
+		new LongOperation().execute(serverURL);
+		
+		
+	}
+		
+	private class LongOperation extends AsyncTask<String, Void, Void> {
+
+		ProductListAdapter listAdapter;
+		String[] pdct;
+		String[] pdctId;
+		String[] pdesc;
+		String[] price;
+		String[] imageUrl;
+	
+		private ProgressDialog dialog = new ProgressDialog(
+				BookDetailsActivity.this);
+
+		protected void onPreExecute() {
+			// NOTE: You can call UI Element here.
+
+			// Start Progress Dialog (Message)
+
+			dialog.setMessage("Please wait..");
+			dialog.show();
+
+		}
+
+		@Override
+		protected Void doInBackground(String... urls) {
+			JSONArray jsonArray = null;
+			String pcontent;
+			// Send data
+			try {
+				HttpServiceHandler hs = new HttpServiceHandler();
+				pcontent = hs.httpContent(urls[0]);
+				JSONObject jsonObj;
+				jsonObj=new JSONObject(pcontent);
+				jsonArray=jsonObj.getJSONArray(TAG_IMAGELIST);
+				System.out.println("JsonArray:"+jsonArray);
+				//jsonObj = new JSONObject(pcontent).getJSONObject(TAG_IMAGELIST);
+				productName=jsonObj.getString(TAG_PNAME);
+				productDescription=jsonObj.getString(TAG_PDESC);
+				productPrice=jsonObj.getString(TAG_PPRICE);
+				int size=jsonArray.length();
+				for(int i=0;i<size;i++){
+					JSONObject pc = jsonArray.getJSONObject(i);
+					if(pc.getString(TAG_IMGTYPE).equals("2")){
+						//System.out.println("Image Url's of Imagelist:"+pc.getString(TAG_IMGVALUE));
+						imageUrls.add(pc.getString(TAG_IMGVALUE));
+					}
+					//if(jsonArray.getString(TAG_IMGTYPE))
+					
+				}
+				
+				
+			} catch (Exception ex) {
+				System.out.println("Exception e:" + ex.getMessage());
+			}
+			/*****************************************************/
+			return null;
+		}
+
+		protected void onPostExecute(Void unused) {
+			holder = new ViewHolder();
+			holder.txtTitle = (TextView) findViewById(R.id.bookName1);
+			holder.txtTitle1 = (TextView) findViewById(R.id.authorName);
+			holder.txtTitle2 = (TextView) findViewById(R.id.price);
+			holder.imageView = (ImageView) findViewById(R.id.logo);
+	        holder.imageView1=(ImageView) findViewById(R.id.logo1);
+	        holder.imageView2=(ImageView) findViewById(R.id.logo2);
+	        holder.imageView3=(ImageView) findViewById(R.id.logo3);
+	        holder.imageView4=(ImageView) findViewById(R.id.logo4);
+			holder.txtTitle.setText(productName);
+			holder.txtTitle1.setText(productDescription);
+			holder.txtTitle2.setText(productPrice);
+			loader.displayImage(imageUrls.get(0), holder.imageView, op, null);
+			loader.displayImage(imageUrls.get(0), holder.imageView1, op, null);
+			
+			dialog.dismiss();
+			
+		}
+
+	}	
+		
+		
+	private class ViewHolder {
+		public TextView txtTitle;
+		public TextView txtTitle1;
+		public TextView txtTitle2;
+		public ImageView imageView;
+		public ImageView imageView1;
+		public ImageView imageView2;
+		public ImageView imageView3;
+		public ImageView imageView4;
+	}
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		/*childCategoryName=getIntent().getExtras().getString("childCategoryName");
 		System.out.println("ChildCategoryName:"+childCategoryName);
 		holder = new ViewHolder();
 		holder.txtTitle = (TextView) findViewById(R.id.bookName1);
@@ -94,11 +234,11 @@ public class BookDetailsActivity extends Activity {
 		holder.txtTitle.setText(s.get(1));
 		holder.txtTitle1.setText(s.get(2));
 		holder.txtTitle2.setText(s.get(3));
-		/*Bitmap bMap = BitmapFactory.decodeResource(getResources(), R.drawable.productimg);
+		Bitmap bMap = BitmapFactory.decodeResource(getResources(), R.drawable.productimg);
 		holder.imageView1.setImageBitmap(bMap);
 		holder.imageView2.setImageBitmap(bMap);
 		holder.imageView3.setImageBitmap(bMap);
-		holder.imageView4.setImageBitmap(bMap);*/
+		holder.imageView4.setImageBitmap(bMap);
 		loader.displayImage(s.get(4), holder.imageView, op, null);
 
 		System.out.println("pabitra id:"+s.get(0));
@@ -268,7 +408,7 @@ public class BookDetailsActivity extends Activity {
 
 			//w.setImageUrl(s.get(0));
 			 
-			/*String imagePath = Environment.getExternalStorageDirectory()
+			String imagePath = Environment.getExternalStorageDirectory()
 			            + "w.getImageUrl()";
 			
 			File imageFileToShare = new File(imagePath);
@@ -280,7 +420,7 @@ public class BookDetailsActivity extends Activity {
 		
 			System.out.println("ooooooooooooooooooooooooooooooo"+screenshotUri);
 			startActivity(Intent.createChooser(sharingIntent, "Share image using"));
-			        */
+			        
 
 			
 			return true;
@@ -319,5 +459,5 @@ public class BookDetailsActivity extends Activity {
 		default:
 			return super.onOptionsItemSelected(item);
 		}
-	}
+	}*/
 }
