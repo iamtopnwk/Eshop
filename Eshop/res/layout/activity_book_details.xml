@@ -36,9 +36,9 @@
                 android:layout_width="250dp"
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
-                android:text="@string/stmediumtext"
                 android:fitsSystemWindows="true"
                 android:singleLine="false"
+                android:text="@string/stmediumtext"
                 android:textColor="#040404"
                 android:textSize="18sp"
                 android:textStyle="normal"
@@ -61,10 +61,20 @@
                 android:id="@+id/thumbnail"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
+                android:layout_alignRight="@+id/logo"
                 android:layout_below="@+id/logo"
                 android:layout_marginLeft="35dp"
                 android:layout_marginTop="20dp" >
 
+                <com.infotop.eshop.adapters.HorizontalListView
+                    android:id="@+id/detailshorizontal"
+                    android:layout_width="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:layout_height="80dp"
+                    android:layout_below="@+id/logo"
+                    android:background="#ffffff" />
+
+                <!--
                 <ImageView
                     android:id="@+id/logo1"
                     android:layout_width="60dp"
@@ -96,6 +106,7 @@
                     android:background="@drawable/image_bdr"
                     android:contentDescription="@string/app_name"
                     android:padding="3dip" />
+                -->
             </LinearLayout>
 
             <TextView
@@ -139,20 +150,17 @@
                 android:layout_below="@+id/pricestatic"
                 android:scaleX="0.6"
                 android:scaleY="0.6" />
-            
-            <Button 
-                
-                android:layout_below="@+id/ratingBar1"
+
+            <Button
+                style="?android:attr/borderlessButtonStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:paddingTop="10dp"
-                android:paddingBottom="10dp"
+                android:layout_below="@+id/ratingBar1"
                 android:onClick="getSpecification"
-                android:textSize="20sp"
+                android:paddingBottom="10dp"
+                android:paddingTop="10dp"
                 android:text="@string/specification"
-                style="?android:attr/borderlessButtonStyle" />
-
-            
+                android:textSize="20sp" />
         </RelativeLayout>
     </ScrollView>
 

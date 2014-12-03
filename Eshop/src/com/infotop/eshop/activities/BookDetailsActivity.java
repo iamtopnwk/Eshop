@@ -17,6 +17,7 @@ import org.json.JSONObject;
 import com.infotop.eshop.R;
 import com.infotop.eshop.adapters.CustomListHorizontalAdapter;
 import com.infotop.eshop.adapters.HorizontalListView;
+import com.infotop.eshop.adapters.ProductDetailsHorizontalAdapter;
 import com.infotop.eshop.adapters.ProductListAdapter;
 import com.infotop.eshop.db.DatabaseHandler;
 import com.infotop.eshop.httpservice.HttpServiceHandler;
@@ -61,8 +62,13 @@ import android.widget.Toast;
 @SuppressLint("SimpleDateFormat")
 public class BookDetailsActivity extends Activity {
 
+	
+	
+	 ProductDetailsHorizontalAdapter hAdapter;
 	// adding CartButton,WishlistButton,BuyButton
 	//ArrayList<String> s;
+    View rootView;
+    HorizontalListView list;
 	ViewHolder holder;
 	DisplayImageOptions op;
 	String productIdSpecification;
@@ -79,6 +85,7 @@ public class BookDetailsActivity extends Activity {
 private String productName;
 private String productDescription;
 private String productPrice;
+
 	UserSessionManager usMgr;
 	 ArrayList<String> imageUrls=new ArrayList<String>();
 
@@ -114,13 +121,13 @@ private String productPrice;
 		
 	private class LongOperation extends AsyncTask<String, Void, Void> {
 
-		ProductListAdapter listAdapter;
+		/*ProductListAdapter listAdapter;
 		String[] pdct;
 		String[] pdctId;
 		String[] pdesc;
 		String[] price;
-		String[] imageUrl;
-	
+		//String[] imageUrl;
+*/	
 		private ProgressDialog dialog = new ProgressDialog(
 				BookDetailsActivity.this);
 
@@ -170,21 +177,26 @@ private String productPrice;
 		}
 
 		protected void onPostExecute(Void unused) {
+			
+			
+			
 			holder = new ViewHolder();
 			holder.txtTitle = (TextView) findViewById(R.id.bookName1);
 			holder.txtTitle1 = (TextView) findViewById(R.id.authorName);
 			holder.txtTitle2 = (TextView) findViewById(R.id.price);
 			holder.imageView = (ImageView) findViewById(R.id.logo);
-	        holder.imageView1=(ImageView) findViewById(R.id.logo1);
+	       /* holder.imageView1=(ImageView) findViewById(R.id.logo1);
 	        holder.imageView2=(ImageView) findViewById(R.id.logo2);
 	        holder.imageView3=(ImageView) findViewById(R.id.logo3);
-	        holder.imageView4=(ImageView) findViewById(R.id.logo4);
+	        holder.imageView4=(ImageView) findViewById(R.id.logo4);*/
 			holder.txtTitle.setText(productName);
 			holder.txtTitle1.setText(productDescription);
 			holder.txtTitle2.setText(productPrice);
 			loader.displayImage(imageUrls.get(0), holder.imageView, op, null);
-			loader.displayImage(imageUrls.get(0), holder.imageView1, op, null);
-			
+			//loader.displayImage(imageUrls.get(0), holder.imageView1, op, null);
+			hAdapter=new ProductDetailsHorizontalAdapter(BookDetailsActivity.this, imageUrls,op);
+			list = (HorizontalListView) findViewById(R.id.detailshorizontal);
+			list.setAdapter(hAdapter);
 			dialog.dismiss();
 			
 		}
@@ -197,10 +209,10 @@ private String productPrice;
 		public TextView txtTitle1;
 		public TextView txtTitle2;
 		public ImageView imageView;
-		public ImageView imageView1;
+		/*public ImageView imageView1;
 		public ImageView imageView2;
 		public ImageView imageView3;
-		public ImageView imageView4;
+		public ImageView imageView4;*/
 	}
 		
 		
