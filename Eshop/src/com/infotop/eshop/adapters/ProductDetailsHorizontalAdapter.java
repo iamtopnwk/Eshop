@@ -41,10 +41,7 @@ public class ProductDetailsHorizontalAdapter extends ArrayAdapter<String> {
 				R.layout.products_details_horozontal, null);
 		ImageView imageView = (ImageView) rowView.findViewById(R.id.img1);
 	    int size=getCount();
-	    System.out.println("Size of the imagesurl list:"+size);
-		for(int i=0;i<size;i++){
-		loader.displayImage(imageUrls.get(0), imageView, op, null);
-		}System.out.println(";;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;"+imageUrls.get(0));
+		loader.displayImage(imageUrls.get(position), imageView, op, null);		
 		// TODO Auto-generated method stub
 		return rowView;
 	}
