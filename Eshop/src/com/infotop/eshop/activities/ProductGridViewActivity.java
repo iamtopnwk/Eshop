@@ -146,7 +146,7 @@ public class ProductGridViewActivity extends Activity {
 				@Override
 				public void onItemClick(AdapterView<?> parent, View view,
 						int position, long id) {
-					ArrayList<String> productData = new ArrayList<String>();
+					/*ArrayList<String> productData = new ArrayList<String>();
 					productData.add(pdctId[position]);
 					productData.add(pdct[position]);
 					productData.add(pdesc[position]);
@@ -154,10 +154,10 @@ public class ProductGridViewActivity extends Activity {
 					productData.add((imageUrl[position]).toString());
 					// String product = (String) adapter.getItem(position);
 					// pass Data to other Activity
-
+                     */
 					Intent i = new Intent(ProductGridViewActivity.this,
 							BookDetailsActivity.class);
-					i.putStringArrayListExtra("productData", productData);
+					i.putExtra("productId", pdctId[position]);
 					i.putExtra("childCategoryName", chilCategoryName);
 					startActivity(i);
 

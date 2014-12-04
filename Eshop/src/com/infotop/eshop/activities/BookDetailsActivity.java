@@ -66,7 +66,7 @@ public class BookDetailsActivity extends Activity {
 	
 	 ProductDetailsHorizontalAdapter hAdapter;
 	// adding CartButton,WishlistButton,BuyButton
-	//ArrayList<String> s;
+	ArrayList<String> s;
     View rootView;
     HorizontalListView list;
 	ViewHolder holder;
@@ -82,6 +82,7 @@ public class BookDetailsActivity extends Activity {
 	private static final String TAG_IMGVALUE="imageValue";
 	private static final int SELECT_PICTURE = 1;
 	ImageLoader loader = ImageLoader.getInstance();
+private String productId;	
 private String productName;
 private String productDescription;
 private String productPrice;
@@ -110,6 +111,8 @@ private String productPrice;
 		// Get data from EshopMainActivity
 		//s = getIntent().getExtras().getStringArrayList("productData");
 		productUUid=getIntent().getExtras().getString("productId");
+		childCategoryName=getIntent().getExtras().getString("childCategoryName");
+		System.out.println("ChildCategoryName:"+childCategoryName);
 		
 		String serverURL = "http://192.168.21.212:8989/eshop/rest/productByuuid/"+productUUid;
 
@@ -154,6 +157,7 @@ private String productPrice;
 				jsonArray=jsonObj.getJSONArray(TAG_IMAGELIST);
 				System.out.println("JsonArray:"+jsonArray);
 				//jsonObj = new JSONObject(pcontent).getJSONObject(TAG_IMAGELIST);
+				productId=jsonObj.getString(TAG_PID);
 				productName=jsonObj.getString(TAG_PNAME);
 				productDescription=jsonObj.getString(TAG_PDESC);
 				productPrice=jsonObj.getString(TAG_PPRICE);
@@ -200,7 +204,7 @@ private String productPrice;
 			dialog.dismiss();
 			
 		}
-
+ 
 	}	
 		
 		
@@ -232,9 +236,9 @@ private String productPrice;
 		
 		
 		
-		/*childCategoryName=getIntent().getExtras().getString("childCategoryName");
-		System.out.println("ChildCategoryName:"+childCategoryName);
-		holder = new ViewHolder();
+		//childCategoryName=getIntent().getExtras().getString("childCategoryName");
+		//System.out.println("ChildCategoryName:"+childCategoryName);
+		/*holder = new ViewHolder();
 		holder.txtTitle = (TextView) findViewById(R.id.bookName1);
 		holder.txtTitle1 = (TextView) findViewById(R.id.authorName);
 		holder.txtTitle2 = (TextView) findViewById(R.id.price);
@@ -322,7 +326,7 @@ private String productPrice;
 		public ImageView imageView3;
 		public ImageView imageView4;
 	}
-
+*/
 	// functionalities for wishlistBtn
 	public void addToWishlist(View view) {
 		
@@ -330,11 +334,11 @@ private String productPrice;
 		 if(usMgr.isUserLoggedIn()){
 		DatabaseHandler db = new DatabaseHandler(BookDetailsActivity.this);
 		Wishlist w = new Wishlist();
-		w.setProductId(s.get(0));
-		w.setProductName(s.get(1));
-		w.setDescription(s.get(2));
-		w.setPrice(s.get(3));
-		w.setImageUrl(s.get(4));
+		w.setProductId(productId);
+		w.setProductName(productName);
+		w.setDescription(productDescription);
+		w.setPrice(productPrice);
+		w.setImageUrl(imageUrls.get(0));
 		w.setCreatedDate(new SimpleDateFormat("dd MMM yyyy").format(new Date()));
 
 		db.addWishList(w);
@@ -351,41 +355,46 @@ private String productPrice;
 		 
 		 
 }
-	 public void getSpecification(View view){
-		 if("Pendrives".equalsIgnoreCase(childCategoryName)){
+	
+	public void getSpecification(View view){
+		 if("Mobiles".equalsIgnoreCase(childCategoryName)){
 		 Intent intSpecification= new Intent(this,SpecificationMouseActivity.class);
-		 intSpecification.putExtra("idspec", productIdSpecification);
+		 intSpecification.putExtra("idspec", productId);
 		 startActivity(intSpecification);
 		 }
 		 else if("Laptops".equalsIgnoreCase(childCategoryName)){
 			 Intent intSpecification= new Intent(this,SpecificationLaptopActivity.class);
-			 intSpecification.putExtra("idspec", productIdSpecification);
+			 intSpecification.putExtra("idspec", productId);
 			 startActivity(intSpecification);
 		 }
-		 else if("Mouse".equalsIgnoreCase(childCategoryName)){
+		 else if("Tablets".equalsIgnoreCase(childCategoryName)){
 			 Intent intSpecification= new Intent(this,SpecificationMouseActivity.class);
-			 intSpecification.putExtra("idspec", productIdSpecification);
+			 intSpecification.putExtra("idspec", productId);
 			 startActivity(intSpecification);
 		 }
-		 else if("Smart Phones".equalsIgnoreCase(childCategoryName)){
+		/* else if("Smart Phones".equalsIgnoreCase(childCategoryName)){
 			 Intent intSpecification= new Intent(this,SpecificationMobileActivity.class);
-			 intSpecification.putExtra("idspec", productIdSpecification);
+			 intSpecification.putExtra("idspec", productId);
 			 startActivity(intSpecification);
 		 }
 		 else if("Feature Phones".equalsIgnoreCase(childCategoryName)){
 			 Intent intSpecification= new Intent(this,SpecificationMobileActivity.class);
-			 intSpecification.putExtra("idspec", productIdSpecification);
+			 intSpecification.putExtra("idspec", productId);
 			 startActivity(intSpecification);
 		 }
 		 else if("Sarees".equalsIgnoreCase(childCategoryName)){
 			 Intent intSpecification= new Intent(this,SpecificationClothActivity.class);
-			 intSpecification.putExtra("idspec", productIdSpecification);
+			 intSpecification.putExtra("idspec", productId);
 			 startActivity(intSpecification);
-		 }
+		 } */
 	
 	
 	 
 	  }
+	  
+	  
+	
+	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
@@ -402,7 +411,7 @@ private String productPrice;
 		case R.id.ab_abShareApp1:
 			
 			Wishlist w = new Wishlist();
-			w.setProductName(s.get(1));
+			w.setProductName(productName);
 			Intent sharingIntent = new Intent(Intent.ACTION_SEND);
 			sharingIntent.setType("text/plain");
 			sharingIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET);
@@ -445,11 +454,11 @@ private String productPrice;
 			 } else{
 				 DatabaseHandler db1 = new DatabaseHandler(BookDetailsActivity.this);
 					Wishlist w1 = new Wishlist();
-					w1.setProductId(s.get(0));
-					w1.setProductName(s.get(1));
-					w1.setDescription(s.get(2));
-					w1.setPrice(s.get(3));
-					w1.setImageUrl(s.get(4));
+					w1.setProductId(productId);
+					w1.setProductName(productName);
+					w1.setDescription(productDescription);
+					w1.setPrice(productPrice);
+					w1.setImageUrl(imageUrls.get(0));
 					w1.setCreatedDate(new SimpleDateFormat("dd MMM yyyy")
 							.format(new Date()));
 					db1.addCartList(w1);
@@ -459,9 +468,16 @@ private String productPrice;
 			
 			return true;
 		case R.id.ab_purChaseItem:
+			s = new ArrayList<String>();
+			s.add(productId);
+			s.add(productName);
+			s.add(productDescription);
+			s.add(productPrice);
+			s.add(imageUrls.get(0));
 			UserSessionManager us = new UserSessionManager(this);
 			Boolean result = us.checkLogin();
 			if (result == false) {
+				
 				Intent in = new Intent(BookDetailsActivity.this,
 						PaymentMainActivity.class);
 				in.putStringArrayListExtra("purChaseItem", s);
@@ -471,5 +487,5 @@ private String productPrice;
 		default:
 			return super.onOptionsItemSelected(item);
 		}
-	}*/
+	}
 }
