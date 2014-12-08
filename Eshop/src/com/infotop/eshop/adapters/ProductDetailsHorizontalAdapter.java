@@ -40,8 +40,10 @@ public class ProductDetailsHorizontalAdapter extends ArrayAdapter<String> {
 		View rowView = LayoutInflater.from(parent.getContext()).inflate(
 				R.layout.products_details_horozontal, null);
 		ImageView imageView = (ImageView) rowView.findViewById(R.id.img1);
-	    int size=getCount();
-		loader.displayImage(imageUrls.get(position), imageView, op, null);		
+	    System.out.println("pppppppppppppppppppppppppppppppp"+position);
+		loader.displayImage(imageUrls.get(position), imageView, op, null);	
+		
+		
 		// TODO Auto-generated method stub
 		return rowView;
 	}

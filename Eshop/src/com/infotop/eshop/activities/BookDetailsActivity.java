@@ -94,6 +94,7 @@ private String productPrice;
 
 	String childCategoryName;
     String productUUid;
+    int pos;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -114,7 +115,7 @@ private String productPrice;
 		childCategoryName=getIntent().getExtras().getString("childCategoryName");
 		System.out.println("ChildCategoryName:"+childCategoryName);
 		
-		String serverURL = "http://192.168.21.212:8989/eshop/rest/productByuuid/"+productUUid;
+		String serverURL = "http://192.168.21.216:8989/eshop/rest/productByuuid/"+productUUid;
 
 		// Use AsyncTask execute Method To Prevent ANR Problem
 		new LongOperation().execute(serverURL);
@@ -197,10 +198,37 @@ private String productPrice;
 			holder.txtTitle1.setText(productDescription);
 			holder.txtTitle2.setText(productPrice);
 			loader.displayImage(imageUrls.get(0), holder.imageView, op, null);
-			//loader.displayImage(imageUrls.get(0), holder.imageView1, op, null);
 			hAdapter=new ProductDetailsHorizontalAdapter(BookDetailsActivity.this, imageUrls,op);
 			list = (HorizontalListView) findViewById(R.id.detailshorizontal);
 			list.setAdapter(hAdapter);
+			
+			
+			list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+				@Override
+				public void onItemClick(AdapterView<?> parent, View view,
+						int position, long id) {
+					
+					loader.displayImage(imageUrls.get(position), holder.imageView, op, null); 
+					pos=position;
+				}
+			});
+			
+
+			holder.imageView.setOnClickListener(new View.OnClickListener() {
+	            public void onClick(View v) {
+	                Intent i = new Intent(BookDetailsActivity.this, ZoomActivity.class);
+	         
+	                System.out.println("position=======================++++++"+pos);
+	                i.putExtra("list", imageUrls.get(pos));
+	                System.out.println("position=========="+imageUrls.get(pos));
+	               // i.putExtra("count", count);
+	               
+	                startActivity(i);
+	            }
+
+				
+	        });
+			
 			dialog.dismiss();
 			
 		}

@@ -51,7 +51,7 @@ public class SubListCategoryActivity extends Activity {
 		tv.setText("In " + parentCategoryName);
 		// Create Expandable List and set it's properties
 
-		String serverURL = "http://192.168.21.212:8983/solr/collection1/select?q=categoryName%3A*&fq=categoryParentId%3A"
+		String serverURL = "http://192.168.21.216:8983/solr/collection1/select?q=categoryName%3A*&fq=categoryParentId%3A"
 				+ selectedParentId + "&wt=json&indent=true";
 
 		new LongOperation().execute(serverURL);

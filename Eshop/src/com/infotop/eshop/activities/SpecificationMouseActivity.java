@@ -37,7 +37,7 @@ public class SpecificationMouseActivity extends Activity {
 		s1=getIntent().getExtras().getString("idspec");
 		System.out.println("pabitr spec"+s1);
 		
-		String serverURL="http://192.168.21.212:8989/eshop/rest/specificationbyproductid/"+s1;
+		String serverURL="http://192.168.21.216:8989/eshop/rest/specificationbyproductid/"+s1;
 		new LongOperation().execute(serverURL);
 	}
 	
