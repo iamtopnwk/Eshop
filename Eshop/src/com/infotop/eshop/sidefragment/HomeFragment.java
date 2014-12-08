@@ -44,8 +44,7 @@ public class HomeFragment extends Fragment {
 	List<String> uuidPosition;
 	List<String> parentCategoryName;
 
-	String[] productName = { "Laptops &\n Appliances", "Mobiles", "Women",
-			"Books & \n Entertainment", "Men", "Kids", };
+	String[] productName = { "Electronis", "Home Appliance", "Books","Sports" };
 
 	Integer[] productImage = { R.drawable.laptops, R.drawable.mobile,
 			R.drawable.girlcloth, R.drawable.book, R.drawable.cloth,

@@ -71,7 +71,7 @@ public class WishListMainActivity extends Activity {
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view,
 					int position, long id) {
-				ArrayList<String> productData = new ArrayList<String>();
+				/*ArrayList<String> productData = new ArrayList<String>();
 				productData.add(productId[position]);
 				productData.add(productName[position]);
 				productData.add(productDescription[position]);
@@ -79,9 +79,12 @@ public class WishListMainActivity extends Activity {
 				productData.add(productImage[position]);
 				// String product = (String) adapter.getItem(position);
 				// pass Data to other Activity
+				System.out.println("productId:-"+productId[position]);
+				*/
 				Intent i = new Intent(WishListMainActivity.this,
 						BookDetailsActivity.class);
-				i.putStringArrayListExtra("productData", productData);
+				i.putExtra("productId", productId[position]);
+				//i.putStringArrayListExtra("productData", productData);
 				startActivity(i);
 			}
 		});

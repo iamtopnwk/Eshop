@@ -83,7 +83,7 @@ public class CartListMainActivity extends Activity {
 
 				listAdapter = (CartListAdapter) parent.getAdapter();
 
-				ArrayList<String> productData = new ArrayList<String>();
+				/*ArrayList<String> productData = new ArrayList<String>();
 				productData.add(productId[position]);
 				productData.add(productName[position]);
 				productData.add(productDescription[position]);
@@ -91,9 +91,12 @@ public class CartListMainActivity extends Activity {
 				productData.add(productImage[position]);
 				// String product = (String) adapter.getItem(position);
 				// pass Data to other Activity
+				System.out.println("productID:-"+productId[position]);
+				*/
 				Intent i = new Intent(CartListMainActivity.this,
 						BookDetailsActivity.class);
-				i.putStringArrayListExtra("productData", productData);
+				i.putExtra("productId", productId[position]);
+				//i.putStringArrayListExtra("productData", productData);
 				startActivity(i);
 			}
 		});
