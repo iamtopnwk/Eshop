@@ -163,6 +163,7 @@ private String productPrice;
 				productDescription=jsonObj.getString(TAG_PDESC);
 				productPrice=jsonObj.getString(TAG_PPRICE);
 				int size=jsonArray.length();
+				System.out.println("ArraySize is:"+size);
 				for(int i=0;i<size;i++){
 					JSONObject pc = jsonArray.getJSONObject(i);
 					if(pc.getString(TAG_IMGTYPE).equals("2")){
@@ -368,18 +369,33 @@ private String productPrice;
 		w.setPrice(productPrice);
 		w.setImageUrl(imageUrls.get(0));
 		w.setCreatedDate(new SimpleDateFormat("dd MMM yyyy").format(new Date()));
+		List<Wishlist> s = db.getAllWishListItems();
+		int counter=0;
+		for(int i=0;i<s.size();i++){
+			if(s.get(i).getProductId().equals(productId)){
+				counter++;
+			}
+		}
+		if(counter>0){
+			Toast.makeText(BookDetailsActivity.this, "Your item is already added to Wish List",
+					Toast.LENGTH_SHORT).show();
+		}else{
+			
+			db.addWishList(w);
+		Toast.makeText(BookDetailsActivity.this, "Your item is added to Wish List",
+				Toast.LENGTH_SHORT).show();
+			
+		}
+		//db.addWishList(w);
+		//System.out.println("Add WishList Button");
 
-		db.addWishList(w);
-		System.out.println("Add WishList Button");
-
-		Toast.makeText(BookDetailsActivity.this,
-				"Your item is added to Wish List", Toast.LENGTH_SHORT).show();
+		//Toast.makeText(BookDetailsActivity.this,
+				//"Your item is added to Wish List", Toast.LENGTH_SHORT).show();
 	}else{
 		 Intent intent = new Intent(BookDetailsActivity.this,EshopLoginActivity.class);
 			startActivity(intent);
 		
 	 }
-		 
 		 
 		 
 }
@@ -489,9 +505,29 @@ private String productPrice;
 					w1.setImageUrl(imageUrls.get(0));
 					w1.setCreatedDate(new SimpleDateFormat("dd MMM yyyy")
 							.format(new Date()));
-					db1.addCartList(w1);
+					
+					List<Wishlist> s = db1.getAllCartListItems();
+					int counter=0;
+					for(int i=0;i<s.size();i++){
+						if(s.get(i).getProductId().equals(productId)){
+							counter++;
+						}
+					}
+					if(counter>0){
+						Toast.makeText(BookDetailsActivity.this, "Your item is already Added to Cart",
+								Toast.LENGTH_SHORT).show();
+					}else{
+						
+						db1.addCartList(w1);;
+					Toast.makeText(BookDetailsActivity.this, "Your item is Added to Cart",
+							Toast.LENGTH_SHORT).show();
+						
+					}
+					
+					
+					/*db1.addCartList(w1);
 					Toast.makeText(BookDetailsActivity.this,
-							"Your Item is Added to Cart", Toast.LENGTH_SHORT).show();
+							"Your Item is Added to Cart", Toast.LENGTH_SHORT).show();*/
 			 }
 			
 			return true;

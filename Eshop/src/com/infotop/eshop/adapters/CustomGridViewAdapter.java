@@ -2,6 +2,7 @@ package com.infotop.eshop.adapters;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -92,6 +93,26 @@ public class CustomGridViewAdapter extends ArrayAdapter<String> {
 					w.setImageUrl(imageUrl[id]);
 					w.setCreatedDate(new SimpleDateFormat("dd MMM yyyy")
 							.format(new Date()));
+					
+					
+					List<Wishlist> s = db.getAllWishListItems();
+					int counter=0;
+					for(int i=0;i<s.size();i++){
+						if(s.get(i).getProductId().equals(productId[id])){
+							counter++;
+						}
+					}
+					if(counter>0){
+						Toast.makeText(context, "Your item is already added to Wish List",
+								Toast.LENGTH_SHORT).show();
+					}else{
+						
+						db.addWishList(w);
+					Toast.makeText(context, "Your item is added to Wish List",
+							Toast.LENGTH_SHORT).show();
+						
+					}
+					
 					db.addWishList(w);
 					Toast.makeText(context, "Your item is added to Wish List",
 							Toast.LENGTH_SHORT).show();
@@ -112,6 +133,7 @@ public class CustomGridViewAdapter extends ArrayAdapter<String> {
 		public TextView txtTitle2;
 		public ImageView imageView;
 		public ImageView imgwishlistbtn;
+		
 	}
 
 }
