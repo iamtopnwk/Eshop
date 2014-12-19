@@ -26,7 +26,7 @@ public class RegisterActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_register);
-		serverURL = "http://192.168.21.216:8989/eshop/rest/registration";
+		serverURL = "http://192.168.8.162:8989/eshop/rest/registration";
 	}
 
 	public void getRegisterPage(View view) {

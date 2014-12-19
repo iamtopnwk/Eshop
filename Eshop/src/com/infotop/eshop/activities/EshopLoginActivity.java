@@ -53,7 +53,7 @@ public class EshopLoginActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_eshop_login);
-		serverURL = "http://192.168.21.216:8989/eshop/rest/login";
+		serverURL = "http://192.168.8.162:8989/eshop/rest/login";
 	}
 
 	public void getHomePage(View view) {

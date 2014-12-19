@@ -115,7 +115,7 @@ private String productPrice;
 		childCategoryName=getIntent().getExtras().getString("childCategoryName");
 		System.out.println("ChildCategoryName:"+childCategoryName);
 		
-		String serverURL = "http://192.168.21.216:8989/eshop/rest/productByuuid/"+productUUid;
+		String serverURL = "http://192.168.8.162:8989/eshop/rest/productByuuid/"+productUUid;
 
 		// Use AsyncTask execute Method To Prevent ANR Problem
 		new LongOperation().execute(serverURL);
