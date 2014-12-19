@@ -39,7 +39,7 @@ public class SpecificationClothActivity extends Activity {
 		s1=getIntent().getExtras().getString("idspec");
 		System.out.println("pabitr spec"+s1);
 		
-		String serverURL=new HttpUrl().getUrl()+":8989/eshop/rest/specificationbyproductid/"+s1;
+		String serverURL=HttpUrl.getUrl()+":8989/eshop/rest/specificationbyproductid/"+s1;
 		new LongOperation().execute(serverURL);
 	}
 	

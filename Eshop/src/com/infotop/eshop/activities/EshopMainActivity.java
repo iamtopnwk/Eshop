@@ -56,7 +56,7 @@ public class EshopMainActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_eshop_main);
 		
-		String serverURL = new HttpUrl().getUrl()+":8983/solr/collection1/select?q=categoryParentId%3A*&rows=1000&wt=json&indent=true";
+		String serverURL = HttpUrl.getUrl()+":8983/solr/collection1/select?q=categoryParentId%3A*&rows=1000&wt=json&indent=true";
 
 		// Use AsyncTask execute Method To Prevent ANR Problem
 		new LongOperation().execute(serverURL);
