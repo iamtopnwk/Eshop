@@ -24,6 +24,7 @@ import com.infotop.eshop.activities.SubListCategoryActivity;
 import com.infotop.eshop.adapters.CustomListHorizontalAdapter;
 import com.infotop.eshop.adapters.HorizontalListView;
 import com.infotop.eshop.httpservice.HttpServiceHandler;
+import com.infotop.eshop.httpservice.HttpUrl;
 
 public class HomeFragment extends Fragment {
 
@@ -75,7 +76,7 @@ public class HomeFragment extends Fragment {
 		iv4.setImageBitmap(b4);
 		iv5.setImageBitmap(b5);
 		
-		String serverURL = "http://192.168.8.162:8983/solr/collection1/select?q=categoryParentId%3A*&rows=1000&wt=json&indent=true";
+		String serverURL = new HttpUrl().getUrl()+":8983/solr/collection1/select?q=categoryParentId%3A*&rows=1000&wt=json&indent=true";
 
 		// Use AsyncTask execute Method To Prevent ANR Problem
 		new LongOperation().execute(serverURL);

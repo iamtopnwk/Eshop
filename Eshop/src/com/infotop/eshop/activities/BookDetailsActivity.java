@@ -21,6 +21,7 @@ import com.infotop.eshop.adapters.ProductDetailsHorizontalAdapter;
 import com.infotop.eshop.adapters.ProductListAdapter;
 import com.infotop.eshop.db.DatabaseHandler;
 import com.infotop.eshop.httpservice.HttpServiceHandler;
+import com.infotop.eshop.httpservice.HttpUrl;
 import com.infotop.eshop.model.Wishlist;
 import com.infotop.eshop.utilities.UserSessionManager;
 import com.nostra13.universalimageloader.cache.memory.impl.LruMemoryCache;
@@ -115,7 +116,7 @@ private String productPrice;
 		childCategoryName=getIntent().getExtras().getString("childCategoryName");
 		System.out.println("ChildCategoryName:"+childCategoryName);
 		
-		String serverURL = "http://192.168.8.162:8989/eshop/rest/productByuuid/"+productUUid;
+		String serverURL = new HttpUrl().getUrl()+":8989/eshop/rest/productByuuid/"+productUUid;
 
 		// Use AsyncTask execute Method To Prevent ANR Problem
 		new LongOperation().execute(serverURL);

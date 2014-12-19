@@ -24,6 +24,7 @@ import com.infotop.eshop.R.layout;
 import com.infotop.eshop.R.menu;
 import com.infotop.eshop.adapters.ProductListAdapter;
 import com.infotop.eshop.httpservice.HttpServiceHandler;
+import com.infotop.eshop.httpservice.HttpUrl;
 import com.infotop.eshop.utilities.UserSessionManager;
 
 import android.app.Activity;
@@ -53,7 +54,7 @@ public class EshopLoginActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_eshop_login);
-		serverURL = "http://192.168.8.162:8989/eshop/rest/login";
+		serverURL = new HttpUrl().getUrl()+":8989/eshop/rest/login";
 	}
 
 	public void getHomePage(View view) {

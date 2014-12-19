@@ -25,6 +25,7 @@ import android.widget.ListView;
 import com.infotop.eshop.R;
 import com.infotop.eshop.adapters.NavDrawerListAdapter;
 import com.infotop.eshop.httpservice.HttpServiceHandler;
+import com.infotop.eshop.httpservice.HttpUrl;
 import com.infotop.eshop.model.NavDrawerItem;
 import com.infotop.eshop.sidefragment.HomeFragment;
 import com.infotop.eshop.utilities.UserSessionManager;
@@ -54,7 +55,8 @@ public class EshopMainActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_eshop_main);
-		String serverURL = "http://192.168.8.162:8983/solr/collection1/select?q=categoryParentId%3A*&rows=1000&wt=json&indent=true";
+		
+		String serverURL = new HttpUrl().getUrl()+":8983/solr/collection1/select?q=categoryParentId%3A*&rows=1000&wt=json&indent=true";
 
 		// Use AsyncTask execute Method To Prevent ANR Problem
 		new LongOperation().execute(serverURL);

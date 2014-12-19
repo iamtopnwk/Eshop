@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 import com.infotop.eshop.R;
 import com.infotop.eshop.httpservice.HttpServiceHandler;
+import com.infotop.eshop.httpservice.HttpUrl;
 
 public class RegisterActivity extends Activity {
 
@@ -26,7 +27,7 @@ public class RegisterActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_register);
-		serverURL = "http://192.168.8.162:8989/eshop/rest/registration";
+		serverURL = new HttpUrl().getUrl()+":8989/eshop/rest/registration";
 	}
 
 	public void getRegisterPage(View view) {

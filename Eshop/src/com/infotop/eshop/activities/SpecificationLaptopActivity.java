@@ -3,9 +3,10 @@ package com.infotop.eshop.activities;
 import org.json.JSONObject;
 
 import com.infotop.eshop.R;
-
 import com.infotop.eshop.httpservice.HttpServiceHandler;
 
+
+import com.infotop.eshop.httpservice.HttpUrl;
 
 import android.app.Activity;
 import android.os.AsyncTask;
@@ -54,7 +55,7 @@ public class SpecificationLaptopActivity extends Activity {
 		s1=getIntent().getExtras().getString("idspec");
 		System.out.println("pabitr spec"+s1);
 		
-		String serverURL="http://192.168.8.162:8989/eshop/rest/specificationbyproductid/"+s1;
+		String serverURL=new HttpUrl().getUrl()+":8989/eshop/rest/specificationbyproductid/"+s1;
 		new LongOperation().execute(serverURL);
 	}
 	

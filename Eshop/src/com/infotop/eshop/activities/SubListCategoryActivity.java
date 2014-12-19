@@ -18,9 +18,11 @@ import android.widget.ExpandableListView;
 import android.widget.ExpandableListView.OnChildClickListener;
 import android.widget.ExpandableListView.OnGroupClickListener;
 import android.widget.TextView;
+
 import com.infotop.eshop.R;
 import com.infotop.eshop.adapters.ExpandableListAdapter;
 import com.infotop.eshop.httpservice.HttpServiceHandler;
+import com.infotop.eshop.httpservice.HttpUrl;
 import com.infotop.eshop.utilities.UserSessionManager;
 
 public class SubListCategoryActivity extends Activity {
@@ -51,7 +53,7 @@ public class SubListCategoryActivity extends Activity {
 		tv.setText("In " + parentCategoryName);
 		// Create Expandable List and set it's properties
 
-		String serverURL = "http://192.168.8.162:8983/solr/collection1/select?q=categoryName%3A*&fq=categoryParentId%3A"
+		String serverURL = new HttpUrl().getUrl()+":8983/solr/collection1/select?q=categoryName%3A*&fq=categoryParentId%3A"
 				+ selectedParentId + "&wt=json&indent=true";
 
 		new LongOperation().execute(serverURL);
@@ -82,7 +84,7 @@ public class SubListCategoryActivity extends Activity {
 					List<String> pcName = new ArrayList<String>();
 					List<String> chidIdUUid = new ArrayList<String>();
 					ccontent = hs
-							.httpContent("http://192.168.8.168:8983/solr/collection1/select?q=categoryName%3A*&fq=categoryParentId%3A"
+							.httpContent(new HttpUrl().getUrl()+":8983/solr/collection1/select?q=categoryName%3A*&fq=categoryParentId%3A"
 									+ parentUuids.get(i)
 									+ "&wt=json&indent=true");
 					JSONObject jsonObj1;
