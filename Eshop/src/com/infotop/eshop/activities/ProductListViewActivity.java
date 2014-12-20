@@ -77,7 +77,7 @@ public class ProductListViewActivity extends Activity {
 		subCatId = getIntent().getExtras().getString("ccId");
 		 chilCategoryName=getIntent().getExtras().getString("childCategoryName");
 		 System.out.println("ChildNameProductList:"+chilCategoryName);
-		String serverURL = HttpUrl.getUrl()+":8983/solr/collection1/select?q=categoryid%3A*&fq=categoryid%3A"
+		String serverURL = new HttpUrl().getUrl()+":8983/solr/collection1/select?q=categoryid%3A*&fq=categoryid%3A"
 				+ subCatId + "&rows=100&wt=json&indent=true";
 
 		// Use AsyncTask execute Method To Prevent ANR Problem
