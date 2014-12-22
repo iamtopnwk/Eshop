@@ -15,7 +15,7 @@ import android.widget.TextView;
 
 import com.infotop.eshop.R;
 import com.infotop.eshop.db.DatabaseHandler;
-import com.infotop.eshop.model.Wishlist;
+import com.infotop.eshop.db.Wishlist;
 import com.infotop.eshop.payment.PaymentMainActivity;
 import com.infotop.eshop.product.BookDetailsActivity;
 import com.nostra13.universalimageloader.cache.memory.impl.LruMemoryCache;

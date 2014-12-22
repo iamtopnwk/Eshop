@@ -1,7 +1,7 @@
-package com.infotop.eshop.activities;
+package com.infotop.eshop.login;
 
 import com.infotop.eshop.R;
-import com.infotop.eshop.login.EshopLoginActivity;
+import com.infotop.eshop.activities.EshopMainActivity;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -9,44 +9,29 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.widget.Button;
 
-public class NoItemFoundActivity extends Activity {
+public class ContactUsActivity extends Activity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_no_item_found);
-		
-		Button logIn =(Button)findViewById(R.id.logIn);
-		logIn.setOnClickListener(new View.OnClickListener() {
+		setContentView(R.layout.activity_contact_us);
+		Button order =(Button)findViewById(R.id.order);
+		order.setOnClickListener(new View.OnClickListener() {
              public void onClick(View v) {
                 
-                 Intent i = new Intent(NoItemFoundActivity.this, EshopLoginActivity.class);
+                 Intent i = new Intent(ContactUsActivity.this, EshopMainActivity.class);
                  startActivity(i);
              }
          });
-		
-		/*Button shop =(Button)findViewById(R.id.shop);
-		shop.setOnClickListener(new OnClickListener() {
-			
-			@Override
-			public void onClick(View v) {
-				Intent i=new Intent(WishListLoginActivity.this,EshopMainActivity.class);
-				startActivity(i);
-			
-				
-			}
-		});*/
-		
      
 	}
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.wish_list_login, menu);
+		getMenuInflater().inflate(R.menu.contact_us, menu);
 		return true;
 	}
 

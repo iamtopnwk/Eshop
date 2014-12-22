@@ -1,12 +1,14 @@
-package com.infotop.eshop.activities;
+package com.infotop.eshop.login;
 
 import com.infotop.eshop.R;
 
 
-import com.infotop.eshop.adapters.ExpandableListAdapter;
+import com.infotop.eshop.category.ExpandableListAdapter;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+
 import android.app.Activity;
 import android.os.Bundle;
 

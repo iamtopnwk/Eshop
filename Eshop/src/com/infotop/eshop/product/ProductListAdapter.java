@@ -1,4 +1,4 @@
-package com.infotop.eshop.adapters;
+package com.infotop.eshop.product;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -17,12 +17,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.infotop.eshop.R;
-import com.infotop.eshop.activities.NoItemFoundActivity;
 import com.infotop.eshop.db.DatabaseHandler;
+import com.infotop.eshop.db.Wishlist;
 import com.infotop.eshop.login.EshopLoginActivity;
-import com.infotop.eshop.model.Wishlist;
-import com.infotop.eshop.product.BookDetailsActivity;
-import com.infotop.eshop.product.ProductListViewActivity;
+import com.infotop.eshop.login.NoItemFoundActivity;
 import com.infotop.eshop.utilities.UserSessionManager;
 import com.infotop.eshop.wishlist.WishListMainActivity;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;

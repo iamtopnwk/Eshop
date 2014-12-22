@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.infotop.eshop.R;
 import com.infotop.eshop.db.DatabaseHandler;
-import com.infotop.eshop.model.Wishlist;
+import com.infotop.eshop.db.Wishlist;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 

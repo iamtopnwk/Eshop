@@ -1,4 +1,4 @@
-package com.infotop.eshop.adapters;
+package com.infotop.eshop.product;
 
 import java.util.List;
 

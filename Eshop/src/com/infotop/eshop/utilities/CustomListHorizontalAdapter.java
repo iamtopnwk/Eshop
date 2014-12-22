@@ -1,4 +1,4 @@
-package com.infotop.eshop.adapters;
+package com.infotop.eshop.utilities;
 
 import com.infotop.eshop.R;
 import com.infotop.eshop.R.id;

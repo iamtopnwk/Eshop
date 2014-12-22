@@ -20,11 +20,11 @@ import android.widget.ImageView;
 import android.widget.ViewFlipper;
 
 import com.infotop.eshop.R;
-import com.infotop.eshop.adapters.CustomListHorizontalAdapter;
-import com.infotop.eshop.adapters.HorizontalListView;
 import com.infotop.eshop.category.SubListCategoryActivity;
 import com.infotop.eshop.httpservice.HttpServiceHandler;
 import com.infotop.eshop.httpservice.HttpUrl;
+import com.infotop.eshop.utilities.CustomListHorizontalAdapter;
+import com.infotop.eshop.utilities.HorizontalListView;
 
 public class HomeFragment extends Fragment {
 

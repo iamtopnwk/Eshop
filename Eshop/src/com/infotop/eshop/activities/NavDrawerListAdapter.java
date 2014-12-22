@@ -1,4 +1,4 @@
-package com.infotop.eshop.adapters;
+package com.infotop.eshop.activities;
 
 
 import java.util.ArrayList;
@@ -6,8 +6,9 @@ import java.util.ArrayList;
 
 
 
+
 import com.infotop.eshop.R;
-import com.infotop.eshop.model.NavDrawerItem;
+import com.infotop.eshop.utilities.NavDrawerItem;
 
 import android.app.Activity;
 import android.content.Context;

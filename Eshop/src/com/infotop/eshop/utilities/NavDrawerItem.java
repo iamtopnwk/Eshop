@@ -1,4 +1,4 @@
-package com.infotop.eshop.model;
+package com.infotop.eshop.utilities;
 
 public class NavDrawerItem {
 	

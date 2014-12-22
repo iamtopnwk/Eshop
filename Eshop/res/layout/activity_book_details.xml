@@ -64,7 +64,7 @@
                 android:layout_below="@+id/logo"
                 android:layout_marginTop="20dp" >
 
-                <com.infotop.eshop.adapters.HorizontalListView
+                <com.infotop.eshop.utilities.HorizontalListView
                     android:id="@+id/detailshorizontal"
                     android:layout_width="285dp"
                     android:layout_height="80dp"
