@@ -16,6 +16,7 @@ import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicHeader;
 import org.apache.http.params.HttpConnectionParams;
 import org.apache.http.protocol.HTTP;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import com.infotop.eshop.R;
@@ -45,6 +46,9 @@ import android.widget.Toast;
 
 public class EshopLoginActivity extends Activity {
 
+	private static final String TAG_EMAILID = "emailId";
+	private static final String TAG_USERNAME = "userName";
+	
 	private EditText userEmail;
 	private EditText password;
 	private String serverURL;
@@ -110,17 +114,24 @@ public class EshopLoginActivity extends Activity {
 		}
 
 		protected void onPostExecute(Void unused) {
-			if(pcontent.equalsIgnoreCase("Success")){
-				UserSessionManager us=new UserSessionManager(EshopLoginActivity.this);
-				us.createUserLoginSession("test", userEmail.getText().toString());/** Here we can store response object as string name and email **/
-				Intent i=new Intent(EshopLoginActivity.this,EshopMainActivity.class);
-				startActivity(i);
-			}
-			else if(pcontent.equalsIgnoreCase("Fail")){
+			JSONObject jsonObj;
+			try {
+				jsonObj=new JSONObject(pcontent);
+				if(jsonObj!=null){
+					dialog.dismiss();
+					UserSessionManager us=new UserSessionManager(EshopLoginActivity.this);
+					us.createUserLoginSession(jsonObj.getString(TAG_USERNAME), jsonObj.getString(TAG_EMAILID));/** Here we can store response object as string name and email **/
+					Intent i=new Intent(EshopLoginActivity.this,EshopMainActivity.class);
+					startActivity(i);
+				}
+				
+			} catch (JSONException e) {
 				Toast.makeText(EshopLoginActivity.this, "Wrong Credentials",
 						Toast.LENGTH_SHORT).show();
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
-			dialog.dismiss();
+			
 
 			// Close progress dialog
 		}

@@ -68,7 +68,7 @@ public class RegisterActivity extends Activity {
 
 		protected void onPreExecute() {
 			// NOTE: You can call UI Element here.
-
+			dialog.setMessage("Please wait..");
 			// Start Progress Dialog (Message)
 			dialog.show();
 
