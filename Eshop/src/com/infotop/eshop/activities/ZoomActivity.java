@@ -1,7 +1,9 @@
 package com.infotop.eshop.activities;
 
 import java.util.ArrayList;
+
 import com.infotop.eshop.R;
+import com.infotop.eshop.product.BookDetailsActivity;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
 import android.annotation.SuppressLint;

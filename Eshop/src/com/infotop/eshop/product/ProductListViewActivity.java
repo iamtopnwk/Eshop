@@ -1,4 +1,4 @@
-package com.infotop.eshop.activities;
+package com.infotop.eshop.product;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,10 +24,17 @@ import android.widget.ImageButton;
 import android.widget.ListView;
 
 import com.infotop.eshop.R;
+import com.infotop.eshop.activities.ContactUsActivity;
+import com.infotop.eshop.activities.EshopMainActivity;
+import com.infotop.eshop.activities.EshopPoliciesActivity;
+import com.infotop.eshop.activities.NoItemFoundActivity;
 import com.infotop.eshop.adapters.ProductListAdapter;
+import com.infotop.eshop.cartlist.CartListMainActivity;
 import com.infotop.eshop.httpservice.HttpServiceHandler;
 import com.infotop.eshop.httpservice.HttpUrl;
+import com.infotop.eshop.login.EshopLoginActivity;
 import com.infotop.eshop.utilities.UserSessionManager;
+import com.infotop.eshop.wishlist.WishListMainActivity;
 import com.nostra13.universalimageloader.cache.disc.impl.UnlimitedDiscCache;
 import com.nostra13.universalimageloader.cache.disc.naming.HashCodeFileNameGenerator;
 import com.nostra13.universalimageloader.cache.memory.impl.LruMemoryCache;

@@ -1,4 +1,4 @@
-package com.infotop.eshop.activities;
+package com.infotop.eshop.login;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -23,9 +23,11 @@ import com.infotop.eshop.R;
 import com.infotop.eshop.R.id;
 import com.infotop.eshop.R.layout;
 import com.infotop.eshop.R.menu;
+import com.infotop.eshop.activities.EshopMainActivity;
 import com.infotop.eshop.adapters.ProductListAdapter;
 import com.infotop.eshop.httpservice.HttpServiceHandler;
 import com.infotop.eshop.httpservice.HttpUrl;
+import com.infotop.eshop.registration.RegisterActivity;
 import com.infotop.eshop.utilities.UserSessionManager;
 
 import android.app.Activity;

@@ -1,4 +1,4 @@
-package com.infotop.eshop.activities;
+package com.infotop.eshop.cartlist;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,9 +14,10 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.infotop.eshop.R;
-import com.infotop.eshop.adapters.CartListAdapter;
 import com.infotop.eshop.db.DatabaseHandler;
 import com.infotop.eshop.model.Wishlist;
+import com.infotop.eshop.payment.PaymentMainActivity;
+import com.infotop.eshop.product.BookDetailsActivity;
 import com.nostra13.universalimageloader.cache.memory.impl.LruMemoryCache;
 import com.nostra13.universalimageloader.cache.memory.impl.WeakMemoryCache;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;

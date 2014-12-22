@@ -15,8 +15,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.infotop.eshop.R;
-import com.infotop.eshop.activities.EshopLoginActivity;
 import com.infotop.eshop.db.DatabaseHandler;
+import com.infotop.eshop.login.EshopLoginActivity;
 import com.infotop.eshop.model.Wishlist;
 import com.infotop.eshop.utilities.UserSessionManager;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;

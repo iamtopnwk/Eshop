@@ -1,42 +1,45 @@
-package com.infotop.eshop.activities;
+package com.infotop.eshop.specification;
 
 import org.json.JSONObject;
 
 import com.infotop.eshop.R;
+
+
 import com.infotop.eshop.httpservice.HttpServiceHandler;
 import com.infotop.eshop.httpservice.HttpUrl;
 
 import android.app.Activity;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
 
-public class SpecificationMouseActivity extends Activity {
-	private static final String BRAND_NAME = "brandname";
-	private static final String MODEL_ID = "modelId";
-	private static final String CAPACITY = "capacity";
-	private static final String WARRENTY = "warrenty";
+public class SpecificationClothActivity extends Activity {
 	
+	
+	private static final String OCCASSION = "occassion";
+	private static final String FABRIC = "fabric";
+	private static final String FABRIC_CARE = "fabricCare";
+	private static final String FIT = "fit";
+	private static final String COLOR = "color";
+	
+
 	String s1;
-	
-	String bName;
-	String mName;
-	String capacity1;
-	String warrenty1;
+	String occassion1;
+	String fabric1;
+	String fabricCare1;
+	String fit1;
+	String color1;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_specification_mouse);
+		setContentView(R.layout.activity_specification_cloth);
 		
-		
-		 
 		s1=getIntent().getExtras().getString("idspec");
 		System.out.println("pabitr spec"+s1);
 		
-		String serverURL= new HttpUrl().getUrl()+":8989/eshop/rest/specificationbyproductid/"+s1;
+		String serverURL=new HttpUrl().getUrl()+":8989/eshop/rest/specificationbyproductid/"+s1;
 		new LongOperation().execute(serverURL);
 	}
 	
@@ -54,10 +57,13 @@ public class SpecificationMouseActivity extends Activity {
 			jsonObj = new JSONObject(scontent);
 			System.out.println("SCONTENT URL:"+jsonObj);
 			
-			 bName=jsonObj.getString(BRAND_NAME);
-			 mName=jsonObj.getString(MODEL_ID);
-			 capacity1=jsonObj.getString(CAPACITY);
-			 warrenty1=jsonObj.getString(WARRENTY);
+			 occassion1=jsonObj.getString(OCCASSION);
+			 fabric1=jsonObj.getString(FABRIC);
+			 
+			 fabricCare1=jsonObj.getString(FABRIC_CARE);
+			fit1=jsonObj.getString(FIT);
+			color1=jsonObj.getString(COLOR);
+			
 			
 			
 			} catch (Exception ex) {
@@ -68,23 +74,30 @@ public class SpecificationMouseActivity extends Activity {
 		protected void onPostExecute(Void unused) {
 			
 			
-			TextView txt1=(TextView)findViewById(R.id.brand);
-			TextView txt2=(TextView)findViewById(R.id.modelMouse);
-			TextView txt3=(TextView)findViewById(R.id.capacityMouse);
-			TextView txt4=(TextView)findViewById(R.id.warrentyMouse);
+			TextView txt1=(TextView)findViewById(R.id.occassion_cloth);
+			TextView txt2=(TextView)findViewById(R.id.fabric_cloth);
+			TextView txt3=(TextView)findViewById(R.id.fabric_care_cloth);
+			TextView txt4=(TextView)findViewById(R.id.Fit_cloth);
+			TextView txt5=(TextView)findViewById(R.id.color_cloth);
 			
-			txt1.setText(bName);
-			txt2.setText(mName);
-			txt3.setText(capacity1);
-			txt4.setText(warrenty1);	
+			
+			
+			
+			txt1.setText(occassion1);
+			txt2.setText(fabric1);
+			txt3.setText(fabricCare1);
+			txt4.setText(fit1);
+			txt5.setText(color1);
+			
+			
 		}
+		
 	}
-	
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.specification_mouse, menu);
+		getMenuInflater().inflate(R.menu.specification_cloth, menu);
 		return true;
 	}
 

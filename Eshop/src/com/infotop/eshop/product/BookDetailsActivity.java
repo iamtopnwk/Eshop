@@ -2,7 +2,7 @@
  * Author: Pabitra
  */
 
-package com.infotop.eshop.activities;
+package com.infotop.eshop.product;
 
 //import com.infotop.eshop.activities.ProductDetailsHorizontalActivity;
 import java.io.File;
@@ -15,6 +15,7 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import com.infotop.eshop.R;
+import com.infotop.eshop.activities.ZoomActivity;
 import com.infotop.eshop.adapters.CustomListHorizontalAdapter;
 import com.infotop.eshop.adapters.HorizontalListView;
 import com.infotop.eshop.adapters.ProductDetailsHorizontalAdapter;
@@ -22,7 +23,11 @@ import com.infotop.eshop.adapters.ProductListAdapter;
 import com.infotop.eshop.db.DatabaseHandler;
 import com.infotop.eshop.httpservice.HttpServiceHandler;
 import com.infotop.eshop.httpservice.HttpUrl;
+import com.infotop.eshop.login.EshopLoginActivity;
 import com.infotop.eshop.model.Wishlist;
+import com.infotop.eshop.payment.PaymentMainActivity;
+import com.infotop.eshop.specification.SpecificationLaptopActivity;
+import com.infotop.eshop.specification.SpecificationMouseActivity;
 import com.infotop.eshop.utilities.UserSessionManager;
 import com.nostra13.universalimageloader.cache.memory.impl.LruMemoryCache;
 import com.nostra13.universalimageloader.cache.memory.impl.WeakMemoryCache;

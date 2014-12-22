@@ -1,6 +1,7 @@
 package com.infotop.eshop.activities;
 
 import com.infotop.eshop.R;
+import com.infotop.eshop.login.EshopLoginActivity;
 
 import android.app.Activity;
 import android.content.Intent;

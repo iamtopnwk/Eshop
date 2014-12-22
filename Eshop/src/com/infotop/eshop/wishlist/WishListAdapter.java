@@ -1,9 +1,8 @@
-package com.infotop.eshop.adapters;
+package com.infotop.eshop.wishlist;
 
 import java.util.List;
 
 import com.infotop.eshop.R;
-import com.infotop.eshop.activities.WishListMainActivity;
 import com.infotop.eshop.db.DatabaseHandler;
 import com.infotop.eshop.model.Wishlist;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;

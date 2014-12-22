@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/loginbg"
-    tools:context="com.infotop.eshop.activities.SubListCategoryActivity" >
+    tools:context="com.infotop.eshop.category.SubListCategoryActivity" >
 
     <ImageView
         android:id="@+id/dummyImage"

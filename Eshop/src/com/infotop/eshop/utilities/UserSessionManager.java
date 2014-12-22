@@ -1,8 +1,10 @@
 package com.infotop.eshop.utilities;
 
 import java.util.HashMap;
-import com.infotop.eshop.activities.EshopLoginActivity;
+
 import com.infotop.eshop.activities.EshopMainActivity;
+import com.infotop.eshop.login.EshopLoginActivity;
+
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;

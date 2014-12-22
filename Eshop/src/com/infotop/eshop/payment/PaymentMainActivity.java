@@ -1,4 +1,4 @@
-package com.infotop.eshop.activities;
+package com.infotop.eshop.payment;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -15,8 +15,9 @@ import android.view.MenuItem;
 import android.view.View;
 
 
-import com.infotop.eshop.R;
 
+import com.infotop.eshop.R;
+import com.infotop.eshop.activities.EshopMainActivity;
 import com.paypal.android.sdk.payments.PayPalConfiguration;
 import com.paypal.android.sdk.payments.PayPalPayment;
 import com.paypal.android.sdk.payments.PayPalService;

@@ -1,4 +1,4 @@
-package com.infotop.eshop.activities;
+package com.infotop.eshop.registration;
 
 import org.json.JSONObject;
 
@@ -16,6 +16,7 @@ import android.widget.Toast;
 import com.infotop.eshop.R;
 import com.infotop.eshop.httpservice.HttpServiceHandler;
 import com.infotop.eshop.httpservice.HttpUrl;
+import com.infotop.eshop.login.EshopLoginActivity;
 
 public class RegisterActivity extends Activity {
 
