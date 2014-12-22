@@ -23,9 +23,9 @@ import com.infotop.eshop.R;
 import com.infotop.eshop.R.id;
 import com.infotop.eshop.R.layout;
 import com.infotop.eshop.R.menu;
-import com.infotop.eshop.activities.EshopMainActivity;
 import com.infotop.eshop.httpservice.HttpServiceHandler;
 import com.infotop.eshop.httpservice.HttpUrl;
+import com.infotop.eshop.main.EshopMainActivity;
 import com.infotop.eshop.product.ProductListAdapter;
 import com.infotop.eshop.utilities.UserSessionManager;
 

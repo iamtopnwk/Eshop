@@ -25,7 +25,7 @@
             android:label="@string/app_name" >
         </activity>
         <activity
-            android:name=".activities.SplashScreen"
+            android:name="com.infotop.eshop.main.SplashScreen"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -34,7 +34,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".activities.EshopMainActivity"
+            android:name="com.infotop.eshop.main.EshopMainActivity"
             android:label="@string/app_name" >
         </activity>
         <activity
@@ -108,13 +108,13 @@
         <activity
             android:name="com.infotop.eshop.category.SubListCategoryActivity"
             android:label="@string/title_activity_sub_list_category"
-            android:parentActivityName=".activities.EshopMainActivity" >
+            android:parentActivityName="com.infotop.eshop.main.EshopMainActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.infotop.eshop.activities.EshopMainActivity" />
         </activity>
         <activity
-            android:name=".activities.ZoomActivity"
+            android:name="com.infotop.eshop.main.ZoomActivity"
             android:label="@string/title_activity_zoom" >
         </activity>
         <activity

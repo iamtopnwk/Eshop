@@ -16,8 +16,9 @@ import android.view.View;
 
 
 
+
 import com.infotop.eshop.R;
-import com.infotop.eshop.activities.EshopMainActivity;
+import com.infotop.eshop.main.EshopMainActivity;
 import com.paypal.android.sdk.payments.PayPalConfiguration;
 import com.paypal.android.sdk.payments.PayPalPayment;
 import com.paypal.android.sdk.payments.PayPalService;

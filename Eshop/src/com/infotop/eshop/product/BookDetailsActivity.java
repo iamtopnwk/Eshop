@@ -15,12 +15,12 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import com.infotop.eshop.R;
-import com.infotop.eshop.activities.ZoomActivity;
 import com.infotop.eshop.db.DatabaseHandler;
 import com.infotop.eshop.db.Wishlist;
 import com.infotop.eshop.httpservice.HttpServiceHandler;
 import com.infotop.eshop.httpservice.HttpUrl;
 import com.infotop.eshop.login.EshopLoginActivity;
+import com.infotop.eshop.main.ZoomActivity;
 import com.infotop.eshop.payment.PaymentMainActivity;
 import com.infotop.eshop.specification.SpecificationLaptopActivity;
 import com.infotop.eshop.specification.SpecificationMouseActivity;
