@@ -111,7 +111,7 @@
             android:parentActivityName="com.infotop.eshop.main.EshopMainActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.infotop.eshop.activities.EshopMainActivity" />
+                android:value="com.infotop.eshop.main.EshopMainActivity" />
         </activity>
         <activity
             android:name="com.infotop.eshop.main.ZoomActivity"
