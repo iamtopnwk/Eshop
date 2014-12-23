@@ -1,15 +1,12 @@
 package com.infotop.eshop.product;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.List;
+import org.json.JSONObject;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
-import android.view.LayoutInflater;
+import android.os.AsyncTask;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
@@ -17,18 +14,17 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.infotop.eshop.R;
-import com.infotop.eshop.db.DatabaseHandler;
-import com.infotop.eshop.db.Wishlist;
+import com.infotop.eshop.httpservice.HttpServiceHandler;
+import com.infotop.eshop.httpservice.HttpUrl;
 import com.infotop.eshop.login.EshopLoginActivity;
-import com.infotop.eshop.login.NoItemFoundActivity;
 import com.infotop.eshop.utilities.UserSessionManager;
-import com.infotop.eshop.wishlist.WishListMainActivity;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
 @SuppressLint({ "ViewHolder", "InflateParams", "SimpleDateFormat" })
 public class ProductListAdapter extends ArrayAdapter<String> {
-
+	private int selectedId;
+	private String emailId;
 	private final Activity context;
 	private final String[] productName;
 	private final String[] desc;
@@ -81,45 +77,90 @@ public class ProductListAdapter extends ArrayAdapter<String> {
 		holder.imgwishlistbtn.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				
+
 				UserSessionManager usMgr = new UserSessionManager(context);
-				 if(usMgr.isUserLoggedIn()){
-				DatabaseHandler db = new DatabaseHandler(context);
-				Wishlist w = new Wishlist();
-				w.setProductId(pdctId[id]);
-				w.setProductName(productName[id]);
-				w.setDescription(desc[id]);
-				w.setPrice(price[id]);
-				w.setImageUrl(imageUrl[id]);
-				w.setCreatedDate(new SimpleDateFormat("dd MMM yyyy")
-						.format(new Date()));
-			
-				List<Wishlist> s = db.getAllWishListItems();
-				int counter=0;
-				for(int i=0;i<s.size();i++){
-					if(s.get(i).getProductId().equals(pdctId[id])){
-						counter++;
-					}
+				if (usMgr.isUserLoggedIn()) {
+					selectedId = id;
+					emailId = usMgr.getUserDetails().get("email");
+					new LongOperation().execute(new HttpUrl().getUrl()
+							+ ":8989/eshop/rest/addwishlist");
+					// DatabaseHandler db = new DatabaseHandler(context);
+					/*
+					 * Wishlist w = new Wishlist(); w.setProductId(pdctId[id]);
+					 * w.setProductName(productName[id]);
+					 * w.setDescription(desc[id]); w.setPrice(price[id]);
+					 * w.setImageUrl(imageUrl[id]);
+					 * w.setEmailId(usMgr.getUserDetails().get("email")); String
+					 * s=new WishlistService().saveWishlistData(w);
+					 */
+
+					/*
+					 * List<Wishlist> s = db.getAllWishListItems(); int
+					 * counter=0; for(int i=0;i<s.size();i++){
+					 * if(s.get(i).getProductId().equals(pdctId[id])){
+					 * counter++; } } if(counter>0){ Toast.makeText(context,
+					 * "Your item is already added to Wish List",
+					 * Toast.LENGTH_SHORT).show(); }else{
+					 * 
+					 * db.addWishList(w); Toast.makeText(context,
+					 * "Your item is added to Wish List",
+					 * Toast.LENGTH_SHORT).show();
+					 * 
+					 * }
+					 */
+
+				} else {
+					Intent intent = new Intent(context,
+							EshopLoginActivity.class);
+					context.startActivity(intent);
+
 				}
-				if(counter>0){
-					Toast.makeText(context, "Your item is already added to Wish List",
-							Toast.LENGTH_SHORT).show();
-				}else{
-					
-					db.addWishList(w);
-				Toast.makeText(context, "Your item is added to Wish List",
-						Toast.LENGTH_SHORT).show();
-					
-				}
-				
-			}else{
-					 Intent intent = new Intent(context,EshopLoginActivity.class);
-						context.startActivity(intent);
-					
-				 }
 			}
 		});
 		return rowView;
+
+	}
+
+	private class LongOperation extends AsyncTask<String, Void, Void> {
+		private String pcontent;
+
+		@Override
+		protected Void doInBackground(String... urls) {
+			String jsonData = "";
+			// Send data
+			try {
+				HttpServiceHandler hs = new HttpServiceHandler();
+				JSONObject json = new JSONObject();
+				json.accumulate("productId", pdctId[selectedId]);
+				json.accumulate("productName", productName[selectedId]);
+				json.accumulate("description", desc[selectedId]);
+				json.accumulate("price", price[selectedId]);
+				json.accumulate("imageUrl", imageUrl[selectedId]);
+				json.accumulate("emailId", emailId);
+				jsonData = json.toString();
+				pcontent = hs.httpPost(urls[0], jsonData);
+				System.out.println("Executed data:" + pcontent);
+			} catch (Exception ex) {
+				System.out.println("Exception e:" + ex.getMessage());
+			}
+			/*****************************************************/
+			return null;
+		}
+
+		protected void onPostExecute(Void unused) {
+			if (pcontent.equalsIgnoreCase("Success")) {
+				Toast.makeText(context, "Your item is added to Wish List",
+						Toast.LENGTH_SHORT).show();
+			}else if(pcontent.equalsIgnoreCase("Exist")){
+				Toast.makeText(context, "Your item is already added to Wish List", Toast.LENGTH_SHORT)
+				.show();
+			}
+				else {
+				Toast.makeText(context, "Connection error", Toast.LENGTH_SHORT)
+						.show();
+			}
+			// Close progress dialog
+		}
 
 	}
 

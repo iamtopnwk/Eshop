@@ -9,6 +9,16 @@ public class Wishlist {
 	private String price;
 	private String categoryId;
 	private String imageUrl;
+	private String emailId;
+	
+	public String getEmailId() {
+		return emailId;
+	}
+
+	public void setEmailId(String emailId) {
+		this.emailId = emailId;
+	}
+
 	public String getCategoryId() {
 		return categoryId;
 	}
