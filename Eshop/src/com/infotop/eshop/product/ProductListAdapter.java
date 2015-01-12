@@ -83,7 +83,7 @@ public class ProductListAdapter extends ArrayAdapter<String> {
 					selectedId = id;
 					emailId = usMgr.getUserDetails().get("email");
 					new LongOperation().execute(new HttpUrl().getUrl()
-							+ ":8989/eshop/rest/addwishlist");
+							+ "/eshop/rest/addwishlist");
 					// DatabaseHandler db = new DatabaseHandler(context);
 					/*
 					 * Wishlist w = new Wishlist(); w.setProductId(pdctId[id]);
