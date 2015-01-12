@@ -60,7 +60,7 @@ public class SubListCategoryActivity extends Activity {
 		tv.setText("In " + parentCategoryName);
 		// Create Expandable List and set it's properties
 
-		String serverURL = new HttpUrl().getUrl()+":8983/solr/collection1/select?q=categoryName%3A*&fq=categoryParentId%3A"
+		String serverURL = new HttpUrl().getSolrUrl()+"/solr/collection1/select?q=categoryName%3A*&fq=categoryParentId%3A"
 				+ selectedParentId + "&wt=json&indent=true";
 
 		new LongOperation().execute(serverURL);
@@ -91,7 +91,7 @@ public class SubListCategoryActivity extends Activity {
 					List<String> pcName = new ArrayList<String>();
 					List<String> chidIdUUid = new ArrayList<String>();
 					ccontent = hs
-							.httpContent(new HttpUrl().getUrl()+":8983/solr/collection1/select?q=categoryName%3A*&fq=categoryParentId%3A"
+							.httpContent(new HttpUrl().getSolrUrl()+"/solr/collection1/select?q=categoryName%3A*&fq=categoryParentId%3A"
 									+ parentUuids.get(i)
 									+ "&wt=json&indent=true");
 					JSONObject jsonObj1;
