@@ -2,6 +2,7 @@ package com.infotop.eshop.wishlist;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 
 import com.infotop.eshop.R;
 import com.infotop.eshop.R.drawable;
@@ -10,6 +11,8 @@ import com.infotop.eshop.R.layout;
 import com.infotop.eshop.R.menu;
 import com.infotop.eshop.db.DatabaseHandler;
 import com.infotop.eshop.db.Wishlist;
+import com.infotop.eshop.httpservice.HttpUrl;
+import com.infotop.eshop.model.Product;
 import com.infotop.eshop.product.BookDetailsActivity;
 import com.infotop.eshop.product.ProductListAdapter;
 import com.nostra13.universalimageloader.cache.memory.impl.WeakMemoryCache;
@@ -20,6 +23,7 @@ import com.nostra13.universalimageloader.core.display.RoundedBitmapDisplayer;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -46,7 +50,21 @@ public class WishListMainActivity extends Activity {
 				.build();
 
 		list = (ListView) findViewById(R.id.wishListViewItems);
-		DatabaseHandler db = new DatabaseHandler(WishListMainActivity.this);
+		Product pdt=new Product();
+		pdt.setServiceUrl(new HttpUrl().getUrl()
+				+ "/eshop/rest/getAllWishlistItemsByAccount");
+		pdt.setEmailId("test@info.com");
+		AsyncTask<Object, Void, String> data=new PostOperation().execute(pdt);
+		try {
+			System.out.println("return data:"+data.get());
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ExecutionException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		/*DatabaseHandler db = new DatabaseHandler(WishListMainActivity.this);
 		List<Wishlist> wishlistItems = db.getAllWishListItems();
 		int size = wishlistItems.size();
 		productId = new String[size];
@@ -62,7 +80,8 @@ public class WishListMainActivity extends Activity {
 			productImage[i] = wishlistItems.get(i).getImageUrl();
 			System.out.println("Wishlist product Image Url's:"
 					+ productImage[i]);
-		}
+		}*/
+		
 		listAdapter = new WishListAdapter(WishListMainActivity.this, productId,
 				productName, productImage, productDescription, productPrice, op);
 		list.setAdapter(listAdapter);
@@ -86,6 +105,7 @@ public class WishListMainActivity extends Activity {
 				i.putExtra("productId", productId[position]);
 				//i.putStringArrayListExtra("productData", productData);
 				startActivity(i);
+				
 			}
 		});
 		System.gc();
