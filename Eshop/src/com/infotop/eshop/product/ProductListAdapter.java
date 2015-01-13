@@ -1,5 +1,7 @@
 package com.infotop.eshop.product;
 
+import java.util.concurrent.ExecutionException;
+
 import org.json.JSONObject;
 
 import android.annotation.SuppressLint;
@@ -17,7 +19,9 @@ import com.infotop.eshop.R;
 import com.infotop.eshop.httpservice.HttpServiceHandler;
 import com.infotop.eshop.httpservice.HttpUrl;
 import com.infotop.eshop.login.EshopLoginActivity;
+import com.infotop.eshop.model.Product;
 import com.infotop.eshop.utilities.UserSessionManager;
+import com.infotop.eshop.wishlist.PostOperation;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
@@ -82,8 +86,40 @@ public class ProductListAdapter extends ArrayAdapter<String> {
 				if (usMgr.isUserLoggedIn()) {
 					selectedId = id;
 					emailId = usMgr.getUserDetails().get("email");
-					new LongOperation().execute(new HttpUrl().getUrl()
+					/*new LongOperation().execute(new HttpUrl().getUrl()
+							+ "/eshop/rest/addwishlist");*/
+					Product p=new Product();
+					p.setServiceUrl(new HttpUrl().getUrl()
 							+ "/eshop/rest/addwishlist");
+					p.setProductId(pdctId[id]);
+					p.setProductName(productName[id]);
+					p.setDescription(desc[id]);
+					p.setImageUrl(imageUrl[id]);
+					p.setPrice(price[id]);
+					p.setEmailId(emailId);
+					AsyncTask<Object, Void, String> respData=new PostOperation().execute(p);
+					String pcontent;
+					try {
+						pcontent = respData.get();
+						if (pcontent.equalsIgnoreCase("Success")) {
+							Toast.makeText(context, "Your item is added to Wish List",
+									Toast.LENGTH_SHORT).show();
+						}else if(pcontent.equalsIgnoreCase("Exist")){
+							Toast.makeText(context, "Your item is already added to Wish List", Toast.LENGTH_SHORT)
+							.show();
+						}
+							else {
+							Toast.makeText(context, "Connection error", Toast.LENGTH_SHORT)
+									.show();
+						}
+					} catch (InterruptedException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (ExecutionException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					
 					// DatabaseHandler db = new DatabaseHandler(context);
 					/*
 					 * Wishlist w = new Wishlist(); w.setProductId(pdctId[id]);
@@ -121,7 +157,7 @@ public class ProductListAdapter extends ArrayAdapter<String> {
 
 	}
 
-	private class LongOperation extends AsyncTask<String, Void, Void> {
+	/*private class LongOperation extends AsyncTask<String, Void, Void> {
 		private String pcontent;
 
 		@Override
@@ -143,7 +179,7 @@ public class ProductListAdapter extends ArrayAdapter<String> {
 			} catch (Exception ex) {
 				System.out.println("Exception e:" + ex.getMessage());
 			}
-			/*****************************************************/
+			*//*****************************************************//*
 			return null;
 		}
 
@@ -162,7 +198,7 @@ public class ProductListAdapter extends ArrayAdapter<String> {
 			// Close progress dialog
 		}
 
-	}
+	}*/
 
 	private class ViewHolder {
 		public TextView txtTitle;
