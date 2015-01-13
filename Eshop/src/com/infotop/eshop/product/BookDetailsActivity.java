@@ -10,6 +10,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -21,12 +22,16 @@ import com.infotop.eshop.httpservice.HttpServiceHandler;
 import com.infotop.eshop.httpservice.HttpUrl;
 import com.infotop.eshop.login.EshopLoginActivity;
 import com.infotop.eshop.main.ZoomActivity;
+import com.infotop.eshop.model.Product;
 import com.infotop.eshop.payment.PaymentMainActivity;
+
+
 import com.infotop.eshop.specification.SpecificationLaptopActivity;
 import com.infotop.eshop.specification.SpecificationMouseActivity;
 import com.infotop.eshop.utilities.CustomListHorizontalAdapter;
 import com.infotop.eshop.utilities.HorizontalListView;
 import com.infotop.eshop.utilities.UserSessionManager;
+import com.infotop.eshop.wishlist.PostOperation;
 import com.nostra13.universalimageloader.cache.memory.impl.LruMemoryCache;
 import com.nostra13.universalimageloader.cache.memory.impl.WeakMemoryCache;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
@@ -38,6 +43,7 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.Dialog;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -90,6 +96,7 @@ private String productId;
 private String productName;
 private String productDescription;
 private String productPrice;
+private String emailId;
 
 	UserSessionManager usMgr;
 	 ArrayList<String> imageUrls=new ArrayList<String>();
@@ -496,43 +503,48 @@ private String productPrice;
 		case R.id.ab_addToCart:
 			usMgr = new UserSessionManager(this);
 			 if(!usMgr.isUserLoggedIn()){
-				 
 				 Intent lgn1 = new Intent(this, EshopLoginActivity.class);
 				 startActivity(lgn1);
 			 } else{
-				 DatabaseHandler db1 = new DatabaseHandler(BookDetailsActivity.this);
-					Wishlist w1 = new Wishlist();
-					w1.setProductId(productId);
-					w1.setProductName(productName);
-					w1.setDescription(productDescription);
-					w1.setPrice(productPrice);
-					w1.setImageUrl(imageUrls.get(0));
-					w1.setCreatedDate(new SimpleDateFormat("dd MMM yyyy")
-							.format(new Date()));
-					
-					List<Wishlist> s = db1.getAllCartListItems();
-					int counter=0;
-					for(int i=0;i<s.size();i++){
-						if(s.get(i).getProductId().equals(productId)){
-							counter++;
+				 Product pdt=new Product();
+				       
+				     pdt.setServiceUrl(new HttpUrl().getUrl()
+				                    + "/eshop/rest/addcartlist");
+				     pdt.setEmailId(usMgr.getUserDetails().get("email"));
+				     pdt.setProductId(productId);
+				     pdt.setProductName(productName);
+				     pdt.setPrice(productPrice);
+				     pdt.setDescription(productDescription);
+				     pdt.setImageUrl(imageUrls.get(0));
+				     
+				     AsyncTask<Object, Void, String> respDataCartItem=new PostOperation().execute(pdt);
+						String pcontent;
+						try {
+							pcontent = respDataCartItem.get();
+							if (pcontent.equalsIgnoreCase("Success")) {
+								Toast.makeText(BookDetailsActivity.this, "Your item is added to Cart List",
+										Toast.LENGTH_SHORT).show();
+							}else if(pcontent.equalsIgnoreCase("Exist")){
+								Toast.makeText(BookDetailsActivity.this, "Your item is already added to Cart List and and buy other one.", Toast.LENGTH_SHORT)
+								.show();
+							}
+								else {
+								Toast.makeText(BookDetailsActivity.this, "Connection error", Toast.LENGTH_SHORT)
+										.show();
+							}
+						} catch (InterruptedException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						} catch (ExecutionException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
 						}
-					}
-					if(counter>0){
-						Toast.makeText(BookDetailsActivity.this, "Your item is already Added to Cart",
-								Toast.LENGTH_SHORT).show();
-					}else{
-						
-						db1.addCartList(w1);;
-					Toast.makeText(BookDetailsActivity.this, "Your item is Added to Cart",
-							Toast.LENGTH_SHORT).show();
 						
 					}
 					
 					
-					/*db1.addCartList(w1);
-					Toast.makeText(BookDetailsActivity.this,
-							"Your Item is Added to Cart", Toast.LENGTH_SHORT).show();*/
-			 }
+					
+	
 			
 			return true;
 		case R.id.ab_purChaseItem:
@@ -555,5 +567,12 @@ private String productPrice;
 		default:
 			return super.onOptionsItemSelected(item);
 		}
+
 	}
+	
+	
+		
+	
 }
+
+
