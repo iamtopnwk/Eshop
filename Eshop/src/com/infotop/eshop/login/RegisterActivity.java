@@ -1,5 +1,7 @@
 package com.infotop.eshop.login;
 
+import java.util.concurrent.ExecutionException;
+
 import org.json.JSONObject;
 
 import android.app.Activity;
@@ -16,6 +18,7 @@ import android.widget.Toast;
 import com.infotop.eshop.R;
 import com.infotop.eshop.httpservice.HttpServiceHandler;
 import com.infotop.eshop.httpservice.HttpUrl;
+import com.infotop.eshop.model.Account;
 
 public class RegisterActivity extends Activity {
 
@@ -27,7 +30,7 @@ public class RegisterActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_register);
-		serverURL = new HttpUrl().getUrl()+"/eshop/rest/registration";
+		//serverURL = new HttpUrl().getUrl()+"/eshop/rest/registration";
 	}
 
 	public void getRegisterPage(View view) {
@@ -54,68 +57,46 @@ public class RegisterActivity extends Activity {
 			userMobile.setError("Mobile Number is required!");
 		} else if (userPwd.getText().toString()
 				.equals(userCPwd.getText().toString())) {
-			new LongOperation().execute(serverURL);
+			Account account = new Account();
+			account.setEmailId(userEmail.getText().toString());
+			account.setPassword(userPwd.getText().toString());
+			account.setBillingAddress(userBAdd.getText().toString());
+			account.setMobileNumber(userMobile.getText().toString());
+			account.setShippingAddress(userSAdd.getText().toString());
+			account.setUserName(userName.getText().toString());
+			account.setServiceUrl(new HttpUrl().getUrl()+"/eshop/rest/registration");
+			AsyncTask<Object, Void, String> respData = new AccountPostOperation()
+					.execute(account);
+			String pcontent;
+			try {
+				pcontent=respData.get();
+				Toast.makeText(getApplicationContext(),
+						"Your Registration has been done successfully",
+						Toast.LENGTH_SHORT).show();
+				if (pcontent.equalsIgnoreCase("Success")) {
+					Intent intent = new Intent(RegisterActivity.this,
+							EshopLoginActivity.class);
+					startActivity(intent);
+				} else {
+					Toast.makeText(getApplicationContext(), "Connection error",
+							Toast.LENGTH_SHORT).show();
+				}
+			} catch (InterruptedException e) {
+				Toast.makeText(getApplicationContext(), "Connection error",
+						Toast.LENGTH_SHORT).show();
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (ExecutionException e) {
+				Toast.makeText(getApplicationContext(), "Connection error",
+						Toast.LENGTH_SHORT).show();
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		
 		} else {
 			Toast.makeText(getApplicationContext(),
 					"Both paswords should be same", Toast.LENGTH_SHORT).show();
 		}
-	}
-
-	private class LongOperation extends AsyncTask<String, Void, Void> {
-		private String pcontent;
-		private ProgressDialog dialog = new ProgressDialog(
-				RegisterActivity.this);
-
-		protected void onPreExecute() {
-			// NOTE: You can call UI Element here.
-			dialog.setMessage("Please wait..");
-			// Start Progress Dialog (Message)
-			dialog.show();
-
-		}
-
-		@Override
-		protected Void doInBackground(String... urls) {
-			String jsonData = "";
-			// Send data
-			try {
-				HttpServiceHandler hs = new HttpServiceHandler();
-				JSONObject json = new JSONObject();
-				json.accumulate("userName", userName.getText().toString());
-				json.accumulate("emailId", userEmail.getText().toString());
-				json.accumulate("password", userPwd.getText().toString());
-				json.accumulate("shippingAddress", userSAdd.getText()
-						.toString());
-				json.accumulate("billingAddress", userBAdd.getText().toString());
-				json.accumulate("mobileNumber", userMobile.getText().toString());
-				jsonData = json.toString();
-				pcontent = hs.httpPost(urls[0], jsonData);
-				System.out.println("Executed data:" + pcontent);
-				dialog.dismiss();
-				// textView.setText("wrong credentials");
-
-			} catch (Exception ex) {
-				System.out.println("Exception e:" + ex.getMessage());
-			}
-			/*****************************************************/
-			return null;
-		}
-
-		protected void onPostExecute(Void unused) {
-			Toast.makeText(getApplicationContext(),
-					"Your Registration has been done successfully",
-					Toast.LENGTH_SHORT).show();
-			if (pcontent.equalsIgnoreCase("Success")) {
-				Intent intent = new Intent(RegisterActivity.this,
-						EshopLoginActivity.class);
-				startActivity(intent);
-			} else {
-				Toast.makeText(getApplicationContext(), "Connection error",
-						Toast.LENGTH_SHORT).show();
-			}
-			// Close progress dialog
-		}
-
 	}
 
 	@Override

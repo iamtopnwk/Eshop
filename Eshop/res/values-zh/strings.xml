@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Eshop</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_search">search</string>
+    <string name="action_notification">Notification</string>
+    <string name="action_kart">Cart List</string>
+    <string name="action_overflow">Overflow</string>
+    <string name="action_settings">Settings</string>
+    <string name="drawer_open">Slider Menu Opened</string>
+    <string name="drawer_close">Slider Menu Closed</string>
+    <string name="search_hint">Search here</string>
+
+    <!-- Home -->
+    <string name="str_img1">Image1</string>
+    <string name="str_img2">Image2</string>
+    <string name="str_img3">Image3</string>
+    <string name="str_img4">Image4</string>
+    <string name="str_img5">Image5</string>
+
+    <!-- Login -->
+    <string name="ULogin">Login</string>
+    <string name="UserName">UserEmail</string>
+    <string name="Password">Password</string>
+    <string name="Uforgot">Forgot Password?</string>
+    <string name="Usignin">Sign in</string>
+
+    <!-- Sign up -->
+    <string name="RuserName">Name</string>
+    <string name="REmail">Email</string>
+    <string name="RPwd">Password</string>
+    <string name="RCPwd">Confirm Password</string>
+    <string name="RBAdd">Billing Address</string>
+    <string name="RSAdd">Shipping Address</string>
+    <string name="RMobile">Mobile Number</string>
+    <string name="Rsubmit">Submit</string>
+    <string name="Rsignup">Registration</string>
+
+    <!-- Nav Drawer Menu Items -->
+    <string-array name="nav_drawer_items">
+        <item>Home</item>
+        <item>Books</item>
+        <item>Laptops</item>
+        <item>Cloths</item>
+    </string-array>
+
+    <!-- Nav Drawer List Item Icons -->
+    <!-- Keep them in order as the titles are in -->
+    <!--
+    <array name="nav_drawer_icons">
+        <item>@drawable/ic_home</item>
+        <item>@drawable/ic_people</item>
+        <item>@drawable/ic_photos</item>
+        <item>@drawable/ic_whats_hot</item>
+    </array>
+    -->
+
+
+    <!-- Content Description -->
+    <string name="desc_list_item_icon">Item Icon</string>
+    <string name="title_activity_eshop_login">Login</string>
+    <string name="title_activity_register">Sign Up</string>
+
+    <!-- Book Details page -->
+    <string name="likes">Likes:</string>
+    <string name="comments">Comments:</string>
+    <string name="onestar">1 star:</string>
+    <string name="twostar">2 star:</string>
+    <string name="threestar">3 star:</string>
+    <string name="fourstar">4 star:</string>
+    <string name="fivestar">5 star:</string>
+    <string name="ratingsreviews">USER RATINGS AND REVIEWS</string>
+    <string name="stprice">Price: $</string>
+    <string name="stauthorname">Author Name</string>
+    <string name="stmediumtext">Medium Text</string>
+    <string name="specification">Specification   ></string>
+
+    <!-- Action bar menu icons -->
+    <string name="ac_cartList">CartList</string>
+    <string name="ac_Login">Login</string>
+    <string name="ac_wishlist">Wishlist</string>
+    <string name="ac_TrackOrder">Track Order</string>
+    <string name="ac_RateApp">Rate App</string>
+    <string name="ac_ShareApp">Share App</string>
+    <string name="ac_Policies">Policies</string>
+    <string name="ac_ContactUs">ContactUs</string>
+    <string name="ac_LogOut">LogOut</string>
+
+    <!-- Payment confirm page -->
+    <string name="pay_Confirm">Confirmation Status</string>
+    <string name="pay_ConfirmMsg">Confirm Your puchase</string>
+    <string name="pay_ConfirmNMsg">Cancel</string>
+
+    <!-- List Items -->
+    <string name="hd_wishlist">Wish List Items</string>
+    <string name="shpbydepart">Shop By Department</string>
+    <string name="offerZone">Offers Zone</string>
+    <string name="allbksCategry">All Books Categories</string>
+
+    <!-- List View -->
+    <string name="title_activity_product_details">Book Details</string>
+    <string name="wish_list">Wish List</string>
+    <string name="add_to_cart">Add to Cart</string>
+    <string name="buy_item">Buy</string>
+    <string name="title_activity_product_list_view">Products List</string>
+    <string name="title_activity_product_grid_view">Products List</string>
+    <string name="title_activity_cart_list_main">CartList Items</string>
+    <string name="title_activity_wish_list_main">WishList Items</string>
+    <string name="title_activity_payment_main">Make Payment</string>
+    <string name="title_activity_pay_confirm">Confirm Payment</string>
+    <string name="title_activity_contact_us">Contact Us</string>
+    <string name="title_activity_eshop_policies">Policies</string>
+    <string name="title_activity_no_item_found">Sorry</string>
+    <string name="Uslogin">Login Here</string>
+    <string name="title_activity_sub_list_category">SubListCategoryActivity</string>
+    <string name="title_activity_zoom">Zoom</string>
+    <string name="title_activity_splash_screen">SplashScreen</string>
+
+    <!-- Cart List Items -->
+    <string name="grand_total">Grand Total=</string>
+    <string name="order_summary">ORDER SUMMARY</string>
+    <string name="title_activity_product_specification">ProductSpecificationActivity</string>
+    <string name="title_activity_specification_cloth">SpecificationClothActivity</string>
+    <string name="title_activity_specification_mobile">SpecificationMobileActivity</string>
+    <string name="title_activity_specification_pendrive">SpecificationPendriveActivity</string>
+    <string name="title_activity_specification_mouse">SpecificationMouseActivity</string>
+
+</resources>

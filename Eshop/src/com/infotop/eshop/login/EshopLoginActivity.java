@@ -6,6 +6,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -26,8 +27,10 @@ import com.infotop.eshop.R.menu;
 import com.infotop.eshop.httpservice.HttpServiceHandler;
 import com.infotop.eshop.httpservice.HttpUrl;
 import com.infotop.eshop.main.EshopMainActivity;
+import com.infotop.eshop.model.Account;
 import com.infotop.eshop.product.ProductListAdapter;
 import com.infotop.eshop.utilities.UserSessionManager;
+import com.infotop.eshop.wishlist.PostOperation;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
@@ -49,7 +52,7 @@ public class EshopLoginActivity extends Activity {
 
 	private static final String TAG_EMAILID = "emailId";
 	private static final String TAG_USERNAME = "userName";
-	
+
 	private EditText userEmail;
 	private EditText password;
 	private String serverURL;
@@ -59,7 +62,7 @@ public class EshopLoginActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_eshop_login);
-		serverURL = new HttpUrl().getUrl()+"/eshop/rest/login";
+		// serverURL = new HttpUrl().getUrl()+"/eshop/rest/login";
 	}
 
 	public void getHomePage(View view) {
@@ -72,73 +75,51 @@ public class EshopLoginActivity extends Activity {
 		} else {
 			// Intent intent = new Intent(this, EshopMainActivity.class);
 			// startActivity(intent);
-			new LongOperation().execute(serverURL);
-		}
-
-	}
-
-	private class LongOperation extends AsyncTask<String, Void, Void> {
-		private String pcontent;
-		private ProgressDialog dialog = new ProgressDialog(
-				EshopLoginActivity.this);
-
-		protected void onPreExecute() {
-			// NOTE: You can call UI Element here.
-
-			// Start Progress Dialog (Message)
-
-			dialog.setMessage("Logging..");
-			dialog.show();
-
-		}
-
-		@Override
-		protected Void doInBackground(String... urls) {
-			String jsonData = "";
-			// Send data
-			try {
-				HttpServiceHandler hs = new HttpServiceHandler();
-				JSONObject json = new JSONObject();
-				json.accumulate("emailId", userEmail.getText().toString());
-				json.accumulate("password", password.getText().toString());
-				jsonData = json.toString();
-				pcontent = hs.httpPost(urls[0],jsonData);
-				System.out.println("Executed data:" + pcontent);
-				dialog.dismiss();
-				// textView.setText("wrong credentials");
-
-			} catch (Exception ex) {
-				System.out.println("Exception e:" + ex.getMessage());
-			}
-			/*****************************************************/
-			return null;
-		}
-
-		protected void onPostExecute(Void unused) {
+			Account account = new Account();
+			account.setEmailId(userEmail.getText().toString());
+			account.setPassword(password.getText().toString());
+			account.setServiceUrl(new HttpUrl().getUrl() + "/eshop/rest/login");
+			AsyncTask<Object, Void, String> respData = new AccountPostOperation()
+					.execute(account);
+			String pcontent;
 			JSONObject jsonObj;
 			try {
-				jsonObj=new JSONObject(pcontent);
-				if(jsonObj!=null){
-					dialog.dismiss();
-					UserSessionManager us=new UserSessionManager(EshopLoginActivity.this);
-					us.createUserLoginSession(jsonObj.getString(TAG_USERNAME), jsonObj.getString(TAG_EMAILID));/** Here we can store response object as string name and email **/
-					Intent i=new Intent(EshopLoginActivity.this,EshopMainActivity.class);
+				pcontent = respData.get();
+				jsonObj = new JSONObject(pcontent);
+				if (jsonObj != null) {
+					UserSessionManager us = new UserSessionManager(
+							EshopLoginActivity.this);
+					us.createUserLoginSession(jsonObj.getString(TAG_USERNAME),
+							jsonObj.getString(TAG_EMAILID));
+					/**
+					 * Here we can store response object as string name and
+					 * email
+					 **/
+					Intent i = new Intent(EshopLoginActivity.this,
+							EshopMainActivity.class);
 					startActivity(i);
 				}
-				
+			} catch (InterruptedException e) {
+				Toast.makeText(EshopLoginActivity.this, "Connection Error",
+						Toast.LENGTH_SHORT).show();
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (ExecutionException e) {
+				Toast.makeText(EshopLoginActivity.this, "Connection Error",
+						Toast.LENGTH_SHORT).show();
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			} catch (JSONException e) {
 				Toast.makeText(EshopLoginActivity.this, "Wrong Credentials",
 						Toast.LENGTH_SHORT).show();
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			
-
-			// Close progress dialog
 		}
 
 	}
 
+	
 	public void signUp(View view) {
 		Intent intent = new Intent(this, RegisterActivity.class);
 		startActivity(intent);
