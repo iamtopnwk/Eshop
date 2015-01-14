@@ -37,13 +37,14 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 
 public class WishListMainActivity extends Activity {
-	
+	private static final String TAG_WISHLIST_ID="wishlistId";
 	private static final String TAG_PID = "productId";
 	private static final String TAG_PNAME = "productName";
 	private static final String TAG_PDESC = "description";
 	private static final String TAG_PPRICE = "price";
     private static final String TAG_IMGURL = "imageUrl";
-	
+    
+    String[] wishlistId; 
 	String[] productId; 
 	String[] productName;
 	String[] productDescription, productPrice,
@@ -75,7 +76,8 @@ public class WishListMainActivity extends Activity {
 			
 			JSONArray jsonArray;
 			jsonArray = new JSONArray(responseData);
-		
+			
+			wishlistId=new String[jsonArray.length()];
 			productId=new String[jsonArray.length()];
 			productName=new String[jsonArray.length()];
 			productDescription=new String[jsonArray.length()];
@@ -86,20 +88,22 @@ public class WishListMainActivity extends Activity {
 			for (int i = 0; i < size; i++) {
 				JSONObject pc = jsonArray.getJSONObject(i);
 				
+				wishlistId[i] = pc.getString(TAG_WISHLIST_ID);
 				productId[i] = pc.getString(TAG_PID);
 				productName[i] = pc.getString(TAG_PNAME);
 				productDescription[i] = pc.getString(TAG_PDESC);
 				productPrice[i] = pc.getString(TAG_PPRICE);
 				productImage[i] = pc.getString(TAG_IMGURL);
-				
+			
 				System.out.println("produuuuuuuuuuuuct nnaame"+productId[0]);
 				System.out.println("produuuuuuuuuuuuct nnaame"+productName[0]);
 				System.out.println("produuuuuuuuuuuuct nnaame"+	productImage[i]);
-			
-				listAdapter = new WishListAdapter(WishListMainActivity.this, productId,
+			}
+				listAdapter = new WishListAdapter(WishListMainActivity.this,wishlistId, productId,
 						productName, productImage, productDescription, productPrice, op);
 				list.setAdapter(listAdapter);
 			
+				
 				list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 					@Override
 					public void onItemClick(AdapterView<?> parent, View view,
@@ -122,7 +126,7 @@ public class WishListMainActivity extends Activity {
 						
 					}
 				});
-		}
+		
 			
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block

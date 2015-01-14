@@ -21,6 +21,7 @@ public class PostOperation extends AsyncTask<Object, Void, String>{
 		try {
 			HttpServiceHandler hs = new HttpServiceHandler();
 			JSONObject json = new JSONObject();
+			
 			json.accumulate("emailId", product.getEmailId());
 			json.accumulate("productId", product.getProductId());
 			json.accumulate("productName",product.getProductName());

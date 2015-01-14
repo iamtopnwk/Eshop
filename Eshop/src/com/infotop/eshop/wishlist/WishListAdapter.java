@@ -1,10 +1,14 @@
 package com.infotop.eshop.wishlist;
 
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 
 import com.infotop.eshop.R;
 import com.infotop.eshop.db.DatabaseHandler;
 import com.infotop.eshop.db.Wishlist;
+import com.infotop.eshop.httpservice.HttpUrl;
+import com.infotop.eshop.model.Product;
+import com.infotop.eshop.utilities.UserSessionManager;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
@@ -13,6 +17,7 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -32,10 +37,11 @@ public class WishListAdapter extends ArrayAdapter<String> {
 	private final String[] desc;
 	private final String[] price;
 	private final String[] productId;
+	private final String[] wishlistId;
 	private final DisplayImageOptions op;
 	protected ImageLoader loader = ImageLoader.getInstance();
-
-	public WishListAdapter(Activity context, String[] productId,
+	private String emailId;
+	public WishListAdapter(Activity context, String[] wishlistId,String[] productId,
 			String[] productName, String[] imageUrl, String[] desc,
 			String[] price, DisplayImageOptions op) {
 
@@ -46,6 +52,7 @@ public class WishListAdapter extends ArrayAdapter<String> {
 		this.desc = desc;
 		this.price = price;
 		this.productId = productId;
+		this.wishlistId = wishlistId;
 		this.op = op;
 	}
 
@@ -88,9 +95,44 @@ public class WishListAdapter extends ArrayAdapter<String> {
 						new DialogInterface.OnClickListener() {
 							public void onClick(DialogInterface dialog,
 									int which) {
-								DatabaseHandler db = new DatabaseHandler(
-										context);
-								db.deleteWishListItem(productId[id]);
+								
+								//UserSessionManager usMgr = new UserSessionManager(context);
+								//if (usMgr.isUserLoggedIn()) {
+									
+									//emailId = usMgr.getUserDetails().get("email");
+								
+									Product p=new Product();
+									p.setServiceUrl(new HttpUrl().getUrl()
+											+ "/eshop/rest/deletewishlist");
+									
+									p.setProductId(wishlistId[id]);
+									System.out.println("lllllllllllll"+wishlistId[id]);
+									AsyncTask<Object, Void, String> respData=new PostOperation().execute(p);
+									String pcontent;
+									try {
+										pcontent = respData.get();
+										if (pcontent.equalsIgnoreCase("Success")) {
+											Toast.makeText(context, "Your item is deleted",
+													Toast.LENGTH_SHORT).show();
+										
+										}
+											else {
+											Toast.makeText(context, "Connection error", Toast.LENGTH_SHORT)
+													.show();
+										}
+									} catch (InterruptedException e) {
+										// TODO Auto-generated catch block
+										e.printStackTrace();
+									} catch (ExecutionException e) {
+										// TODO Auto-generated catch block
+										e.printStackTrace();
+									}
+									
+								//}
+								
+								//DatabaseHandler db = new DatabaseHandler(
+										//context);
+								//db.deleteWishListItem(productId[id]);
 								// myadapter.notifyDataSetChanged();
 								((Activity) context).finish();
 								Intent intent = new Intent(context,
