@@ -2,9 +2,16 @@ package com.infotop.eshop.cartlist;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import android.R.integer;
 import android.app.Activity;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -16,8 +23,12 @@ import android.widget.TextView;
 import com.infotop.eshop.R;
 import com.infotop.eshop.db.DatabaseHandler;
 import com.infotop.eshop.db.Wishlist;
+import com.infotop.eshop.httpservice.HttpUrl;
+import com.infotop.eshop.model.Product;
 import com.infotop.eshop.payment.PaymentMainActivity;
 import com.infotop.eshop.product.BookDetailsActivity;
+import com.infotop.eshop.utilities.UserSessionManager;
+import com.infotop.eshop.wishlist.PostOperation;
 import com.nostra13.universalimageloader.cache.memory.impl.LruMemoryCache;
 import com.nostra13.universalimageloader.cache.memory.impl.WeakMemoryCache;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
@@ -26,19 +37,25 @@ import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.nostra13.universalimageloader.core.display.RoundedBitmapDisplayer;
 
 public class CartListMainActivity extends Activity {
+	private static final String TAG_CARTLIST_ID="cartlistId";
+	private static final String TAG_PID = "productId";
+	private static final String TAG_PNAME = "productName";
+	private static final String TAG_PDESC = "description";
+	private static final String TAG_PPRICE = "price";
+    private static final String TAG_IMGURL = "imageUrl";
 	CartListAdapter listAdapter;
 	String[] productId, productName, productDescription, productPrice,
-			productImage;
+			productImage,cartListId;
 	String grandTotal;
 	int position;
 	Double totalAmount;
-
+	DisplayImageOptions op;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_cart_list_main);
 		ListView list;
-		DisplayImageOptions op;
+		
 		// ArrayList<String> s;
 		TextView grand_Total;
 		// CheckBox checkBox = (CheckBox) findViewById(R.id.checkBox1);
@@ -51,28 +68,48 @@ public class CartListMainActivity extends Activity {
 				.build();
 			
 		list = (ListView) findViewById(R.id.cartListViewItems);
-
-		DatabaseHandler db = new DatabaseHandler(CartListMainActivity.this);
-		List<Wishlist> cartItems = db.getAllCartListItems();
-		int size = cartItems.size();
-		productId = new String[size];
-		productName = new String[size];
-		productDescription = new String[size];
-		productPrice = new String[size];
-		productImage = new String[size];
-		totalAmount = 0D;
-		for (int i = 0; i < size; i++) {
-			productId[i] = cartItems.get(i).getProductId();
-			productName[i] = cartItems.get(i).getProductName();
-			productDescription[i] = cartItems.get(i).getDescription();
-			productPrice[i] = cartItems.get(i).getPrice();
-			totalAmount = totalAmount
-					+ Double.valueOf(cartItems.get(i).getPrice());
-			productImage[i] = cartItems.get(i).getImageUrl();
-			System.out.println("Cart product Image Url's:" + productImage[i]);
-		}
-
-		listAdapter = new CartListAdapter(CartListMainActivity.this, productId,
+		UserSessionManager usMgr=new UserSessionManager(this);
+		Product pdt=new Product();
+		pdt.setServiceUrl(new HttpUrl().getUrl()
+				+ "/eshop/rest/getAllCartlistItemsByAccount");
+		pdt.setEmailId(usMgr.getUserDetails().get("email"));
+		
+		AsyncTask<Object, Void, String> cartListData=new PostOperation().execute(pdt);
+		String pcontent;
+		
+		try {
+			pcontent=cartListData.get();
+			System.out.println("return data:"+pcontent);
+			JSONArray jsonArray=new JSONArray(pcontent);
+			
+			productId=new String[jsonArray.length()];
+			cartListId=new String[jsonArray.length()];
+			productName=new String[jsonArray.length()];
+			productDescription=new String[jsonArray.length()];
+			productPrice=new String[jsonArray.length()];
+			productImage = new String[jsonArray.length()];
+			
+			System.out.println("js:"+jsonArray .length());
+			
+			totalAmount = 0D;
+			for(int i=0;i<jsonArray.length();i++){
+				JSONObject pc=jsonArray.getJSONObject(i);
+				
+				System.out.println("js1:"+pc);
+                
+				productId[i] = pc.getString(TAG_PID);
+				cartListId[i]=pc.getString(TAG_CARTLIST_ID);
+				productName[i] = pc.getString(TAG_PNAME);
+				productDescription[i] = pc.getString(TAG_PDESC);
+				productPrice[i] = pc.getString(TAG_PPRICE);
+				
+				productImage[i] = pc.getString(TAG_IMGURL);
+				totalAmount=totalAmount
+						+ Double.valueOf(pc.getString(TAG_PPRICE));
+				
+			}
+				
+			listAdapter = new CartListAdapter(CartListMainActivity.this, productId,cartListId,
 				productName, productImage, productDescription, productPrice, op);
 		list.setAdapter(listAdapter);
 		list.setTextFilterEnabled(true);
@@ -84,7 +121,7 @@ public class CartListMainActivity extends Activity {
 
 				listAdapter = (CartListAdapter) parent.getAdapter();
 
-				/*ArrayList<String> productData = new ArrayList<String>();
+				ArrayList<String> productData = new ArrayList<String>();
 				productData.add(productId[position]);
 				productData.add(productName[position]);
 				productData.add(productDescription[position]);
@@ -93,7 +130,7 @@ public class CartListMainActivity extends Activity {
 				// String product = (String) adapter.getItem(position);
 				// pass Data to other Activity
 				System.out.println("productID:-"+productId[position]);
-				*/
+				
 				Intent i = new Intent(CartListMainActivity.this,
 						BookDetailsActivity.class);
 				i.putExtra("productId", productId[position]);
@@ -101,12 +138,22 @@ public class CartListMainActivity extends Activity {
 				startActivity(i);
 			}
 		});
-
+			
+		} catch (InterruptedException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	} catch (ExecutionException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+		catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		grand_Total = (TextView) findViewById(R.id.grand_total);
 
 		System.out.println(totalAmount);
 		grand_Total.setText(totalAmount.toString());
-		
 	}
 
 	@Override
@@ -122,22 +169,6 @@ public class CartListMainActivity extends Activity {
 		// automatically handle clicks on the Home/Up button, so long
 		// as you specify a parent activity in AndroidManifest.xml.
 		switch (item.getItemId()) {
-
-		// case R.id.ab_deleteFromCart:
-		// DatabaseHandler db = new DatabaseHandler(CartListMainActivity.this);
-		// Wishlist w = new Wishlist();
-		// CartListAdapter bAdapter;
-
-		// db.addCartList(w);
-		/*
-		 * w.setProductId(s.get(0)); w.setProductName(s.get(1));
-		 * w.setDescription(s.get(2)); w.setPrice(s.get(3));
-		 * w.setImageUrl(s.get(4)); w.setCreatedDate(new
-		 * SimpleDateFormat("dd MMM yyyy").format(new Date()));
-		 * db.addCartList(w); Toast.makeText(BookDetailsActivity.this,
-		 * "Your Item is Added to Cart", Toast.LENGTH_SHORT).show();
-		 */
-		// return true;
 		case R.id.ab_purChaseItem:
 			grandTotal = totalAmount.toString();
 			String allAmount = "Total Amount";

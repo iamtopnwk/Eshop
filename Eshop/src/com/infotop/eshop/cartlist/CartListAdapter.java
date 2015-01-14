@@ -3,12 +3,14 @@
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.concurrent.ExecutionException;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -20,6 +22,10 @@ import android.widget.Toast;
 
 import com.infotop.eshop.R;
 import com.infotop.eshop.db.DatabaseHandler;
+import com.infotop.eshop.httpservice.HttpUrl;
+import com.infotop.eshop.model.Product;
+import com.infotop.eshop.utilities.UserSessionManager;
+import com.infotop.eshop.wishlist.PostOperation;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
@@ -32,10 +38,11 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 		private final String[] imageUrl;
 		private final String[] price;
 		private final String[] productId;
+		private final String[] cartListId;
 		private final DisplayImageOptions op;
 		protected ImageLoader loader = ImageLoader.getInstance();
 
-		public CartListAdapter(Activity context, String[] productId,
+		public CartListAdapter(Activity context, String[] productId,String[] cartListId,
 				String[] productName, String[] imageUrl, String[] desc,
 				String[] price, DisplayImageOptions op) {
 
@@ -46,9 +53,10 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 			this.desc = desc;
 			this.price = price;
 			this.productId = productId;
+			this.cartListId=cartListId;
 			this.op = op;
 		}
-
+		
 		
 	@Override
 	public View getView(int position, View view, ViewGroup parent) {
@@ -89,10 +97,38 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 								new DialogInterface.OnClickListener() {
 									public void onClick(DialogInterface dialog,
 											int which) {
-										DatabaseHandler db = new DatabaseHandler(
-												context);
-										db.deleteCartListItem(productId[id]);
+										UserSessionManager usMgr=new UserSessionManager(context);
+										Product p=new Product();
+										p.setServiceUrl(new HttpUrl().getUrl()
+												+ "/eshop/rest/deletecartlist");
+//										DatabaseHandler db = new DatabaseHandler(
+//												context);
+//										db.deleteCartListItem(productId[id]);
 										// myadapter.notifyDataSetChanged();
+										p.setEmailId(usMgr.getUserDetails().get("email"));
+										p.setCategoryId(cartListId[id]);
+										System.out.println("cartList id:===="+cartListId[id]);
+										AsyncTask<Object, Void, String> respData=new PostOperation().execute(p);
+										String pcontent;
+										try {
+											pcontent = respData.get();
+											if (pcontent.equalsIgnoreCase("Success")) {
+												Toast.makeText(context, "Your item is deleted from Wish List",
+														Toast.LENGTH_SHORT).show();
+											
+											}
+												else {
+												Toast.makeText(context, "Connection error", Toast.LENGTH_SHORT)
+														.show();
+											}
+										} catch (InterruptedException e) {
+											// TODO Auto-generated catch block
+											e.printStackTrace();
+										} catch (ExecutionException e) {
+											// TODO Auto-generated catch block
+											e.printStackTrace();
+										}
+										
 										((Activity) context).finish();
 										Intent intent = new Intent(context,
 												CartListMainActivity.class);
