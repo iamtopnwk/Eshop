@@ -97,7 +97,7 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 								new DialogInterface.OnClickListener() {
 									public void onClick(DialogInterface dialog,
 											int which) {
-										UserSessionManager usMgr=new UserSessionManager(context);
+										//UserSessionManager usMgr=new UserSessionManager(context);
 										Product p=new Product();
 										p.setServiceUrl(new HttpUrl().getUrl()
 												+ "/eshop/rest/deletecartlist");
@@ -105,8 +105,8 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 //												context);
 //										db.deleteCartListItem(productId[id]);
 										// myadapter.notifyDataSetChanged();
-										p.setEmailId(usMgr.getUserDetails().get("email"));
-										p.setCategoryId(cartListId[id]);
+										//p.setEmailId(usMgr.getUserDetails().get("email"));
+										p.setProductId(cartListId[id]);
 										System.out.println("cartList id:===="+cartListId[id]);
 										AsyncTask<Object, Void, String> respData=new PostOperation().execute(p);
 										String pcontent;
