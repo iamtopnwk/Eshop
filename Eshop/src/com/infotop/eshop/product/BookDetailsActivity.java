@@ -10,6 +10,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -21,12 +22,14 @@ import com.infotop.eshop.httpservice.HttpServiceHandler;
 import com.infotop.eshop.httpservice.HttpUrl;
 import com.infotop.eshop.login.EshopLoginActivity;
 import com.infotop.eshop.main.ZoomActivity;
+import com.infotop.eshop.model.Product;
 import com.infotop.eshop.payment.PaymentMainActivity;
 import com.infotop.eshop.specification.SpecificationLaptopActivity;
 import com.infotop.eshop.specification.SpecificationMouseActivity;
 import com.infotop.eshop.utilities.CustomListHorizontalAdapter;
 import com.infotop.eshop.utilities.HorizontalListView;
 import com.infotop.eshop.utilities.UserSessionManager;
+import com.infotop.eshop.wishlist.PostOperation;
 import com.nostra13.universalimageloader.cache.memory.impl.LruMemoryCache;
 import com.nostra13.universalimageloader.cache.memory.impl.WeakMemoryCache;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
@@ -90,7 +93,7 @@ private String productId;
 private String productName;
 private String productDescription;
 private String productPrice;
-
+private String emailId;
 	UserSessionManager usMgr;
 	 ArrayList<String> imageUrls=new ArrayList<String>();
 
@@ -195,10 +198,7 @@ private String productPrice;
 			holder.txtTitle1 = (TextView) findViewById(R.id.authorName);
 			holder.txtTitle2 = (TextView) findViewById(R.id.price);
 			holder.imageView = (ImageView) findViewById(R.id.logo);
-	       /* holder.imageView1=(ImageView) findViewById(R.id.logo1);
-	        holder.imageView2=(ImageView) findViewById(R.id.logo2);
-	        holder.imageView3=(ImageView) findViewById(R.id.logo3);
-	        holder.imageView4=(ImageView) findViewById(R.id.logo4);*/
+	   
 			holder.txtTitle.setText(productName);
 			holder.txtTitle1.setText(productDescription);
 			holder.txtTitle2.setText(productPrice);
@@ -246,163 +246,108 @@ private String productPrice;
 		public TextView txtTitle1;
 		public TextView txtTitle2;
 		public ImageView imageView;
-		/*public ImageView imageView1;
-		public ImageView imageView2;
-		public ImageView imageView3;
-		public ImageView imageView4;*/
-	}
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		//childCategoryName=getIntent().getExtras().getString("childCategoryName");
-		//System.out.println("ChildCategoryName:"+childCategoryName);
-		/*holder = new ViewHolder();
-		holder.txtTitle = (TextView) findViewById(R.id.bookName1);
-		holder.txtTitle1 = (TextView) findViewById(R.id.authorName);
-		holder.txtTitle2 = (TextView) findViewById(R.id.price);
-		holder.imageView = (ImageView) findViewById(R.id.logo);
-        holder.imageView1=(ImageView) findViewById(R.id.logo1);
-        holder.imageView2=(ImageView) findViewById(R.id.logo2);
-        holder.imageView3=(ImageView) findViewById(R.id.logo3);
-        holder.imageView4=(ImageView) findViewById(R.id.logo4);
-		holder.txtTitle.setText(s.get(1));
-		holder.txtTitle1.setText(s.get(2));
-		holder.txtTitle2.setText(s.get(3));
-		Bitmap bMap = BitmapFactory.decodeResource(getResources(), R.drawable.productimg);
-		holder.imageView1.setImageBitmap(bMap);
-		holder.imageView2.setImageBitmap(bMap);
-		holder.imageView3.setImageBitmap(bMap);
-		holder.imageView4.setImageBitmap(bMap);
-		loader.displayImage(s.get(4), holder.imageView, op, null);
-
-		System.out.println("pabitra id:"+s.get(0));
-
-		
-		loader.displayImage(s.get(4), holder.imageView1, op, null);
-		loader.displayImage(s.get(5), holder.imageView2, op, null);
-		loader.displayImage(s.get(6), holder.imageView3, op, null);
-		loader.displayImage(s.get(7), holder.imageView4, op, null);
-		
-		
-
-		holder.imageView.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                Intent i = new Intent(BookDetailsActivity.this, ZoomActivity.class);
-            
-                ArrayList<String> sl=new ArrayList<String>();
-                sl.add(s.get(4));
-                sl.add(s.get(5));
-                sl.add(s.get(6));
-                sl.add(s.get(7));
-                i.putStringArrayListExtra("list", sl);
-                i.putExtra("count", count);
-               
-                startActivity(i);
-            }
-        });
-		
-		productIdSpecification=s.get(0);
-		
-		 holder.imageView1.setOnClickListener(new View.OnClickListener() {
-	            public void onClick(View v) {
-	            	count=0;
-	            	loader.displayImage(s.get(4), holder.imageView, op, null); 	
-             }
-         });
-		
-		 holder.imageView2.setOnClickListener(new View.OnClickListener() {
-	            public void onClick(View v) {
-	            	count=1;
-	            	loader.displayImage(s.get(5), holder.imageView, op, null); 	
-                }
-            });
-		 
-		 holder.imageView3.setOnClickListener(new View.OnClickListener() {
-	            public void onClick(View v) {
-	            	count=2;
-	            	loader.displayImage(s.get(6), holder.imageView, op, null); 	
-             }
-         });
-		 holder.imageView4.setOnClickListener(new View.OnClickListener() {
-	            public void onClick(View v) {
-	            	count=3;
-	            	loader.displayImage(s.get(7), holder.imageView, op, null); 	
-             }
-         });
 		
 	}
 	
-	
-
-	private class ViewHolder {
-		public TextView txtTitle;
-		public TextView txtTitle1;
-		public TextView txtTitle2;
-		public ImageView imageView;
-		public ImageView imageView1;
-		public ImageView imageView2;
-		public ImageView imageView3;
-		public ImageView imageView4;
-	}
-*/
+		
+		
 	// functionalities for wishlistBtn
 	public void addToWishlist(View view) {
 		
 		UserSessionManager usMgr = new UserSessionManager(BookDetailsActivity.this);
 		 if(usMgr.isUserLoggedIn()){
-		DatabaseHandler db = new DatabaseHandler(BookDetailsActivity.this);
-		Wishlist w = new Wishlist();
-		w.setProductId(productId);
-		w.setProductName(productName);
-		w.setDescription(productDescription);
-		w.setPrice(productPrice);
-		w.setImageUrl(imageUrls.get(0));
-		w.setCreatedDate(new SimpleDateFormat("dd MMM yyyy").format(new Date()));
-		List<Wishlist> s = db.getAllWishListItems();
-		int counter=0;
-		for(int i=0;i<s.size();i++){
-			if(s.get(i).getProductId().equals(productId)){
-				counter++;
-			}
-		}
-		if(counter>0){
-			Toast.makeText(BookDetailsActivity.this, "Your item is already added to Wish List",
-					Toast.LENGTH_SHORT).show();
-		}else{
-			
-			db.addWishList(w);
-		Toast.makeText(BookDetailsActivity.this, "Your item is added to Wish List",
-				Toast.LENGTH_SHORT).show();
-			
-		}
-		//db.addWishList(w);
-		//System.out.println("Add WishList Button");
-
-		//Toast.makeText(BookDetailsActivity.this,
-				//"Your item is added to Wish List", Toast.LENGTH_SHORT).show();
+				emailId = usMgr.getUserDetails().get("email");
+				Product p=new Product();
+				p.setServiceUrl(new HttpUrl().getUrl()
+						+ "/eshop/rest/addwishlist");
+				p.setProductId(productId);
+				p.setProductName(productName);
+				p.setDescription(productDescription);
+				p.setImageUrl(imageUrls.get(0));
+				p.setPrice(productPrice);
+				p.setEmailId(emailId);
+				AsyncTask<Object, Void, String> respData=new PostOperation().execute(p);
+				String pcontent;
+				try {
+					pcontent = respData.get();
+					if (pcontent.equalsIgnoreCase("Success")) {
+						Toast.makeText(getBaseContext(), "Your item is added to Wish List",
+								Toast.LENGTH_SHORT).show();
+					}else if(pcontent.equalsIgnoreCase("Exist")){
+						Toast.makeText(getBaseContext(), "Your item is already added to Wish List", Toast.LENGTH_SHORT)
+						.show();
+					}
+						else {
+						Toast.makeText(getBaseContext(), "Connection error", Toast.LENGTH_SHORT)
+								.show();
+					}
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (ExecutionException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
+		
+		
 	}else{
 		 Intent intent = new Intent(BookDetailsActivity.this,EshopLoginActivity.class);
 			startActivity(intent);
 		
 	 }
 		 
-		 
 }
+	
+	/*private class WishLongOperation extends AsyncTask<String, Void, Void> {
+		private String pcontent;
+
+		@Override
+		protected Void doInBackground(String... urls) {
+			String jsonData = "";
+			// Send data
+			try {
+				HttpServiceHandler hs = new HttpServiceHandler();
+				JSONObject json = new JSONObject();
+				json.accumulate("productId", productId);
+				json.accumulate("productName", productName);
+				json.accumulate("description", productDescription);
+				json.accumulate("price", productPrice);
+				json.accumulate("imageUrl", imageUrls.get(0));
+				json.accumulate("emailId", emailId);
+				jsonData = json.toString();
+				pcontent = hs.httpPost(urls[0], jsonData);
+				
+				System.out.println("mmmmmmmmmmmmmmmmmmmmmmmmmmmmmm" + productId);
+				System.out.println("mmmmmmmmmmmmmmmmmmmmmmmmmmmmmm" + productName);
+				System.out.println("mmmmmmmmmmmmmmmmmmmmmmmmmmmmmm" + productDescription);
+				System.out.println("mmmmmmmmmmmmmmmmmmmmmmmmmmmmmm" + imageUrls);
+				System.out.println("mmmmmmmmmmmmmmmmmmmmmmmmmmmmmm" + emailId);
+				
+				System.out.println("Executed data:mmmmmmmmmmmmmmmmmmmmmmmmmmmmmm" + pcontent);
+			} catch (Exception ex) {
+				System.out.println("Exception e:" + ex.getMessage());
+			}
+			*//*****************************************************//*
+			return null;
+		}
+
+		protected void onPostExecute(Void unused) {
+			if (pcontent.equalsIgnoreCase("Success")) {
+				Toast.makeText(BookDetailsActivity.this, "Your item is added to Wish List",
+						Toast.LENGTH_SHORT).show();
+			}else if(pcontent.equalsIgnoreCase("Exist")){
+				Toast.makeText(BookDetailsActivity.this, "Your item is already added to Wish List", Toast.LENGTH_SHORT)
+				.show();
+			}
+				else {
+				Toast.makeText(getApplicationContext(), "Connection error", Toast.LENGTH_SHORT)
+						.show();
+			}
+			// Close progress dialog
+		}
+
+	}*/
 	
 	public void getSpecification(View view){
 		 if("Mobiles".equalsIgnoreCase(childCategoryName)){
@@ -420,25 +365,8 @@ private String productPrice;
 			 intSpecification.putExtra("idspec", productId);
 			 startActivity(intSpecification);
 		 }
-		/* else if("Smart Phones".equalsIgnoreCase(childCategoryName)){
-			 Intent intSpecification= new Intent(this,SpecificationMobileActivity.class);
-			 intSpecification.putExtra("idspec", productId);
-			 startActivity(intSpecification);
-		 }
-		 else if("Feature Phones".equalsIgnoreCase(childCategoryName)){
-			 Intent intSpecification= new Intent(this,SpecificationMobileActivity.class);
-			 intSpecification.putExtra("idspec", productId);
-			 startActivity(intSpecification);
-		 }
-		 else if("Sarees".equalsIgnoreCase(childCategoryName)){
-			 Intent intSpecification= new Intent(this,SpecificationClothActivity.class);
-			 intSpecification.putExtra("idspec", productId);
-			 startActivity(intSpecification);
-		 } */
-	
-	
-	 
-	  }
+		
+	}
 	  
 	  
 	

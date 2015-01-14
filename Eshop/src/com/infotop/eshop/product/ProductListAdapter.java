@@ -120,30 +120,6 @@ public class ProductListAdapter extends ArrayAdapter<String> {
 						e.printStackTrace();
 					}
 					
-					// DatabaseHandler db = new DatabaseHandler(context);
-					/*
-					 * Wishlist w = new Wishlist(); w.setProductId(pdctId[id]);
-					 * w.setProductName(productName[id]);
-					 * w.setDescription(desc[id]); w.setPrice(price[id]);
-					 * w.setImageUrl(imageUrl[id]);
-					 * w.setEmailId(usMgr.getUserDetails().get("email")); String
-					 * s=new WishlistService().saveWishlistData(w);
-					 */
-
-					/*
-					 * List<Wishlist> s = db.getAllWishListItems(); int
-					 * counter=0; for(int i=0;i<s.size();i++){
-					 * if(s.get(i).getProductId().equals(pdctId[id])){
-					 * counter++; } } if(counter>0){ Toast.makeText(context,
-					 * "Your item is already added to Wish List",
-					 * Toast.LENGTH_SHORT).show(); }else{
-					 * 
-					 * db.addWishList(w); Toast.makeText(context,
-					 * "Your item is added to Wish List",
-					 * Toast.LENGTH_SHORT).show();
-					 * 
-					 * }
-					 */
 
 				} else {
 					Intent intent = new Intent(context,
@@ -156,49 +132,6 @@ public class ProductListAdapter extends ArrayAdapter<String> {
 		return rowView;
 
 	}
-
-	/*private class LongOperation extends AsyncTask<String, Void, Void> {
-		private String pcontent;
-
-		@Override
-		protected Void doInBackground(String... urls) {
-			String jsonData = "";
-			// Send data
-			try {
-				HttpServiceHandler hs = new HttpServiceHandler();
-				JSONObject json = new JSONObject();
-				json.accumulate("productId", pdctId[selectedId]);
-				json.accumulate("productName", productName[selectedId]);
-				json.accumulate("description", desc[selectedId]);
-				json.accumulate("price", price[selectedId]);
-				json.accumulate("imageUrl", imageUrl[selectedId]);
-				json.accumulate("emailId", emailId);
-				jsonData = json.toString();
-				pcontent = hs.httpPost(urls[0], jsonData);
-				System.out.println("Executed data:" + pcontent);
-			} catch (Exception ex) {
-				System.out.println("Exception e:" + ex.getMessage());
-			}
-			*//*****************************************************//*
-			return null;
-		}
-
-		protected void onPostExecute(Void unused) {
-			if (pcontent.equalsIgnoreCase("Success")) {
-				Toast.makeText(context, "Your item is added to Wish List",
-						Toast.LENGTH_SHORT).show();
-			}else if(pcontent.equalsIgnoreCase("Exist")){
-				Toast.makeText(context, "Your item is already added to Wish List", Toast.LENGTH_SHORT)
-				.show();
-			}
-				else {
-				Toast.makeText(context, "Connection error", Toast.LENGTH_SHORT)
-						.show();
-			}
-			// Close progress dialog
-		}
-
-	}*/
 
 	private class ViewHolder {
 		public TextView txtTitle;

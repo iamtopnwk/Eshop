@@ -4,6 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import com.infotop.eshop.R;
 import com.infotop.eshop.R.drawable;
 import com.infotop.eshop.R.id;
@@ -15,6 +19,7 @@ import com.infotop.eshop.httpservice.HttpUrl;
 import com.infotop.eshop.model.Product;
 import com.infotop.eshop.product.BookDetailsActivity;
 import com.infotop.eshop.product.ProductListAdapter;
+import com.infotop.eshop.product.ProductListViewActivity;
 import com.nostra13.universalimageloader.cache.memory.impl.WeakMemoryCache;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
@@ -32,7 +37,16 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 
 public class WishListMainActivity extends Activity {
-	String[] productId, productName, productDescription, productPrice,
+	
+	private static final String TAG_PID = "productId";
+	private static final String TAG_PNAME = "productName";
+	private static final String TAG_PDESC = "description";
+	private static final String TAG_PPRICE = "price";
+    private static final String TAG_IMGURL = "imageUrl";
+	
+	String[] productId; 
+	String[] productName;
+	String[] productDescription, productPrice,
 			productImage;
 	DisplayImageOptions op;
 
@@ -56,33 +70,73 @@ public class WishListMainActivity extends Activity {
 		pdt.setEmailId("test@info.com");
 		AsyncTask<Object, Void, String> data=new PostOperation().execute(pdt);
 		try {
-			System.out.println("return data:"+data.get());
+			String responseData=data.get();
+			System.out.println("return data:pppppppppppppppppppppppppppppp"+data.get());
+			
+			JSONArray jsonArray;
+			jsonArray = new JSONArray(responseData);
+		
+			productId=new String[jsonArray.length()];
+			productName=new String[jsonArray.length()];
+			productDescription=new String[jsonArray.length()];
+			productPrice=new String[jsonArray.length()];
+			productImage = new String[jsonArray.length()];
+			int size=jsonArray.length();
+		
+			for (int i = 0; i < size; i++) {
+				JSONObject pc = jsonArray.getJSONObject(i);
+				
+				productId[i] = pc.getString(TAG_PID);
+				productName[i] = pc.getString(TAG_PNAME);
+				productDescription[i] = pc.getString(TAG_PDESC);
+				productPrice[i] = pc.getString(TAG_PPRICE);
+				productImage[i] = pc.getString(TAG_IMGURL);
+				
+				System.out.println("produuuuuuuuuuuuct nnaame"+productId[0]);
+				System.out.println("produuuuuuuuuuuuct nnaame"+productName[0]);
+				System.out.println("produuuuuuuuuuuuct nnaame"+	productImage[i]);
+			
+				listAdapter = new WishListAdapter(WishListMainActivity.this, productId,
+						productName, productImage, productDescription, productPrice, op);
+				list.setAdapter(listAdapter);
+			
+				list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+					@Override
+					public void onItemClick(AdapterView<?> parent, View view,
+							int position, long id) {
+						ArrayList<String> productData = new ArrayList<String>();
+						productData.add(productId[position]);
+						productData.add(productName[position]);
+						productData.add(productDescription[position]);
+						productData.add(productPrice[position]);
+						productData.add(productImage[position]);
+						// String product = (String) adapter.getItem(position);
+						// pass Data to other Activity
+						System.out.println("productId:-"+productId[position]);
+						
+						Intent i = new Intent(WishListMainActivity.this,
+								BookDetailsActivity.class);
+						i.putExtra("productId", productId[position]);
+						//i.putStringArrayListExtra("productData", productData);
+						startActivity(i);
+						
+					}
+				});
+		}
+			
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (ExecutionException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
-		/*DatabaseHandler db = new DatabaseHandler(WishListMainActivity.this);
-		List<Wishlist> wishlistItems = db.getAllWishListItems();
-		int size = wishlistItems.size();
-		productId = new String[size];
-		productName = new String[size];
-		productDescription = new String[size];
-		productPrice = new String[size];
-		productImage = new String[size];
-		for (int i = 0; i < size; i++) {
-			productId[i] = wishlistItems.get(i).getProductId();
-			productName[i] = wishlistItems.get(i).getProductName();
-			productDescription[i] = wishlistItems.get(i).getDescription();
-			productPrice[i] = wishlistItems.get(i).getPrice();
-			productImage[i] = wishlistItems.get(i).getImageUrl();
-			System.out.println("Wishlist product Image Url's:"
-					+ productImage[i]);
-		}*/
 		
-		listAdapter = new WishListAdapter(WishListMainActivity.this, productId,
+		
+		/*listAdapter = new WishListAdapter(WishListMainActivity.this, productId,
 				productName, productImage, productDescription, productPrice, op);
 		list.setAdapter(listAdapter);
 		list.setTextFilterEnabled(true);
@@ -90,7 +144,7 @@ public class WishListMainActivity extends Activity {
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view,
 					int position, long id) {
-				/*ArrayList<String> productData = new ArrayList<String>();
+				ArrayList<String> productData = new ArrayList<String>();
 				productData.add(productId[position]);
 				productData.add(productName[position]);
 				productData.add(productDescription[position]);
@@ -99,7 +153,7 @@ public class WishListMainActivity extends Activity {
 				// String product = (String) adapter.getItem(position);
 				// pass Data to other Activity
 				System.out.println("productId:-"+productId[position]);
-				*/
+				
 				Intent i = new Intent(WishListMainActivity.this,
 						BookDetailsActivity.class);
 				i.putExtra("productId", productId[position]);
@@ -107,7 +161,7 @@ public class WishListMainActivity extends Activity {
 				startActivity(i);
 				
 			}
-		});
+		});*/
 		System.gc();
 	}
 

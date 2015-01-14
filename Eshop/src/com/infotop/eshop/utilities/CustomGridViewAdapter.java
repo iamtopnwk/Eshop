@@ -3,10 +3,12 @@ package com.infotop.eshop.utilities;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
@@ -17,7 +19,10 @@ import android.widget.Toast;
 import com.infotop.eshop.R;
 import com.infotop.eshop.db.DatabaseHandler;
 import com.infotop.eshop.db.Wishlist;
+import com.infotop.eshop.httpservice.HttpUrl;
 import com.infotop.eshop.login.EshopLoginActivity;
+import com.infotop.eshop.model.Product;
+import com.infotop.eshop.wishlist.PostOperation;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
@@ -30,6 +35,7 @@ public class CustomGridViewAdapter extends ArrayAdapter<String> {
 	private final String[] description;
 	private final String[] price;
 	private final String[] productId;
+	private String emailId;
 	private final DisplayImageOptions op;
 	protected ImageLoader loader = ImageLoader.getInstance();
 
@@ -83,18 +89,48 @@ public class CustomGridViewAdapter extends ArrayAdapter<String> {
 
 				UserSessionManager usMgr = new UserSessionManager(context);
 				if (usMgr.isUserLoggedIn()) {
-					DatabaseHandler db = new DatabaseHandler(context);
-					Wishlist w = new Wishlist();
-					w.setProductId(productId[id]);
-					w.setProductName(productName[id]);
-					w.setDescription(description[id]);
-					w.setPrice(price[id]);
-					w.setImageUrl(imageUrl[id]);
-					w.setCreatedDate(new SimpleDateFormat("dd MMM yyyy")
-							.format(new Date()));
+					emailId = usMgr.getUserDetails().get("email");
+					Product p=new Product();
+					p.setServiceUrl(new HttpUrl().getUrl()
+							+ "/eshop/rest/addwishlist");
+					
+					p.setProductId(productId[id]);
+					p.setProductName(productName[id]);
+					p.setDescription(description[id]);
+					p.setImageUrl(imageUrl[id]);
+					p.setPrice(price[id]);
+					p.setEmailId(emailId);
+				
+					AsyncTask<Object, Void, String> respData=new PostOperation().execute(p);
+					String pcontent;
 					
 					
-					List<Wishlist> s = db.getAllWishListItems();
+				/*	w.setCreatedDate(new SimpleDateFormat("dd MMM yyyy")
+							.format(new Date()));*/
+					
+					try {
+						pcontent = respData.get();
+						if (pcontent.equalsIgnoreCase("Success")) {
+							Toast.makeText(context, "Your item is added to Wish List",
+									Toast.LENGTH_SHORT).show();
+						}else if(pcontent.equalsIgnoreCase("Exist")){
+							Toast.makeText(context, "Your item is already added to Wish List", Toast.LENGTH_SHORT)
+							.show();
+						}
+							else {
+							Toast.makeText(context, "Connection error", Toast.LENGTH_SHORT)
+									.show();
+						}
+						
+					} catch (InterruptedException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (ExecutionException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					
+					/*List<Wishlist> s = db.getAllWishListItems();
 					int counter=0;
 					for(int i=0;i<s.size();i++){
 						if(s.get(i).getProductId().equals(productId[id])){
@@ -114,7 +150,7 @@ public class CustomGridViewAdapter extends ArrayAdapter<String> {
 					
 					db.addWishList(w);
 					Toast.makeText(context, "Your item is added to Wish List",
-							Toast.LENGTH_SHORT).show();
+							Toast.LENGTH_SHORT).show();*/
 				} else {
 					Intent intent = new Intent(context,
 							EshopLoginActivity.class);
