@@ -1,4 +1,4 @@
-package com.infotop.eshop.main;
+package com.infotop.eshop.main.activity;
 
 import java.util.ArrayList;
 

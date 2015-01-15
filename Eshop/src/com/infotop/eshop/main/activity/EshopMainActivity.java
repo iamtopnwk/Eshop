@@ -1,4 +1,4 @@
-package com.infotop.eshop.main;
+package com.infotop.eshop.main.activity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,18 +23,20 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.infotop.eshop.R;
-import com.infotop.eshop.cartlist.CartListMainActivity;
-import com.infotop.eshop.category.SubListCategoryActivity;
+import com.infotop.eshop.cartlist.activity.CartListMainActivity;
+import com.infotop.eshop.category.activity.SubListCategoryActivity;
 import com.infotop.eshop.httpservice.HttpServiceHandler;
 import com.infotop.eshop.httpservice.HttpUrl;
 import com.infotop.eshop.login.ContactUsActivity;
 import com.infotop.eshop.login.EshopLoginActivity;
 import com.infotop.eshop.login.EshopPoliciesActivity;
 import com.infotop.eshop.login.NoItemFoundActivity;
+import com.infotop.eshop.main.adapter.NavDrawerListAdapter;
 import com.infotop.eshop.sidefragment.HomeFragment;
+import com.infotop.eshop.urls.UrlInfo;
 import com.infotop.eshop.utilities.NavDrawerItem;
 import com.infotop.eshop.utilities.UserSessionManager;
-import com.infotop.eshop.wishlist.WishListMainActivity;
+import com.infotop.eshop.wishlist.activity.WishListMainActivity;
 
 //Main Activity
 public class EshopMainActivity extends Activity {
@@ -62,7 +64,7 @@ public class EshopMainActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_eshop_main);
 		
-		String serverURL = new HttpUrl().getSolrUrl()+"/solr/collection1/select?q=categoryParentId%3A*&rows=1000&wt=json&indent=true";
+		String serverURL = UrlInfo.HOMEPAGE_PATH;
 
 		// Use AsyncTask execute Method To Prevent ANR Problem
 		new LongOperation().execute(serverURL);

@@ -1,4 +1,4 @@
-package com.infotop.eshop.wishlist;
+package com.infotop.eshop.wishlist.activity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,6 +20,8 @@ import com.infotop.eshop.model.Product;
 import com.infotop.eshop.product.BookDetailsActivity;
 import com.infotop.eshop.product.ProductListAdapter;
 import com.infotop.eshop.product.ProductListViewActivity;
+import com.infotop.eshop.wishlist.PostOperation;
+import com.infotop.eshop.wishlist.adapter.WishListAdapter;
 import com.nostra13.universalimageloader.cache.memory.impl.WeakMemoryCache;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;

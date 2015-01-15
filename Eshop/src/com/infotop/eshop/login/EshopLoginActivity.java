@@ -26,9 +26,10 @@ import com.infotop.eshop.R.layout;
 import com.infotop.eshop.R.menu;
 import com.infotop.eshop.httpservice.HttpServiceHandler;
 import com.infotop.eshop.httpservice.HttpUrl;
-import com.infotop.eshop.main.EshopMainActivity;
+import com.infotop.eshop.main.activity.EshopMainActivity;
 import com.infotop.eshop.model.Account;
 import com.infotop.eshop.product.ProductListAdapter;
+import com.infotop.eshop.urls.UrlInfo;
 import com.infotop.eshop.utilities.UserSessionManager;
 import com.infotop.eshop.wishlist.PostOperation;
 
@@ -78,7 +79,7 @@ public class EshopLoginActivity extends Activity {
 			Account account = new Account();
 			account.setEmailId(userEmail.getText().toString());
 			account.setPassword(password.getText().toString());
-			account.setServiceUrl(new HttpUrl().getUrl() + "/eshop/rest/login");
+			account.setServiceUrl(UrlInfo.LOGIN_PATH);
 			AsyncTask<Object, Void, String> respData = new AccountPostOperation()
 					.execute(account);
 			String pcontent;
