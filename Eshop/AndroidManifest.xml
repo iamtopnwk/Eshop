@@ -134,7 +134,7 @@
             android:label="@string/title_activity_specification_pendrive" >
         </activity>
         <activity
-            android:name="com.infotop.eshop.specification.SpecificationMouseActivityicationMouseActivity"
+            android:name="com.infotop.eshop.specification.SpecificationMouseActivity"
             android:label="@string/title_activity_specification_mouse" >
         </activity>
     </application>
