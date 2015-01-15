@@ -1,4 +1,4 @@
-package com.infotop.eshop.utilities;
+package com.infotop.eshop.commonadapters;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;

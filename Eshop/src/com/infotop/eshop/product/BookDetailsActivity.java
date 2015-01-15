@@ -30,7 +30,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.infotop.eshop.R;
-import com.infotop.eshop.httpservice.HttpServiceHandler;
 import com.infotop.eshop.httpservice.HttpUrl;
 import com.infotop.eshop.login.EshopLoginActivity;
 import com.infotop.eshop.main.activity.ZoomActivity;
@@ -40,6 +39,7 @@ import com.infotop.eshop.specification.SpecificationLaptopActivity;
 import com.infotop.eshop.specification.SpecificationMobileActivity;
 import com.infotop.eshop.specification.SpecificationMouseActivity;
 import com.infotop.eshop.utilities.HorizontalListView;
+import com.infotop.eshop.utilities.HttpServiceHandler;
 import com.infotop.eshop.utilities.UserSessionManager;
 import com.infotop.eshop.wishlist.PostOperation;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;

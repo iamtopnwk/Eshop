@@ -4,8 +4,8 @@ import org.json.JSONObject;
 
 import android.os.AsyncTask;
 
-import com.infotop.eshop.httpservice.HttpServiceHandler;
 import com.infotop.eshop.model.Product;
+import com.infotop.eshop.utilities.HttpServiceHandler;
 
 public class PostOperation extends AsyncTask<Object, Void, String> {
 	private String pcontent = "";

@@ -1,4 +1,4 @@
-package com.infotop.eshop.httpservice;
+package com.infotop.eshop.utilities;
 
 import java.io.IOException;
 import java.io.InputStream;

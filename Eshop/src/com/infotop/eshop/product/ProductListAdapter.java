@@ -16,10 +16,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.infotop.eshop.R;
-import com.infotop.eshop.httpservice.HttpServiceHandler;
 import com.infotop.eshop.httpservice.HttpUrl;
 import com.infotop.eshop.login.EshopLoginActivity;
 import com.infotop.eshop.model.Product;
+import com.infotop.eshop.utilities.HttpServiceHandler;
 import com.infotop.eshop.utilities.UserSessionManager;
 import com.infotop.eshop.wishlist.PostOperation;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;

@@ -1,4 +1,4 @@
-package com.infotop.eshop.json;
+package com.infotop.eshop.utilities;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;

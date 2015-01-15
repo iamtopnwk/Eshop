@@ -5,8 +5,8 @@ import org.json.JSONObject;
 import com.infotop.eshop.R;
 
 
-import com.infotop.eshop.httpservice.HttpServiceHandler;
 import com.infotop.eshop.httpservice.HttpUrl;
+import com.infotop.eshop.utilities.HttpServiceHandler;
 
 import android.app.Activity;
 import android.os.AsyncTask;

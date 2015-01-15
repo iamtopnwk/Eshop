@@ -1,4 +1,4 @@
-package com.infotop.eshop.utilities;
+package com.infotop.eshop.commonadapters;
 
 import java.util.concurrent.ExecutionException;
 
@@ -17,6 +17,7 @@ import com.infotop.eshop.R;
 import com.infotop.eshop.httpservice.HttpUrl;
 import com.infotop.eshop.login.EshopLoginActivity;
 import com.infotop.eshop.model.Product;
+import com.infotop.eshop.utilities.UserSessionManager;
 import com.infotop.eshop.wishlist.PostOperation;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
