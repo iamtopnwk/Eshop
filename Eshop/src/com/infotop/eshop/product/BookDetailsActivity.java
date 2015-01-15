@@ -362,18 +362,18 @@ private String emailId;
 	
 	public void getSpecifications(View view){
 		 if("Mobiles".equalsIgnoreCase(childCategoryName)){
-		 Intent intSpecification= new Intent(this,SpecificationMouseActivity.class);
-		 intSpecification.putExtra("idspec", productId);
+		 Intent intSpecification= new Intent(this,SpecificationMobileActivity.class);
+		 //intSpecification.putExtra("idspec", productId);
 		 startActivity(intSpecification);
 		 }
 		 else if("Laptops".equalsIgnoreCase(childCategoryName)){
 			 Intent intSpecification= new Intent(this,SpecificationLaptopActivity.class);
-			 intSpecification.putExtra("idspec", productId);
+			// intSpecification.putExtra("idspec", productId);
 			 startActivity(intSpecification);
 		 }
 		 else if("Tablets".equalsIgnoreCase(childCategoryName)){
 			 Intent intSpecification= new Intent(this,SpecificationMouseActivity.class);
-			 intSpecification.putExtra("idspec", productId);
+			// intSpecification.putExtra("idspec", productId);
 			 startActivity(intSpecification);
 		 }
 //		Intent iSpec=new Intent(BookDetailsActivity.this,SpecificationMobileActivity.class);

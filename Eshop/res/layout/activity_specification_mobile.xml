@@ -44,7 +44,7 @@
                                 android:textColor="#000000"
                                 android:padding="20dip" android:gravity="left"/>
                             <TextView
-                                android:id="@+id/brand_mobile" 
+                                android:id="@+id/brand_mobile" android:text="Samsung"
                                 android:layout_weight="1" android:background="#d3d3d3"
                                 android:textColor="#000000"
                                 android:padding="20dip" android:gravity="center"/>
@@ -63,7 +63,7 @@
                                 android:padding="18dip" android:gravity="left"/>
                      
                             <TextView
-                                android:id="@+id/model_mobile" 
+                                android:id="@+id/model_mobile" android:text="Grand 2"
                                 android:layout_weight="1" android:background="#d3d3d3"
                                 android:textColor="#000000"
                                 android:padding="18dip" android:gravity="center"/>
@@ -81,7 +81,7 @@
                                 android:padding="18dip" android:gravity="left"/>
                      
                             <TextView
-                                android:id="@+id/type_mobile" 
+                                android:id="@+id/type_mobile" android:text=""
                                 android:layout_weight="1" android:background="#d3d3d3"
                                 android:textColor="#000000"
                                 android:padding="18dip" android:gravity="center"/>
@@ -96,7 +96,7 @@
                                 android:textColor="#000000"
                                 android:padding="20dip" android:gravity="left"/>
                             <TextView
-                                android:id="@+id/touchscreen_mobile" 
+                                android:id="@+id/touchscreen_mobile" android:text="Yes"
                                 android:layout_weight="1" android:background="#d3d3d3"
                                 android:textColor="#000000"
                                 android:padding="20dip" android:gravity="center"/>
@@ -112,7 +112,7 @@
                                 android:textColor="#000000"
                                 android:padding="20dip" android:gravity="left"/>
                             <TextView
-                                android:id="@+id/simtype_mobile" 
+                                android:id="@+id/simtype_mobile" android:text="Dual"
                                 android:layout_weight="1" android:background="#d3d3d3"
                                 android:textColor="#000000"
                                 android:padding="20dip" android:gravity="center"/>
@@ -128,7 +128,7 @@
                                 android:textColor="#000000"
                                 android:padding="20dip" android:gravity="left"/>
                             <TextView
-                                android:id="@+id/call_features_mobile" 
+                                android:id="@+id/call_features_mobile" android:text="Loud Speaker"
                                 android:layout_weight="1" android:background="#d3d3d3"
                                 android:textColor="#000000"
                                 android:padding="20dip" android:gravity="center"/>
@@ -144,7 +144,7 @@
                                 android:textColor="#000000"
                                 android:padding="20dip" android:gravity="left"/>
                             <TextView
-                                android:id="@+id/warrenty_mobile" 
+                                android:id="@+id/warrenty_mobile" android:text="1 yr"
                                 android:layout_weight="1" android:background="#d3d3d3"
                                 android:textColor="#000000"
                                 android:padding="20dip" android:gravity="center"/>
@@ -160,7 +160,7 @@
                                 android:textColor="#000000"
                                 android:padding="20dip" android:gravity="left"/>
                             <TextView
-                                android:id="@+id/battery_backup_mobile" 
+                                android:id="@+id/battery_backup_mobile" android:text="upto 24 hour"
                                 android:layout_weight="1" android:background="#d3d3d3"
                                 android:textColor="#000000"
                                 android:padding="20dip" android:gravity="center"/>

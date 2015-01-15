@@ -44,7 +44,7 @@
                                 android:textColor="#000000"
                                 android:padding="20dip" android:gravity="left"/>
                             <TextView
-                                android:id="@+id/brand_laptop"     
+                                android:id="@+id/brand_laptop"   android:text="Lenovo"  
                                 android:layout_weight="1" android:background="#d3d3d3"
                                 android:textColor="#000000"
                                 android:padding="20dip" android:gravity="center"/>
@@ -63,7 +63,7 @@
                                 android:padding="18dip" android:gravity="left"/>
                      
                             <TextView
-                                android:id="@+id/model_laptop" android:text=""
+                                android:id="@+id/model_laptop" android:text="A342"
                                 android:layout_weight="1" android:background="#d3d3d3"
                                 android:textColor="#000000"
                                 android:padding="18dip" android:gravity="center"/>
@@ -81,7 +81,7 @@
                                 android:padding="18dip" android:gravity="left"/>
                      
                             <TextView
-                                android:id="@+id/hdmi_port_laptop" 
+                                android:id="@+id/hdmi_port_laptop" android:text="yes"
                                 android:layout_weight="1" android:background="#d3d3d3"
                                 android:textColor="#000000"
                                 android:padding="18dip" android:gravity="center"/>
@@ -96,7 +96,7 @@
                                 android:textColor="#000000"
                                 android:padding="20dip" android:gravity="left"/>
                             <TextView
-                                android:id="@+id/mic_in_laptop" 
+                                android:id="@+id/mic_in_laptop" android:text="Yes"
                                 android:layout_weight="1" android:background="#d3d3d3"
                                 android:textColor="#000000"
                                 android:padding="20dip" android:gravity="center"/>
@@ -112,7 +112,7 @@
                                 android:textColor="#000000"
                                 android:padding="20dip" android:gravity="left"/>
                             <TextView
-                                android:id="@+id/cache_laptop" 
+                                android:id="@+id/cache_laptop" android:text="5 MB"
                                 android:layout_weight="1" android:background="#d3d3d3"
                                 android:textColor="#000000"
                                 android:padding="20dip" android:gravity="center"/>
@@ -128,7 +128,7 @@
                                 android:textColor="#000000"
                                 android:padding="20dip" android:gravity="left"/>
                             <TextView
-                                android:id="@+id/battery_backup_laptop" 
+                                android:id="@+id/battery_backup_laptop" android:text="upto 5 hour"
                                 android:layout_weight="1" android:background="#d3d3d3"
                                 android:textColor="#000000"
                                 android:padding="20dip" android:gravity="center"/>
@@ -144,7 +144,7 @@
                                 android:textColor="#000000"
                                 android:padding="20dip" android:gravity="left"/>
                             <TextView
-                                android:id="@+id/warrenty_laptop" 
+                                android:id="@+id/warrenty_laptop" android:text="1 yr"
                                 android:layout_weight="1" android:background="#d3d3d3"
                                 android:textColor="#000000"
                                 android:padding="20dip" android:gravity="center"/>
@@ -160,7 +160,7 @@
                                 android:textColor="#000000"
                                 android:padding="20dip" android:gravity="left"/>
                             <TextView
-                                android:id="@+id/hdd_capacity_laptop" 
+                                android:id="@+id/hdd_capacity_laptop" android:text="500 GB"
                                 android:layout_weight="1" android:background="#d3d3d3"
                                 android:textColor="#000000"
                                 android:padding="20dip" android:gravity="center"/>
@@ -176,7 +176,7 @@
                                 android:textColor="#000000"
                                 android:padding="20dip" android:gravity="left"/>
                             <TextView
-                                android:id="@+id/ram_size_laptop" 
+                                android:id="@+id/ram_size_laptop" android:text="4 GB"
                                 android:layout_weight="1" android:background="#d3d3d3"
                                 android:textColor="#000000"
                                 android:padding="20dip" android:gravity="center"/>
@@ -192,7 +192,7 @@
                                 android:textColor="#000000"
                                 android:padding="20dip" android:gravity="left"/>
                             <TextView
-                                android:id="@+id/os_supported_laptop" 
+                                android:id="@+id/os_supported_laptop" android:text=""
                                 android:layout_weight="1" android:background="#d3d3d3"
                                 android:textColor="#000000"
                                 android:padding="20dip" android:gravity="center"/>
@@ -208,7 +208,7 @@
                                 android:textColor="#000000"
                                 android:padding="20dip" android:gravity="left"/>
                             <TextView
-                                android:id="@+id/touchscreen_laptop" 
+                                android:id="@+id/touchscreen_laptop" android:text="yes"
                                 android:layout_weight="1" android:background="#d3d3d3"
                                 android:textColor="#000000"
                                 android:padding="20dip" android:gravity="center"/>
