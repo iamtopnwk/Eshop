@@ -27,6 +27,7 @@ import com.infotop.eshop.payment.PaymentMainActivity;
 
 
 import com.infotop.eshop.specification.SpecificationLaptopActivity;
+import com.infotop.eshop.specification.SpecificationMobileActivity;
 import com.infotop.eshop.specification.SpecificationMouseActivity;
 import com.infotop.eshop.utilities.CustomListHorizontalAdapter;
 import com.infotop.eshop.utilities.HorizontalListView;
@@ -100,7 +101,7 @@ private String productPrice;
 private String emailId;
 
 
-
+    Button btn;
 
 	UserSessionManager usMgr;
 	 ArrayList<String> imageUrls=new ArrayList<String>();
@@ -117,6 +118,8 @@ private String emailId;
 		/*final DisplayImageOptions op;*/
 		//final ImageLoader loader = ImageLoader.getInstance();
 		setContentView(R.layout.activity_book_details);
+		
+		btn=(Button)findViewById(R.id.getSpecs);
 		op = new DisplayImageOptions.Builder()
 				.showStubImage(R.drawable.notavailable)
 				.showImageForEmptyUri(R.drawable.notavailable)
@@ -128,7 +131,7 @@ private String emailId;
 		//s = getIntent().getExtras().getStringArrayList("productData");
 		productUUid=getIntent().getExtras().getString("productId");
 		childCategoryName=getIntent().getExtras().getString("childCategoryName");
-		System.out.println("ChildCategoryName:"+childCategoryName);
+		System.out.println("ChildCategoryName:======="+childCategoryName);
 		
 		String serverURL = new HttpUrl().getUrl()+"/eshop/rest/productByuuid/"+productUUid;
 
@@ -357,7 +360,7 @@ private String emailId;
 
 	}*/
 	
-	public void getSpecification(View view){
+	public void getSpecifications(View view){
 		 if("Mobiles".equalsIgnoreCase(childCategoryName)){
 		 Intent intSpecification= new Intent(this,SpecificationMouseActivity.class);
 		 intSpecification.putExtra("idspec", productId);
@@ -373,7 +376,8 @@ private String emailId;
 			 intSpecification.putExtra("idspec", productId);
 			 startActivity(intSpecification);
 		 }
-		
+//		Intent iSpec=new Intent(BookDetailsActivity.this,SpecificationMobileActivity.class);
+//		startActivity(iSpec);
 	}
 	  
 	  
@@ -471,10 +475,6 @@ private String emailId;
 						
 					}
 					
-					
-					
-	
-			
 			return true;
 		case R.id.ab_purChaseItem:
 			s = new ArrayList<String>();

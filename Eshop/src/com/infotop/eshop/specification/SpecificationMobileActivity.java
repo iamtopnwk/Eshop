@@ -18,7 +18,7 @@ import android.widget.TextView;
 public class SpecificationMobileActivity extends Activity {
 	
 	
-	private static final String BRAND_NAME = "brandname";
+	/*private static final String BRAND_NAME = "brandname";
 	private static final String MODEL_ID = "modelId";
 	
 	private static final String TYPE = "type";
@@ -42,20 +42,21 @@ public class SpecificationMobileActivity extends Activity {
 	
 	String touchScreen1;
 
-	String s1;
+	String s1;*/
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_specification_mobile);
 		
+		/*
 		s1=getIntent().getExtras().getString("idspec");
 		System.out.println("pabitr spec"+s1);
 		
 		String serverURL=new HttpUrl().getUrl()+"/eshop/rest/specificationbyproductid/"+s1;
-		new LongOperation().execute(serverURL);
+		new LongOperation().execute(serverURL);*/
 	}
 	
-	private class LongOperation extends AsyncTask<String, Void, Void> {
+	/*private class LongOperation extends AsyncTask<String, Void, Void> {
 		
 		String scontent;
 
@@ -114,7 +115,7 @@ public class SpecificationMobileActivity extends Activity {
 			
 		}
 		
-	}
+	}*/
 	
 
 	@Override

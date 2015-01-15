@@ -20,6 +20,7 @@ import com.infotop.eshop.model.Product;
 import com.infotop.eshop.product.BookDetailsActivity;
 import com.infotop.eshop.product.ProductListAdapter;
 import com.infotop.eshop.product.ProductListViewActivity;
+import com.infotop.eshop.utilities.UserSessionManager;
 import com.infotop.eshop.wishlist.PostOperation;
 import com.infotop.eshop.wishlist.adapter.WishListAdapter;
 import com.nostra13.universalimageloader.cache.memory.impl.WeakMemoryCache;
@@ -67,10 +68,11 @@ public class WishListMainActivity extends Activity {
 				.build();
 
 		list = (ListView) findViewById(R.id.wishListViewItems);
+		UserSessionManager usMgr=new UserSessionManager(this);
 		Product pdt=new Product();
 		pdt.setServiceUrl(new HttpUrl().getUrl()
 				+ "/eshop/rest/getAllWishlistItemsByAccount");
-		pdt.setEmailId("test@info.com");
+		pdt.setEmailId(usMgr.getUserDetails().get("email"));
 		AsyncTask<Object, Void, String> data=new PostOperation().execute(pdt);
 		try {
 			String responseData=data.get();

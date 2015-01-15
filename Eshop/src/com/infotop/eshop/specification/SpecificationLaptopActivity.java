@@ -18,7 +18,7 @@ import android.widget.TextView;
 public class SpecificationLaptopActivity extends Activity {
 	
 	
-	private static final String BRAND_NAME = "brandname";
+	/*private static final String BRAND_NAME = "brandname";
 	private static final String MODEL_ID = "modelId";
 	
 	private static final String WARRENTY = "warrenty";
@@ -44,7 +44,7 @@ public class SpecificationLaptopActivity extends Activity {
 	String cache1;
 	String ossupported1;
 	String ram1;
-	String touchScreen1;
+	String touchScreen1;*/
 	
 
 	@Override
@@ -52,14 +52,16 @@ public class SpecificationLaptopActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_specification_laptop);
 		
-		s1=getIntent().getExtras().getString("idspec");
+		/*s1=getIntent().getExtras().getString("idspec");
 		System.out.println("pabitr spec"+s1);
 		
 		String serverURL=new HttpUrl().getUrl()+"/eshop/rest/specificationbyproductid/"+s1;
-		new LongOperation().execute(serverURL);
+		new LongOperation().execute(serverURL);*/
+	
 	}
 	
-	private class LongOperation extends AsyncTask<String, Void, Void> {
+	
+	/*private class LongOperation extends AsyncTask<String, Void, Void> {
 		
 		String scontent;
 
@@ -123,7 +125,7 @@ public class SpecificationLaptopActivity extends Activity {
 			
 		}
 		
-	}
+	}*/
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {

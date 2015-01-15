@@ -126,7 +126,7 @@
             android:label="@string/title_activity_specification_cloth" >
         </activity>
         <activity
-            android:name="com.infotop.eshop.specification.SpecificationMobileActivitycationMobileActivity"
+            android:name="com.infotop.eshop.specification.SpecificationMobileActivity"
             android:label="@string/title_activity_specification_mobile" >
         </activity>
         <activity
