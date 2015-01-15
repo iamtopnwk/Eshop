@@ -1,4 +1,4 @@
-package com.infotop.eshop.cartlist;
+package com.infotop.eshop.cartlist.activity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,6 +21,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.infotop.eshop.R;
+import com.infotop.eshop.cartlist.adapter.CartListAdapter;
 import com.infotop.eshop.db.DatabaseHandler;
 import com.infotop.eshop.db.Wishlist;
 import com.infotop.eshop.httpservice.HttpUrl;

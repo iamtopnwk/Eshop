@@ -1,4 +1,4 @@
-    package com.infotop.eshop.cartlist;
+    package com.infotop.eshop.cartlist.adapter;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -21,6 +21,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.infotop.eshop.R;
+import com.infotop.eshop.cartlist.activity.CartListMainActivity;
 import com.infotop.eshop.db.DatabaseHandler;
 import com.infotop.eshop.httpservice.HttpUrl;
 import com.infotop.eshop.model.Product;

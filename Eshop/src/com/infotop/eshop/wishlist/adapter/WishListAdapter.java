@@ -1,4 +1,4 @@
-package com.infotop.eshop.wishlist;
+package com.infotop.eshop.wishlist.adapter;
 
 import java.util.List;
 import java.util.concurrent.ExecutionException;
@@ -9,6 +9,8 @@ import com.infotop.eshop.db.Wishlist;
 import com.infotop.eshop.httpservice.HttpUrl;
 import com.infotop.eshop.model.Product;
 import com.infotop.eshop.utilities.UserSessionManager;
+import com.infotop.eshop.wishlist.PostOperation;
+import com.infotop.eshop.wishlist.activity.WishListMainActivity;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 

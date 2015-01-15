@@ -19,6 +19,7 @@ import com.infotop.eshop.R;
 import com.infotop.eshop.httpservice.HttpServiceHandler;
 import com.infotop.eshop.httpservice.HttpUrl;
 import com.infotop.eshop.model.Account;
+import com.infotop.eshop.urls.UrlInfo;
 
 public class RegisterActivity extends Activity {
 
@@ -64,7 +65,7 @@ public class RegisterActivity extends Activity {
 			account.setMobileNumber(userMobile.getText().toString());
 			account.setShippingAddress(userSAdd.getText().toString());
 			account.setUserName(userName.getText().toString());
-			account.setServiceUrl(new HttpUrl().getUrl()+"/eshop/rest/registration");
+			account.setServiceUrl(UrlInfo.REGISTER_PATH);
 			AsyncTask<Object, Void, String> respData = new AccountPostOperation()
 					.execute(account);
 			String pcontent;

@@ -21,7 +21,7 @@ import com.infotop.eshop.db.Wishlist;
 import com.infotop.eshop.httpservice.HttpServiceHandler;
 import com.infotop.eshop.httpservice.HttpUrl;
 import com.infotop.eshop.login.EshopLoginActivity;
-import com.infotop.eshop.main.ZoomActivity;
+import com.infotop.eshop.main.activity.ZoomActivity;
 import com.infotop.eshop.model.Product;
 import com.infotop.eshop.payment.PaymentMainActivity;
 

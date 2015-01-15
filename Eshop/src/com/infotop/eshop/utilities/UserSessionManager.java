@@ -3,7 +3,7 @@ package com.infotop.eshop.utilities;
 import java.util.HashMap;
 
 import com.infotop.eshop.login.EshopLoginActivity;
-import com.infotop.eshop.main.EshopMainActivity;
+import com.infotop.eshop.main.activity.EshopMainActivity;
 
 import android.annotation.SuppressLint;
 import android.content.Context;

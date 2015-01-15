@@ -1,4 +1,4 @@
-package com.infotop.eshop.category;
+package com.infotop.eshop.category.adapter;
 
 import java.util.HashMap;
 import java.util.List;

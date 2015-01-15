@@ -1,4 +1,4 @@
-package com.infotop.eshop.main;
+package com.infotop.eshop.main.activity;
 
 import com.infotop.eshop.R;
 import com.infotop.eshop.R.id;

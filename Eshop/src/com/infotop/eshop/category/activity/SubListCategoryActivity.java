@@ -1,4 +1,4 @@
-package com.infotop.eshop.category;
+package com.infotop.eshop.category.activity;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -20,17 +20,18 @@ import android.widget.ExpandableListView.OnGroupClickListener;
 import android.widget.TextView;
 
 import com.infotop.eshop.R;
-import com.infotop.eshop.cartlist.CartListMainActivity;
+import com.infotop.eshop.cartlist.activity.CartListMainActivity;
+import com.infotop.eshop.category.adapter.ExpandableListAdapter;
 import com.infotop.eshop.httpservice.HttpServiceHandler;
 import com.infotop.eshop.httpservice.HttpUrl;
 import com.infotop.eshop.login.ContactUsActivity;
 import com.infotop.eshop.login.EshopLoginActivity;
 import com.infotop.eshop.login.EshopPoliciesActivity;
 import com.infotop.eshop.login.NoItemFoundActivity;
-import com.infotop.eshop.main.EshopMainActivity;
+import com.infotop.eshop.main.activity.EshopMainActivity;
 import com.infotop.eshop.product.ProductListViewActivity;
 import com.infotop.eshop.utilities.UserSessionManager;
-import com.infotop.eshop.wishlist.WishListMainActivity;
+import com.infotop.eshop.wishlist.activity.WishListMainActivity;
 
 public class SubListCategoryActivity extends Activity {
 

@@ -20,9 +20,10 @@ import android.widget.ImageView;
 import android.widget.ViewFlipper;
 
 import com.infotop.eshop.R;
-import com.infotop.eshop.category.SubListCategoryActivity;
+import com.infotop.eshop.category.activity.SubListCategoryActivity;
 import com.infotop.eshop.httpservice.HttpServiceHandler;
 import com.infotop.eshop.httpservice.HttpUrl;
+import com.infotop.eshop.urls.UrlInfo;
 import com.infotop.eshop.utilities.CustomListHorizontalAdapter;
 import com.infotop.eshop.utilities.HorizontalListView;
 
@@ -76,7 +77,7 @@ public class HomeFragment extends Fragment {
 		iv4.setImageBitmap(b4);
 		iv5.setImageBitmap(b5);
 		
-		String serverURL = new HttpUrl().getSolrUrl()+"/solr/collection1/select?q=categoryParentId%3A*&rows=1000&wt=json&indent=true";
+		String serverURL = UrlInfo.HOMEPAGE_PATH;
 
 		// Use AsyncTask execute Method To Prevent ANR Problem
 		new LongOperation().execute(serverURL);
