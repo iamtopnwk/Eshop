@@ -166,7 +166,7 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 			public TextView txtTitle2;
 			public ImageView imageView;
 			public ImageView imageView1;
-			//public ImageView imgwishlistbtn;
+			//this is viewholder
 		}
 	
 
