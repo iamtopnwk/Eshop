@@ -17,8 +17,8 @@ import android.widget.Toast;
 
 import com.infotop.eshop.R;
 import com.infotop.eshop.cartlist.activity.CartListMainActivity;
-import com.infotop.eshop.httpservice.HttpUrl;
 import com.infotop.eshop.model.Product;
+import com.infotop.eshop.urls.UrlInfo;
 import com.infotop.eshop.wishlist.PostOperation;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
@@ -87,8 +87,7 @@ public class CartListAdapter extends ArrayAdapter<String> {
 							public void onClick(DialogInterface dialog,
 									int which) {
 								Product p = new Product();
-								p.setServiceUrl(new HttpUrl().getUrl()
-										+ "/eshop/rest/deletecartlist");
+								p.setServiceUrl(UrlInfo.DELETE_CARTLIST);
 								p.setProductId(cartListId[id]);
 								System.out.println("cartList id:===="
 										+ cartListId[id]);

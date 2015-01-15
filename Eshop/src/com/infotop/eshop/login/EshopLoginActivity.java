@@ -28,14 +28,13 @@ public class EshopLoginActivity extends Activity {
 
 	private EditText userEmail;
 	private EditText password;
-	private String serverURL;
+	
 	String result;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_eshop_login);
-		// serverURL = new HttpUrl().getUrl()+"/eshop/rest/login";
 	}
 
 	public void getHomePage(View view) {
@@ -46,8 +45,6 @@ public class EshopLoginActivity extends Activity {
 		} else if (password.getText().toString().trim().equals("")) {
 			password.setError("Password is required!");
 		} else {
-			// Intent intent = new Intent(this, EshopMainActivity.class);
-			// startActivity(intent);
 			Account account = new Account();
 			account.setEmailId(userEmail.getText().toString());
 			account.setPassword(password.getText().toString());

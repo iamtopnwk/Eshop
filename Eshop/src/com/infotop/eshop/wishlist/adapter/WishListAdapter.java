@@ -15,8 +15,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.infotop.eshop.R;
-import com.infotop.eshop.httpservice.HttpUrl;
 import com.infotop.eshop.model.Product;
+import com.infotop.eshop.urls.UrlInfo;
 import com.infotop.eshop.wishlist.PostOperation;
 import com.infotop.eshop.wishlist.activity.WishListMainActivity;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
@@ -34,7 +34,6 @@ public class WishListAdapter extends ArrayAdapter<String> {
 	private final String[] wishlistId;
 	private final DisplayImageOptions op;
 	protected ImageLoader loader = ImageLoader.getInstance();
-	private String emailId;
 
 	public WishListAdapter(Activity context, String[] wishlistId,
 			String[] productId, String[] productName, String[] imageUrl,
@@ -99,8 +98,7 @@ public class WishListAdapter extends ArrayAdapter<String> {
 								// usMgr.getUserDetails().get("email");
 
 								Product p = new Product();
-								p.setServiceUrl(new HttpUrl().getUrl()
-										+ "/eshop/rest/deletewishlist");
+								p.setServiceUrl(UrlInfo.DELETE_WISHLIST);
 
 								p.setProductId(wishlistId[id]);
 								System.out.println("lllllllllllll"

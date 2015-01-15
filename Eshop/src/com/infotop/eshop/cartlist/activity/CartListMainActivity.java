@@ -20,10 +20,10 @@ import android.widget.TextView;
 
 import com.infotop.eshop.R;
 import com.infotop.eshop.cartlist.adapter.CartListAdapter;
-import com.infotop.eshop.httpservice.HttpUrl;
 import com.infotop.eshop.model.Product;
 import com.infotop.eshop.payment.PaymentMainActivity;
 import com.infotop.eshop.product.BookDetailsActivity;
+import com.infotop.eshop.urls.UrlInfo;
 import com.infotop.eshop.utilities.UserSessionManager;
 import com.infotop.eshop.wishlist.PostOperation;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
@@ -64,8 +64,7 @@ public class CartListMainActivity extends Activity {
 		list = (ListView) findViewById(R.id.cartListViewItems);
 		UserSessionManager usMgr = new UserSessionManager(this);
 		Product pdt = new Product();
-		pdt.setServiceUrl(new HttpUrl().getUrl()
-				+ "/eshop/rest/getAllCartlistItemsByAccount");
+		pdt.setServiceUrl(UrlInfo.GET_ALLCARTLIST);
 		pdt.setEmailId(usMgr.getUserDetails().get("email"));
 
 		AsyncTask<Object, Void, String> cartListData = new PostOperation()

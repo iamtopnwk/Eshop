@@ -14,9 +14,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.infotop.eshop.R;
-import com.infotop.eshop.httpservice.HttpUrl;
 import com.infotop.eshop.login.EshopLoginActivity;
 import com.infotop.eshop.model.Product;
+import com.infotop.eshop.urls.UrlInfo;
 import com.infotop.eshop.utilities.UserSessionManager;
 import com.infotop.eshop.wishlist.PostOperation;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
@@ -87,8 +87,7 @@ public class CustomGridViewAdapter extends ArrayAdapter<String> {
 				if (usMgr.isUserLoggedIn()) {
 					emailId = usMgr.getUserDetails().get("email");
 					Product p = new Product();
-					p.setServiceUrl(new HttpUrl().getUrl()
-							+ "/eshop/rest/addwishlist");
+					p.setServiceUrl(UrlInfo.ADDWishlist);
 
 					p.setProductId(productId[id]);
 					p.setProductName(productName[id]);

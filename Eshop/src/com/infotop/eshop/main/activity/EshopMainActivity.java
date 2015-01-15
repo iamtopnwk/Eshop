@@ -25,7 +25,6 @@ import android.widget.ListView;
 import com.infotop.eshop.R;
 import com.infotop.eshop.cartlist.activity.CartListMainActivity;
 import com.infotop.eshop.category.activity.SubListCategoryActivity;
-import com.infotop.eshop.httpservice.HttpUrl;
 import com.infotop.eshop.login.ContactUsActivity;
 import com.infotop.eshop.login.EshopLoginActivity;
 import com.infotop.eshop.login.EshopPoliciesActivity;
@@ -62,7 +61,7 @@ public class EshopMainActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_eshop_main);
-		
+
 		String serverURL = UrlInfo.HOMEPAGE_PATH;
 
 		// Use AsyncTask execute Method To Prevent ANR Problem
@@ -116,7 +115,7 @@ public class EshopMainActivity extends Activity {
 	}
 
 	private class LongOperation extends AsyncTask<String, Void, Void> {
-		
+
 		List<String> uuidPosition;
 		List<String> parentCategoryName;
 
@@ -177,7 +176,7 @@ public class EshopMainActivity extends Activity {
 							i.putExtra("UUID", uuidPosition.get(position));
 							i.putExtra("CategoryName",
 									parentCategoryName.get(position));
-							//i.putExtra("jsonData", pcontent);
+							// i.putExtra("jsonData", pcontent);
 							startActivity(i);
 							// System.out.println("Item id:"+position);
 							// Toast.makeText(getApplicationContext(),"The position of child category:"+uuidPosition.get(position),
@@ -337,5 +336,5 @@ public class EshopMainActivity extends Activity {
 		// Pass any configuration change to the drawer toggls
 		mDrawerToggle.onConfigurationChanged(newConfig);
 	}
-	
+
 }

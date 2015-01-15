@@ -24,12 +24,12 @@ import android.widget.ImageButton;
 import com.infotop.eshop.R;
 import com.infotop.eshop.cartlist.activity.CartListMainActivity;
 import com.infotop.eshop.commonadapters.CustomGridViewAdapter;
-import com.infotop.eshop.httpservice.HttpUrl;
 import com.infotop.eshop.login.ContactUsActivity;
 import com.infotop.eshop.login.EshopLoginActivity;
 import com.infotop.eshop.login.EshopPoliciesActivity;
 import com.infotop.eshop.login.NoItemFoundActivity;
 import com.infotop.eshop.main.activity.EshopMainActivity;
+import com.infotop.eshop.urls.UrlInfo;
 import com.infotop.eshop.utilities.HttpServiceHandler;
 import com.infotop.eshop.utilities.UserSessionManager;
 import com.infotop.eshop.wishlist.activity.WishListMainActivity;
@@ -69,9 +69,8 @@ public class ProductGridViewActivity extends Activity {
 		subCatId = getIntent().getExtras().getString("ccId");
 		chilCategoryName = getIntent().getExtras().getString(
 				"childCategoryName");
-		String serverURL = new HttpUrl().getSolrUrl()
-				+ "/solr/collection1/select?q=categoryid%3A*&fq=categoryid%3A"
-				+ subCatId + "&rows=100&wt=json&indent=true";
+		String serverURL = UrlInfo.GET_ALLPRODUCTS + subCatId
+				+ "&rows=100&wt=json&indent=true";
 
 		// Use AsyncTask execute Method To Prevent ANR Problem
 		new LongOperation().execute(serverURL);
@@ -152,16 +151,6 @@ public class ProductGridViewActivity extends Activity {
 				@Override
 				public void onItemClick(AdapterView<?> parent, View view,
 						int position, long id) {
-					/*
-					 * ArrayList<String> productData = new ArrayList<String>();
-					 * productData.add(pdctId[position]);
-					 * productData.add(pdct[position]);
-					 * productData.add(pdesc[position]);
-					 * productData.add(price[position]);
-					 * productData.add((imageUrl[position]).toString()); //
-					 * String product = (String) adapter.getItem(position); //
-					 * pass Data to other Activity
-					 */
 					Intent i = new Intent(ProductGridViewActivity.this,
 							BookDetailsActivity.class);
 					i.putExtra("productId", pdctId[position]);

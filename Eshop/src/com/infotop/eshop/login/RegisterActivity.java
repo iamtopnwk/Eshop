@@ -20,7 +20,6 @@ public class RegisterActivity extends Activity {
 
 	private EditText userName, userEmail, userPwd, userCPwd, userBAdd,
 			userSAdd, userMobile;
-	private String serverURL;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {

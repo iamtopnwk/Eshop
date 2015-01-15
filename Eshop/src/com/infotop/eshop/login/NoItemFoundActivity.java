@@ -27,18 +27,6 @@ public class NoItemFoundActivity extends Activity {
 			}
 		});
 
-		/*
-		 * Button shop =(Button)findViewById(R.id.shop);
-		 * shop.setOnClickListener(new OnClickListener() {
-		 * 
-		 * @Override public void onClick(View v) { Intent i=new
-		 * Intent(WishListLoginActivity.this,EshopMainActivity.class);
-		 * startActivity(i);
-		 * 
-		 * 
-		 * } });
-		 */
-
 	}
 
 	@Override

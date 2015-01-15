@@ -7,16 +7,11 @@ import org.json.JSONException;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-
-
-
-
 
 import com.infotop.eshop.R;
 import com.infotop.eshop.main.activity.EshopMainActivity;
@@ -30,20 +25,20 @@ public class PaymentMainActivity extends Activity {
 	private static final String TAG = "paymentExample";
 	private static final String CONFIG_ENVIRONMENT = PayPalConfiguration.ENVIRONMENT_NO_NETWORK;
 	ArrayList<String> s;
-	ArrayList<String>s1;
+	ArrayList<String> s1;
 	// note that these credentials will differ between live & sandbox
 	// environments.
 	private static final String CONFIG_CLIENT_ID = "ASfsBRBVYizvtodFwwdhEGWwa_DjNSRQDfstdadzgpMglWHYrEW_wpGm3GuE";
 	private static final int REQUEST_CODE_PAYMENT = 1;
 	private static PayPalConfiguration config = new PayPalConfiguration()
-			.environment(CONFIG_ENVIRONMENT)
-			.clientId(CONFIG_CLIENT_ID);
-			/*// The following are only used in PayPalFuturePaymentActivity.
-			.merchantName("Balchender")
-			.merchantPrivacyPolicyUri(
-					Uri.parse("https://www.example.com/privacy"))
-			.merchantUserAgreementUri(
-					Uri.parse("https://www.example.com/legal"));*/
+			.environment(CONFIG_ENVIRONMENT).clientId(CONFIG_CLIENT_ID);
+
+	/*
+	 * // The following are only used in PayPalFuturePaymentActivity.
+	 * .merchantName("Balchender") .merchantPrivacyPolicyUri(
+	 * Uri.parse("https://www.example.com/privacy")) .merchantUserAgreementUri(
+	 * Uri.parse("https://www.example.com/legal"));
+	 */
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -53,7 +48,7 @@ public class PaymentMainActivity extends Activity {
 		intent.putExtra(PayPalService.EXTRA_PAYPAL_CONFIGURATION, config);
 		startService(intent);
 		s = getIntent().getExtras().getStringArrayList("purChaseItem");
-		s1=getIntent().getExtras().getStringArrayList("cartItemsBuy");
+		s1 = getIntent().getExtras().getStringArrayList("cartItemsBuy");
 	}
 
 	public void onBuyPressed(View pressed) {
@@ -67,46 +62,45 @@ public class PaymentMainActivity extends Activity {
 		 * Also, to include additional payment details and an item list, see
 		 * getStuffToBuy() below.
 		 */
-		
-		
-		
 
 		/*
 		 * See getStuffToBuy(..) for examples of some available payment options.
 		 */
-       if(s!=null){
-    	   PayPalPayment thingToBuy = getThingToBuy(PayPalPayment.PAYMENT_INTENT_SALE);
-		Intent intent = new Intent(PaymentMainActivity.this,
-				PaymentActivity.class);	        
-		intent.putExtra(PaymentActivity.EXTRA_PAYMENT, thingToBuy);
-		startActivityForResult(intent, REQUEST_CODE_PAYMENT);
-       }
-		else if(s1!=null){
-			PayPalPayment thingToBuyAll = getThingToBuyAll(PayPalPayment.PAYMENT_INTENT_SALE);
-			
+		if (s != null) {
+			PayPalPayment thingToBuy = getThingToBuy(PayPalPayment.PAYMENT_INTENT_SALE);
 			Intent intent = new Intent(PaymentMainActivity.this,
-					PaymentActivity.class);	        
+					PaymentActivity.class);
+			intent.putExtra(PaymentActivity.EXTRA_PAYMENT, thingToBuy);
+			startActivityForResult(intent, REQUEST_CODE_PAYMENT);
+		} else if (s1 != null) {
+			PayPalPayment thingToBuyAll = getThingToBuyAll(PayPalPayment.PAYMENT_INTENT_SALE);
+
+			Intent intent = new Intent(PaymentMainActivity.this,
+					PaymentActivity.class);
 			intent.putExtra(PaymentActivity.EXTRA_PAYMENT, thingToBuyAll);
 			startActivityForResult(intent, REQUEST_CODE_PAYMENT);
 		}
 
 	}
+
 	public void onCancelPressed(View pressed) {
-		Intent i = new Intent(PaymentMainActivity.this,
-				EshopMainActivity.class);
+		Intent i = new Intent(PaymentMainActivity.this, EshopMainActivity.class);
 		startActivity(i);
 	}
+
 	private PayPalPayment getThingToBuy(String paymentIntent) {
-		
-		return new PayPalPayment(new BigDecimal(s.get(3)), "USD",
-				s.get(1), paymentIntent);
-		
+
+		return new PayPalPayment(new BigDecimal(s.get(3)), "USD", s.get(1),
+				paymentIntent);
+
 	}
-   private PayPalPayment getThingToBuyAll(String paymentIntent) {
-		
-		return new PayPalPayment(new BigDecimal(s1.get(2)), "USD",
-				s1.get(1), paymentIntent);
-}
+
+	private PayPalPayment getThingToBuyAll(String paymentIntent) {
+
+		return new PayPalPayment(new BigDecimal(s1.get(2)), "USD", s1.get(1),
+				paymentIntent);
+	}
+
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		if (requestCode == REQUEST_CODE_PAYMENT) {
@@ -131,11 +125,12 @@ public class PaymentMainActivity extends Activity {
 						 * .com/paypal/rest-api-sdk-python/tree/master
 						 * /samples/mobile_backend
 						 */
-						/*Toast.makeText(
-								getApplicationContext(),
-								"PaymentConfirmation info received from PayPal",
-								Toast.LENGTH_LONG).show();*/
-						Intent i=new Intent(this,PayConfirmActivity.class);
+						/*
+						 * Toast.makeText( getApplicationContext(),
+						 * "PaymentConfirmation info received from PayPal",
+						 * Toast.LENGTH_LONG).show();
+						 */
+						Intent i = new Intent(this, PayConfirmActivity.class);
 						startActivity(i);
 
 					} catch (JSONException e) {

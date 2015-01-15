@@ -18,9 +18,9 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.infotop.eshop.R;
-import com.infotop.eshop.httpservice.HttpUrl;
 import com.infotop.eshop.model.Product;
 import com.infotop.eshop.product.BookDetailsActivity;
+import com.infotop.eshop.urls.UrlInfo;
 import com.infotop.eshop.utilities.UserSessionManager;
 import com.infotop.eshop.wishlist.PostOperation;
 import com.infotop.eshop.wishlist.adapter.WishListAdapter;
@@ -57,8 +57,7 @@ public class WishListMainActivity extends Activity {
 		list = (ListView) findViewById(R.id.wishListViewItems);
 		UserSessionManager usMgr = new UserSessionManager(this);
 		Product pdt = new Product();
-		pdt.setServiceUrl(new HttpUrl().getUrl()
-				+ "/eshop/rest/getAllWishlistItemsByAccount");
+		pdt.setServiceUrl(UrlInfo.GET_ALLWISHLIST);
 		pdt.setEmailId(usMgr.getUserDetails().get("email"));
 		AsyncTask<Object, Void, String> data = new PostOperation().execute(pdt);
 		try {
@@ -86,12 +85,6 @@ public class WishListMainActivity extends Activity {
 				productDescription[i] = pc.getString(TAG_PDESC);
 				productPrice[i] = pc.getString(TAG_PPRICE);
 				productImage[i] = pc.getString(TAG_IMGURL);
-
-				System.out.println("produuuuuuuuuuuuct nnaame" + productId[0]);
-				System.out
-						.println("produuuuuuuuuuuuct nnaame" + productName[0]);
-				System.out.println("produuuuuuuuuuuuct nnaame"
-						+ productImage[i]);
 			}
 			listAdapter = new WishListAdapter(WishListMainActivity.this,
 					wishlistId, productId, productName, productImage,
@@ -132,30 +125,6 @@ public class WishListMainActivity extends Activity {
 			e.printStackTrace();
 		}
 
-		/*
-		 * listAdapter = new WishListAdapter(WishListMainActivity.this,
-		 * productId, productName, productImage, productDescription,
-		 * productPrice, op); list.setAdapter(listAdapter);
-		 * list.setTextFilterEnabled(true); list.setOnItemClickListener(new
-		 * AdapterView.OnItemClickListener() {
-		 * 
-		 * @Override public void onItemClick(AdapterView<?> parent, View view,
-		 * int position, long id) { ArrayList<String> productData = new
-		 * ArrayList<String>(); productData.add(productId[position]);
-		 * productData.add(productName[position]);
-		 * productData.add(productDescription[position]);
-		 * productData.add(productPrice[position]);
-		 * productData.add(productImage[position]); // String product = (String)
-		 * adapter.getItem(position); // pass Data to other Activity
-		 * System.out.println("productId:-"+productId[position]);
-		 * 
-		 * Intent i = new Intent(WishListMainActivity.this,
-		 * BookDetailsActivity.class); i.putExtra("productId",
-		 * productId[position]); //i.putStringArrayListExtra("productData",
-		 * productData); startActivity(i);
-		 * 
-		 * } });
-		 */
 		System.gc();
 	}
 

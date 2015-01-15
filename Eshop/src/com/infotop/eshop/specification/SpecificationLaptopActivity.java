@@ -1,19 +1,11 @@
 package com.infotop.eshop.specification;
 
-import org.json.JSONObject;
-
-import com.infotop.eshop.R;
-
-
-import com.infotop.eshop.httpservice.HttpUrl;
-import com.infotop.eshop.utilities.HttpServiceHandler;
-
 import android.app.Activity;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.TextView;
+
+import com.infotop.eshop.R;
 
 public class SpecificationLaptopActivity extends Activity {
 	

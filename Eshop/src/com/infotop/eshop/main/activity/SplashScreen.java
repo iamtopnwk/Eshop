@@ -1,17 +1,13 @@
 package com.infotop.eshop.main.activity;
 
-import com.infotop.eshop.R;
-import com.infotop.eshop.R.id;
-import com.infotop.eshop.R.layout;
-import com.infotop.eshop.R.menu;
-
 import android.app.Activity;
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.Menu;
 import android.view.MenuItem;
+
+import com.infotop.eshop.R;
 
 public class SplashScreen extends Activity {
 
@@ -35,12 +31,12 @@ public class SplashScreen extends Activity {
 				Intent i = new Intent(SplashScreen.this,
 						EshopMainActivity.class);
 				startActivity(i);
-				
+
 				// close this activity
 				finish();
 			}
 		}, SPLASH_TIME_OUT);
-		//dialog.dismiss(); 
+		// dialog.dismiss();
 	}
 
 	@Override

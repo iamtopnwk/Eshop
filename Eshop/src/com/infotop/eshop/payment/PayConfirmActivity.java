@@ -1,17 +1,14 @@
 package com.infotop.eshop.payment;
 
-import com.infotop.eshop.R;
-import com.infotop.eshop.R.id;
-import com.infotop.eshop.R.layout;
-import com.infotop.eshop.R.menu;
-import com.infotop.eshop.main.activity.EshopMainActivity;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+
+import com.infotop.eshop.R;
+import com.infotop.eshop.main.activity.EshopMainActivity;
 
 public class PayConfirmActivity extends Activity {
 
@@ -20,9 +17,9 @@ public class PayConfirmActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_pay_confirm);
 	}
-	
-	public void onHomePressed(View view){
-		Intent i=new Intent(this, EshopMainActivity.class);
+
+	public void onHomePressed(View view) {
+		Intent i = new Intent(this, EshopMainActivity.class);
 		startActivity(i);
 	}
 

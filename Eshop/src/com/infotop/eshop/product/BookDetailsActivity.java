@@ -4,7 +4,6 @@
 
 package com.infotop.eshop.product;
 
-//import com.infotop.eshop.activities.ProductDetailsHorizontalActivity;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.concurrent.ExecutionException;
@@ -30,7 +29,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.infotop.eshop.R;
-import com.infotop.eshop.httpservice.HttpUrl;
 import com.infotop.eshop.login.EshopLoginActivity;
 import com.infotop.eshop.main.activity.ZoomActivity;
 import com.infotop.eshop.model.Product;
@@ -38,6 +36,7 @@ import com.infotop.eshop.payment.PaymentMainActivity;
 import com.infotop.eshop.specification.SpecificationLaptopActivity;
 import com.infotop.eshop.specification.SpecificationMobileActivity;
 import com.infotop.eshop.specification.SpecificationMouseActivity;
+import com.infotop.eshop.urls.UrlInfo;
 import com.infotop.eshop.utilities.HorizontalListView;
 import com.infotop.eshop.utilities.HttpServiceHandler;
 import com.infotop.eshop.utilities.UserSessionManager;
@@ -45,9 +44,6 @@ import com.infotop.eshop.wishlist.PostOperation;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.display.RoundedBitmapDisplayer;
-
-//import com.infotop.bookslistview.BooksListViewActivity;
-//import com.infotop.bookslistview.R;
 
 @SuppressLint("SimpleDateFormat")
 public class BookDetailsActivity extends Activity {
@@ -65,10 +61,9 @@ public class BookDetailsActivity extends Activity {
 	private static final String TAG_PDESC = "productDescription";
 	private static final String TAG_PPRICE = "productPrice";
 	private static final String TAG_PID = "uuid";
-	private static final String TAG_IMGURL = "image";
 	private static final String TAG_IMAGELIST = "imageList";
 	private static final String TAG_IMGVALUE = "imageValue";
-	private static final int SELECT_PICTURE = 1;
+
 	ImageLoader loader = ImageLoader.getInstance();
 	private String productId;
 	private String productName;
@@ -91,9 +86,6 @@ public class BookDetailsActivity extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		// final ViewHolder holder;
-		/* final DisplayImageOptions op; */
-		// final ImageLoader loader = ImageLoader.getInstance();
 		setContentView(R.layout.activity_book_details);
 
 		btn = (Button) findViewById(R.id.getSpecs);
@@ -104,15 +96,12 @@ public class BookDetailsActivity extends Activity {
 				.cacheOnDisc(true).displayer(new RoundedBitmapDisplayer(20))
 				.build();
 
-		// Get data from EshopMainActivity
-		// s = getIntent().getExtras().getStringArrayList("productData");
 		productUUid = getIntent().getExtras().getString("productId");
 		childCategoryName = getIntent().getExtras().getString(
 				"childCategoryName");
 		System.out.println("ChildCategoryName:=======" + childCategoryName);
 
-		String serverURL = new HttpUrl().getUrl()
-				+ "/eshop/rest/productByuuid/" + productUUid;
+		String serverURL = UrlInfo.INDVProduct + productUUid;
 
 		// Use AsyncTask execute Method To Prevent ANR Problem
 		new LongOperation().execute(serverURL);
@@ -121,10 +110,6 @@ public class BookDetailsActivity extends Activity {
 
 	private class LongOperation extends AsyncTask<String, Void, Void> {
 
-		/*
-		 * ProductListAdapter listAdapter; String[] pdct; String[] pdctId;
-		 * String[] pdesc; String[] price; //String[] imageUrl;
-		 */
 		private ProgressDialog dialog = new ProgressDialog(
 				BookDetailsActivity.this);
 
@@ -242,7 +227,7 @@ public class BookDetailsActivity extends Activity {
 		if (usMgr.isUserLoggedIn()) {
 			emailId = usMgr.getUserDetails().get("email");
 			Product p = new Product();
-			p.setServiceUrl(new HttpUrl().getUrl() + "/eshop/rest/addwishlist");
+			p.setServiceUrl(UrlInfo.ADDWishlist);
 			p.setProductId(productId);
 			p.setProductName(productName);
 			p.setDescription(productDescription);
@@ -356,8 +341,7 @@ public class BookDetailsActivity extends Activity {
 			} else {
 				Product pdt = new Product();
 
-				pdt.setServiceUrl(new HttpUrl().getUrl()
-						+ "/eshop/rest/addcartlist");
+				pdt.setServiceUrl(UrlInfo.ADDCartlist);
 				pdt.setEmailId(usMgr.getUserDetails().get("email"));
 				pdt.setProductId(productId);
 				pdt.setProductName(productName);

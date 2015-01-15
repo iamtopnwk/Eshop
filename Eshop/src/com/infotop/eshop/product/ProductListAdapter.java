@@ -2,8 +2,6 @@ package com.infotop.eshop.product;
 
 import java.util.concurrent.ExecutionException;
 
-import org.json.JSONObject;
-
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
@@ -16,10 +14,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.infotop.eshop.R;
-import com.infotop.eshop.httpservice.HttpUrl;
 import com.infotop.eshop.login.EshopLoginActivity;
 import com.infotop.eshop.model.Product;
-import com.infotop.eshop.utilities.HttpServiceHandler;
+import com.infotop.eshop.urls.UrlInfo;
 import com.infotop.eshop.utilities.UserSessionManager;
 import com.infotop.eshop.wishlist.PostOperation;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
@@ -86,31 +83,34 @@ public class ProductListAdapter extends ArrayAdapter<String> {
 				if (usMgr.isUserLoggedIn()) {
 					selectedId = id;
 					emailId = usMgr.getUserDetails().get("email");
-					/*new LongOperation().execute(new HttpUrl().getUrl()
-							+ "/eshop/rest/addwishlist");*/
-					Product p=new Product();
-					p.setServiceUrl(new HttpUrl().getUrl()
-							+ "/eshop/rest/addwishlist");
+					/*
+					 * new LongOperation().execute(new HttpUrl().getUrl() +
+					 * "/eshop/rest/addwishlist");
+					 */
+					Product p = new Product();
+					p.setServiceUrl(UrlInfo.ADDWishlist);
 					p.setProductId(pdctId[id]);
 					p.setProductName(productName[id]);
 					p.setDescription(desc[id]);
 					p.setImageUrl(imageUrl[id]);
 					p.setPrice(price[id]);
 					p.setEmailId(emailId);
-					AsyncTask<Object, Void, String> respData=new PostOperation().execute(p);
+					AsyncTask<Object, Void, String> respData = new PostOperation()
+							.execute(p);
 					String pcontent;
 					try {
 						pcontent = respData.get();
 						if (pcontent.equalsIgnoreCase("Success")) {
-							Toast.makeText(context, "Your item is added to Wish List",
+							Toast.makeText(context,
+									"Your item is added to Wish List",
 									Toast.LENGTH_SHORT).show();
-						}else if(pcontent.equalsIgnoreCase("Exist")){
-							Toast.makeText(context, "Your item is already added to Wish List", Toast.LENGTH_SHORT)
-							.show();
-						}
-							else {
-							Toast.makeText(context, "Connection error", Toast.LENGTH_SHORT)
-									.show();
+						} else if (pcontent.equalsIgnoreCase("Exist")) {
+							Toast.makeText(context,
+									"Your item is already added to Wish List",
+									Toast.LENGTH_SHORT).show();
+						} else {
+							Toast.makeText(context, "Connection error",
+									Toast.LENGTH_SHORT).show();
 						}
 					} catch (InterruptedException e) {
 						// TODO Auto-generated catch block
@@ -119,7 +119,6 @@ public class ProductListAdapter extends ArrayAdapter<String> {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
-					
 
 				} else {
 					Intent intent = new Intent(context,
