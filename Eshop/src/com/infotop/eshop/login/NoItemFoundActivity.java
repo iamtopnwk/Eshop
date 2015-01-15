@@ -1,15 +1,14 @@
 package com.infotop.eshop.login;
 
-import com.infotop.eshop.R;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.widget.Button;
+
+import com.infotop.eshop.R;
 
 public class NoItemFoundActivity extends Activity {
 
@@ -17,29 +16,29 @@ public class NoItemFoundActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_no_item_found);
-		
-		Button logIn =(Button)findViewById(R.id.logIn);
+
+		Button logIn = (Button) findViewById(R.id.logIn);
 		logIn.setOnClickListener(new View.OnClickListener() {
-             public void onClick(View v) {
-                
-                 Intent i = new Intent(NoItemFoundActivity.this, EshopLoginActivity.class);
-                 startActivity(i);
-             }
-         });
-		
-		/*Button shop =(Button)findViewById(R.id.shop);
-		shop.setOnClickListener(new OnClickListener() {
-			
-			@Override
 			public void onClick(View v) {
-				Intent i=new Intent(WishListLoginActivity.this,EshopMainActivity.class);
+
+				Intent i = new Intent(NoItemFoundActivity.this,
+						EshopLoginActivity.class);
 				startActivity(i);
-			
-				
 			}
-		});*/
-		
-     
+		});
+
+		/*
+		 * Button shop =(Button)findViewById(R.id.shop);
+		 * shop.setOnClickListener(new OnClickListener() {
+		 * 
+		 * @Override public void onClick(View v) { Intent i=new
+		 * Intent(WishListLoginActivity.this,EshopMainActivity.class);
+		 * startActivity(i);
+		 * 
+		 * 
+		 * } });
+		 */
+
 	}
 
 	@Override

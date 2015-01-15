@@ -1,8 +1,5 @@
 package com.infotop.eshop.utilities;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.List;
 import java.util.concurrent.ExecutionException;
 
 import android.annotation.SuppressLint;
@@ -17,8 +14,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.infotop.eshop.R;
-import com.infotop.eshop.db.DatabaseHandler;
-import com.infotop.eshop.db.Wishlist;
 import com.infotop.eshop.httpservice.HttpUrl;
 import com.infotop.eshop.login.EshopLoginActivity;
 import com.infotop.eshop.model.Product;
@@ -90,38 +85,41 @@ public class CustomGridViewAdapter extends ArrayAdapter<String> {
 				UserSessionManager usMgr = new UserSessionManager(context);
 				if (usMgr.isUserLoggedIn()) {
 					emailId = usMgr.getUserDetails().get("email");
-					Product p=new Product();
+					Product p = new Product();
 					p.setServiceUrl(new HttpUrl().getUrl()
 							+ "/eshop/rest/addwishlist");
-					
+
 					p.setProductId(productId[id]);
 					p.setProductName(productName[id]);
 					p.setDescription(description[id]);
 					p.setImageUrl(imageUrl[id]);
 					p.setPrice(price[id]);
 					p.setEmailId(emailId);
-				
-					AsyncTask<Object, Void, String> respData=new PostOperation().execute(p);
+
+					AsyncTask<Object, Void, String> respData = new PostOperation()
+							.execute(p);
 					String pcontent;
-					
-					
-				/*	w.setCreatedDate(new SimpleDateFormat("dd MMM yyyy")
-							.format(new Date()));*/
-					
+
+					/*
+					 * w.setCreatedDate(new SimpleDateFormat("dd MMM yyyy")
+					 * .format(new Date()));
+					 */
+
 					try {
 						pcontent = respData.get();
 						if (pcontent.equalsIgnoreCase("Success")) {
-							Toast.makeText(context, "Your item is added to Wish List",
+							Toast.makeText(context,
+									"Your item is added to Wish List",
 									Toast.LENGTH_SHORT).show();
-						}else if(pcontent.equalsIgnoreCase("Exist")){
-							Toast.makeText(context, "Your item is already added to Wish List", Toast.LENGTH_SHORT)
-							.show();
+						} else if (pcontent.equalsIgnoreCase("Exist")) {
+							Toast.makeText(context,
+									"Your item is already added to Wish List",
+									Toast.LENGTH_SHORT).show();
+						} else {
+							Toast.makeText(context, "Connection error",
+									Toast.LENGTH_SHORT).show();
 						}
-							else {
-							Toast.makeText(context, "Connection error", Toast.LENGTH_SHORT)
-									.show();
-						}
-						
+
 					} catch (InterruptedException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
@@ -129,28 +127,25 @@ public class CustomGridViewAdapter extends ArrayAdapter<String> {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
-					
-					/*List<Wishlist> s = db.getAllWishListItems();
-					int counter=0;
-					for(int i=0;i<s.size();i++){
-						if(s.get(i).getProductId().equals(productId[id])){
-							counter++;
-						}
-					}
-					if(counter>0){
-						Toast.makeText(context, "Your item is already added to Wish List",
-								Toast.LENGTH_SHORT).show();
-					}else{
-						
-						db.addWishList(w);
-					Toast.makeText(context, "Your item is added to Wish List",
-							Toast.LENGTH_SHORT).show();
-						
-					}
-					
-					db.addWishList(w);
-					Toast.makeText(context, "Your item is added to Wish List",
-							Toast.LENGTH_SHORT).show();*/
+
+					/*
+					 * List<Wishlist> s = db.getAllWishListItems(); int
+					 * counter=0; for(int i=0;i<s.size();i++){
+					 * if(s.get(i).getProductId().equals(productId[id])){
+					 * counter++; } } if(counter>0){ Toast.makeText(context,
+					 * "Your item is already added to Wish List",
+					 * Toast.LENGTH_SHORT).show(); }else{
+					 * 
+					 * db.addWishList(w); Toast.makeText(context,
+					 * "Your item is added to Wish List",
+					 * Toast.LENGTH_SHORT).show();
+					 * 
+					 * }
+					 * 
+					 * db.addWishList(w); Toast.makeText(context,
+					 * "Your item is added to Wish List",
+					 * Toast.LENGTH_SHORT).show();
+					 */
 				} else {
 					Intent intent = new Intent(context,
 							EshopLoginActivity.class);
@@ -168,7 +163,7 @@ public class CustomGridViewAdapter extends ArrayAdapter<String> {
 		public TextView txtTitle2;
 		public ImageView imageView;
 		public ImageView imgwishlistbtn;
-		
+
 	}
 
 }

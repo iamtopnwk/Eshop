@@ -1,34 +1,26 @@
 package com.infotop.eshop.wishlist.adapter;
 
-import java.util.List;
 import java.util.concurrent.ExecutionException;
 
+import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.os.AsyncTask;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
+
 import com.infotop.eshop.R;
-import com.infotop.eshop.db.DatabaseHandler;
-import com.infotop.eshop.db.Wishlist;
 import com.infotop.eshop.httpservice.HttpUrl;
 import com.infotop.eshop.model.Product;
-import com.infotop.eshop.utilities.UserSessionManager;
 import com.infotop.eshop.wishlist.PostOperation;
 import com.infotop.eshop.wishlist.activity.WishListMainActivity;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
-
-import android.app.Activity;
-import android.app.AlertDialog;
-import android.content.Context;
-import android.content.DialogInterface;
-import android.content.Intent;
-import android.os.AsyncTask;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.view.View.OnClickListener;
-import android.widget.ArrayAdapter;
-import android.widget.CheckBox;
-import android.widget.ImageView;
-import android.widget.TextView;
-import android.widget.Toast;
 
 public class WishListAdapter extends ArrayAdapter<String> {
 
@@ -43,9 +35,10 @@ public class WishListAdapter extends ArrayAdapter<String> {
 	private final DisplayImageOptions op;
 	protected ImageLoader loader = ImageLoader.getInstance();
 	private String emailId;
-	public WishListAdapter(Activity context, String[] wishlistId,String[] productId,
-			String[] productName, String[] imageUrl, String[] desc,
-			String[] price, DisplayImageOptions op) {
+
+	public WishListAdapter(Activity context, String[] wishlistId,
+			String[] productId, String[] productName, String[] imageUrl,
+			String[] desc, String[] price, DisplayImageOptions op) {
 
 		super(context, R.layout.wish_list, productName);
 		this.context = context;
@@ -97,44 +90,49 @@ public class WishListAdapter extends ArrayAdapter<String> {
 						new DialogInterface.OnClickListener() {
 							public void onClick(DialogInterface dialog,
 									int which) {
-								
-								//UserSessionManager usMgr = new UserSessionManager(context);
-								//if (usMgr.isUserLoggedIn()) {
-									
-									//emailId = usMgr.getUserDetails().get("email");
-								
-									Product p=new Product();
-									p.setServiceUrl(new HttpUrl().getUrl()
-											+ "/eshop/rest/deletewishlist");
-									
-									p.setProductId(wishlistId[id]);
-									System.out.println("lllllllllllll"+wishlistId[id]);
-									AsyncTask<Object, Void, String> respData=new PostOperation().execute(p);
-									String pcontent;
-									try {
-										pcontent = respData.get();
-										if (pcontent.equalsIgnoreCase("Success")) {
-											Toast.makeText(context, "Your item is deleted",
-													Toast.LENGTH_SHORT).show();
-										
-										}
-											else {
-											Toast.makeText(context, "Connection error", Toast.LENGTH_SHORT)
-													.show();
-										}
-									} catch (InterruptedException e) {
-										// TODO Auto-generated catch block
-										e.printStackTrace();
-									} catch (ExecutionException e) {
-										// TODO Auto-generated catch block
-										e.printStackTrace();
+
+								// UserSessionManager usMgr = new
+								// UserSessionManager(context);
+								// if (usMgr.isUserLoggedIn()) {
+
+								// emailId =
+								// usMgr.getUserDetails().get("email");
+
+								Product p = new Product();
+								p.setServiceUrl(new HttpUrl().getUrl()
+										+ "/eshop/rest/deletewishlist");
+
+								p.setProductId(wishlistId[id]);
+								System.out.println("lllllllllllll"
+										+ wishlistId[id]);
+								AsyncTask<Object, Void, String> respData = new PostOperation()
+										.execute(p);
+								String pcontent;
+								try {
+									pcontent = respData.get();
+									if (pcontent.equalsIgnoreCase("Success")) {
+										Toast.makeText(context,
+												"Your item is deleted",
+												Toast.LENGTH_SHORT).show();
+
+									} else {
+										Toast.makeText(context,
+												"Connection error",
+												Toast.LENGTH_SHORT).show();
 									}
-									
-								//}
-								
-								//DatabaseHandler db = new DatabaseHandler(
-										//context);
-								//db.deleteWishListItem(productId[id]);
+								} catch (InterruptedException e) {
+									// TODO Auto-generated catch block
+									e.printStackTrace();
+								} catch (ExecutionException e) {
+									// TODO Auto-generated catch block
+									e.printStackTrace();
+								}
+
+								// }
+
+								// DatabaseHandler db = new DatabaseHandler(
+								// context);
+								// db.deleteWishListItem(productId[id]);
 								// myadapter.notifyDataSetChanged();
 								((Activity) context).finish();
 								Intent intent = new Intent(context,

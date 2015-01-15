@@ -2,10 +2,7 @@ package com.infotop.eshop.login;
 
 import java.util.concurrent.ExecutionException;
 
-import org.json.JSONObject;
-
 import android.app.Activity;
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -16,8 +13,6 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.infotop.eshop.R;
-import com.infotop.eshop.httpservice.HttpServiceHandler;
-import com.infotop.eshop.httpservice.HttpUrl;
 import com.infotop.eshop.model.Account;
 import com.infotop.eshop.urls.UrlInfo;
 
@@ -31,7 +26,7 @@ public class RegisterActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_register);
-		//serverURL = new HttpUrl().getUrl()+"/eshop/rest/registration";
+		// serverURL = new HttpUrl().getUrl()+"/eshop/rest/registration";
 	}
 
 	public void getRegisterPage(View view) {
@@ -70,7 +65,7 @@ public class RegisterActivity extends Activity {
 					.execute(account);
 			String pcontent;
 			try {
-				pcontent=respData.get();
+				pcontent = respData.get();
 				Toast.makeText(getApplicationContext(),
 						"Your Registration has been done successfully",
 						Toast.LENGTH_SHORT).show();
@@ -93,7 +88,7 @@ public class RegisterActivity extends Activity {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-		
+
 		} else {
 			Toast.makeText(getApplicationContext(),
 					"Both paswords should be same", Toast.LENGTH_SHORT).show();

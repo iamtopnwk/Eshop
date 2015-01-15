@@ -1,4 +1,4 @@
-package com.infotop.eshop.sidefragment;
+package com.infotop.eshop.main.activity;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -32,7 +32,6 @@ import com.infotop.eshop.login.EshopLoginActivity;
 import com.infotop.eshop.login.EshopPoliciesActivity;
 import com.infotop.eshop.login.NoItemFoundActivity;
 import com.infotop.eshop.main.adapter.NavDrawerListAdapter;
-import com.infotop.eshop.sidefragment.HomeFragment;
 import com.infotop.eshop.urls.UrlInfo;
 import com.infotop.eshop.utilities.NavDrawerItem;
 import com.infotop.eshop.utilities.UserSessionManager;

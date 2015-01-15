@@ -1,53 +1,25 @@
 package com.infotop.eshop.login;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.concurrent.ExecutionException;
 
-import org.apache.http.HttpEntity;
-import org.apache.http.HttpResponse;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.entity.StringEntity;
-import org.apache.http.impl.client.DefaultHttpClient;
-import org.apache.http.message.BasicHeader;
-import org.apache.http.params.HttpConnectionParams;
-import org.apache.http.protocol.HTTP;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import com.infotop.eshop.R;
-import com.infotop.eshop.R.id;
-import com.infotop.eshop.R.layout;
-import com.infotop.eshop.R.menu;
-import com.infotop.eshop.httpservice.HttpServiceHandler;
-import com.infotop.eshop.httpservice.HttpUrl;
-import com.infotop.eshop.main.activity.EshopMainActivity;
-import com.infotop.eshop.model.Account;
-import com.infotop.eshop.product.ProductListAdapter;
-import com.infotop.eshop.urls.UrlInfo;
-import com.infotop.eshop.utilities.UserSessionManager;
-import com.infotop.eshop.wishlist.PostOperation;
-
 import android.app.Activity;
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.os.Looper;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.MotionEvent;
 import android.view.View;
-import android.view.View.OnTouchListener;
-import android.widget.AdapterView;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
+
+import com.infotop.eshop.R;
+import com.infotop.eshop.main.activity.EshopMainActivity;
+import com.infotop.eshop.model.Account;
+import com.infotop.eshop.urls.UrlInfo;
+import com.infotop.eshop.utilities.UserSessionManager;
 
 public class EshopLoginActivity extends Activity {
 
@@ -120,7 +92,6 @@ public class EshopLoginActivity extends Activity {
 
 	}
 
-	
 	public void signUp(View view) {
 		Intent intent = new Intent(this, RegisterActivity.class);
 		startActivity(intent);
