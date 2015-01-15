@@ -23,13 +23,13 @@ import com.infotop.eshop.R;
 import com.infotop.eshop.cartlist.activity.CartListMainActivity;
 import com.infotop.eshop.category.adapter.ExpandableListAdapter;
 import com.infotop.eshop.httpservice.HttpServiceHandler;
-import com.infotop.eshop.httpservice.HttpUrl;
 import com.infotop.eshop.login.ContactUsActivity;
 import com.infotop.eshop.login.EshopLoginActivity;
 import com.infotop.eshop.login.EshopPoliciesActivity;
 import com.infotop.eshop.login.NoItemFoundActivity;
 import com.infotop.eshop.main.activity.EshopMainActivity;
 import com.infotop.eshop.product.ProductListViewActivity;
+import com.infotop.eshop.urls.UrlInfo;
 import com.infotop.eshop.utilities.UserSessionManager;
 import com.infotop.eshop.wishlist.activity.WishListMainActivity;
 
@@ -46,12 +46,12 @@ public class SubListCategoryActivity extends Activity {
 	HashMap<String, List<String>> listDataChild1;
 	ExpandableListView expandableList;
 	UserSessionManager usMgr;
-    
+
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_sub_list_category);
 		String selectedParentId, parentCategoryName;
-		
+
 		usMgr = new UserSessionManager(this);
 		// expandableList.setClickable(true);
 		TextView tv = (TextView) findViewById(R.id.selectedTextView);
@@ -61,8 +61,8 @@ public class SubListCategoryActivity extends Activity {
 		tv.setText("In " + parentCategoryName);
 		// Create Expandable List and set it's properties
 
-		String serverURL = new HttpUrl().getSolrUrl()+"/solr/collection1/select?q=categoryName%3A*&fq=categoryParentId%3A"
-				+ selectedParentId + "&wt=json&indent=true";
+		String serverURL = UrlInfo.SUBCATEGORY_PATH + selectedParentId
+				+ "&wt=json&indent=true";
 
 		new LongOperation().execute(serverURL);
 	}
@@ -91,10 +91,8 @@ public class SubListCategoryActivity extends Activity {
 					listDataHeader.add(parentItems.get(i));
 					List<String> pcName = new ArrayList<String>();
 					List<String> chidIdUUid = new ArrayList<String>();
-					ccontent = hs
-							.httpContent(new HttpUrl().getSolrUrl()+"/solr/collection1/select?q=categoryName%3A*&fq=categoryParentId%3A"
-									+ parentUuids.get(i)
-									+ "&wt=json&indent=true");
+					ccontent = hs.httpContent(UrlInfo.SUBCATEGORY_PATH
+							+ parentUuids.get(i) + "&wt=json&indent=true");
 					JSONObject jsonObj1;
 					jsonObj1 = new JSONObject(ccontent)
 							.getJSONObject(TAG_RESPONSE);
@@ -131,11 +129,13 @@ public class SubListCategoryActivity extends Activity {
 						int groupPosition, long id) {
 					if (listDataChild.get(parentItems.get(groupPosition))
 							.size() == 0) {
-						System.out.println("Group Value is:"+parentUuids.get(groupPosition));
+						System.out.println("Group Value is:"
+								+ parentUuids.get(groupPosition));
 						Intent i = new Intent(getApplicationContext(),
 								ProductListViewActivity.class);
 						i.putExtra("ccId", parentUuids.get(groupPosition));
-						i.putExtra("childCategoryName", listDataHeader.get(groupPosition));
+						i.putExtra("childCategoryName",
+								listDataHeader.get(groupPosition));
 						startActivity(i);
 					}
 					return false;
@@ -148,7 +148,7 @@ public class SubListCategoryActivity extends Activity {
 						int groupPosition, int childPosition, long id) {
 
 					/*
-					 *  * Toast.makeText( getApplicationContext(),
+					 * * Toast.makeText( getApplicationContext(),
 					 * "The position of child category:" +
 					 * childData1.get(parentItems.get(groupPosition))
 					 * .get(childPosition), Toast.LENGTH_SHORT) .show();
@@ -159,7 +159,8 @@ public class SubListCategoryActivity extends Activity {
 					i.putExtra("ccId",
 							listDataChild1.get(parentItems.get(groupPosition))
 									.get(childPosition));
-					i.putExtra("childCategoryName", listDataHeader.get(groupPosition));
+					i.putExtra("childCategoryName",
+							listDataHeader.get(groupPosition));
 					startActivity(i);
 					return false;
 				}
@@ -173,7 +174,7 @@ public class SubListCategoryActivity extends Activity {
 		getMenuInflater().inflate(R.menu.sub_list_category, menu);
 		MenuItem logInitem = menu.findItem(R.id.abLogin);
 		MenuItem logOutitem = menu.findItem(R.id.logOut);
-		//usMgr = new UserSessionManager(this);
+		// usMgr = new UserSessionManager(this);
 		if (!usMgr.isUserLoggedIn()) {
 			logOutitem.setVisible(false);
 		} else {
@@ -187,7 +188,7 @@ public class SubListCategoryActivity extends Activity {
 		// Handle action bar item clicks here. The action bar will
 		// automatically handle clicks on the Home/Up button, so long
 		// as you specify a parent activity in AndroidManifest.xml.
-		
+
 		switch (item.getItemId()) {
 		case R.id.action_search:
 			return true;
@@ -242,6 +243,6 @@ public class SubListCategoryActivity extends Activity {
 		default:
 			return super.onOptionsItemSelected(item);
 		}
-		
+
 	}
 }
