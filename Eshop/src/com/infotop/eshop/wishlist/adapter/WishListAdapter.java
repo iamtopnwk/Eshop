@@ -1,5 +1,6 @@
 package com.infotop.eshop.wishlist.adapter;
 
+import java.util.ArrayList;
 import java.util.concurrent.ExecutionException;
 
 import android.app.Activity;
@@ -22,31 +23,19 @@ import com.infotop.eshop.wishlist.activity.WishListMainActivity;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
-public class WishListAdapter extends ArrayAdapter<String> {
+public class WishListAdapter extends ArrayAdapter<Product> {
 
 	WishListAdapter myadapter;
 	private final Activity context;
-	private final String[] productName;
-	private final String[] imageUrl;
-	private final String[] desc;
-	private final String[] price;
-	private final String[] productId;
-	private final String[] wishlistId;
+	private final Product[] pdata;
 	private final DisplayImageOptions op;
 	protected ImageLoader loader = ImageLoader.getInstance();
 
-	public WishListAdapter(Activity context, String[] wishlistId,
-			String[] productId, String[] productName, String[] imageUrl,
-			String[] desc, String[] price, DisplayImageOptions op) {
+	public WishListAdapter(Activity context,Product[] pdata, DisplayImageOptions op) {
 
-		super(context, R.layout.wish_list, productName);
+		super(context, R.layout.wish_list,pdata);
 		this.context = context;
-		this.productName = productName;
-		this.imageUrl = imageUrl;
-		this.desc = desc;
-		this.price = price;
-		this.productId = productId;
-		this.wishlistId = wishlistId;
+		this.pdata=pdata;
 		this.op = op;
 	}
 
@@ -73,11 +62,11 @@ public class WishListAdapter extends ArrayAdapter<String> {
 			holder = (ViewHolder) rowView.getTag();
 		}
 		final int id = position;
-		holder.txtTitle.setText(productName[position]);
-		holder.txtTitle1.setText(desc[position]);
-		holder.txtTitle2.setText(price[position]);
+		holder.txtTitle.setText(pdata[position].getProductName());
+		holder.txtTitle1.setText(pdata[position].getDescription());
+		holder.txtTitle2.setText(pdata[position].getPrice());
 		// holder.imageView1.setImageDrawable(drawable);
-		loader.displayImage(imageUrl[position], holder.imageView, op, null);
+		loader.displayImage(pdata[position].getImageUrl(), holder.imageView, op, null);
 		holder.imageView1.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
@@ -100,9 +89,9 @@ public class WishListAdapter extends ArrayAdapter<String> {
 								Product p = new Product();
 								p.setServiceUrl(UrlInfo.DELETE_WISHLIST);
 
-								p.setProductId(wishlistId[id]);
+								p.setProductId(pdata[id].getWishlistId());
 								System.out.println("lllllllllllll"
-										+ wishlistId[id]);
+										+ pdata[id]);
 								AsyncTask<Object, Void, String> respData = new PostOperation()
 										.execute(p);
 								String pcontent;

@@ -1,6 +1,7 @@
 package com.infotop.eshop.wishlist.activity;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.ExecutionException;
 
 import org.json.JSONArray;
@@ -21,6 +22,7 @@ import com.infotop.eshop.R;
 import com.infotop.eshop.model.Product;
 import com.infotop.eshop.product.BookDetailsActivity;
 import com.infotop.eshop.urls.UrlInfo;
+import com.infotop.eshop.utilities.JsonHelper;
 import com.infotop.eshop.utilities.UserSessionManager;
 import com.infotop.eshop.wishlist.PostOperation;
 import com.infotop.eshop.wishlist.adapter.WishListAdapter;
@@ -61,53 +63,20 @@ public class WishListMainActivity extends Activity {
 		pdt.setEmailId(usMgr.getUserDetails().get("email"));
 		AsyncTask<Object, Void, String> data = new PostOperation().execute(pdt);
 		try {
-			String responseData = data.get();
-			System.out.println("return data:pppppppppppppppppppppppppppppp"
-					+ data.get());
-
-			JSONArray jsonArray;
-			jsonArray = new JSONArray(responseData);
-
-			wishlistId = new String[jsonArray.length()];
-			productId = new String[jsonArray.length()];
-			productName = new String[jsonArray.length()];
-			productDescription = new String[jsonArray.length()];
-			productPrice = new String[jsonArray.length()];
-			productImage = new String[jsonArray.length()];
-			int size = jsonArray.length();
-
-			for (int i = 0; i < size; i++) {
-				JSONObject pc = jsonArray.getJSONObject(i);
-
-				wishlistId[i] = pc.getString(TAG_WISHLIST_ID);
-				productId[i] = pc.getString(TAG_PID);
-				productName[i] = pc.getString(TAG_PNAME);
-				productDescription[i] = pc.getString(TAG_PDESC);
-				productPrice[i] = pc.getString(TAG_PPRICE);
-				productImage[i] = pc.getString(TAG_IMGURL);
-			}
-			listAdapter = new WishListAdapter(WishListMainActivity.this,
-					wishlistId, productId, productName, productImage,
-					productDescription, productPrice, op);
+			final Product[] pdata= (Product[]) JsonHelper.toObject(data.get(), Product[].class);
+			System.out.println(pdata);
+			listAdapter = new WishListAdapter(WishListMainActivity.this,pdata,op);
 			list.setAdapter(listAdapter);
 
 			list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 				@Override
 				public void onItemClick(AdapterView<?> parent, View view,
 						int position, long id) {
-					ArrayList<String> productData = new ArrayList<String>();
-					productData.add(productId[position]);
-					productData.add(productName[position]);
-					productData.add(productDescription[position]);
-					productData.add(productPrice[position]);
-					productData.add(productImage[position]);
-					// String product = (String) adapter.getItem(position);
-					// pass Data to other Activity
-					System.out.println("productId:-" + productId[position]);
+					System.out.println("productId:-" + pdata[position].getProductId());
 
 					Intent i = new Intent(WishListMainActivity.this,
 							BookDetailsActivity.class);
-					i.putExtra("productId", productId[position]);
+					i.putExtra("productId", pdata[position].getProductId());
 					// i.putStringArrayListExtra("productData", productData);
 					startActivity(i);
 
@@ -120,10 +89,7 @@ public class WishListMainActivity extends Activity {
 		} catch (ExecutionException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		} catch (JSONException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		} 
 
 		System.gc();
 	}

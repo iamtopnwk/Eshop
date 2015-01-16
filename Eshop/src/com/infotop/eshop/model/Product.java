@@ -9,6 +9,16 @@ public class Product {
 	private String categoryId;
 	private String imageUrl;
 	private String emailId;
+	private String wishlistId;
+
+	
+	public String getWishlistId() {
+		return wishlistId;
+	}
+
+	public void setWishlistId(String wishlistId) {
+		this.wishlistId = wishlistId;
+	}
 
 	public String getServiceUrl() {
 		return serviceUrl;
