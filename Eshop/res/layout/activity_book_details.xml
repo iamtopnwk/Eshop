@@ -160,6 +160,60 @@
                 android:paddingTop="10dp"
                 android:text="@string/specification"
                 android:textSize="20sp" />
+            
+            <TextView 
+                android:id="@+id/comments"
+                android:layout_below="@+id/getSpecs"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:paddingTop="15dp"
+                android:paddingLeft="10dp"
+                android:textSize="20sp"
+                android:text="@string/comments"/>
+            <EditText 
+                android:id="@+id/comEdit"
+                android:layout_below="@+id/comments"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                
+                android:background="@drawable/edittextshape"
+                android:hint="Please enter your comments here"/>
+            <Button 
+                android:id="@+id/comPost"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/comEdit"
+                android:layout_alignRight="@+id/comEdit"
+                android:text="post"/>
+            <TextView 
+                android:id="@+id/com1"
+                android:layout_below="@+id/comPost"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingTop="15dp"
+                android:paddingLeft="10dp"
+                android:text="@string/user1"
+                />
+             <TextView 
+                android:id="@+id/com2"
+                android:layout_below="@+id/com1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingTop="15dp"
+                android:paddingLeft="10dp"
+                android:text="@string/user2"
+                />
+              <TextView 
+                android:id="@+id/com3"
+                android:layout_below="@+id/com2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingTop="15dp"
+                android:paddingLeft="10dp"
+                android:text="@string/user3"
+                />
+                
         </RelativeLayout>
     </ScrollView>
 

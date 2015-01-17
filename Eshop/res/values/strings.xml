@@ -18,6 +18,7 @@
     <string name="str_img3">Image3</string>
     <string name="str_img4">Image4</string>
     <string name="str_img5">Image5</string>
+    <string name="home_logo">Home</string>
 
     <!-- Login -->
     <string name="ULogin">Login</string>
@@ -53,10 +54,7 @@
         <item>@drawable/ic_people</item>
         <item>@drawable/ic_photos</item>
         <item>@drawable/ic_whats_hot</item>
-    </array>
-    -->
-
-
+    </array> -->
     <!-- Content Description -->
     <string name="desc_list_item_icon">Item Icon</string>
     <string name="title_activity_eshop_login">Login</string>
@@ -75,7 +73,14 @@
     <string name="stauthorname">Author Name</string>
     <string name="stmediumtext">Medium Text</string>
     <string name="specification">Specification   ></string>
-
+    
+    <string name="user1">N.Balchander:
+                         it looks like cheap plastic chinese phone.It heats during talk. The reception is weak. Voice clarity is not good. During call the screen locks. Every time u have to double tap and unlock and then end the call. Absence of magnetic sensor is major drawback. In nutshell it is not worth buying. Dear Samsung, u continue cheating ur customers.</string>
+    <string name="user2">P.Kumar:
+                         with spending more than 10k there are better choices like moto g, asus zenfone, xiaomi mi3 and many more do not go for this only u will get is the phone which hangs a lot with pathetic design, poor display and only 768 mb ram.</string>
+    <string name="user3">Selva:
+                         bought this phone from a nearby samsung smart cafe after being confused whether to buy moto g2 or grand 2. i bought motog2 for my bro so had a chance to compare with grand prime. this phone even it is qhd it looks more brighter than motog2 which is awesome! but unlike motog2 lacks gorilla glass. when it comes to design grand prime really gives u much premium feel compared to motog2 and grand2 also it has a 5MP front cam which made me to go for this phone. one more feature which attracted is the battery with 2600mah, i m using this phone from past 2 weeks and it lasts for almost 2 day with no</string>
+    
     <!-- Action bar menu icons -->
     <string name="ac_cartList">CartList</string>
     <string name="ac_Login">Login</string>
