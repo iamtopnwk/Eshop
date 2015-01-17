@@ -14,6 +14,6 @@ public class UrlInfo {
     public static String GET_ALLCARTLIST="http://192.168.8.163:8080/eshop/rest/getAllCartlistItemsByAccount";
     public static String INDVProduct="http://192.168.8.163:8080/eshop/rest/productByuuid/";
     
-    public static String GET_ALLPRODUCTS="http://192.168.8.163:8983/solr/collection1/select?q=categoryid%3A*&fq=categoryid%3A";
+    public static String GET_ALLPRODUCTS="http://192.168.8.163:8080/eshop/rest/productsbyCategoryId";
     public static String SPECIFICATIONBYID="http://192.168.8.163:8080/eshop/rest/specificationbyproductid";
 }

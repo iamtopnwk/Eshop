@@ -5,13 +5,32 @@ public class Product {
 	private String productId;
 	private String productName;
 	private String description;
+	private String productPrice;
 	private String price;
 	private String categoryId;
 	private String imageUrl;
 	private String emailId;
 	private String wishlistId;
+	private String productDescription;
+	private String image;
 
 	
+	public String getImage() {
+		return image;
+	}
+
+	public void setImage(String image) {
+		this.image = image;
+	}
+
+	public String getProductDescription() {
+		return productDescription;
+	}
+
+	public void setProductDescription(String productDescription) {
+		this.productDescription = productDescription;
+	}
+
 	public String getWishlistId() {
 		return wishlistId;
 	}
@@ -84,4 +103,11 @@ public class Product {
 		this.emailId = emailId;
 	}
 
+	public String getProductPrice() {
+		return productPrice;
+	}
+
+	public void setProductPrice(String productPrice) {
+		this.productPrice = productPrice;
+	}
 }

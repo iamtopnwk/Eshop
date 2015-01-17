@@ -1,15 +1,13 @@
 package com.infotop.eshop.product;
 
-import java.util.ArrayList;
-import java.util.List;
 
-import org.json.JSONArray;
-import org.json.JSONObject;
+import java.util.concurrent.ExecutionException;
+
+
 
 import android.annotation.SuppressLint;
 import android.app.ActionBar;
 import android.app.Activity;
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -30,9 +28,13 @@ import com.infotop.eshop.login.EshopLoginActivity;
 import com.infotop.eshop.login.EshopPoliciesActivity;
 import com.infotop.eshop.login.NoItemFoundActivity;
 import com.infotop.eshop.main.activity.EshopMainActivity;
+import com.infotop.eshop.model.Product;
 import com.infotop.eshop.urls.UrlInfo;
-import com.infotop.eshop.utilities.HttpServiceHandler;
+
+import com.infotop.eshop.utilities.GetOperation;
+import com.infotop.eshop.utilities.JsonHelper;
 import com.infotop.eshop.utilities.UserSessionManager;
+import com.infotop.eshop.wishlist.PostOperation;
 import com.infotop.eshop.wishlist.activity.WishListMainActivity;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.display.RoundedBitmapDisplayer;
@@ -40,21 +42,14 @@ import com.nostra13.universalimageloader.core.display.RoundedBitmapDisplayer;
 @SuppressLint("ClickableViewAccessibility")
 public class ProductListViewActivity extends Activity {
 
-	private static final String TAG_RESPONSE = "response";
-	private static final String TAG_DOCS = "docs";
-	private static final String TAG_PNAME = "productName";
-	private static final String TAG_PDESC = "productDescription";
-	private static final String TAG_PPRICE = "productPrice";
-	private static final String TAG_PID = "uuid";
-	private static final String TAG_IMGURL = "image";
-
-	ListView list;
+	
+	
 	String subCatId;
 	DisplayImageOptions op;
 	ImageButton ib;
 	UserSessionManager usMgr;
 	String chilCategoryName;
-
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -62,7 +57,8 @@ public class ProductListViewActivity extends Activity {
 		ib = (ImageButton) findViewById(R.id.listviewbtn1);
 		// get the action bar
 		ActionBar actionBar = getActionBar();
-
+		ProductListAdapter listAdapter;
+		ListView list;
 		// Enabling Back navigation on Action Bar icon
 		actionBar.setDisplayHomeAsUpEnabled(true);
 		op = new DisplayImageOptions.Builder()
@@ -77,82 +73,20 @@ public class ProductListViewActivity extends Activity {
 		chilCategoryName = getIntent().getExtras().getString(
 				"childCategoryName");
 		System.out.println("ChildNameProductList:" + chilCategoryName);
-		String serverURL = UrlInfo.GET_ALLPRODUCTS + subCatId
-				+ "&rows=100&wt=json&indent=true";
-
-		// Use AsyncTask execute Method To Prevent ANR Problem
-		new LongOperation().execute(serverURL);
-
-	}
-
-	private class LongOperation extends AsyncTask<String, Void, Void> {
-
-		ProductListAdapter listAdapter;
-		String[] pdct;
-		String[] pdctId;
-		String[] pdesc;
-		String[] price;
-		String[] imageUrl;
-
-		private ProgressDialog dialog = new ProgressDialog(
-				ProductListViewActivity.this);
-
-		protected void onPreExecute() {
-			// NOTE: You can call UI Element here.
-
-			// Start Progress Dialog (Message)
-
-			dialog.setMessage("Please wait..");
-			dialog.show();
-
-		}
-
-		@Override
-		protected Void doInBackground(String... urls) {
-			JSONArray childCategory = null;
-			String pcontent;
-			// Send data
-			try {
-				HttpServiceHandler hs = new HttpServiceHandler();
-				pcontent = hs.httpContent(urls[0]);
-				JSONObject jsonObj;
-				jsonObj = new JSONObject(pcontent).getJSONObject(TAG_RESPONSE);
-				// jsonObj = new
-				// JSONObject(jsondata).getJSONObject(TAG_RESPONSE);
-				childCategory = jsonObj.getJSONArray(TAG_DOCS);
-
-				pdct = new String[childCategory.length()];
-				// imgId = new Integer[childCategory.length()];
-				pdctId = new String[childCategory.length()];
-				pdesc = new String[childCategory.length()];
-				price = new String[childCategory.length()];
-				imageUrl = new String[childCategory.length()];
-				List<String> ccName = new ArrayList<String>();
-				for (int i = 0; i < childCategory.length(); i++) {
-					JSONObject pc = childCategory.getJSONObject(i);
-					pdct[i] = pc.getString(TAG_PNAME);
-					pdctId[i] = pc.getString(TAG_PID);
-					pdesc[i] = pc.getString(TAG_PDESC);
-					price[i] = pc.getString(TAG_PPRICE);
-					ccName.add(pdct[i]);
-					imageUrl[i] = pc.getString(TAG_IMGURL);
-				}
-
-			} catch (Exception ex) {
-				System.out.println("Exception e:" + ex.getMessage());
-			}
-			/*****************************************************/
-			return null;
-		}
-
-		protected void onPostExecute(Void unused) {
-			dialog.dismiss();
-			// NOTE: You can call UI Element here.
-			listAdapter = new ProductListAdapter(ProductListViewActivity.this,
-					pdctId, pdct, imageUrl, pdesc, price, op);
+		String serverURL = UrlInfo.GET_ALLPRODUCTS +"/"+ subCatId;
+		
+		//Product pdt = new Product();
+		//pdt.setServiceUrl(UrlInfo.GET_ALLPRODUCTS+"/"+subCatId);
+		AsyncTask<String, Void, String> data = new GetOperation().execute(serverURL);
+		
+		try {
+			final Product[] pdata= (Product[]) JsonHelper.toObject(data.get(), Product[].class);
+			System.out.println("data::::::"+data.get());
+            listAdapter=new ProductListAdapter(ProductListViewActivity.this, pdata, op);
+		
+			
 			list.setAdapter(listAdapter);
-			list.setTextFilterEnabled(true);
-			System.gc();
+            list.setTextFilterEnabled(true);
 			list.setOnTouchListener(new OnTouchListener() {
 
 				@Override
@@ -171,15 +105,24 @@ public class ProductListViewActivity extends Activity {
 					Intent i = new Intent(ProductListViewActivity.this,
 							BookDetailsActivity.class);
 					// i.putStringArrayListExtra("productData", productData);
-					i.putExtra("productId", pdctId[position]);
+					i.putExtra("productId", pdata[position].getProductId());
 					i.putExtra("childCategoryName", chilCategoryName);
 					startActivity(i);
 				}
 			});
-			// Close progress dialog
+			
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ExecutionException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} 
+			
+		  System.gc();
 		}
 
-	}
+	
 
 	/*
 	 * public void wishlistMethod(View view){

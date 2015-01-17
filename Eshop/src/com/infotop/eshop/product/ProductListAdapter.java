@@ -23,29 +23,20 @@ import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
 @SuppressLint({ "ViewHolder", "InflateParams", "SimpleDateFormat" })
-public class ProductListAdapter extends ArrayAdapter<String> {
+public class ProductListAdapter extends ArrayAdapter<Product> {
 	private int selectedId;
 	private String emailId;
 	private final Activity context;
-	private final String[] productName;
-	private final String[] desc;
-	private final String[] imageUrl;
-	private final String[] price;
-	private final String[] pdctId;
+	private final Product[] pdata;
 	private final DisplayImageOptions op;
+	
 	protected ImageLoader loader = ImageLoader.getInstance();
 
-	public ProductListAdapter(Activity context, String[] pdctId,
-			String[] productName, String[] imageUrl, String[] desc,
-			String[] price, DisplayImageOptions op) {
+	public ProductListAdapter(Activity context,Product[] pdata,DisplayImageOptions op) {
 
-		super(context, R.layout.product_list, productName);
+		super(context, R.layout.product_list,pdata);
 		this.context = context;
-		this.productName = productName;
-		this.imageUrl = imageUrl;
-		this.desc = desc;
-		this.price = price;
-		this.pdctId = pdctId;
+		this.pdata=pdata;
 		this.op = op;
 	}
 
@@ -71,10 +62,10 @@ public class ProductListAdapter extends ArrayAdapter<String> {
 			holder = (ViewHolder) rowView.getTag();
 		}
 		final int id = position;
-		holder.txtTitle.setText(productName[position]);
-		holder.txtTitle1.setText(desc[position]);
-		holder.txtTitle2.setText(price[position]);
-		loader.displayImage(imageUrl[position], holder.imageView, op, null);
+		holder.txtTitle.setText(pdata[position].getProductName());
+		holder.txtTitle1.setText(pdata[position].getProductDescription());
+		holder.txtTitle2.setText(pdata[position].getProductPrice());
+		loader.displayImage(pdata[position].getImage(), holder.imageView, op, null);
 		holder.imgwishlistbtn.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
@@ -89,11 +80,11 @@ public class ProductListAdapter extends ArrayAdapter<String> {
 					 */
 					Product p = new Product();
 					p.setServiceUrl(UrlInfo.ADDWishlist);
-					p.setProductId(pdctId[id]);
-					p.setProductName(productName[id]);
-					p.setDescription(desc[id]);
-					p.setImageUrl(imageUrl[id]);
-					p.setPrice(price[id]);
+					p.setProductId(pdata[id].getProductId());
+					p.setProductName(pdata[id].getProductName());
+					p.setProductDescription(pdata[id].getProductDescription());
+					p.setImage(pdata[id].getImage());
+					p.setProductPrice(pdata[id].getProductPrice());
 					p.setEmailId(emailId);
 					AsyncTask<Object, Void, String> respData = new PostOperation()
 							.execute(p);
