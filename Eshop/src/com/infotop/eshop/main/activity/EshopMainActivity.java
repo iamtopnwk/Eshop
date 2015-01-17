@@ -1,11 +1,5 @@
 package com.infotop.eshop.main.activity;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import org.json.JSONArray;
-import org.json.JSONObject;
-
 import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentManager;
@@ -30,20 +24,16 @@ import com.infotop.eshop.login.EshopLoginActivity;
 import com.infotop.eshop.login.EshopPoliciesActivity;
 import com.infotop.eshop.login.NoItemFoundActivity;
 import com.infotop.eshop.main.adapter.NavDrawerListAdapter;
+import com.infotop.eshop.model.Category;
 import com.infotop.eshop.urls.UrlInfo;
-import com.infotop.eshop.utilities.HttpServiceHandler;
-import com.infotop.eshop.utilities.NavDrawerItem;
+import com.infotop.eshop.utilities.GetOperation;
+import com.infotop.eshop.utilities.JsonHelper;
 import com.infotop.eshop.utilities.UserSessionManager;
 import com.infotop.eshop.wishlist.activity.WishListMainActivity;
 
 //Main Activity
 public class EshopMainActivity extends Activity {
 
-	private static final String TAG_DOCS = "docs";
-	private static final String TAG_RESPONSE = "response";
-	private static final String TAG_CNAME = "categoryName";
-	private static final String TAG_CPID = "categoryParentId";
-	private static final String TAG_UUID = "uuid";
 	private DrawerLayout mDrawerLayout;
 	private ListView mDrawerList;
 	private ActionBarDrawerToggle mDrawerToggle;
@@ -54,18 +44,13 @@ public class EshopMainActivity extends Activity {
 	// slide menu items
 	private String[] navMenuTitles;
 	// private TypedArray navMenuIcons;
-	private ArrayList<NavDrawerItem> navDrawerItems;
 	UserSessionManager usMgr;
+	private NavDrawerListAdapter adapter;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_eshop_main);
-
-		String serverURL = UrlInfo.HOMEPAGE_PATH;
-
-		// Use AsyncTask execute Method To Prevent ANR Problem
-		new LongOperation().execute(serverURL);
 
 		mTitle = mDrawerTitle = getTitle();
 		usMgr = new UserSessionManager(this);
@@ -73,14 +58,46 @@ public class EshopMainActivity extends Activity {
 		navMenuTitles = getResources().getStringArray(R.array.nav_drawer_items);
 
 		// nav drawer icons from resources
-		// navMenuIcons =
-		// getResources().obtainTypedArray(R.array.nav_drawer_icons);
 
 		mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
 		mDrawerList = (ListView) findViewById(R.id.list_slidermenu);
-		navDrawerItems = new ArrayList<NavDrawerItem>();
 
 		// adding nav drawer items to array
+		String serverURL = UrlInfo.HOMEPAGE_PATH;
+
+		// Use AsyncTask execute Method To Prevent ANR Problem
+		AsyncTask<String, Void, String> data = new GetOperation()
+				.execute(serverURL);
+		try {
+			final Category[] navDrawerItems = (Category[]) JsonHelper.toObject(
+					data.get(), Category[].class);
+			adapter = new NavDrawerListAdapter(getApplicationContext(),
+					navDrawerItems);
+			mDrawerList.setAdapter(adapter);
+			// Close progress dialog
+			mDrawerList
+					.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+						@Override
+						public void onItemClick(AdapterView<?> parent,
+								View view, int position, long id) {
+							Intent i = new Intent(getApplicationContext(),
+									SubListCategoryActivity.class);
+							i.putExtra("UUID",
+									navDrawerItems[position].getUuid());
+							i.putExtra("CategoryName",
+									navDrawerItems[position].getCategoryName());
+							// i.putExtra("jsonData", pcontent);
+							startActivity(i);
+							// System.out.println("Item id:"+position);
+							// Toast.makeText(getApplicationContext(),"The position of child category:"+uuidPosition.get(position),
+							// Toast.LENGTH_SHORT).show();
+						}
+					});
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println(e.getMessage());
+		}
 
 		// enabling action bar app icon and behaving it as toggle button
 		getActionBar().setDisplayHomeAsUpEnabled(true);
@@ -112,78 +129,6 @@ public class EshopMainActivity extends Activity {
 			displayView(0);
 		}
 		System.gc();
-	}
-
-	private class LongOperation extends AsyncTask<String, Void, Void> {
-
-		List<String> uuidPosition;
-		List<String> parentCategoryName;
-
-		private NavDrawerListAdapter adapter;
-
-		protected void onPreExecute() {
-			// NOTE: You can call UI Element here.
-			// Start Progress Dialog (Message)
-		}
-
-		@Override
-		protected Void doInBackground(String... urls) {
-			JSONArray childCategory = null;
-			String[] categoryName;
-			String pcontent;
-			// Send data
-			try {
-				HttpServiceHandler hs = new HttpServiceHandler();
-				pcontent = hs.httpContent(urls[0]);
-				System.out.println("*********Content*******");
-				// System.out.println(pcontent);
-				JSONObject jsonObj;
-				jsonObj = new JSONObject(pcontent).getJSONObject(TAG_RESPONSE);
-				childCategory = jsonObj.getJSONArray(TAG_DOCS);
-				categoryName = new String[childCategory.length()];
-				uuidPosition = new ArrayList<String>();
-				parentCategoryName = new ArrayList<String>();
-				for (int i = 0; i < childCategory.length(); i++) {
-					JSONObject pc = childCategory.getJSONObject(i);
-					categoryName[i] = pc.getString(TAG_CNAME);
-					if (pc.getString(TAG_CPID).equals("0")) {
-						navDrawerItems.add(new NavDrawerItem(categoryName[i]));
-						uuidPosition.add(pc.getString(TAG_UUID));
-						parentCategoryName.add(pc.getString(TAG_CNAME));
-					}
-				}
-
-			} catch (Exception ex) {
-				System.out.println("Exception e:" + ex.getMessage());
-			}
-			/*****************************************************/
-			return null;
-		}
-
-		protected void onPostExecute(Void unused) {
-			// setting the nav drawer list adapter
-			adapter = new NavDrawerListAdapter(getApplicationContext(),
-					navDrawerItems);
-			mDrawerList.setAdapter(adapter);
-			// Close progress dialog
-			mDrawerList
-					.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-						@Override
-						public void onItemClick(AdapterView<?> parent,
-								View view, int position, long id) {
-							Intent i = new Intent(getApplicationContext(),
-									SubListCategoryActivity.class);
-							i.putExtra("UUID", uuidPosition.get(position));
-							i.putExtra("CategoryName",
-									parentCategoryName.get(position));
-							// i.putExtra("jsonData", pcontent);
-							startActivity(i);
-							// System.out.println("Item id:"+position);
-							// Toast.makeText(getApplicationContext(),"The position of child category:"+uuidPosition.get(position),
-							// Toast.LENGTH_SHORT).show();
-						}
-					});
-		}
 	}
 
 	/**
