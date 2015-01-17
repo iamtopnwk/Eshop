@@ -30,17 +30,7 @@ import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.display.RoundedBitmapDisplayer;
 
 public class WishListMainActivity extends Activity {
-	private static final String TAG_WISHLIST_ID = "wishlistId";
-	private static final String TAG_PID = "productId";
-	private static final String TAG_PNAME = "productName";
-	private static final String TAG_PDESC = "description";
-	private static final String TAG_PPRICE = "price";
-	private static final String TAG_IMGURL = "imageUrl";
-
-	String[] wishlistId;
-	String[] productId;
-	String[] productName;
-	String[] productDescription, productPrice, productImage;
+	
 	DisplayImageOptions op;
 
 	@Override
