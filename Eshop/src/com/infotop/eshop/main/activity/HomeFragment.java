@@ -15,7 +15,7 @@ import android.widget.ViewFlipper;
 
 import com.infotop.eshop.R;
 import com.infotop.eshop.category.activity.SubListCategoryActivity;
-import com.infotop.eshop.commonadapters.CustomListHorizontalAdapter;
+import com.infotop.eshop.main.adapter.CustomListHorizontalAdapter;
 import com.infotop.eshop.model.Category;
 import com.infotop.eshop.urls.UrlInfo;
 import com.infotop.eshop.utilities.GetOperation;

@@ -1,4 +1,4 @@
-package com.infotop.eshop.commonadapters;
+package com.infotop.eshop.main.adapter;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
