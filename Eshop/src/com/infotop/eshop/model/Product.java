@@ -13,8 +13,17 @@ public class Product {
 	private String wishlistId;
 	private String productDescription;
 	private String image;
+	private String uuid;
 
 	
+	public String getUuid() {
+		return uuid;
+	}
+
+	public void setUuid(String uuid) {
+		this.uuid = uuid;
+	}
+
 	public String getImage() {
 		return image;
 	}

@@ -23,29 +23,19 @@ import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
 @SuppressLint("SimpleDateFormat")
-public class CustomGridViewAdapter extends ArrayAdapter<String> {
+public class CustomGridViewAdapter extends ArrayAdapter<Product> {
 
 	private final Activity context;
-	private final String[] productName;
-	private final String[] imageUrl;
-	private final String[] description;
-	private final String[] price;
-	private final String[] productId;
+	private final Product[] pdata;
 	private String emailId;
 	private final DisplayImageOptions op;
 	protected ImageLoader loader = ImageLoader.getInstance();
 
-	public CustomGridViewAdapter(Activity context, String[] productId,
-			String[] productName, String[] imageUrl, String[] description,
-			String[] price, DisplayImageOptions op) {
+	public CustomGridViewAdapter(Activity context,Product[] pdata, DisplayImageOptions op) {
 
-		super(context, R.layout.custom_gridview, productName);
+		super(context, R.layout.custom_gridview, pdata);
 		this.context = context;
-		this.productName = productName;
-		this.imageUrl = imageUrl;
-		this.description = description;
-		this.price = price;
-		this.productId = productId;
+		this.pdata=pdata;
 		this.op = op;
 	}
 
@@ -75,10 +65,10 @@ public class CustomGridViewAdapter extends ArrayAdapter<String> {
 			holder = (ViewHolder) rowView.getTag();
 		}
 		final int id = position;
-		holder.txtTitle.setText(productName[position]);
-		holder.txtTitle1.setText(description[position]);
-		holder.txtTitle2.setText(price[position]);
-		loader.displayImage(imageUrl[position], holder.imageView, op, null);
+		holder.txtTitle.setText(pdata[position].getProductName());
+		holder.txtTitle1.setText(pdata[position].getProductDescription());
+		holder.txtTitle2.setText(pdata[position].getProductPrice());
+		loader.displayImage(pdata[position].getImage(), holder.imageView, op, null);
 		holder.imgwishlistbtn.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
@@ -89,11 +79,11 @@ public class CustomGridViewAdapter extends ArrayAdapter<String> {
 					Product p = new Product();
 					p.setServiceUrl(UrlInfo.ADDWishlist);
 
-					p.setProductId(productId[id]);
-					p.setProductName(productName[id]);
-					p.setDescription(description[id]);
-					p.setImageUrl(imageUrl[id]);
-					p.setPrice(price[id]);
+					p.setProductId(pdata[id].getProductId());
+					p.setProductName(pdata[id].getProductName());
+					p.setDescription(pdata[id].getProductDescription());
+					p.setImageUrl(pdata[id].getImage());
+					p.setPrice(pdata[id].getProductPrice());
 					p.setEmailId(emailId);
 
 					AsyncTask<Object, Void, String> respData = new PostOperation()

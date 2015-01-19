@@ -2,6 +2,7 @@ package com.infotop.eshop.product;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -29,8 +30,11 @@ import com.infotop.eshop.login.EshopLoginActivity;
 import com.infotop.eshop.login.EshopPoliciesActivity;
 import com.infotop.eshop.login.NoItemFoundActivity;
 import com.infotop.eshop.main.activity.EshopMainActivity;
+import com.infotop.eshop.model.Product;
 import com.infotop.eshop.urls.UrlInfo;
+import com.infotop.eshop.utilities.GetOperation;
 import com.infotop.eshop.utilities.HttpServiceHandler;
+import com.infotop.eshop.utilities.JsonHelper;
 import com.infotop.eshop.utilities.UserSessionManager;
 import com.infotop.eshop.wishlist.activity.WishListMainActivity;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
@@ -39,14 +43,14 @@ import com.nostra13.universalimageloader.core.display.RoundedBitmapDisplayer;
 @SuppressLint("ClickableViewAccessibility")
 public class ProductGridViewActivity extends Activity {
 
-	private static final String TAG_RESPONSE = "response";
+	/*private static final String TAG_RESPONSE = "response";
 	private static final String TAG_DOCS = "docs";
 	private static final String TAG_PNAME = "productName";
 	private static final String TAG_PDESC = "productDescription";
 	private static final String TAG_PPRICE = "productPrice";
 	private static final String TAG_PID = "uuid";
-	private static final String TAG_IMGURL = "image";
-	GridView grid;
+	private static final String TAG_IMGURL = "image";*/
+	
 	String subCatId;
 	DisplayImageOptions op;
 	ImageButton ib;
@@ -57,6 +61,9 @@ public class ProductGridViewActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_product_grid_view);
+		
+		CustomGridViewAdapter gridAdapter;
+		GridView grid;
 		ib = (ImageButton) findViewById(R.id.gridviewbtn1);
 		op = new DisplayImageOptions.Builder()
 				.showStubImage(R.drawable.notavailable)
@@ -69,76 +76,16 @@ public class ProductGridViewActivity extends Activity {
 		subCatId = getIntent().getExtras().getString("ccId");
 		chilCategoryName = getIntent().getExtras().getString(
 				"childCategoryName");
-		String serverURL = UrlInfo.GET_ALLPRODUCTS + subCatId
-				+ "&rows=100&wt=json&indent=true";
+		String serverURL = UrlInfo.GET_ALLPRODUCTS +"/"+ subCatId;
 
-		// Use AsyncTask execute Method To Prevent ANR Problem
-		new LongOperation().execute(serverURL);
-
-	}
-
-	private class LongOperation extends AsyncTask<String, Void, Void> {
-		CustomGridViewAdapter gridAdapter;
-		String[] pdct;
-		String[] pdctId;
-		String[] pdesc;
-		String[] price;
-		String[] imageUrl;
-		private ProgressDialog dialog = new ProgressDialog(
-				ProductGridViewActivity.this);
-
-		protected void onPreExecute() {
-			// NOTE: You can call UI Element here.
-
-			// Start Progress Dialog (Message)
-
-			dialog.setMessage("Please wait..");
-			dialog.show();
-
-		}
-
-		@Override
-		protected Void doInBackground(String... urls) {
-			JSONArray childCategory = null;
-			String pcontent;
-			// Send data
-			try {
-				HttpServiceHandler hs = new HttpServiceHandler();
-				pcontent = hs.httpContent(urls[0]);
-				JSONObject jsonObj;
-				jsonObj = new JSONObject(pcontent).getJSONObject(TAG_RESPONSE);
-				childCategory = jsonObj.getJSONArray(TAG_DOCS);
-				pdct = new String[childCategory.length()];
-				pdctId = new String[childCategory.length()];
-				pdesc = new String[childCategory.length()];
-				price = new String[childCategory.length()];
-				imageUrl = new String[childCategory.length()];
-				List<String> ccName = new ArrayList<String>();
-				for (int i = 0; i < childCategory.length(); i++) {
-					JSONObject pc = childCategory.getJSONObject(i);
-					pdct[i] = pc.getString(TAG_PNAME);
-					pdctId[i] = pc.getString(TAG_PID);
-					pdesc[i] = pc.getString(TAG_PDESC);
-					price[i] = pc.getString(TAG_PPRICE);
-					ccName.add(pdct[i]);
-					imageUrl[i] = pc.getString(TAG_IMGURL);
-				}
-
-			} catch (Exception ex) {
-				System.out.println("Exception e:" + ex.getMessage());
-			}
-			/*****************************************************/
-			return null;
-		}
-
-		protected void onPostExecute(Void unused) {
-			dialog.dismiss();
-			// NOTE: You can call UI Element here.
+        AsyncTask<String, Void, String> data = new GetOperation().execute(serverURL);
+		
+		try {
+			final Product[] pdata= (Product[]) JsonHelper.toObject(data.get(), Product[].class);
 			gridAdapter = new CustomGridViewAdapter(
-					ProductGridViewActivity.this, pdctId, pdct, imageUrl,
-					pdesc, price, op);
+					ProductGridViewActivity.this,pdata, op);
 			grid.setAdapter(gridAdapter);
-			System.gc();
+			
 			grid.setOnTouchListener(new OnTouchListener() {
 				@Override
 				public boolean onTouch(View v, MotionEvent arg1) {
@@ -153,16 +100,29 @@ public class ProductGridViewActivity extends Activity {
 						int position, long id) {
 					Intent i = new Intent(ProductGridViewActivity.this,
 							BookDetailsActivity.class);
-					i.putExtra("productId", pdctId[position]);
+					i.putExtra("productId", pdata[position].getUuid());
 					i.putExtra("childCategoryName", chilCategoryName);
 					startActivity(i);
 
 				}
 			});
 			// Close progress dialog
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ExecutionException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} 
+		
+		// Use AsyncTask execute Method To Prevent ANR Problem
+		
+			
+			System.gc();
+			
 		}
 
-	}
+	
 
 	public void listViewdata(View view) {
 

@@ -75,13 +75,12 @@ public class ProductListViewActivity extends Activity {
 		System.out.println("ChildNameProductList:" + chilCategoryName);
 		String serverURL = UrlInfo.GET_ALLPRODUCTS +"/"+ subCatId;
 		
-		//Product pdt = new Product();
-		//pdt.setServiceUrl(UrlInfo.GET_ALLPRODUCTS+"/"+subCatId);
 		AsyncTask<String, Void, String> data = new GetOperation().execute(serverURL);
 		
 		try {
 			final Product[] pdata= (Product[]) JsonHelper.toObject(data.get(), Product[].class);
 			System.out.println("data::::::"+data.get());
+			System.out.println("productId---"+pdata[0].getUuid());
             listAdapter=new ProductListAdapter(ProductListViewActivity.this, pdata, op);
 		
 			
@@ -105,7 +104,7 @@ public class ProductListViewActivity extends Activity {
 					Intent i = new Intent(ProductListViewActivity.this,
 							BookDetailsActivity.class);
 					// i.putStringArrayListExtra("productData", productData);
-					i.putExtra("productId", pdata[position].getProductId());
+					i.putExtra("productId", pdata[position].getUuid());
 					i.putExtra("childCategoryName", chilCategoryName);
 					startActivity(i);
 				}
