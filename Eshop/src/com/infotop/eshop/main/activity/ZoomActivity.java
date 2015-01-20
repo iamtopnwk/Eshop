@@ -6,11 +6,11 @@ import android.support.v4.view.ViewPager;
 import android.widget.ImageView;
 
 import com.infotop.eshop.R;
-import com.infotop.eshop.product.BookDetailsActivity;
+import com.infotop.eshop.product.ProductDetailsActivity;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
 public class ZoomActivity extends Activity {
-	BookDetailsActivity bd = new BookDetailsActivity();
+	ProductDetailsActivity bd = new ProductDetailsActivity();
 	protected ImageLoader loader = ImageLoader.getInstance();
 	ImageView imageDetail;
 	// Matrix matrix = new Matrix();
