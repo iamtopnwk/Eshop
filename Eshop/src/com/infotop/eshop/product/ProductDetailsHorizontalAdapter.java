@@ -14,17 +14,17 @@ import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
 public class ProductDetailsHorizontalAdapter extends ArrayAdapter<String> {
-	private final List<String> imageUrls;
+	private String[] imageList;
 	private final Activity context;
 	private final DisplayImageOptions op;
 	protected ImageLoader loader = ImageLoader.getInstance();
 
 	public ProductDetailsHorizontalAdapter(Activity context,
-			List<String> imageUrls, DisplayImageOptions op) {
-		super(context, R.layout.products_details_horozontal, imageUrls);
+			 String[] imageList, DisplayImageOptions op) {
+		super(context, R.layout.products_details_horozontal, imageList);
 
 		this.context = context;
-		this.imageUrls = imageUrls;
+		this.imageList = imageList;
 		this.op = op;
 		// TODO Auto-generated constructor stub
 	}
@@ -32,7 +32,7 @@ public class ProductDetailsHorizontalAdapter extends ArrayAdapter<String> {
 	@Override
 	public int getCount() {
 		// TODO Auto-generated method stub
-		return imageUrls.size();
+		return imageList.length;
 	}
 
 	@Override
@@ -41,7 +41,7 @@ public class ProductDetailsHorizontalAdapter extends ArrayAdapter<String> {
 				R.layout.products_details_horozontal, null);
 		ImageView imageView = (ImageView) rowView.findViewById(R.id.img1);
 		System.out.println("pppppppppppppppppppppppppppppppp" + position);
-		loader.displayImage(imageUrls.get(position), imageView, op, null);
+		loader.displayImage(imageList[position], imageView, op, null);
 
 		// TODO Auto-generated method stub
 		return rowView;

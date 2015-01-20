@@ -160,6 +160,31 @@
                 android:paddingTop="10dp"
                 android:text="@string/specification"
                 android:textSize="20sp" />
+              <Button
+                android:id="@+id/getBarChart"
+                style="?android:attr/borderlessButtonStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/ratingBar1"
+                android:layout_toRightOf="@+id/getSpecs"
+                android:onClick="getBarChart"
+                android:paddingBottom="10dp"
+                android:paddingTop="10dp"
+                android:text="@string/barChart"
+                android:textSize="20sp" />
+             
+              <Button
+                android:id="@+id/getPieChart"
+                style="?android:attr/borderlessButtonStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/ratingBar1"
+                android:layout_toRightOf="@+id/getBarChart"
+                android:onClick="getPieChart"
+                android:paddingBottom="10dp"
+                android:paddingTop="10dp"
+                android:text="@string/pieChart"
+                android:textSize="20sp" />
             
             <TextView 
                 android:id="@+id/comments"
@@ -168,7 +193,7 @@
                 android:layout_height="wrap_content"
                 android:textStyle="bold"
                 android:paddingTop="15dp"
-                android:paddingLeft="10dp"
+                
                 android:textSize="20sp"
                 android:text="@string/comments"/>
             <EditText 
@@ -192,7 +217,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingTop="15dp"
-                android:paddingLeft="10dp"
+              
                 android:text="@string/user1"
                 />
              <TextView 
@@ -201,7 +226,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingTop="15dp"
-                android:paddingLeft="10dp"
+              
                 android:text="@string/user2"
                 />
               <TextView 
@@ -210,7 +235,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingTop="15dp"
-                android:paddingLeft="10dp"
+            
                 android:text="@string/user3"
                 />
                 

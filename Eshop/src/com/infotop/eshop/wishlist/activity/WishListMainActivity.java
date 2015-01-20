@@ -20,7 +20,7 @@ import android.widget.ListView;
 
 import com.infotop.eshop.R;
 import com.infotop.eshop.model.Product;
-import com.infotop.eshop.product.BookDetailsActivity;
+import com.infotop.eshop.product.ProductDetailsActivity;
 import com.infotop.eshop.urls.UrlInfo;
 import com.infotop.eshop.utilities.JsonHelper;
 import com.infotop.eshop.utilities.UserSessionManager;
@@ -65,7 +65,7 @@ public class WishListMainActivity extends Activity {
 					System.out.println("productId:-" + pdata[position].getProductId());
 
 					Intent i = new Intent(WishListMainActivity.this,
-							BookDetailsActivity.class);
+							ProductDetailsActivity.class);
 					i.putExtra("productId", pdata[position].getProductId());
 					// i.putStringArrayListExtra("productData", productData);
 					startActivity(i);

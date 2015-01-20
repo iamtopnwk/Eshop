@@ -99,7 +99,7 @@ public class ProductGridViewActivity extends Activity {
 				public void onItemClick(AdapterView<?> parent, View view,
 						int position, long id) {
 					Intent i = new Intent(ProductGridViewActivity.this,
-							BookDetailsActivity.class);
+							ProductDetailsActivity.class);
 					i.putExtra("productId", pdata[position].getUuid());
 					i.putExtra("childCategoryName", chilCategoryName);
 					startActivity(i);

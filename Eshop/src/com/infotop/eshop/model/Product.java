@@ -4,9 +4,9 @@ public class Product {
 	private String serviceUrl;
 	private String productId;
 	private String productName;
-	private String description;
+	/*private String description;*/
 	private String productPrice;
-	private String price;
+	/*private String price;*/
 	private String categoryId;
 	private String imageUrl;
 	private String emailId;
@@ -14,8 +14,29 @@ public class Product {
 	private String productDescription;
 	private String image;
 	private String uuid;
+	private String cartlistId;
+	private ImageList[] imageList ;
+
+
 
 	
+	
+	public ImageList[] getImageList() {
+		return imageList;
+	}
+
+	public void setImageList(ImageList[] imageList) {
+		this.imageList = imageList;
+	}
+
+	public String getCartlistId() {
+		return cartlistId;
+	}
+
+	public void setCartlistId(String cartlistId) {
+		this.cartlistId = cartlistId;
+	}
+
 	public String getUuid() {
 		return uuid;
 	}
@@ -72,21 +93,21 @@ public class Product {
 		this.productName = productName;
 	}
 
-	public String getDescription() {
+	/*public String getDescription() {
 		return description;
 	}
 
 	public void setDescription(String description) {
 		this.description = description;
-	}
+	}*/
 
-	public String getPrice() {
+/*	public String getPrice() {
 		return price;
 	}
 
 	public void setPrice(String price) {
 		this.price = price;
-	}
+	}*/
 
 	public String getCategoryId() {
 		return categoryId;

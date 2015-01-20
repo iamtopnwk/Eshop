@@ -24,30 +24,19 @@ import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
 @SuppressLint({ "ViewHolder", "InflateParams" })
-public class CartListAdapter extends ArrayAdapter<String> {
+public class CartListAdapter extends ArrayAdapter<Product> {
 
 	private final Activity context;
-	private final String[] productName;
-	private final String[] desc;
-	private final String[] imageUrl;
-	private final String[] price;
-	private final String[] productId;
-	private final String[] cartListId;
+	private final Product[] pdata;
 	private final DisplayImageOptions op;
 	protected ImageLoader loader = ImageLoader.getInstance();
 
-	public CartListAdapter(Activity context, String[] productId,
-			String[] cartListId, String[] productName, String[] imageUrl,
-			String[] desc, String[] price, DisplayImageOptions op) {
-
-		super(context, R.layout.cart_list_adapter, productName);
+	public CartListAdapter(Activity context, Product[] pdata, DisplayImageOptions op) {
+		
+		super(context, R.layout.cart_list_adapter,pdata);
+	
 		this.context = context;
-		this.productName = productName;
-		this.imageUrl = imageUrl;
-		this.desc = desc;
-		this.price = price;
-		this.productId = productId;
-		this.cartListId = cartListId;
+		this.pdata=pdata;
 		this.op = op;
 	}
 
@@ -72,10 +61,12 @@ public class CartListAdapter extends ArrayAdapter<String> {
 			holder = (ViewHolder) rowView.getTag();
 		}
 		final int id = position;
-		holder.txtTitle.setText(productName[position]);
-		holder.txtTitle1.setText(desc[position]);
-		holder.txtTitle2.setText(price[position]);
-		loader.displayImage(imageUrl[position], holder.imageView, op, null);
+		holder.txtTitle.setText(pdata[position].getProductName());
+		holder.txtTitle1.setText(pdata[position].getProductDescription());
+		holder.txtTitle2.setText(pdata[position].getProductPrice());
+		
+		loader.displayImage(pdata[position].getImageUrl(), holder.imageView, op, null);
+		
 		holder.imageView1.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
 				AlertDialog.Builder alertDialog = new AlertDialog.Builder(
@@ -86,11 +77,16 @@ public class CartListAdapter extends ArrayAdapter<String> {
 						new DialogInterface.OnClickListener() {
 							public void onClick(DialogInterface dialog,
 									int which) {
+								
 								Product p = new Product();
 								p.setServiceUrl(UrlInfo.DELETE_CARTLIST);
-								p.setProductId(cartListId[id]);
-								System.out.println("cartList id:===="
-										+ cartListId[id]);
+								
+								p.setProductId(pdata[id].getCartlistId());
+								
+								System.out.println("pppppppppppppppppp"+pdata[id]);
+								System.out.println("pppppppppppppppppp"+pdata[id].getCartlistId());
+								
+								
 								AsyncTask<Object, Void, String> respData = new PostOperation()
 										.execute(p);
 								String pcontent;

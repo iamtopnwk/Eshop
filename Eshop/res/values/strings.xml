@@ -81,6 +81,9 @@
     <string name="user3">Selva:
                          bought this phone from a nearby samsung smart cafe after being confused whether to buy moto g2 or grand 2. i bought motog2 for my bro so had a chance to compare with grand prime. this phone even it is qhd it looks more brighter than motog2 which is awesome! but unlike motog2 lacks gorilla glass. when it comes to design grand prime really gives u much premium feel compared to motog2 and grand2 also it has a 5MP front cam which made me to go for this phone. one more feature which attracted is the battery with 2600mah, i m using this phone from past 2 weeks and it lasts for almost 2 day with no</string>
     
+    
+      <string name="barChart">BarChart |</string>
+       <string name="pieChart">PieChart </string>
     <!-- Action bar menu icons -->
     <string name="ac_cartList">CartList</string>
     <string name="ac_Login">Login</string>

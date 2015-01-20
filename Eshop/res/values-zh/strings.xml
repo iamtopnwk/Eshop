@@ -74,7 +74,9 @@
     <string name="stprice">Price: $</string>
     <string name="stauthorname">Author Name</string>
     <string name="stmediumtext">Medium Text</string>
-    <string name="specification">Specification   ></string>
+    <string name="specification">Specification | </string>
+    <string name="barChart">BarChart |</string>
+    <string name="pieChart">PieChart </string>
 
     <!-- Action bar menu icons -->
     <string name="ac_cartList">CartList</string>

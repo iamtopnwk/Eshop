@@ -22,28 +22,20 @@ import com.infotop.eshop.R;
 import com.infotop.eshop.cartlist.adapter.CartListAdapter;
 import com.infotop.eshop.model.Product;
 import com.infotop.eshop.payment.PaymentMainActivity;
-import com.infotop.eshop.product.BookDetailsActivity;
+import com.infotop.eshop.product.ProductDetailsActivity;
 import com.infotop.eshop.urls.UrlInfo;
+import com.infotop.eshop.utilities.JsonHelper;
 import com.infotop.eshop.utilities.UserSessionManager;
 import com.infotop.eshop.wishlist.PostOperation;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.display.RoundedBitmapDisplayer;
 
 public class CartListMainActivity extends Activity {
-	private static final String TAG_CARTLIST_ID = "cartlistId";
-	private static final String TAG_PID = "productId";
-	private static final String TAG_PNAME = "productName";
-	private static final String TAG_PDESC = "description";
-	private static final String TAG_PPRICE = "price";
-	private static final String TAG_IMGURL = "imageUrl";
+	
 	CartListAdapter listAdapter;
-	String[] productId, productName, productDescription, productPrice,
-			productImage, cartListId;
-	String grandTotal;
-	int position;
-	Double totalAmount;
+    int position;
 	DisplayImageOptions op;
-
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -51,7 +43,7 @@ public class CartListMainActivity extends Activity {
 		ListView list;
 
 		// ArrayList<String> s;
-		TextView grand_Total;
+		
 		// CheckBox checkBox = (CheckBox) findViewById(R.id.checkBox1);
 
 		op = new DisplayImageOptions.Builder()
@@ -67,45 +59,16 @@ public class CartListMainActivity extends Activity {
 		pdt.setServiceUrl(UrlInfo.GET_ALLCARTLIST);
 		pdt.setEmailId(usMgr.getUserDetails().get("email"));
 
-		AsyncTask<Object, Void, String> cartListData = new PostOperation()
-				.execute(pdt);
-		String pcontent;
+		AsyncTask<Object, Void, String> cartListData = new PostOperation().execute(pdt);
+		
+		
+	//	String pcontent;
 
 		try {
-			pcontent = cartListData.get();
-			System.out.println("return data:" + pcontent);
-			JSONArray jsonArray = new JSONArray(pcontent);
-
-			productId = new String[jsonArray.length()];
-			cartListId = new String[jsonArray.length()];
-			productName = new String[jsonArray.length()];
-			productDescription = new String[jsonArray.length()];
-			productPrice = new String[jsonArray.length()];
-			productImage = new String[jsonArray.length()];
-
-			System.out.println("js:" + jsonArray.length());
-
-			totalAmount = 0D;
-			for (int i = 0; i < jsonArray.length(); i++) {
-				JSONObject pc = jsonArray.getJSONObject(i);
-
-				System.out.println("js1:" + pc);
-
-				productId[i] = pc.getString(TAG_PID);
-				cartListId[i] = pc.getString(TAG_CARTLIST_ID);
-				productName[i] = pc.getString(TAG_PNAME);
-				productDescription[i] = pc.getString(TAG_PDESC);
-				productPrice[i] = pc.getString(TAG_PPRICE);
-
-				productImage[i] = pc.getString(TAG_IMGURL);
-				totalAmount = totalAmount
-						+ Double.valueOf(pc.getString(TAG_PPRICE));
-
-			}
-
-			listAdapter = new CartListAdapter(CartListMainActivity.this,
-					productId, cartListId, productName, productImage,
-					productDescription, productPrice, op);
+			final Product[] pdata= (Product[]) JsonHelper.toObject(cartListData.get(), Product[].class);
+			
+			
+			listAdapter = new CartListAdapter(CartListMainActivity.this,pdata, op);
 			list.setAdapter(listAdapter);
 			list.setTextFilterEnabled(true);
 
@@ -114,21 +77,14 @@ public class CartListMainActivity extends Activity {
 				public void onItemClick(AdapterView<?> parent, View view,
 						int position, long id) {
 
-					listAdapter = (CartListAdapter) parent.getAdapter();
+					
 
-					ArrayList<String> productData = new ArrayList<String>();
-					productData.add(productId[position]);
-					productData.add(productName[position]);
-					productData.add(productDescription[position]);
-					productData.add(productPrice[position]);
-					productData.add(productImage[position]);
-					// String product = (String) adapter.getItem(position);
-					// pass Data to other Activity
-					System.out.println("productID:-" + productId[position]);
+					System.out.println("productId:-" + pdata[position].getProductId());
+					
 
 					Intent i = new Intent(CartListMainActivity.this,
-							BookDetailsActivity.class);
-					i.putExtra("productId", productId[position]);
+							ProductDetailsActivity.class);
+					i.putExtra("productId",  pdata[position].getProductId());
 					// i.putStringArrayListExtra("productData", productData);
 					startActivity(i);
 				}
@@ -140,14 +96,44 @@ public class CartListMainActivity extends Activity {
 		} catch (ExecutionException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		} catch (JSONException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
 		}
-		grand_Total = (TextView) findViewById(R.id.grand_total);
+		//grand_Total = (TextView) findViewById(R.id.grand_total);
 
-		System.out.println(totalAmount);
-		grand_Total.setText(totalAmount.toString());
+		//System.out.println(totalAmount);
+		//grand_Total.setText(totalAmount.toString());
+		/*	pcontent = cartListData.get();
+			System.out.println("return data:" + pcontent);
+			JSONArray jsonArray = new JSONArray(pcontent);
+
+			productId = new String[jsonArray.length()];
+			cartListId = new String[jsonArray.length()];
+			productName = new String[jsonArray.length()];
+			productDescription = new String[jsonArray.length()];
+			productPrice = new String[jsonArray.length()];
+			productImage = new String[jsonArray.length()];
+
+			System.out.println("js:" + jsonArray.length());
+*/
+			
+			/*for (int i = 0; i < jsonArray.length(); i++) {
+				JSONObject pc = jsonArray.getJSONObject(i);
+
+				System.out.println("js1:" + pc);
+
+				productId[i] = pc.getString(TAG_PID);
+				cartListId[i] = pc.getString(TAG_CARTLIST_ID);
+				productName[i] = pc.getString(TAG_PNAME);
+				productDescription[i] = pc.getString(TAG_PDESC);
+				productPrice[i] = pc.getString(TAG_PPRICE);
+
+				productImage[i] = pc.getString(TAG_IMGURL);*/
+				
+		/*	totalAmount = totalAmount
+						+ Double.valueOf(pc.getString(TAG_PPRICE));*/
+
+			//}
+
+			
 	}
 
 	@Override
@@ -164,16 +150,17 @@ public class CartListMainActivity extends Activity {
 		// as you specify a parent activity in AndroidManifest.xml.
 		switch (item.getItemId()) {
 		case R.id.ab_purChaseItem:
-			grandTotal = totalAmount.toString();
-			String allAmount = "Total Amount";
+			//grandTotal = totalAmount.toString();
+			/*String allAmount = "Total Amount";
 			ArrayList<String> s1 = new ArrayList<String>();
-			s1.add(productId[position]);
+			System.out.println("iinn mmaaiinn"+pdata);
+			s1.add(pdata[position].getProductId());
 			s1.add(allAmount);
 			s1.add(grandTotal);
-
+*/
 			Intent in = new Intent(CartListMainActivity.this,
 					PaymentMainActivity.class);
-			in.putStringArrayListExtra("cartItemsBuy", s1);
+			//in.putStringArrayListExtra("cartItemsBuy", s1);
 			startActivity(in);
 			return true;
 		default:

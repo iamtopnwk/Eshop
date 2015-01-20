@@ -8,12 +8,8 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.concurrent.ExecutionException;
 
-import org.json.JSONArray;
-import org.json.JSONObject;
-
 import android.annotation.SuppressLint;
 import android.app.Activity;
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.AsyncTask;
@@ -37,8 +33,10 @@ import com.infotop.eshop.specification.SpecificationLaptopActivity;
 import com.infotop.eshop.specification.SpecificationMobileActivity;
 import com.infotop.eshop.specification.SpecificationMouseActivity;
 import com.infotop.eshop.urls.UrlInfo;
+import com.infotop.eshop.utilities.GetOperation;
 import com.infotop.eshop.utilities.HorizontalListView;
 import com.infotop.eshop.utilities.HttpServiceHandler;
+import com.infotop.eshop.utilities.JsonHelper;
 import com.infotop.eshop.utilities.UserSessionManager;
 import com.infotop.eshop.wishlist.PostOperation;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
@@ -46,7 +44,7 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.display.RoundedBitmapDisplayer;
 
 @SuppressLint("SimpleDateFormat")
-public class BookDetailsActivity extends Activity {
+public class ProductDetailsActivity extends Activity {
 
 	ProductDetailsHorizontalAdapter hAdapter;
 	// adding CartButton,WishlistButton,BuyButton
@@ -56,14 +54,7 @@ public class BookDetailsActivity extends Activity {
 	ViewHolder holder;
 	DisplayImageOptions op;
 	String productIdSpecification;
-	private static final String TAG_PNAME = "productName";
-	private static final String TAG_IMGTYPE = "imageType";
-	private static final String TAG_PDESC = "productDescription";
-	private static final String TAG_PPRICE = "productPrice";
-	private static final String TAG_PID = "uuid";
-	private static final String TAG_IMAGELIST = "imageList";
-	private static final String TAG_IMGVALUE = "imageValue";
-
+	
 	ImageLoader loader = ImageLoader.getInstance();
 	private String productId;
 	private String productName;
@@ -100,18 +91,85 @@ public class BookDetailsActivity extends Activity {
 		childCategoryName = getIntent().getExtras().getString(
 				"childCategoryName");
 		System.out.println("ChildCategoryName:=======" + childCategoryName);
-
+		/*Product pdt = new Product();
+		pdt.setServiceUrl(UrlInfo.INDVProduct + productUUid);*/
+		
 		String serverURL = UrlInfo.INDVProduct + productUUid;
-
+		AsyncTask<String, Void, String> productListData = new GetOperation().execute(serverURL);
 		// Use AsyncTask execute Method To Prevent ANR Problem
-		new LongOperation().execute(serverURL);
+		try {
+			System.out.println(productListData.get());
+			final Product[] pdata= (Product[]) JsonHelper.toObject(productListData.get(), Product[].class);
+			holder = new ViewHolder();
+			holder.txtTitle = (TextView) findViewById(R.id.bookName1);
+			holder.txtTitle1 = (TextView) findViewById(R.id.authorName);
+			holder.txtTitle2 = (TextView) findViewById(R.id.price);
+			holder.imageView = (ImageView) findViewById(R.id.logo);
+
+			holder.txtTitle.setText(pdata[0].getProductName());
+			holder.txtTitle1.setText(pdata[0].getProductDescription());
+			holder.txtTitle2.setText(pdata[0].getProductPrice());
+			//loader.displayImage(imageUrls.get(0), holder.imageView, op, null);
+			
+			loader.displayImage(pdata[0].getImageList()[0].getImageValue(), holder.imageView, op, null);
+			System.out.println("mmmmmm"+pdata[0].getImageList()[0].getImageValue());
+			
+		/*	hAdapter = new ProductDetailsHorizontalAdapter(
+					ProductDetailsActivity.this, pdata[0].getImageList(), op);
+			list = (HorizontalListView) findViewById(R.id.detailshorizontal);
+			list.setAdapter(hAdapter);
+
+			list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+				@Override
+				public void onItemClick(AdapterView<?> parent, View view,
+						int position, long id) {
+
+					loader.displayImage(imageUrls.get(position),
+							holder.imageView, op, null);
+					pos = position;
+				}
+			});
+
+			holder.imageView.setOnClickListener(new View.OnClickListener() {
+				public void onClick(View v) {
+					Intent i = new Intent(ProductDetailsActivity.this,
+							ZoomActivity.class);
+
+					System.out.println("position=======================++++++"
+							+ pos);
+					i.putExtra("list", imageUrls.get(pos));
+					System.out.println("position=========="
+							+ imageUrls.get(pos));
+					// i.putExtra("count", count);
+
+					startActivity(i);
+				}
+
+			});*/
+		
+
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ExecutionException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+	}
+	
+	private class ViewHolder {
+		public TextView txtTitle;
+		public TextView txtTitle1;
+		public TextView txtTitle2;
+		public ImageView imageView;
 
 	}
 
-	private class LongOperation extends AsyncTask<String, Void, Void> {
+	/*private class LongOperation extends AsyncTask<String, Void, Void> {
 
 		private ProgressDialog dialog = new ProgressDialog(
-				BookDetailsActivity.this);
+				ProductDetailsActivity.this);
 
 		protected void onPreExecute() {
 			// NOTE: You can call UI Element here.
@@ -122,8 +180,8 @@ public class BookDetailsActivity extends Activity {
 			dialog.show();
 
 		}
-
-		@Override
+*/
+		/*@Override
 		protected Void doInBackground(String... urls) {
 			JSONArray jsonArray = null;
 			String pcontent;
@@ -156,11 +214,11 @@ public class BookDetailsActivity extends Activity {
 			} catch (Exception ex) {
 				System.out.println("Exception e:" + ex.getMessage());
 			}
-			/*****************************************************/
+			*//*****************************************************//*
 			return null;
-		}
+		}*/
 
-		protected void onPostExecute(Void unused) {
+		/*protected void onPostExecute(Void unused) {
 
 			holder = new ViewHolder();
 			holder.txtTitle = (TextView) findViewById(R.id.bookName1);
@@ -173,7 +231,7 @@ public class BookDetailsActivity extends Activity {
 			holder.txtTitle2.setText(productPrice);
 			loader.displayImage(imageUrls.get(0), holder.imageView, op, null);
 			hAdapter = new ProductDetailsHorizontalAdapter(
-					BookDetailsActivity.this, imageUrls, op);
+					ProductDetailsActivity.this, imageUrls, op);
 			list = (HorizontalListView) findViewById(R.id.detailshorizontal);
 			list.setAdapter(hAdapter);
 
@@ -190,7 +248,7 @@ public class BookDetailsActivity extends Activity {
 
 			holder.imageView.setOnClickListener(new View.OnClickListener() {
 				public void onClick(View v) {
-					Intent i = new Intent(BookDetailsActivity.this,
+					Intent i = new Intent(ProductDetailsActivity.this,
 							ZoomActivity.class);
 
 					System.out.println("position=======================++++++"
@@ -208,37 +266,33 @@ public class BookDetailsActivity extends Activity {
 			dialog.dismiss();
 
 		}
+*/
+	//}
 
-	}
-
-	private class ViewHolder {
-		public TextView txtTitle;
-		public TextView txtTitle1;
-		public TextView txtTitle2;
-		public ImageView imageView;
-
-	}
+	
 
 	// functionalities for wishlistBtn
 	public void addToWishlist(View view) {
 
 		UserSessionManager usMgr = new UserSessionManager(
-				BookDetailsActivity.this);
+				ProductDetailsActivity.this);
 		if (usMgr.isUserLoggedIn()) {
-			emailId = usMgr.getUserDetails().get("email");
-			Product p = new Product();
-			p.setServiceUrl(UrlInfo.ADDWishlist);
-			p.setProductId(productId);
-			p.setProductName(productName);
-			p.setDescription(productDescription);
-			p.setImageUrl(imageUrls.get(0));
-			p.setPrice(productPrice);
-			p.setEmailId(emailId);
-			AsyncTask<Object, Void, String> respData = new PostOperation()
-					.execute(p);
+			//emailId = usMgr.getUserDetails().get("email");
+			Product pdt = new Product();
+			pdt.setServiceUrl(UrlInfo.ADDWishlist);
+			pdt.setEmailId(usMgr.getUserDetails().get("email"));
+			AsyncTask<Object, Void, String> wishtListData = new PostOperation().execute(pdt);
+			
+		/*	pdt.setProductId(productId);
+			pdt.setProductName(productName);
+			pdt.setDescription(productDescription);
+			pdt.setImageUrl(imageUrls.get(0));
+			pdt.setPrice(productPrice);
+			pdt.setEmailId(emailId);*/
+		
 			String pcontent;
 			try {
-				pcontent = respData.get();
+				pcontent = wishtListData.get();
 				if (pcontent.equalsIgnoreCase("Success")) {
 					Toast.makeText(getBaseContext(),
 							"Your item is added to Wish List",
@@ -260,7 +314,7 @@ public class BookDetailsActivity extends Activity {
 			}
 
 		} else {
-			Intent intent = new Intent(BookDetailsActivity.this,
+			Intent intent = new Intent(ProductDetailsActivity.this,
 					EshopLoginActivity.class);
 			startActivity(intent);
 
@@ -286,6 +340,22 @@ public class BookDetailsActivity extends Activity {
 			startActivity(intSpecification);
 		}
 	}
+	
+	public void getBarChart(View view) {
+		BarGraph bar = new BarGraph();
+        Intent barIntent = bar.getIntent(this);
+        startActivity(barIntent);
+	}
+	
+	public void getPieChart(View view) {
+		PieChart pie = new PieChart();
+        Intent pieIntent = pie.getIntent(this);
+        startActivity(pieIntent);
+	}
+	
+	
+	
+	
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
@@ -345,8 +415,8 @@ public class BookDetailsActivity extends Activity {
 				pdt.setEmailId(usMgr.getUserDetails().get("email"));
 				pdt.setProductId(productId);
 				pdt.setProductName(productName);
-				pdt.setPrice(productPrice);
-				pdt.setDescription(productDescription);
+				pdt.setProductPrice(productPrice);
+				pdt.setProductDescription(productDescription);
 				pdt.setImageUrl(imageUrls.get(0));
 
 				AsyncTask<Object, Void, String> respDataCartItem = new PostOperation()
@@ -355,16 +425,16 @@ public class BookDetailsActivity extends Activity {
 				try {
 					pcontent = respDataCartItem.get();
 					if (pcontent.equalsIgnoreCase("Success")) {
-						Toast.makeText(BookDetailsActivity.this,
+						Toast.makeText(ProductDetailsActivity.this,
 								"Your item is added to Cart List",
 								Toast.LENGTH_SHORT).show();
 					} else if (pcontent.equalsIgnoreCase("Exist")) {
 						Toast.makeText(
-								BookDetailsActivity.this,
+								ProductDetailsActivity.this,
 								"Your item is already added to Cart List and and buy other one.",
 								Toast.LENGTH_SHORT).show();
 					} else {
-						Toast.makeText(BookDetailsActivity.this,
+						Toast.makeText(ProductDetailsActivity.this,
 								"Connection error", Toast.LENGTH_SHORT).show();
 					}
 				} catch (InterruptedException e) {
@@ -389,7 +459,7 @@ public class BookDetailsActivity extends Activity {
 			Boolean result = us.checkLogin();
 			if (result == false) {
 
-				Intent in = new Intent(BookDetailsActivity.this,
+				Intent in = new Intent(ProductDetailsActivity.this,
 						PaymentMainActivity.class);
 				in.putStringArrayListExtra("purChaseItem", s);
 				startActivity(in);

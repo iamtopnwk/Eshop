@@ -45,7 +45,7 @@
                 android:value="com.infotop.eshop.login.EshopLoginActivity" />
         </activity>
         <activity
-            android:name="com.infotop.eshop.product.BookDetailsActivity"
+            android:name="com.infotop.eshop.product.ProductDetailsActivity"
             android:label="@string/title_activity_product_details"
             android:uiOptions="splitActionBarWhenNarrow" >
         </activity>
@@ -137,6 +137,8 @@
             android:name="com.infotop.eshop.specification.SpecificationMouseActivity"
             android:label="@string/title_activity_specification_mouse" >
         </activity>
+         <activity android:name="org.achartengine.GraphicalActivity"/>
+         
     </application>
 
 </manifest>

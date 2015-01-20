@@ -102,7 +102,7 @@ public class ProductListViewActivity extends Activity {
 					
 					// pass Data to other Activity
 					Intent i = new Intent(ProductListViewActivity.this,
-							BookDetailsActivity.class);
+							ProductDetailsActivity.class);
 					// i.putStringArrayListExtra("productData", productData);
 					i.putExtra("productId", pdata[position].getUuid());
 					i.putExtra("childCategoryName", chilCategoryName);
