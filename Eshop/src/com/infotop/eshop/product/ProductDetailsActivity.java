@@ -413,11 +413,11 @@ public class ProductDetailsActivity extends Activity {
 
 				pdt.setServiceUrl(UrlInfo.ADDCartlist);
 				pdt.setEmailId(usMgr.getUserDetails().get("email"));
-				pdt.setProductId(productId);
+				pdt.setId(productId);
 				pdt.setProductName(productName);
 				pdt.setProductPrice(productPrice);
 				pdt.setProductDescription(productDescription);
-				pdt.setImageUrl(imageUrls.get(0));
+				pdt.setImage(imageUrls.get(0));
 
 				AsyncTask<Object, Void, String> respDataCartItem = new PostOperation()
 						.execute(pdt);

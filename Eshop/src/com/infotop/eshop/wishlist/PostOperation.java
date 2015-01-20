@@ -22,11 +22,11 @@ public class PostOperation extends AsyncTask<Object, Void, String> {
 			JSONObject json = new JSONObject();
 
 			json.accumulate("emailId", product.getEmailId());
-			json.accumulate("productId", product.getProductId());
+			json.accumulate("id", product.getId());
 			json.accumulate("productName", product.getProductName());
-			json.accumulate("description", product.getProductDescription());
-			json.accumulate("price", product.getProductPrice());
-			json.accumulate("imageUrl", product.getImageUrl());
+			json.accumulate("productDescription", product.getProductDescription());
+			json.accumulate("productPrice", product.getProductPrice());
+			json.accumulate("image", product.getImage());
 			jsonData = json.toString();
 			pcontent = hs.httpPost(product.getServiceUrl(), jsonData);
 			// System.out.println("Executed data:" + pcontent);

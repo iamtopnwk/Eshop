@@ -2,13 +2,10 @@ package com.infotop.eshop.model;
 
 public class Product {
 	private String serviceUrl;
-	private String productId;
+	private String id;
 	private String productName;
-	/*private String description;*/
 	private String productPrice;
-	/*private String price;*/
 	private String categoryId;
-	private String imageUrl;
 	private String emailId;
 	private String wishlistId;
 	private String productDescription;
@@ -77,12 +74,12 @@ public class Product {
 		this.serviceUrl = serviceUrl;
 	}
 
-	public String getProductId() {
-		return productId;
+	public String getId() {
+		return id;
 	}
 
-	public void setProductId(String productId) {
-		this.productId = productId;
+	public void setId(String id) {
+		this.id = id;
 	}
 
 	public String getProductName() {
@@ -92,23 +89,6 @@ public class Product {
 	public void setProductName(String productName) {
 		this.productName = productName;
 	}
-
-	/*public String getDescription() {
-		return description;
-	}
-
-	public void setDescription(String description) {
-		this.description = description;
-	}*/
-
-/*	public String getPrice() {
-		return price;
-	}
-
-	public void setPrice(String price) {
-		this.price = price;
-	}*/
-
 	public String getCategoryId() {
 		return categoryId;
 	}
@@ -116,15 +96,6 @@ public class Product {
 	public void setCategoryId(String categoryId) {
 		this.categoryId = categoryId;
 	}
-
-	public String getImageUrl() {
-		return imageUrl;
-	}
-
-	public void setImageUrl(String imageUrl) {
-		this.imageUrl = imageUrl;
-	}
-
 	public String getEmailId() {
 		return emailId;
 	}

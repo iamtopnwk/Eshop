@@ -79,11 +79,11 @@ public class CustomGridViewAdapter extends ArrayAdapter<Product> {
 					Product p = new Product();
 					p.setServiceUrl(UrlInfo.ADDWishlist);
 
-					p.setProductId(pdata[id].getProductId());
+					p.setId(pdata[id].getId());
 					p.setProductName(pdata[id].getProductName());
 					//p.setDescription(pdata[id].getDescription());
 					p.setProductDescription(pdata[id].getProductDescription());
-					p.setImageUrl(pdata[id].getImage());
+					p.setImage(pdata[id].getImage());
 					//p.setPrice(pdata[id].getPrice());
 					p.setProductPrice(pdata[id].getProductPrice());
 					p.setEmailId(emailId);

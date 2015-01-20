@@ -66,7 +66,7 @@ public class WishListAdapter extends ArrayAdapter<Product> {
 		holder.txtTitle1.setText(pdata[position].getProductDescription());
 		holder.txtTitle2.setText(pdata[position].getProductPrice());
 	
-		loader.displayImage(pdata[position].getImageUrl(), holder.imageView, op, null);
+		loader.displayImage(pdata[position].getImage(), holder.imageView, op, null);
 		holder.imageView1.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
@@ -89,7 +89,7 @@ public class WishListAdapter extends ArrayAdapter<Product> {
 								Product p = new Product();
 								p.setServiceUrl(UrlInfo.DELETE_WISHLIST);
 
-								p.setProductId(pdata[id].getWishlistId());
+								p.setId(pdata[id].getWishlistId());
 								System.out.println("lllllllllllll"+ pdata[id]);
 								AsyncTask<Object, Void, String> respData = new PostOperation()
 										.execute(p);

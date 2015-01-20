@@ -79,12 +79,12 @@ public class CartListMainActivity extends Activity {
 
 					
 
-					System.out.println("productId:-" + pdata[position].getProductId());
+					System.out.println("productId:-" + pdata[position].getId());
 					
 
 					Intent i = new Intent(CartListMainActivity.this,
 							ProductDetailsActivity.class);
-					i.putExtra("productId",  pdata[position].getProductId());
+					i.putExtra("productId",  pdata[position].getId());
 					// i.putStringArrayListExtra("productData", productData);
 					startActivity(i);
 				}

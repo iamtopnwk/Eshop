@@ -80,10 +80,10 @@ public class ProductListAdapter extends ArrayAdapter<Product> {
 					 */
 					Product p = new Product();
 					p.setServiceUrl(UrlInfo.ADDWishlist);
-					p.setProductId(pdata[id].getProductId());
+					p.setId(pdata[id].getId());
 					p.setProductName(pdata[id].getProductName());
 					p.setProductDescription(pdata[id].getProductDescription());
-					p.setImageUrl(pdata[id].getImage());
+					p.setImage(pdata[id].getImage());
 					p.setProductPrice(pdata[id].getProductPrice());
 					p.setEmailId(emailId);
 					AsyncTask<Object, Void, String> respData = new PostOperation()

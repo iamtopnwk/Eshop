@@ -65,7 +65,7 @@ public class CartListAdapter extends ArrayAdapter<Product> {
 		holder.txtTitle1.setText(pdata[position].getProductDescription());
 		holder.txtTitle2.setText(pdata[position].getProductPrice());
 		
-		loader.displayImage(pdata[position].getImageUrl(), holder.imageView, op, null);
+		loader.displayImage(pdata[position].getImage(), holder.imageView, op, null);
 		
 		holder.imageView1.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
@@ -81,7 +81,7 @@ public class CartListAdapter extends ArrayAdapter<Product> {
 								Product p = new Product();
 								p.setServiceUrl(UrlInfo.DELETE_CARTLIST);
 								
-								p.setProductId(pdata[id].getCartlistId());
+								p.setId(pdata[id].getCartlistId());
 								
 								System.out.println("pppppppppppppppppp"+pdata[id]);
 								System.out.println("pppppppppppppppppp"+pdata[id].getCartlistId());

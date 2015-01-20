@@ -62,11 +62,11 @@ public class WishListMainActivity extends Activity {
 				@Override
 				public void onItemClick(AdapterView<?> parent, View view,
 						int position, long id) {
-					System.out.println("productId:-" + pdata[position].getProductId());
+					System.out.println("productId:-" + pdata[position].getId());
 
 					Intent i = new Intent(WishListMainActivity.this,
 							ProductDetailsActivity.class);
-					i.putExtra("productId", pdata[position].getProductId());
+					i.putExtra("productId", pdata[position].getId());
 					// i.putStringArrayListExtra("productData", productData);
 					startActivity(i);
 
