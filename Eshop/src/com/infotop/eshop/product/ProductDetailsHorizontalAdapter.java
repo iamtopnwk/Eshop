@@ -1,5 +1,6 @@
 package com.infotop.eshop.product;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import android.app.Activity;
@@ -10,21 +11,22 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 
 import com.infotop.eshop.R;
+import com.infotop.eshop.model.ImageList;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
 public class ProductDetailsHorizontalAdapter extends ArrayAdapter<String> {
-	private String[] imageList;
+	private final ArrayList<String> mediumimageUrls;
 	private final Activity context;
 	private final DisplayImageOptions op;
 	protected ImageLoader loader = ImageLoader.getInstance();
 
 	public ProductDetailsHorizontalAdapter(Activity context,
-			 String[] imageList, DisplayImageOptions op) {
-		super(context, R.layout.products_details_horozontal, imageList);
+			ArrayList<String> mediumimageUrls, DisplayImageOptions op) {
+		super(context, R.layout.products_details_horozontal,mediumimageUrls);
 
 		this.context = context;
-		this.imageList = imageList;
+		this.mediumimageUrls = mediumimageUrls;
 		this.op = op;
 		// TODO Auto-generated constructor stub
 	}
@@ -32,7 +34,7 @@ public class ProductDetailsHorizontalAdapter extends ArrayAdapter<String> {
 	@Override
 	public int getCount() {
 		// TODO Auto-generated method stub
-		return imageList.length;
+		return mediumimageUrls.size();
 	}
 
 	@Override
@@ -41,7 +43,7 @@ public class ProductDetailsHorizontalAdapter extends ArrayAdapter<String> {
 				R.layout.products_details_horozontal, null);
 		ImageView imageView = (ImageView) rowView.findViewById(R.id.img1);
 		System.out.println("pppppppppppppppppppppppppppppppp" + position);
-		loader.displayImage(imageList[position], imageView, op, null);
+		loader.displayImage(mediumimageUrls.get(position), imageView, op, null);
 
 		// TODO Auto-generated method stub
 		return rowView;

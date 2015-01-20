@@ -27,6 +27,7 @@ import android.widget.Toast;
 import com.infotop.eshop.R;
 import com.infotop.eshop.login.EshopLoginActivity;
 import com.infotop.eshop.main.activity.ZoomActivity;
+import com.infotop.eshop.model.ImageList;
 import com.infotop.eshop.model.Product;
 import com.infotop.eshop.payment.PaymentMainActivity;
 import com.infotop.eshop.specification.SpecificationLaptopActivity;
@@ -60,14 +61,13 @@ public class ProductDetailsActivity extends Activity {
 	private String productName;
 	private String productDescription;
 	private String productPrice;
-
+	ArrayList<String> mediumimageUrls = new ArrayList<String>();
 	private String emailId;
 
 	Button btn;
 
 	UserSessionManager usMgr;
-	ArrayList<String> imageUrls = new ArrayList<String>();
-
+	
 	int count = 0;
 
 	String childCategoryName;
@@ -98,24 +98,36 @@ public class ProductDetailsActivity extends Activity {
 		AsyncTask<String, Void, String> productListData = new GetOperation().execute(serverURL);
 		// Use AsyncTask execute Method To Prevent ANR Problem
 		try {
+		
+			final ArrayList<String> bigimageUrls = new ArrayList<String>();
 			System.out.println(productListData.get());
-			final Product[] pdata= (Product[]) JsonHelper.toObject(productListData.get(), Product[].class);
+			final Product pdata= (Product) JsonHelper.toObject(productListData.get(), Product.class);
 			holder = new ViewHolder();
 			holder.txtTitle = (TextView) findViewById(R.id.bookName1);
 			holder.txtTitle1 = (TextView) findViewById(R.id.authorName);
 			holder.txtTitle2 = (TextView) findViewById(R.id.price);
 			holder.imageView = (ImageView) findViewById(R.id.logo);
 
-			holder.txtTitle.setText(pdata[0].getProductName());
-			holder.txtTitle1.setText(pdata[0].getProductDescription());
-			holder.txtTitle2.setText(pdata[0].getProductPrice());
-			//loader.displayImage(imageUrls.get(0), holder.imageView, op, null);
+			holder.txtTitle.setText(pdata.getProductName());
+			holder.txtTitle1.setText(pdata.getProductDescription());
+			holder.txtTitle2.setText(pdata.getProductPrice());
+			ImageList[] images=pdata.getImageList();
 			
-			loader.displayImage(pdata[0].getImageList()[0].getImageValue(), holder.imageView, op, null);
-			System.out.println("mmmmmm"+pdata[0].getImageList()[0].getImageValue());
+			for(int i=0;i<images.length;i++){
+				if(images[i].getImageType().equals("1")){
+					bigimageUrls.add(images[i].getImageValue());
+				}
+				if(images[i].getImageType().equals("2")){
+					mediumimageUrls.add(images[i].getImageValue());
+				}
+			}
+			loader.displayImage(bigimageUrls.get(0), holder.imageView, op, null);
 			
-		/*	hAdapter = new ProductDetailsHorizontalAdapter(
-					ProductDetailsActivity.this, pdata[0].getImageList(), op);
+			/*loader.displayImage(pdata[0].getImageList()[0].getImageValue(), holder.imageView, op, null);
+			System.out.println("mmmmmm"+pdata[0].getImageList()[0].getImageValue());*/
+			
+			hAdapter = new ProductDetailsHorizontalAdapter(
+					ProductDetailsActivity.this,mediumimageUrls , op);
 			list = (HorizontalListView) findViewById(R.id.detailshorizontal);
 			list.setAdapter(hAdapter);
 
@@ -124,7 +136,7 @@ public class ProductDetailsActivity extends Activity {
 				public void onItemClick(AdapterView<?> parent, View view,
 						int position, long id) {
 
-					loader.displayImage(imageUrls.get(position),
+					loader.displayImage(bigimageUrls.get(position),
 							holder.imageView, op, null);
 					pos = position;
 				}
@@ -134,18 +146,16 @@ public class ProductDetailsActivity extends Activity {
 				public void onClick(View v) {
 					Intent i = new Intent(ProductDetailsActivity.this,
 							ZoomActivity.class);
-
 					System.out.println("position=======================++++++"
 							+ pos);
-					i.putExtra("list", imageUrls.get(pos));
-					System.out.println("position=========="
-							+ imageUrls.get(pos));
+					i.putExtra("list", bigimageUrls.get(pos));
+				
 					// i.putExtra("count", count);
 
 					startActivity(i);
 				}
 
-			});*/
+			});
 		
 
 		} catch (InterruptedException e) {
@@ -417,7 +427,7 @@ public class ProductDetailsActivity extends Activity {
 				pdt.setProductName(productName);
 				pdt.setProductPrice(productPrice);
 				pdt.setProductDescription(productDescription);
-				pdt.setImage(imageUrls.get(0));
+				pdt.setImage(mediumimageUrls.get(0));
 
 				AsyncTask<Object, Void, String> respDataCartItem = new PostOperation()
 						.execute(pdt);
@@ -454,7 +464,7 @@ public class ProductDetailsActivity extends Activity {
 			s.add(productName);
 			s.add(productDescription);
 			s.add(productPrice);
-			s.add(imageUrls.get(0));
+			s.add(mediumimageUrls.get(0));
 			UserSessionManager us = new UserSessionManager(this);
 			Boolean result = us.checkLogin();
 			if (result == false) {
