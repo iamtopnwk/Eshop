@@ -14,10 +14,6 @@ public class Product {
 	private String cartlistId;
 	private ImageList[] imageList ;
 
-
-
-	
-	
 	public ImageList[] getImageList() {
 		return imageList;
 	}
