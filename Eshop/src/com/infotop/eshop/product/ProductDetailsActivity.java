@@ -99,7 +99,7 @@ public class ProductDetailsActivity extends Activity {
 		// Use AsyncTask execute Method To Prevent ANR Problem
 		try {
 		
-			final ArrayList<String> bigimageUrls = new ArrayList<String>();
+			//final ArrayList<String> bigimageUrls = new ArrayList<String>();
 			System.out.println(productListData.get());
 			final Product pdata= (Product) JsonHelper.toObject(productListData.get(), Product.class);
 			holder = new ViewHolder();
@@ -112,22 +112,23 @@ public class ProductDetailsActivity extends Activity {
 			holder.txtTitle1.setText(pdata.getProductDescription());
 			holder.txtTitle2.setText(pdata.getProductPrice());
 			ImageList[] images=pdata.getImageList();
-			
+			System.out.println("images length---------"+images.length);
 			for(int i=0;i<images.length;i++){
-				if(images[i].getImageType().equals("1")){
-					bigimageUrls.add(images[i].getImageValue());
-				}
+				/*if(images[i].getImageType().equals("1")){
+					mediumimageUrls.add(images[i].getImageValue());
+				}*/
 				if(images[i].getImageType().equals("2")){
 					mediumimageUrls.add(images[i].getImageValue());
 				}
 			}
-			loader.displayImage(bigimageUrls.get(0), holder.imageView, op, null);
+			loader.displayImage(mediumimageUrls.get(0), holder.imageView, op, null);
 			
 			/*loader.displayImage(pdata[0].getImageList()[0].getImageValue(), holder.imageView, op, null);
 			System.out.println("mmmmmm"+pdata[0].getImageList()[0].getImageValue());*/
 			
 			hAdapter = new ProductDetailsHorizontalAdapter(
 					ProductDetailsActivity.this,mediumimageUrls , op);
+			
 			list = (HorizontalListView) findViewById(R.id.detailshorizontal);
 			list.setAdapter(hAdapter);
 
@@ -135,8 +136,8 @@ public class ProductDetailsActivity extends Activity {
 				@Override
 				public void onItemClick(AdapterView<?> parent, View view,
 						int position, long id) {
-
-					loader.displayImage(bigimageUrls.get(position),
+                    System.out.println("position=================="+position);
+					loader.displayImage(mediumimageUrls.get(position),
 							holder.imageView, op, null);
 					pos = position;
 				}
@@ -148,7 +149,7 @@ public class ProductDetailsActivity extends Activity {
 							ZoomActivity.class);
 					System.out.println("position=======================++++++"
 							+ pos);
-					i.putExtra("list", bigimageUrls.get(pos));
+					i.putExtra("list", mediumimageUrls.get(pos));
 				
 					// i.putExtra("count", count);
 
