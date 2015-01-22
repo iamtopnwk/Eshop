@@ -1,78 +1,60 @@
 package com.infotop.eshop.specification;
 
+import java.util.concurrent.ExecutionException;
+
 import android.app.Activity;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
 
 import com.infotop.eshop.R;
+import com.infotop.eshop.model.ProductSpecification;
+import com.infotop.eshop.urls.UrlInfo;
+import com.infotop.eshop.utilities.GetOperation;
+import com.infotop.eshop.utilities.JsonHelper;
 
 public class SpecificationMouseActivity extends Activity {
-	/*private static final String BRAND_NAME = "brandname";
-	private static final String MODEL_ID = "modelId";
-	private static final String CAPACITY = "capacity";
-	private static final String WARRENTY = "warrenty";
 	
-	String s1;
-	
-	String bName;
-	String mName;
-	String capacity1;
-	String warrenty1;*/
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_specification_mouse);
 		
 		
-		 
-		/*s1=getIntent().getExtras().getString("idspec");
+/*		 
+	String s1=getIntent().getExtras().getString("idspec");
 		System.out.println("pabitr spec"+s1);
 		
-		String serverURL= new HttpUrl().getUrl()+"/eshop/rest/specificationbyproductid/"+s1;
-		new LongOperation().execute(serverURL);*/
+		String serverURL= UrlInfo.SPECIFICATIONBYID+s1;
+	AsyncTask<String, Void, String> productSpec=new GetOperation().execute(serverURL);
+	 
+	try{
+	final ProductSpecification pdata=(ProductSpecification) JsonHelper.toObject(productSpec.get(), ProductSpecification.class);
+	
+	TextView txt1=(TextView)findViewById(R.id.brand);
+	TextView txt2=(TextView)findViewById(R.id.modelMouse);
+	TextView txt3=(TextView)findViewById(R.id.capacityMouse);
+	TextView txt4=(TextView)findViewById(R.id.warrentyMouse);
+	
+	txt1.setText(pdata.getBrandName());
+	txt2.setText(pdata.getModelId());
+	txt3.setText(pdata.getCapacity());
+	txt4.setText(pdata.getWarrenty());	
+	
+	
+	} catch (InterruptedException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	} catch (ExecutionException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}*/
+	
 	}
 	
-	/*private class LongOperation extends AsyncTask<String, Void, Void> {
-		
-		String scontent;
-
-		@Override
-		protected Void doInBackground(String... urls) {
-			
-			try{
-			HttpServiceHandler hs = new HttpServiceHandler();
-			scontent = hs.httpContent(urls[0]);
-			JSONObject jsonObj;
-			jsonObj = new JSONObject(scontent);
-			System.out.println("SCONTENT URL:"+jsonObj);
-			
-			 bName=jsonObj.getString(BRAND_NAME);
-			 mName=jsonObj.getString(MODEL_ID);
-			 capacity1=jsonObj.getString(CAPACITY);
-			 warrenty1=jsonObj.getString(WARRENTY);
-			
-			
-			} catch (Exception ex) {
-				System.out.println("Exception e:" + ex.getMessage());
-			}
-			return null;
-		}
-		protected void onPostExecute(Void unused) {
-			
-			
-			TextView txt1=(TextView)findViewById(R.id.brand);
-			TextView txt2=(TextView)findViewById(R.id.modelMouse);
-			TextView txt3=(TextView)findViewById(R.id.capacityMouse);
-			TextView txt4=(TextView)findViewById(R.id.warrentyMouse);
-			
-			txt1.setText(bName);
-			txt2.setText(mName);
-			txt3.setText(capacity1);
-			txt4.setText(warrenty1);	
-		}
-	}
-	*/
+	
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
