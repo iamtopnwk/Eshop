@@ -1,7 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent" >
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/splashbg">
     
+    
+    
+ 
+ <LinearLayout 
+     android:id="@+id/commentThumbnailLayout"
+      android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:orientation="horizontal"
+        android:background="@drawable/image_bdr">
+    <ImageView 
+        android:id="@+id/userImageComment"
+        android:layout_width="75dip"
+        android:layout_height="75dip"
+        android:src="@drawable/pabitra"
+        android:background="@drawable/image_bdr"/>
+  </LinearLayout>
 
+<TextView
+    android:id="@+id/userComments"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_toRightOf="@+id/commentThumbnailLayout"
+    android:paddingLeft="10dp"
+    android:paddingTop="10dp"
+    android:background="@drawable/edittextshape"
+    android:text="Hi,
+                  guys how r u, this is a good product . Compare to samsung xiomi mi5 is very reliable and good looking .Only problem is battery"/>
+ 
 </RelativeLayout>

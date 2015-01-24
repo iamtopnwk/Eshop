@@ -72,7 +72,7 @@
     <string name="stprice">Price: $</string>
     <string name="stauthorname">Author Name</string>
     <string name="stmediumtext">Medium Text</string>
-    <string name="specification">Specification   ></string>
+    <string name="specification">Specification|</string>
     
     <string name="user1">N.Balchander:
                          it looks like cheap plastic chinese phone.It heats during talk. The reception is weak. Voice clarity is not good. During call the screen locks. Every time u have to double tap and unlock and then end the call. Absence of magnetic sensor is major drawback. In nutshell it is not worth buying. Dear Samsung, u continue cheating ur customers.</string>
@@ -82,7 +82,7 @@
                          bought this phone from a nearby samsung smart cafe after being confused whether to buy moto g2 or grand 2. i bought motog2 for my bro so had a chance to compare with grand prime. this phone even it is qhd it looks more brighter than motog2 which is awesome! but unlike motog2 lacks gorilla glass. when it comes to design grand prime really gives u much premium feel compared to motog2 and grand2 also it has a 5MP front cam which made me to go for this phone. one more feature which attracted is the battery with 2600mah, i m using this phone from past 2 weeks and it lasts for almost 2 day with no</string>
     
     
-      <string name="barChart">BarChart |</string>
+      <string name="barChart">BarChart|</string>
        <string name="pieChart">PieChart </string>
     <!-- Action bar menu icons -->
     <string name="ac_cartList">CartList</string>
