@@ -20,6 +20,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -365,7 +366,11 @@ public class ProductDetailsActivity extends Activity {
 	}
 	
 	
-	
+	public void postComment(ViewHolder view){
+		EditText editText=(EditText) findViewById(R.id.comEdit);
+		TextView textView=(TextView) findViewById(R.id.userComments2);
+		textView.setText(editText.getText().toString());
+	}
 	
 
 	@Override
