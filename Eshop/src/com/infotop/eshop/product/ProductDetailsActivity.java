@@ -74,7 +74,7 @@ public class ProductDetailsActivity extends Activity {
 	String childCategoryName;
 	String productUUid;
 	int pos;
-
+    Product pdata;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -102,7 +102,7 @@ public class ProductDetailsActivity extends Activity {
 		
 			//final ArrayList<String> bigimageUrls = new ArrayList<String>();
 			System.out.println(productListData.get());
-			final Product pdata= (Product) JsonHelper.toObject(productListData.get(), Product.class);
+			  pdata= (Product) JsonHelper.toObject(productListData.get(), Product.class);
 			holder = new ViewHolder();
 			holder.txtTitle = (TextView) findViewById(R.id.bookName1);
 			holder.txtTitle1 = (TextView) findViewById(R.id.authorName);
@@ -295,12 +295,13 @@ public class ProductDetailsActivity extends Activity {
 			pdt.setEmailId(usMgr.getUserDetails().get("email"));
 			AsyncTask<Object, Void, String> wishtListData = new PostOperation().execute(pdt);
 			
-		/*	pdt.setProductId(productId);
-			pdt.setProductName(productName);
-			pdt.setDescription(productDescription);
-			pdt.setImageUrl(imageUrls.get(0));
-			pdt.setPrice(productPrice);
-			pdt.setEmailId(emailId);*/
+			pdt.setId(pdata.getId());
+			pdt.setUuid(pdata.getUuid());
+			pdt.setProductName(pdata.getProductName());
+			pdt.setProductDescription(pdata.getProductDescription());
+			pdt.setImage(mediumimageUrls.get(0));
+			pdt.setProductPrice(pdata.getProductPrice());
+			pdt.setEmailId(usMgr.getUserDetails().get("email"));
 		
 			String pcontent;
 			try {
@@ -368,8 +369,11 @@ public class ProductDetailsActivity extends Activity {
 	
 	public void postComment(View view){
 		EditText editText=(EditText) findViewById(R.id.comEdit);
-		TextView textView=(TextView) findViewById(R.id.userComments2);
-		textView.setText(editText.getText().toString());
+		TextView textView=(TextView) findViewById(R.id.userComments);
+		String string=editText.getText().toString();
+		textView.setText(string);
+		//Intent intent=new Intent(this,ProductDetailsActivity.class);
+		//startActivity(intent);
 	}
 	
 
@@ -429,10 +433,11 @@ public class ProductDetailsActivity extends Activity {
 
 				pdt.setServiceUrl(UrlInfo.ADDCartlist);
 				pdt.setEmailId(usMgr.getUserDetails().get("email"));
-				pdt.setId(productId);
-				pdt.setProductName(productName);
-				pdt.setProductPrice(productPrice);
-				pdt.setProductDescription(productDescription);
+				pdt.setId(pdata.getId());
+				pdt.setUuid(pdata.getUuid());
+				pdt.setProductName(pdata.getProductName());
+				pdt.setProductPrice(pdata.getProductPrice());
+				pdt.setProductDescription(pdata.getProductDescription());
 				pdt.setImage(mediumimageUrls.get(0));
 
 				AsyncTask<Object, Void, String> respDataCartItem = new PostOperation()
@@ -466,10 +471,10 @@ public class ProductDetailsActivity extends Activity {
 			return true;
 		case R.id.ab_purChaseItem:
 			s = new ArrayList<String>();
-			s.add(productId);
-			s.add(productName);
-			s.add(productDescription);
-			s.add(productPrice);
+			s.add(pdata.getId());
+			s.add(pdata.getProductName());
+			s.add(pdata.getProductDescription());
+			s.add(pdata.getProductPrice());
 			s.add(mediumimageUrls.get(0));
 			UserSessionManager us = new UserSessionManager(this);
 			Boolean result = us.checkLogin();
