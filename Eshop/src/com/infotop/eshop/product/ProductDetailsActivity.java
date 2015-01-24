@@ -366,7 +366,7 @@ public class ProductDetailsActivity extends Activity {
 	}
 	
 	
-	public void postComment(ViewHolder view){
+	public void postComment(View view){
 		EditText editText=(EditText) findViewById(R.id.comEdit);
 		TextView textView=(TextView) findViewById(R.id.userComments2);
 		textView.setText(editText.getText().toString());
