@@ -97,7 +97,7 @@ public class PaymentMainActivity extends Activity {
 
 	private PayPalPayment getThingToBuyAll(String paymentIntent) {
 
-		return new PayPalPayment(new BigDecimal(s1.get(2)), "USD", s1.get(1),
+		return new PayPalPayment(new BigDecimal(s1.get(1)), "USD", s1.get(0),
 				paymentIntent);
 	}
 

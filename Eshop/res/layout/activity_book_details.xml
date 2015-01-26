@@ -220,7 +220,7 @@
         android:layout_width="75dip"
         android:layout_height="75dip"
         android:layout_below="@+id/comPost"
-        android:src="@drawable/pabitra"
+        android:src="@drawable/blank_image"
         android:background="@drawable/image_bdr"/>
             
      <TextView
@@ -255,7 +255,7 @@
     android:paddingLeft="10dp"
     android:paddingTop="10dp"
     android:background="@drawable/edittextshape"
-    android:text="Hi, samsung mobile is superb"
+    android:text="Hi, samsung mobile is superb,Compare to samsung xiomi mi5 is very reliable ,good looking"
     />
      <ImageView 
                 
@@ -277,7 +277,7 @@
     android:paddingLeft="10dp"
     android:paddingTop="10dp"
     android:background="@drawable/edittextshape"
-    android:text="Hi, samsung mobile is superb and looking slim"
+    android:text=""
     />
         </RelativeLayout>
     </ScrollView>

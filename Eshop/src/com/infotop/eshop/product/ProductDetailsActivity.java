@@ -369,7 +369,7 @@ public class ProductDetailsActivity extends Activity {
 	
 	public void postComment(View view){
 		EditText editText=(EditText) findViewById(R.id.comEdit);
-		TextView textView=(TextView) findViewById(R.id.userComments);
+		TextView textView=(TextView) findViewById(R.id.userComments2);
 		String string=editText.getText().toString();
 		textView.setText(string);
 		//Intent intent=new Intent(this,ProductDetailsActivity.class);

@@ -18,7 +18,7 @@
         android:id="@+id/userImageComment"
         android:layout_width="75dip"
         android:layout_height="75dip"
-        android:src="@drawable/pabitra"
+        android:src="@drawable/blank_image"
         android:background="@drawable/image_bdr"/>
   </LinearLayout>
 
