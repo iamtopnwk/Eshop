@@ -54,7 +54,8 @@
         <item>@drawable/ic_people</item>
         <item>@drawable/ic_photos</item>
         <item>@drawable/ic_whats_hot</item>
-    </array> -->
+    </array>
+    -->
     <!-- Content Description -->
     <string name="desc_list_item_icon">Item Icon</string>
     <string name="title_activity_eshop_login">Login</string>
@@ -73,17 +74,14 @@
     <string name="stauthorname">Author Name</string>
     <string name="stmediumtext">Medium Text</string>
     <string name="specification">Specification|</string>
-    
     <string name="user1">N.Balchander:
                          it looks like cheap plastic chinese phone.It heats during talk. The reception is weak. Voice clarity is not good. During call the screen locks. Every time u have to double tap and unlock and then end the call. Absence of magnetic sensor is major drawback. In nutshell it is not worth buying. Dear Samsung, u continue cheating ur customers.</string>
     <string name="user2">P.Kumar:
                          with spending more than 10k there are better choices like moto g, asus zenfone, xiaomi mi3 and many more do not go for this only u will get is the phone which hangs a lot with pathetic design, poor display and only 768 mb ram.</string>
     <string name="user3">Selva:
                          bought this phone from a nearby samsung smart cafe after being confused whether to buy moto g2 or grand 2. i bought motog2 for my bro so had a chance to compare with grand prime. this phone even it is qhd it looks more brighter than motog2 which is awesome! but unlike motog2 lacks gorilla glass. when it comes to design grand prime really gives u much premium feel compared to motog2 and grand2 also it has a 5MP front cam which made me to go for this phone. one more feature which attracted is the battery with 2600mah, i m using this phone from past 2 weeks and it lasts for almost 2 day with no</string>
-    
-    
-      <string name="barChart">BarChart|</string>
-       <string name="pieChart">PieChart </string>
+    <string name="barChart">BarChart|</string>
+    <string name="pieChart">PieChart </string>
     <!-- Action bar menu icons -->
     <string name="ac_cartList">CartList</string>
     <string name="ac_Login">Login</string>
@@ -187,5 +185,15 @@ If you send us personal correspondence, such as emails or letters, or if other u
         		"A statement by you that you have a good faith belief that the use of the material complained of is not authorized by the copyright or intellectual property owner, its agent, or the law."+
         		"A statement by you, that the information in your notice is accurate and that you are the copyright or intellectual property owner or authorized to act on the copyright or intellectual property owner's behalf.Brand Name (in case of Trademark infringement)"+
         		"Details of the intellectual property being infringed (Provide copyrighted images or trademark certificates as attachments)"</string>
+    <string name="title_activity_specification_television">SpecificationTelevisionActivity</string>
+    <string name="title_activity_specification_washing_machin">SpecificationWashingMachinActivity</string>
+    <string name="title_activity_specification_air_conditioner">SpecificationAirConditionerActivity</string>
+    <string name="title_activity_specification_radio">SpecificationRadioActivity</string>
+    <string name="title_activity_specification_agriculture">SpecificationAgricultureActivity</string>
+    <string name="title_activity_specification_computer">SpecificationComputerActivity</string>
+    <string name="title_activity_specification_language">SpecificationLanguageActivity</string>
+    <string name="title_activity_specification_cricket_bat">SpecificationCricketBatActivity</string>
+    <string name="title_activity_specification_tennis_bat">SpecificationTennisBatActivity</string>
+    <string name="title_activity_specification_shoes">SpecificationShoesActivity</string>
 
 </resources>

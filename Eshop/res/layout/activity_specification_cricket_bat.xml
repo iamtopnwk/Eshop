@@ -1,0 +1,220 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.infotop.eshop.specification.SpecificationLaptopActivity" >
+    
+     
+    
+  <ScrollView
+      android:layout_width="fill_parent"
+      android:layout_height="fill_parent"
+      android:scrollbars="horizontal"
+      android:layout_weight="1" > 
+
+   <TableLayout
+           
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:shrinkColumns="*"  android:stretchColumns="*" android:background="#ffffff">
+
+                        <!-- Row 1 with single column -->
+                        <TableRow
+                            android:id="@+id/tableRow1"
+                            android:layout_height="wrap_content"
+                            android:layout_width="fill_parent"
+                            android:gravity="center_horizontal">
+
+                            <TextView
+                                android:layout_width="match_parent" android:layout_height="wrap_content"
+                                android:textSize="18dp" android:text="General Specification"  android:layout_span="3"
+                                android:padding="18dip" android:background="#b0b0b0"
+                                android:textColor="#000"/>
+
+                       </TableRow>
+           <!-- Row 2 with 3 columns -->
+
+                        <TableRow
+                            android:id="@+id/tableRow2"
+                            android:layout_height="wrap_content"
+                            android:layout_width="match_parent">
+                            <TextView
+                                android:id="@+id/TextView01" android:text="Sport Type"
+                                android:layout_weight="1" android:background="#dcdcdc"
+                                android:textColor="#000000"
+                                android:padding="20dip" android:gravity="left"/>
+                            <TextView
+                                android:id="@+id/sport_type_cricket"   android:text="Cricket"  
+                                android:layout_weight="1" android:background="#d3d3d3"
+                                android:textColor="#000000"
+                                android:padding="20dip" android:gravity="center"/>
+                            
+                        </TableRow>
+         <!-- Row 3 with 2 columns -->
+                        <TableRow
+                            android:id="@+id/tableRow3"
+                            android:layout_height="wrap_content"
+                            android:layout_width="fill_parent"
+                            android:gravity="center_horizontal">
+                            <TextView
+                                android:id="@+id/TextView04"  android:text="Playing Level"
+                                android:layout_weight="1"  android:background="#dcdcdc"
+                                android:textColor="#000000"
+                                android:padding="18dip" android:gravity="left"/>
+                     
+                            <TextView
+                                android:id="@+id/playing_level_cricket" android:text="Beginner, Intermediate"
+                                android:layout_weight="1" android:background="#d3d3d3"
+                                android:textColor="#000000"
+                                android:padding="18dip" android:gravity="center"/>
+                        </TableRow>
+                        
+                        <TableRow
+                            android:id="@+id/tableRow4"
+                            android:layout_height="wrap_content"
+                            android:layout_width="fill_parent"
+                            android:gravity="center_horizontal">
+                            <TextView
+                                android:id="@+id/TextView06" android:text="Handle Length"
+                                android:layout_weight="1"  android:background="#dcdcdc"
+                                android:textColor="#000000"
+                                android:padding="18dip" android:gravity="left"/>
+                     
+                            <TextView
+                                android:id="@+id/handle_length_cricket" android:text="10.5 inch"
+                                android:layout_weight="1" android:background="#d3d3d3"
+                                android:textColor="#000000"
+                                android:padding="18dip" android:gravity="center"/>
+                        </TableRow>
+                        <TableRow
+                            android:id="@+id/tableRow10"
+                            android:layout_height="wrap_content"
+                            android:layout_width="match_parent">
+                            <TextView
+                                android:id="@+id/TextView18" android:text="Weight"
+                                android:layout_weight="1" android:background="#dcdcdc"
+                                android:textColor="#000000"
+                                android:padding="20dip" android:gravity="left"/>
+                            <TextView
+                                android:id="@+id/weight_cricket" android:text="1000 - 1250 g"
+                                android:layout_weight="1" android:background="#d3d3d3"
+                                android:textColor="#000000"
+                                android:padding="20dip" android:gravity="center"/>
+                            
+                        </TableRow>
+                        <TableRow
+                            android:id="@+id/tableRow5"
+                            android:layout_height="wrap_content"
+                            android:layout_width="match_parent">
+                            <TextView
+                                android:id="@+id/TextView08" android:text="Blade Height"
+                                android:layout_weight="1" android:background="#dcdcdc"
+                                android:textColor="#000000"
+                                android:padding="20dip" android:gravity="left"/>
+                            <TextView
+                                android:id="@+id/blade_height_cricket" android:text="21.5 inch"
+                                android:layout_weight="1" android:background="#d3d3d3"
+                                android:textColor="#000000"
+                                android:padding="20dip" android:gravity="center"/>
+                            
+                        </TableRow>
+                        <TableRow
+                            android:id="@+id/tableRow6"
+                            android:layout_height="wrap_content"
+                            android:layout_width="match_parent">
+                            <TextView
+                                android:id="@+id/TextView10" android:text="Height"
+                                android:layout_weight="1" android:background="#dcdcdc"
+                                android:textColor="#000000"
+                                android:padding="20dip" android:gravity="left"/>
+                            <TextView
+                                android:id="@+id/height_cricket" android:text="31.75 inch"
+                                android:layout_weight="1" android:background="#d3d3d3"
+                                android:textColor="#000000"
+                                android:padding="20dip" android:gravity="center"/>
+                            
+                        </TableRow>
+                        <TableRow
+                            android:id="@+id/tableRow7"
+                            android:layout_height="wrap_content"
+                            android:layout_width="match_parent">
+                            <TextView
+                                android:id="@+id/TextView12" android:text="Width"
+                                android:layout_weight="1" android:background="#dcdcdc"
+                                android:textColor="#000000"
+                                android:padding="20dip" android:gravity="left"/>
+                            <TextView
+                                android:id="@+id/width_cricket" android:text="4 inch"
+                                android:layout_weight="1" android:background="#d3d3d3"
+                                android:textColor="#000000"
+                                android:padding="20dip" android:gravity="center"/>
+                            
+                        </TableRow>
+                        <TableRow
+                            android:id="@+id/tableRow8"
+                            android:layout_height="wrap_content"
+                            android:layout_width="match_parent">
+                            <TextView
+                                android:id="@+id/TextView14" android:text="Blade Material"
+                                android:layout_weight="1" android:background="#dcdcdc"
+                                android:textColor="#000000"
+                                android:padding="20dip" android:gravity="left"/>
+                            <TextView
+                                android:id="@+id/blade_material_cricket" android:text="English Willow"
+                                android:layout_weight="1" android:background="#d3d3d3"
+                                android:textColor="#000000"
+                                android:padding="20dip" android:gravity="center"/>
+                            
+                        </TableRow>
+                        <TableRow
+                            android:id="@+id/tableRow9"
+                            android:layout_height="wrap_content"
+                            android:layout_width="match_parent">
+                            <TextView
+                                android:id="@+id/TextView16" android:text="Handle Material"
+                                android:layout_weight="1" android:background="#dcdcdc"
+                                android:textColor="#000000"
+                                android:padding="20dip" android:gravity="left"/>
+                            <TextView
+                                android:id="@+id/handle_materia_cricket" android:text="Cane"
+                                android:layout_weight="1" android:background="#d3d3d3"
+                                android:textColor="#000000"
+                                android:padding="20dip" android:gravity="center"/>
+                            
+                        </TableRow>
+                         <TableRow
+                            android:id="@+id/tableRow11"
+                            android:layout_height="wrap_content"
+                            android:layout_width="match_parent">
+                            <TextView
+                                android:id="@+id/TextView19" android:text="Toe Guard"
+                                android:layout_weight="1" android:background="#dcdcdc"
+                                android:textColor="#000000"
+                                android:padding="20dip" android:gravity="left"/>
+                            <TextView
+                                android:id="@+id/toe_guard_cricket" android:text="No"
+                                android:layout_weight="1" android:background="#d3d3d3"
+                                android:textColor="#000000"
+                                android:padding="20dip" android:gravity="center"/>
+                            
+                        </TableRow>
+                        <TableRow
+                            android:id="@+id/tableRow12"
+                            android:layout_height="wrap_content"
+                            android:layout_width="match_parent">
+                            <TextView
+                                android:id="@+id/TextView21" android:text="Handle Grip Type"
+                                android:layout_weight="1" android:background="#dcdcdc"
+                                android:textColor="#000000"
+                                android:padding="20dip" android:gravity="left"/>
+                            <TextView
+                                android:id="@+id/handle_grip_type_cricket" android:text="Rubber Grip"
+                                android:layout_weight="1" android:background="#d3d3d3"
+                                android:textColor="#000000"
+                                android:padding="20dip" android:gravity="center"/>
+                            
+                        </TableRow>
+        </TableLayout>
+        
+        </ScrollView> 
+</RelativeLayout>

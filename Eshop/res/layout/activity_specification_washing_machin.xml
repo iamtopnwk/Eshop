@@ -1,0 +1,236 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.infotop.eshop.specification.SpecificationLaptopActivity" >
+    
+     
+    
+  <ScrollView
+      android:layout_width="fill_parent"
+      android:layout_height="fill_parent"
+      android:scrollbars="horizontal"
+      android:layout_weight="1" > 
+
+   <TableLayout
+           
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:shrinkColumns="*"  android:stretchColumns="*" android:background="#ffffff">
+
+                        <!-- Row 1 with single column -->
+                        <TableRow
+                            android:id="@+id/tableRow1"
+                            android:layout_height="wrap_content"
+                            android:layout_width="fill_parent"
+                            android:gravity="center_horizontal">
+
+                            <TextView
+                                android:layout_width="match_parent" android:layout_height="wrap_content"
+                                android:textSize="18dp" android:text="General Specification"  android:layout_span="3"
+                                android:padding="18dip" android:background="#b0b0b0"
+                                android:textColor="#000"/>
+
+                       </TableRow>
+           <!-- Row 2 with 3 columns -->
+
+                        <TableRow
+                            android:id="@+id/tableRow2"
+                            android:layout_height="wrap_content"
+                            android:layout_width="match_parent">
+                            <TextView
+                                android:id="@+id/TextView01" android:text="Brand"
+                                android:layout_weight="1" android:background="#dcdcdc"
+                                android:textColor="#000000"
+                                android:padding="20dip" android:gravity="left"/>
+                            <TextView
+                                android:id="@+id/brand_washingmachine"   android:text="WhirlPool"  
+                                android:layout_weight="1" android:background="#d3d3d3"
+                                android:textColor="#000000"
+                                android:padding="20dip" android:gravity="center"/>
+                            
+                        </TableRow>
+         <!-- Row 3 with 2 columns -->
+                        <TableRow
+                            android:id="@+id/tableRow3"
+                            android:layout_height="wrap_content"
+                            android:layout_width="fill_parent"
+                            android:gravity="center_horizontal">
+                            <TextView
+                                android:id="@+id/TextView04"  android:text="Model"
+                                android:layout_weight="1"  android:background="#dcdcdc"
+                                android:textColor="#000000"
+                                android:padding="18dip" android:gravity="left"/>
+                     
+                            <TextView
+                                android:id="@+id/model_washingmachine" android:text="AG  6512SD"
+                                android:layout_weight="1" android:background="#d3d3d3"
+                                android:textColor="#000000"
+                                android:padding="18dip" android:gravity="center"/>
+                        </TableRow>
+                        
+                        <TableRow
+                            android:id="@+id/tableRow4"
+                            android:layout_height="wrap_content"
+                            android:layout_width="fill_parent"
+                            android:gravity="center_horizontal">
+                            <TextView
+                                android:id="@+id/TextView06" android:text="Load Type"
+                                android:layout_weight="1"  android:background="#dcdcdc"
+                                android:textColor="#000000"
+                                android:padding="18dip" android:gravity="left"/>
+                     
+                            <TextView
+                                android:id="@+id/loadtype_washingmachine" android:text="Top Loading"
+                                android:layout_weight="1" android:background="#d3d3d3"
+                                android:textColor="#000000"
+                                android:padding="18dip" android:gravity="center"/>
+                        </TableRow>
+                        <TableRow
+                            android:id="@+id/tableRow10"
+                            android:layout_height="wrap_content"
+                            android:layout_width="match_parent">
+                            <TextView
+                                android:id="@+id/TextView18" android:text="Washing Capacity"
+                                android:layout_weight="1" android:background="#dcdcdc"
+                                android:textColor="#000000"
+                                android:padding="20dip" android:gravity="left"/>
+                            <TextView
+                                android:id="@+id/washingcapacity_washingmachine" android:text="6.5 kg"
+                                android:layout_weight="1" android:background="#d3d3d3"
+                                android:textColor="#000000"
+                                android:padding="20dip" android:gravity="center"/>
+                            
+                        </TableRow>
+                        <TableRow
+                            android:id="@+id/tableRow5"
+                            android:layout_height="wrap_content"
+                            android:layout_width="match_parent">
+                            <TextView
+                                android:id="@+id/TextView08" android:text="Weight"
+                                android:layout_weight="1" android:background="#dcdcdc"
+                                android:textColor="#000000"
+                                android:padding="20dip" android:gravity="left"/>
+                            <TextView
+                                android:id="@+id/weight_washingmachine" android:text="33 kg"
+                                android:layout_weight="1" android:background="#d3d3d3"
+                                android:textColor="#000000"
+                                android:padding="20dip" android:gravity="center"/>
+                            
+                        </TableRow>
+                        <TableRow
+                            android:id="@+id/tableRow6"
+                            android:layout_height="wrap_content"
+                            android:layout_width="match_parent">
+                            <TextView
+                                android:id="@+id/TextView10" android:text="Function Type"
+                                android:layout_weight="1" android:background="#dcdcdc"
+                                android:textColor="#000000"
+                                android:padding="20dip" android:gravity="left"/>
+                            <TextView
+                                android:id="@+id/functiontype_washingmachine" android:text="Fully Automatic"
+                                android:layout_weight="1" android:background="#d3d3d3"
+                                android:textColor="#000000"
+                                android:padding="20dip" android:gravity="center"/>
+                            
+                        </TableRow>
+                        <TableRow
+                            android:id="@+id/tableRow7"
+                            android:layout_height="wrap_content"
+                            android:layout_width="match_parent">
+                            <TextView
+                                android:id="@+id/TextView12" android:text="In-built Heater"
+                                android:layout_weight="1" android:background="#dcdcdc"
+                                android:textColor="#000000"
+                                android:padding="20dip" android:gravity="left"/>
+                            <TextView
+                                android:id="@+id/inbuiltheater_washingmachine" android:text="No"
+                                android:layout_weight="1" android:background="#d3d3d3"
+                                android:textColor="#000000"
+                                android:padding="20dip" android:gravity="center"/>
+                            
+                        </TableRow>
+                        <TableRow
+                            android:id="@+id/tableRow8"
+                            android:layout_height="wrap_content"
+                            android:layout_width="match_parent">
+                            <TextView
+                                android:id="@+id/TextView14" android:text="Shade"
+                                android:layout_weight="1" android:background="#dcdcdc"
+                                android:textColor="#000000"
+                                android:padding="20dip" android:gravity="left"/>
+                            <TextView
+                                android:id="@+id/shade_washingmachine" android:text="white"
+                                android:layout_weight="1" android:background="#d3d3d3"
+                                android:textColor="#000000"
+                                android:padding="20dip" android:gravity="center"/>
+                            
+                        </TableRow>
+                        <TableRow
+                            android:id="@+id/tableRow9"
+                            android:layout_height="wrap_content"
+                            android:layout_width="match_parent">
+                            <TextView
+                                android:id="@+id/TextView16" android:text="Maximum Spin Speed"
+                                android:layout_weight="1" android:background="#dcdcdc"
+                                android:textColor="#000000"
+                                android:padding="20dip" android:gravity="left"/>
+                            <TextView
+                                android:id="@+id/maximum_spin_speed_washingmachine" android:text="740 rpm"
+                                android:layout_weight="1" android:background="#d3d3d3"
+                                android:textColor="#000000"
+                                android:padding="20dip" android:gravity="center"/>
+                            
+                        </TableRow>
+                         <TableRow
+                            android:id="@+id/tableRow11"
+                            android:layout_height="wrap_content"
+                            android:layout_width="match_parent">
+                            <TextView
+                                android:id="@+id/TextView19" android:text="Washing Method"
+                                android:layout_weight="1" android:background="#dcdcdc"
+                                android:textColor="#000000"
+                                android:padding="20dip" android:gravity="left"/>
+                            <TextView
+                                android:id="@+id/washing_method_washingmachine" android:text="Agipeller Wash"
+                                android:layout_weight="1" android:background="#d3d3d3"
+                                android:textColor="#000000"
+                                android:padding="20dip" android:gravity="center"/>
+                            
+                        </TableRow>
+                        <TableRow
+                            android:id="@+id/tableRow12"
+                            android:layout_height="wrap_content"
+                            android:layout_width="match_parent">
+                            <TextView
+                                android:id="@+id/TextView21" android:text="Power Consumption"
+                                android:layout_weight="1" android:background="#dcdcdc"
+                                android:textColor="#000000"
+                                android:padding="20dip" android:gravity="left"/>
+                            <TextView
+                                android:id="@+id/power_consumption_washingmachine" android:text="360 W"
+                                android:layout_weight="1" android:background="#d3d3d3"
+                                android:textColor="#000000"
+                                android:padding="20dip" android:gravity="center"/>
+                            
+                        </TableRow>
+                        <TableRow
+                            android:id="@+id/tableRow13"
+                            android:layout_height="wrap_content"
+                            android:layout_width="match_parent">
+                            <TextView
+                                android:id="@+id/TextView22" android:text="Warranty"
+                                android:layout_weight="1" android:background="#dcdcdc"
+                                android:textColor="#000000"
+                                android:padding="20dip" android:gravity="left"/>
+                            <TextView
+                                android:id="@+id/warranty_washingmachine" android:text="2 Years "
+                                android:layout_weight="1" android:background="#d3d3d3"
+                                android:textColor="#000000"
+                                android:padding="20dip" android:gravity="center"/>
+                            
+                        </TableRow>
+        </TableLayout>
+        
+        </ScrollView> 
+</RelativeLayout>

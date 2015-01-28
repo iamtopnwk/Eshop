@@ -31,9 +31,21 @@ import com.infotop.eshop.main.activity.ZoomActivity;
 import com.infotop.eshop.model.ImageList;
 import com.infotop.eshop.model.Product;
 import com.infotop.eshop.payment.PaymentMainActivity;
+
+import com.infotop.eshop.specification.SpecificationAgricultureActivity;
+import com.infotop.eshop.specification.SpecificationAirConditionerActivity;
+import com.infotop.eshop.specification.SpecificationComputerActivity;
+import com.infotop.eshop.specification.SpecificationCricketBatActivity;
+import com.infotop.eshop.specification.SpecificationLanguageActivity;
 import com.infotop.eshop.specification.SpecificationLaptopActivity;
 import com.infotop.eshop.specification.SpecificationMobileActivity;
 import com.infotop.eshop.specification.SpecificationMouseActivity;
+import com.infotop.eshop.specification.SpecificationRadioActivity;
+import com.infotop.eshop.specification.SpecificationShoesActivity;
+import com.infotop.eshop.specification.SpecificationTelevisionActivity;
+import com.infotop.eshop.specification.SpecificationTennisBatActivity;
+import com.infotop.eshop.specification.SpecificationWashingMachinActivity;
+
 import com.infotop.eshop.urls.UrlInfo;
 import com.infotop.eshop.utilities.GetOperation;
 import com.infotop.eshop.utilities.HorizontalListView;
@@ -335,6 +347,8 @@ public class ProductDetailsActivity extends Activity {
 
 	}
 
+	/* All Product Specification*/
+	
 	public void getSpecifications(View view) {
 		if ("Mobiles".equalsIgnoreCase(childCategoryName)) {
 			Intent intSpecification = new Intent(this,
@@ -352,7 +366,69 @@ public class ProductDetailsActivity extends Activity {
 			// intSpecification.putExtra("idspec", productId);
 			startActivity(intSpecification);
 		}
+		if ("Television".equalsIgnoreCase(childCategoryName)) {
+			Intent intSpecification = new Intent(this,
+					SpecificationTelevisionActivity.class);
+			// intSpecification.putExtra("idspec", productId);
+			startActivity(intSpecification);
+	    }
+		if ("Washing machine".equalsIgnoreCase(childCategoryName)) {
+			Intent intSpecification = new Intent(this,
+					SpecificationWashingMachinActivity.class);
+			// intSpecification.putExtra("idspec", productId);
+			startActivity(intSpecification);
+	    }
+		if ("Air Conditioner".equalsIgnoreCase(childCategoryName)) {
+			Intent intSpecification = new Intent(this,
+					SpecificationAirConditionerActivity.class);
+			// intSpecification.putExtra("idspec", productId);
+			startActivity(intSpecification);
+	    }
+		/*if ("Radio".equalsIgnoreCase(childCategoryName)) {
+			Intent intSpecification = new Intent(this,
+					SpecificationRadioActivity.class);
+			// intSpecification.putExtra("idspec", productId);
+			startActivity(intSpecification);
+	    }*/
+		if ("Agriculture".equalsIgnoreCase(childCategoryName)) {
+			Intent intSpecification = new Intent(this,
+					SpecificationAgricultureActivity.class);
+			// intSpecification.putExtra("idspec", productId);
+			startActivity(intSpecification);
+	    }
+		if ("Computer".equalsIgnoreCase(childCategoryName)) {
+			Intent intSpecification = new Intent(this,
+					SpecificationComputerActivity.class);
+			// intSpecification.putExtra("idspec", productId);
+			startActivity(intSpecification);
+	    }
+		if ("Language".equalsIgnoreCase(childCategoryName)) {
+			Intent intSpecification = new Intent(this,
+					SpecificationLanguageActivity.class);
+			// intSpecification.putExtra("idspec", productId);
+			startActivity(intSpecification);
+	    }
+		
+		if ("Cricket Bat".equalsIgnoreCase(childCategoryName)) {
+			Intent intSpecification = new Intent(this,
+					SpecificationCricketBatActivity.class);
+			// intSpecification.putExtra("idspec", productId);
+			startActivity(intSpecification);
+	    }
+		if ("Tennis bat".equalsIgnoreCase(childCategoryName)) {
+			Intent intSpecification = new Intent(this,
+					SpecificationTennisBatActivity.class);
+			// intSpecification.putExtra("idspec", productId);
+			startActivity(intSpecification);
+	    }
+		/*if ("Shoes".equalsIgnoreCase(childCategoryName)) {
+			Intent intSpecification = new Intent(this,
+					SpecificationShoesActivity.class);
+			// intSpecification.putExtra("idspec", productId);
+			startActivity(intSpecification);
+	    }*/
 	}
+	
 	
 	public void getBarChart(View view) {
 		BarGraph bar = new BarGraph();
@@ -367,6 +443,7 @@ public class ProductDetailsActivity extends Activity {
 	}
 	
 	
+	/* User Comments Button*/
 	public void postComment(View view){
 		EditText editText=(EditText) findViewById(R.id.comEdit);
 		TextView textView=(TextView) findViewById(R.id.userComments2);
