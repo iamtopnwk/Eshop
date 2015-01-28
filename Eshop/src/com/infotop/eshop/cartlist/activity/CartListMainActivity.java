@@ -25,8 +25,8 @@ import com.infotop.eshop.payment.PaymentMainActivity;
 import com.infotop.eshop.product.ProductDetailsActivity;
 import com.infotop.eshop.urls.UrlInfo;
 import com.infotop.eshop.utilities.JsonHelper;
+import com.infotop.eshop.utilities.PostOperation;
 import com.infotop.eshop.utilities.UserSessionManager;
-import com.infotop.eshop.wishlist.PostOperation;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.display.RoundedBitmapDisplayer;
 
