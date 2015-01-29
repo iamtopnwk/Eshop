@@ -20,6 +20,7 @@ import android.widget.TextView;
 
 import com.infotop.eshop.R;
 import com.infotop.eshop.cartlist.adapter.CartListAdapter;
+import com.infotop.eshop.db.DatabaseHandler;
 import com.infotop.eshop.model.Product;
 import com.infotop.eshop.payment.PaymentMainActivity;
 import com.infotop.eshop.product.ProductDetailsActivity;
@@ -55,7 +56,9 @@ public class CartListMainActivity extends Activity {
 
 		list = (ListView) findViewById(R.id.cartListViewItems);
 		UserSessionManager usMgr = new UserSessionManager(this);
-		Product pdt = new Product();
+		if (usMgr.isUserLoggedIn()) {
+		
+        Product pdt = new Product();
 		pdt.setServiceUrl(UrlInfo.GET_ALLCARTLIST);
 		pdt.setEmailId(usMgr.getUserDetails().get("email"));
 
@@ -67,7 +70,6 @@ public class CartListMainActivity extends Activity {
 		try {
 			final Product[] pdata= (Product[]) JsonHelper.toObject(cartListData.get(), Product[].class);
 			
-			
 			listAdapter = new CartListAdapter(CartListMainActivity.this,pdata, op);
 			list.setAdapter(listAdapter);
 			list.setTextFilterEnabled(true);
@@ -77,11 +79,8 @@ public class CartListMainActivity extends Activity {
 				public void onItemClick(AdapterView<?> parent, View view,
 						int position, long id) {
 
-					
-
 					System.out.println("productId:-" + pdata[position].getId());
-					
-
+				
 					Intent i = new Intent(CartListMainActivity.this,
 							ProductDetailsActivity.class);
 					i.putExtra("productId",  pdata[position].getId());
@@ -96,6 +95,13 @@ public class CartListMainActivity extends Activity {
 		} catch (ExecutionException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		}
+		}else{
+			
+			DatabaseHandler db=new DatabaseHandler(CartListMainActivity.this);
+			Product[] cartlistItems = db.getAllCartListItems();
+			listAdapter = new CartListAdapter(CartListMainActivity.this,cartlistItems, op);
+			list.setAdapter(listAdapter);
 		}
 		//grand_Total = (TextView) findViewById(R.id.grand_total);
 

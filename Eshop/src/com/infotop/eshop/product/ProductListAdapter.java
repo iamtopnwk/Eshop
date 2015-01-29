@@ -14,6 +14,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.infotop.eshop.R;
+import com.infotop.eshop.db.DatabaseHandler;
 import com.infotop.eshop.login.EshopLoginActivity;
 import com.infotop.eshop.model.Product;
 import com.infotop.eshop.urls.UrlInfo;
@@ -112,9 +113,20 @@ public class ProductListAdapter extends ArrayAdapter<Product> {
 					}
 
 				} else {
-					Intent intent = new Intent(context,
-							EshopLoginActivity.class);
-					context.startActivity(intent);
+					   
+					   DatabaseHandler db=new DatabaseHandler(context);
+					   Product p=new Product();
+					 
+					    p.setUuid(pdata[id].getUuid());
+						p.setProductName(pdata[id].getProductName());
+						p.setProductDescription(pdata[id].getProductDescription());
+						p.setImage(pdata[id].getImage());
+						p.setProductPrice(pdata[id].getProductPrice());
+					    db.addWishList(p);
+					   
+						Toast.makeText(getContext(), "Your item is added to Wish List",
+								Toast.LENGTH_SHORT).show();
+						
 
 				}
 			}

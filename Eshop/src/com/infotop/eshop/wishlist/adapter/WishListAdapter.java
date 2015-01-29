@@ -16,8 +16,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.infotop.eshop.R;
+import com.infotop.eshop.db.DatabaseHandler;
 import com.infotop.eshop.model.Product;
 import com.infotop.eshop.urls.UrlInfo;
+import com.infotop.eshop.utilities.UserSessionManager;
 import com.infotop.eshop.wishlist.PostOperation;
 import com.infotop.eshop.wishlist.activity.WishListMainActivity;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
@@ -50,12 +52,9 @@ public class WishListAdapter extends ArrayAdapter<Product> {
 			System.out.println("Cate Context value is:" + context);
 			holder = new ViewHolder();
 			holder.txtTitle = (TextView) rowView.findViewById(R.id.productName);
-			holder.txtTitle1 = (TextView) rowView
-					.findViewById(R.id.productDesc);
-			holder.txtTitle2 = (TextView) rowView
-					.findViewById(R.id.productprice);
-			holder.imageView = (ImageView) rowView
-					.findViewById(R.id.productImg);
+			holder.txtTitle1 = (TextView) rowView.findViewById(R.id.productDesc);
+			holder.txtTitle2 = (TextView) rowView.findViewById(R.id.productprice);
+			holder.imageView = (ImageView) rowView.findViewById(R.id.productImg);
 			holder.imageView1 = (ImageView) rowView.findViewById(R.id.delete);
 			rowView.setTag(holder);
 		} else {
@@ -79,20 +78,15 @@ public class WishListAdapter extends ArrayAdapter<Product> {
 							public void onClick(DialogInterface dialog,
 									int which) {
 
-								// UserSessionManager usMgr = new
-								// UserSessionManager(context);
-								// if (usMgr.isUserLoggedIn()) {
-
-								// emailId =
-								// usMgr.getUserDetails().get("email");
+								UserSessionManager usMgr = new UserSessionManager(context);
+								 if (usMgr.isUserLoggedIn()) {
 
 								Product p = new Product();
 								p.setServiceUrl(UrlInfo.DELETE_WISHLIST);
-
-								p.setId(pdata[id].getWishlistId());
-								System.out.println("lllllllllllll"+ pdata[id]);
-								AsyncTask<Object, Void, String> respData = new PostOperation()
-										.execute(p);
+								p.setEmailId(usMgr.getUserDetails().get("email"));
+								p.setId(pdata[id].getWishlistId()); 	
+								System.out.println("lllllllllllll"+ pdata[id].getWishlistId());
+								AsyncTask<Object, Void, String> respData = new PostOperation().execute(p);
 								String pcontent;
 								try {
 									pcontent = respData.get();
@@ -114,12 +108,16 @@ public class WishListAdapter extends ArrayAdapter<Product> {
 									e.printStackTrace();
 								}
 
-								// }
+								 }else{
+									 /*Product p= new Product();
+									 p.setId(pdata[id].getWishlistId());
+									System.out.println("productttttttttt fro wish"+p.getId()); */
+									 DatabaseHandler db = new DatabaseHandler(context);
+									 System.out.println("iiiiiiiiiiiiiiiiiiiiiiiii"+pdata[id].getUuid());
+									db.deleteWishListItem(pdata[id].getUuid());
+								
+								 }
 
-								// DatabaseHandler db = new DatabaseHandler(
-								// context);
-								// db.deleteWishListItem(productId[id]);
-								// myadapter.notifyDataSetChanged();
 								((Activity) context).finish();
 								Intent intent = new Intent(context,
 										WishListMainActivity.class);
