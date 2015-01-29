@@ -15,5 +15,5 @@ public class UrlInfo {
     public static String INDVProduct="http://192.168.8.163:8080/eshop/rest/productByuuid/";
     
     public static String GET_ALLPRODUCTS="http://192.168.8.163:8080/eshop/rest/productsbyCategoryId";
-    public static String SPECIFICATIONBYID="http://192.168.8.163:8080/eshop/rest/specificationbyproductid";
+    public static String SPECIFICATIONBYID="http://192.168.8.163:8080/eshop/rest/specificationbyproductid/";
 }

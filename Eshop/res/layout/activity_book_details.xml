@@ -185,7 +185,9 @@
                 android:paddingTop="10dp"
                 android:text="@string/pieChart"
                 android:textSize="20sp" />
-            
+   
+             
+              <!-- comments -->      
             <TextView 
                 android:id="@+id/comments"
                 android:layout_below="@+id/getSpecs"
@@ -202,7 +204,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 
-                android:background="@drawable/edittextshape"
+                android:background="@drawable/edittextshape1"
                 android:hint="Please enter your comments here"/>
             <Button 
                 android:id="@+id/comPost"
@@ -210,35 +212,73 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/comEdit"
                 android:layout_alignRight="@+id/comEdit"
+                android:onClick="postComment"
                 android:text="post"/>
-            <TextView 
-                android:id="@+id/com1"
-                android:layout_below="@+id/comPost"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:paddingTop="15dp"
-              
-                android:text="@string/user1"
-                />
-             <TextView 
-                android:id="@+id/com2"
-                android:layout_below="@+id/com1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:paddingTop="15dp"
-              
-                android:text="@string/user2"
-                />
-              <TextView 
-                android:id="@+id/com3"
-                android:layout_below="@+id/com2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:paddingTop="15dp"
-            
-                android:text="@string/user3"
-                />
+      <ImageView 
                 
+        android:id="@+id/userImageComment"
+        android:layout_width="75dip"
+        android:layout_height="75dip"
+        android:layout_below="@+id/comPost"
+        android:src="@drawable/blank_image"
+        android:background="@drawable/image_bdr"/>
+            
+     <TextView
+    android:id="@+id/userComments"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_toRightOf="@+id/userImageComment"
+    android:layout_below="@+id/comPost"
+    android:paddingLeft="10dp"
+    android:paddingTop="10dp"
+    android:background="@drawable/edittextshape"
+    android:text="Hi,
+    guys how r u, this is a good product . Compare to samsung xiomi mi5 is very reliable ,good looking ."
+    />
+     <ImageView 
+                
+        android:id="@+id/userImageComment1"
+        android:layout_width="75dip"
+        android:layout_height="75dip"
+        android:paddingTop="10dp"
+        
+        android:layout_below="@+id/userImageComment"
+        android:src="@drawable/blank_image"
+        android:background="@drawable/image_bdr"/>
+            
+     <TextView
+    android:id="@+id/userComments1"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_toRightOf="@+id/userImageComment1"
+    android:layout_below="@+id/userComments"
+    android:paddingLeft="10dp"
+    android:paddingTop="10dp"
+    android:background="@drawable/edittextshape"
+    android:text="Hi, samsung mobile is superb,Compare to samsung xiomi mi5 is very reliable ,good looking"
+    />
+     <ImageView 
+                
+        android:id="@+id/userImageComment2"
+        android:layout_width="75dip"
+        android:layout_height="75dip"
+        android:paddingTop="10dp"
+        
+        android:layout_below="@+id/userImageComment1"
+        android:src="@drawable/blank_image"
+        android:background="@drawable/image_bdr"/>
+            
+     <TextView
+    android:id="@+id/userComments2"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_toRightOf="@+id/userImageComment2"
+    android:layout_below="@+id/userComments1"
+    android:paddingLeft="10dp"
+    android:paddingTop="10dp"
+    android:background="@drawable/edittextshape"
+    android:text=""
+    />
         </RelativeLayout>
     </ScrollView>
 

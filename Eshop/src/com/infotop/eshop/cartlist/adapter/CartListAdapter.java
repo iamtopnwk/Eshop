@@ -19,7 +19,7 @@ import com.infotop.eshop.R;
 import com.infotop.eshop.cartlist.activity.CartListMainActivity;
 import com.infotop.eshop.model.Product;
 import com.infotop.eshop.urls.UrlInfo;
-import com.infotop.eshop.wishlist.PostOperation;
+import com.infotop.eshop.utilities.PostOperation;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 

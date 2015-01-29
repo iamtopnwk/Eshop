@@ -5,16 +5,15 @@
 package com.infotop.eshop.product;
 
 import java.io.File;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+
+
 import java.util.concurrent.ExecutionException;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
-import android.database.Cursor;
+
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -24,6 +23,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -35,16 +35,29 @@ import com.infotop.eshop.main.activity.ZoomActivity;
 import com.infotop.eshop.model.ImageList;
 import com.infotop.eshop.model.Product;
 import com.infotop.eshop.payment.PaymentMainActivity;
+
+import com.infotop.eshop.specification.SpecificationAgricultureActivity;
+import com.infotop.eshop.specification.SpecificationAirConditionerActivity;
+import com.infotop.eshop.specification.SpecificationComputerActivity;
+import com.infotop.eshop.specification.SpecificationCricketBatActivity;
+import com.infotop.eshop.specification.SpecificationLanguageActivity;
 import com.infotop.eshop.specification.SpecificationLaptopActivity;
 import com.infotop.eshop.specification.SpecificationMobileActivity;
 import com.infotop.eshop.specification.SpecificationMouseActivity;
+import com.infotop.eshop.specification.SpecificationRadioActivity;
+import com.infotop.eshop.specification.SpecificationShoesActivity;
+import com.infotop.eshop.specification.SpecificationTelevisionActivity;
+import com.infotop.eshop.specification.SpecificationTennisBatActivity;
+import com.infotop.eshop.specification.SpecificationWashingMachinActivity;
+
 import com.infotop.eshop.urls.UrlInfo;
 import com.infotop.eshop.utilities.GetOperation;
 import com.infotop.eshop.utilities.HorizontalListView;
 import com.infotop.eshop.utilities.HttpServiceHandler;
 import com.infotop.eshop.utilities.JsonHelper;
+import com.infotop.eshop.utilities.PostOperation;
 import com.infotop.eshop.utilities.UserSessionManager;
-import com.infotop.eshop.wishlist.PostOperation;
+
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.display.RoundedBitmapDisplayer;
@@ -80,7 +93,7 @@ public class ProductDetailsActivity extends Activity {
 	String childCategoryName;
 	String productUUid;
 	int pos;
-
+   
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -113,8 +126,7 @@ public class ProductDetailsActivity extends Activity {
 
 			// final ArrayList<String> bigimageUrls = new ArrayList<String>();
 			System.out.println(productListData.get());
-			pdata = (Product) JsonHelper.toObject(productListData.get(),
-					Product.class);
+			final Product pdata= (Product) JsonHelper.toObject(productListData.get(), Product.class);
 			holder = new ViewHolder();
 			holder.txtTitle = (TextView) findViewById(R.id.bookName1);
 			holder.txtTitle1 = (TextView) findViewById(R.id.authorName);
@@ -190,7 +202,6 @@ public class ProductDetailsActivity extends Activity {
 	}
 
 	// functionalities for wishlistBtn
-	@SuppressLint("NewApi")
 	public void addToWishlist(View view) {
 
 		UserSessionManager usMgr = new UserSessionManager(
@@ -200,14 +211,25 @@ public class ProductDetailsActivity extends Activity {
 			pdt.setServiceUrl(UrlInfo.ADDWishlist);
 			pdt.setEmailId(usMgr.getUserDetails().get("email"));
 
+
 			pdt.setId(pdata.getId());
 			pdt.setProductName(pdata.getProductName());
 			pdt.setProductDescription(pdata.getProductDescription());
 			pdt.setImage(mediumimageUrls.get(0));
 			pdt.setProductPrice(pdata.getProductPrice());
 
-			AsyncTask<Object, Void, String> wishtListData = new PostOperation()
-					.execute(pdt);
+		
+			AsyncTask<Object, Void, String> wishtListData = new PostOperation().execute(pdt);
+			
+			pdt.setId(pdata.getId());
+			pdt.setUuid(pdata.getUuid());
+			pdt.setProductName(pdata.getProductName());
+			pdt.setProductDescription(pdata.getProductDescription());
+			pdt.setImage(mediumimageUrls.get(0));
+			pdt.setProductPrice(pdata.getProductPrice());
+			pdt.setEmailId(usMgr.getUserDetails().get("email"));
+		
+
 			String pcontent;
 			try {
 				pcontent = wishtListData.get();
@@ -283,8 +305,6 @@ public class ProductDetailsActivity extends Activity {
 		}
 	}
 
-	// }
-
 	public void getSpecifications(View view) {
 		if ("Mobiles".equalsIgnoreCase(childCategoryName)) {
 			Intent intSpecification = new Intent(this,
@@ -302,6 +322,67 @@ public class ProductDetailsActivity extends Activity {
 			// intSpecification.putExtra("idspec", productId);
 			startActivity(intSpecification);
 		}
+		if ("Television".equalsIgnoreCase(childCategoryName)) {
+			Intent intSpecification = new Intent(this,
+					SpecificationTelevisionActivity.class);
+			// intSpecification.putExtra("idspec", productId);
+			startActivity(intSpecification);
+	    }
+		if ("Washing machine".equalsIgnoreCase(childCategoryName)) {
+			Intent intSpecification = new Intent(this,
+					SpecificationWashingMachinActivity.class);
+			// intSpecification.putExtra("idspec", productId);
+			startActivity(intSpecification);
+	    }
+		if ("Air Conditioner".equalsIgnoreCase(childCategoryName)) {
+			Intent intSpecification = new Intent(this,
+					SpecificationAirConditionerActivity.class);
+			// intSpecification.putExtra("idspec", productId);
+			startActivity(intSpecification);
+	    }
+		/*if ("Radio".equalsIgnoreCase(childCategoryName)) {
+			Intent intSpecification = new Intent(this,
+					SpecificationRadioActivity.class);
+			// intSpecification.putExtra("idspec", productId);
+			startActivity(intSpecification);
+	    }*/
+		if ("Agriculture".equalsIgnoreCase(childCategoryName)) {
+			Intent intSpecification = new Intent(this,
+					SpecificationAgricultureActivity.class);
+			// intSpecification.putExtra("idspec", productId);
+			startActivity(intSpecification);
+	    }
+		if ("Computer".equalsIgnoreCase(childCategoryName)) {
+			Intent intSpecification = new Intent(this,
+					SpecificationComputerActivity.class);
+			// intSpecification.putExtra("idspec", productId);
+			startActivity(intSpecification);
+	    }
+		if ("Language".equalsIgnoreCase(childCategoryName)) {
+			Intent intSpecification = new Intent(this,
+					SpecificationLanguageActivity.class);
+			// intSpecification.putExtra("idspec", productId);
+			startActivity(intSpecification);
+	    }
+		
+		if ("Cricket Bat".equalsIgnoreCase(childCategoryName)) {
+			Intent intSpecification = new Intent(this,
+					SpecificationCricketBatActivity.class);
+			// intSpecification.putExtra("idspec", productId);
+			startActivity(intSpecification);
+	    }
+		if ("Tennis bat".equalsIgnoreCase(childCategoryName)) {
+			Intent intSpecification = new Intent(this,
+					SpecificationTennisBatActivity.class);
+			// intSpecification.putExtra("idspec", productId);
+			startActivity(intSpecification);
+	    }
+		/*if ("Shoes".equalsIgnoreCase(childCategoryName)) {
+			Intent intSpecification = new Intent(this,
+					SpecificationShoesActivity.class);
+			// intSpecification.putExtra("idspec", productId);
+			startActivity(intSpecification);
+	    }*/
 	}
 
 	public void getBarChart(View view) {
@@ -315,6 +396,19 @@ public class ProductDetailsActivity extends Activity {
 		Intent pieIntent = pie.getIntent(this);
 		startActivity(pieIntent);
 	}
+
+	
+	
+	/* User Comments Button*/
+	public void postComment(View view){
+		EditText editText=(EditText) findViewById(R.id.comEdit);
+		TextView textView=(TextView) findViewById(R.id.userComments2);
+		String string=editText.getText().toString();
+		textView.setText(string);
+		//Intent intent=new Intent(this,ProductDetailsActivity.class);
+		//startActivity(intent);
+	}
+	
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
@@ -370,6 +464,9 @@ public class ProductDetailsActivity extends Activity {
 
 				pdt.setServiceUrl(UrlInfo.ADDCartlist);
 				pdt.setEmailId(usMgr.getUserDetails().get("email"));
+
+				pdt.setId(pdata.getId());
+
 				pdt.setUuid(pdata.getUuid());
 				pdt.setProductName(pdata.getProductName());
 				pdt.setProductPrice(pdata.getProductPrice());
@@ -407,10 +504,12 @@ public class ProductDetailsActivity extends Activity {
 			return true;
 		case R.id.ab_purChaseItem:
 			s = new ArrayList<String>();
+
 			s.add(pdata.getUuid());
 			s.add(pdata.getProductName());
 			s.add(pdata.getProductDescription());
-			s.add(productPrice);
+		    s.add(pdata.getProductPrice());
+
 			s.add(mediumimageUrls.get(0));
 			UserSessionManager us = new UserSessionManager(this);
 			Boolean result = us.checkLogin();
