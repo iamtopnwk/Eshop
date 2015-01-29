@@ -1,4 +1,4 @@
-package com.infotop.eshop.main.activity;
+	package com.infotop.eshop.main.activity;
 
 import android.app.Activity;
 import android.app.Fragment;
@@ -174,14 +174,10 @@ public class EshopMainActivity extends Activity {
 		case R.id.action_search:
 			return true;
 		case R.id.abCartList:
-			// usMgr = new UserSessionManager(this);
-			if (!usMgr.isUserLoggedIn()) {
-				Intent lgn1 = new Intent(this, NoItemFoundActivity.class);
-				startActivity(lgn1);
-			} else {
-				Intent wl = new Intent(this, CartListMainActivity.class);
-				startActivity(wl);
-			}
+		
+				Intent cl = new Intent(this, CartListMainActivity.class);
+				startActivity(cl);
+			
 			return true;
 		case R.id.abLogin:
 			if (!usMgr.isUserLoggedIn()) {
@@ -191,15 +187,10 @@ public class EshopMainActivity extends Activity {
 			return true;
 		case R.id.abwishlist:
 
-			// usMgr = new UserSessionManager(this);
-			if (!usMgr.isUserLoggedIn()) {
-
-				Intent lgn1 = new Intent(this, NoItemFoundActivity.class);
-				startActivity(lgn1);
-			} else {
+			
 				Intent wl = new Intent(this, WishListMainActivity.class);
 				startActivity(wl);
-			}
+			
 			return true;
 		case R.id.abTrackOrder:
 			return true;
