@@ -13,7 +13,6 @@ import java.util.concurrent.ExecutionException;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
-
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -30,12 +29,10 @@ import android.widget.Toast;
 
 import com.infotop.eshop.R;
 import com.infotop.eshop.db.DatabaseHandler;
-import com.infotop.eshop.login.EshopLoginActivity;
 import com.infotop.eshop.main.activity.ZoomActivity;
 import com.infotop.eshop.model.ImageList;
 import com.infotop.eshop.model.Product;
 import com.infotop.eshop.payment.PaymentMainActivity;
-
 import com.infotop.eshop.specification.SpecificationAgricultureActivity;
 import com.infotop.eshop.specification.SpecificationAirConditionerActivity;
 import com.infotop.eshop.specification.SpecificationComputerActivity;
@@ -44,20 +41,15 @@ import com.infotop.eshop.specification.SpecificationLanguageActivity;
 import com.infotop.eshop.specification.SpecificationLaptopActivity;
 import com.infotop.eshop.specification.SpecificationMobileActivity;
 import com.infotop.eshop.specification.SpecificationMouseActivity;
-import com.infotop.eshop.specification.SpecificationRadioActivity;
-import com.infotop.eshop.specification.SpecificationShoesActivity;
 import com.infotop.eshop.specification.SpecificationTelevisionActivity;
 import com.infotop.eshop.specification.SpecificationTennisBatActivity;
 import com.infotop.eshop.specification.SpecificationWashingMachinActivity;
-
 import com.infotop.eshop.urls.UrlInfo;
 import com.infotop.eshop.utilities.GetOperation;
 import com.infotop.eshop.utilities.HorizontalListView;
-import com.infotop.eshop.utilities.HttpServiceHandler;
 import com.infotop.eshop.utilities.JsonHelper;
 import com.infotop.eshop.utilities.PostOperation;
 import com.infotop.eshop.utilities.UserSessionManager;
-
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.display.RoundedBitmapDisplayer;
@@ -93,7 +85,7 @@ public class ProductDetailsActivity extends Activity {
 	String childCategoryName;
 	String productUUid;
 	int pos;
-   
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -108,8 +100,7 @@ public class ProductDetailsActivity extends Activity {
 				.build();
 
 		productUUid = getIntent().getExtras().getString("productId");
-		childCategoryName = getIntent().getExtras().getString(
-				"childCategoryName");
+	    childCategoryName = getIntent().getExtras().getString("childCategoryName");
 
 		System.out.println("productUUid:=======" + productUUid);
 		System.out.println("ChildCategoryName:=======" + childCategoryName);
@@ -126,7 +117,8 @@ public class ProductDetailsActivity extends Activity {
 
 			// final ArrayList<String> bigimageUrls = new ArrayList<String>();
 			System.out.println(productListData.get());
-			final Product pdata= (Product) JsonHelper.toObject(productListData.get(), Product.class);
+			pdata = (Product) JsonHelper.toObject(productListData.get(),
+					Product.class);
 			holder = new ViewHolder();
 			holder.txtTitle = (TextView) findViewById(R.id.bookName1);
 			holder.txtTitle1 = (TextView) findViewById(R.id.authorName);
@@ -202,6 +194,7 @@ public class ProductDetailsActivity extends Activity {
 	}
 
 	// functionalities for wishlistBtn
+	@SuppressLint("NewApi")
 	public void addToWishlist(View view) {
 
 		UserSessionManager usMgr = new UserSessionManager(
@@ -211,25 +204,16 @@ public class ProductDetailsActivity extends Activity {
 			pdt.setServiceUrl(UrlInfo.ADDWishlist);
 			pdt.setEmailId(usMgr.getUserDetails().get("email"));
 
-
-			pdt.setId(pdata.getId());
-			pdt.setProductName(pdata.getProductName());
-			pdt.setProductDescription(pdata.getProductDescription());
-			pdt.setImage(mediumimageUrls.get(0));
-			pdt.setProductPrice(pdata.getProductPrice());
-
-		
-			AsyncTask<Object, Void, String> wishtListData = new PostOperation().execute(pdt);
-			
 			pdt.setId(pdata.getId());
 			pdt.setUuid(pdata.getUuid());
 			pdt.setProductName(pdata.getProductName());
 			pdt.setProductDescription(pdata.getProductDescription());
 			pdt.setImage(mediumimageUrls.get(0));
 			pdt.setProductPrice(pdata.getProductPrice());
-			pdt.setEmailId(usMgr.getUserDetails().get("email"));
-		
-
+            System.out.println("UUIDOOOOOOOO===="+pdt.getUuid());
+            System.out.println("UUIDOOOOOOOO===="+pdata.getUuid());
+			AsyncTask<Object, Void, String> wishtListData = new PostOperation()
+					.execute(pdt);
 			String pcontent;
 			try {
 				pcontent = wishtListData.get();
@@ -304,7 +288,6 @@ public class ProductDetailsActivity extends Activity {
 			}
 		}
 	}
-
 	public void getSpecifications(View view) {
 		if ("Mobiles".equalsIgnoreCase(childCategoryName)) {
 			Intent intSpecification = new Intent(this,
@@ -456,8 +439,52 @@ public class ProductDetailsActivity extends Activity {
 
 				DatabaseHandler db = new DatabaseHandler(
 						ProductDetailsActivity.this);
-				pdata.setImage(mediumimageUrls.get(0));
-				db.addCartList(pdata);
+				Product p = new Product();
+				p.setUuid(pdata.getUuid());
+				p.setProductName(pdata.getProductName());
+				p.setProductDescription(pdata.getProductDescription());
+				p.setProductPrice(pdata.getProductPrice());
+				p.setImage(mediumimageUrls.get(0));
+				System.out.println("jjjjjjjjjjjjjjjjjjjj" + p.getImage());
+				// pdata.setImage(mediumimageUrls.get(0));
+
+				System.out.println("uuuuuiiiiiddddddddddddd" + pdata.getUuid());
+
+				Product[] pList = db.getAllCartListItems();
+				if (pList==null) {
+					db.addCartList(p);;
+				} else {
+					System.out.println("llllleeeennngggtthhh" + pList.length);
+					int counter = 0;
+					for (int i = 0; i < pList.length; i++) {
+
+						/*
+						 * System.out.println("IDidddddddddddd"+pList[i].getUuid());
+						 * System.out.println("IDidddddddddddd"+pdata.getUuid());
+						 */
+						if (pList[i].getUuid().equals(p.getUuid())) {
+							counter++;
+						}
+					}
+					if (counter > 0) {
+						Toast.makeText(ProductDetailsActivity.this,
+								"Your item is already added to Wish List",
+								Toast.LENGTH_SHORT).show();
+					} else {
+
+						db.addCartList(p);
+						System.out.println("wiishlissstttgetpdata---------::::"
+								+ pdata.getProductName());
+						System.out.println("Image URL" + pdata.getImage());
+						Toast.makeText(ProductDetailsActivity.this,
+								"Your item is added to Wish List",
+								Toast.LENGTH_SHORT).show();
+					}
+				}
+			//}
+		
+				//pdata.setImage(mediumimageUrls.get(0));
+				//db.addCartList(pdata);
 
 			} else {
 				Product pdt = new Product();
@@ -471,6 +498,7 @@ public class ProductDetailsActivity extends Activity {
 				pdt.setProductName(pdata.getProductName());
 				pdt.setProductPrice(pdata.getProductPrice());
 				pdt.setProductDescription(pdata.getProductDescription());
+				System.out.println("pdata product price::::::"+pdata.getProductPrice());
 				pdt.setImage(mediumimageUrls.get(0));
 
 				AsyncTask<Object, Void, String> respDataCartItem = new PostOperation()

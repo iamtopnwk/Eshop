@@ -81,12 +81,11 @@ public class CustomGridViewAdapter extends ArrayAdapter<Product> {
 					p.setServiceUrl(UrlInfo.ADDWishlist);
 
 					p.setId(pdata[id].getId());
+					p.setId(pdata[id].getUuid());
 					p.setProductName(pdata[id].getProductName());
-					//p.setDescription(pdata[id].getDescription());
-					p.setProductDescription(pdata[id].getProductDescription());
+				    p.setProductDescription(pdata[id].getProductDescription());
 					p.setImage(pdata[id].getImage());
-					//p.setPrice(pdata[id].getPrice());
-					p.setProductPrice(pdata[id].getProductPrice());
+			        p.setProductPrice(pdata[id].getProductPrice());
 					p.setEmailId(emailId);
 
 					AsyncTask<Object, Void, String> respData = new PostOperation()
@@ -122,7 +121,7 @@ public class CustomGridViewAdapter extends ArrayAdapter<Product> {
 				} else {
 					    DatabaseHandler db=new DatabaseHandler(context);
 					    Product p=new Product();
-					    p.setId(pdata[id].getId());
+					    p.setUuid(pdata[id].getUuid());
 						p.setProductName(pdata[id].getProductName());
 						p.setProductDescription(pdata[id].getProductDescription());
 						p.setImage(pdata[id].getImage());

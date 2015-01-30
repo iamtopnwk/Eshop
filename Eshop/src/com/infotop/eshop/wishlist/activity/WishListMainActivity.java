@@ -23,11 +23,11 @@ import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.display.RoundedBitmapDisplayer;
 
 public class WishListMainActivity extends Activity {
-	String[] productId, productName, productDescription, productPrice,
-	productImage;
+	String[] productId, productName, productDescription, productPrice;
+	//productImage;
 	DisplayImageOptions op;
 	Product pdt=new Product();
-
+	Product[] pdata;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -49,11 +49,12 @@ public class WishListMainActivity extends Activity {
 		Product pdt = new Product();
 		pdt.setServiceUrl(UrlInfo.GET_ALLWISHLIST);
 		pdt.setEmailId(usMgr.getUserDetails().get("email"));
+		
 		AsyncTask<Object, Void, String> data = new PostOperation().execute(pdt);
 	
 		try {
-			final Product[] pdata= (Product[]) JsonHelper.toObject(data.get(), Product[].class);
-			System.out.println("wishlist pdata:::::"+pdata);
+		    pdata= (Product[]) JsonHelper.toObject(data.get(), Product[].class);
+			
 			listAdapter = new WishListAdapter(WishListMainActivity.this,pdata,op);
 			list.setAdapter(listAdapter);
 		
@@ -61,12 +62,11 @@ public class WishListMainActivity extends Activity {
 				@Override
 				public void onItemClick(AdapterView<?> parent, View view,
 						int position, long id) {
-					System.out.println("productId:-" + pdata[position].getId());
+					
 
 					Intent i = new Intent(WishListMainActivity.this,
 							ProductDetailsActivity.class);
-					i.putExtra("productId", pdata[position].getId());
-					// i.putStringArrayListExtra("productData", productData);
+					i.putExtra("productId", pdata[position].getUuid());
 					startActivity(i);
 
 				}
@@ -82,10 +82,22 @@ public class WishListMainActivity extends Activity {
 		} else{
 			
 			DatabaseHandler db=new DatabaseHandler(WishListMainActivity.this);
-			Product[] wishlistItems = db.getAllWishListItems();
+			final Product[] wishlistItems = db.getAllWishListItems();
 			listAdapter = new WishListAdapter(WishListMainActivity.this,wishlistItems,op);
 			list.setAdapter(listAdapter);
-				
+			list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+				@Override
+				public void onItemClick(AdapterView<?> parent, View view,
+						int position, long id) {
+					
+
+					Intent i = new Intent(WishListMainActivity.this,
+							ProductDetailsActivity.class);
+					i.putExtra("productId", wishlistItems[position].getUuid());
+					startActivity(i);
+
+				}
+			});	
 				
 		}
 			

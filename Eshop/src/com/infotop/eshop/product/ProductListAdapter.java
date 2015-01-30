@@ -75,13 +75,11 @@ public class ProductListAdapter extends ArrayAdapter<Product> {
 				if (usMgr.isUserLoggedIn()) {
 					selectedId = id;
 					emailId = usMgr.getUserDetails().get("email");
-					/*
-					 * new LongOperation().execute(new HttpUrl().getUrl() +
-					 * "/eshop/rest/addwishlist");
-					 */
+					
 					Product p = new Product();
 					p.setServiceUrl(UrlInfo.ADDWishlist);
 					p.setId(pdata[id].getId());
+					p.setUuid(pdata[id].getUuid());
 					p.setProductName(pdata[id].getProductName());
 					p.setProductDescription(pdata[id].getProductDescription());
 					p.setImage(pdata[id].getImage());
@@ -122,10 +120,33 @@ public class ProductListAdapter extends ArrayAdapter<Product> {
 						p.setProductDescription(pdata[id].getProductDescription());
 						p.setImage(pdata[id].getImage());
 						p.setProductPrice(pdata[id].getProductPrice());
-					    db.addWishList(p);
 					   
-						Toast.makeText(getContext(), "Your item is added to Wish List",
-								Toast.LENGTH_SHORT).show();
+					    Product[] pList = db.getAllWishListItems();
+						if (pList==null) {
+							db.addWishList(p);
+						} else {
+							System.out.println("llllleeeennngggtthhh" + pList.length);
+							int counter = 0;
+							for (int i = 0; i < pList.length; i++) {
+
+								
+								if (pList[i].getUuid().equals(p.getUuid())) {
+									counter++;
+								}
+							}
+							if (counter > 0) {
+								Toast.makeText(context,
+										"Your item is already added to Wish List",
+										Toast.LENGTH_SHORT).show();
+							} else {
+
+								db.addWishList(p);
+								Toast.makeText(context,
+										"Your item is added to Wish List",
+										Toast.LENGTH_SHORT).show();
+							}
+						}
+					   
 						
 
 				}

@@ -1,6 +1,6 @@
 package com.infotop.eshop.wishlist.adapter;
 
-import java.util.ArrayList;
+
 import java.util.concurrent.ExecutionException;
 
 import android.app.Activity;
@@ -87,12 +87,15 @@ public class WishListAdapter extends ArrayAdapter<Product> {
 								Product p = new Product();
 								p.setServiceUrl(UrlInfo.DELETE_WISHLIST);
 								p.setEmailId(usMgr.getUserDetails().get("email"));
-								p.setId(pdata[id].getWishlistId()); 	
-								System.out.println("lllllllllllll"+ pdata[id].getWishlistId());
+								p.setId(pdata[id].getWishlistId()); 
+								System.out.println("lllllllllllll"+ pdata[id].getId());
+								//System.out.println("lllllllllllll"+ pdata[id].getWishlistId());
 								AsyncTask<Object, Void, String> respData = new PostOperation().execute(p);
+								System.out.println("RESP DATA ====="+respData);
 								String pcontent;
 								try {
 									pcontent = respData.get();
+									System.out.println("RESP DATA ====="+pcontent);
 									if (pcontent.equalsIgnoreCase("Success")) {
 										Toast.makeText(context,
 												"Your item is deleted",
@@ -114,10 +117,10 @@ public class WishListAdapter extends ArrayAdapter<Product> {
 								 }else{
 									 /*Product p= new Product();
 									 p.setId(pdata[id].getWishlistId());
-									System.out.println("productttttttttt fro wish"+p.getId()); */
+									 System.out.println("productttttttttt fro wish"+p.getId()); */
 									 DatabaseHandler db = new DatabaseHandler(context);
 									 System.out.println("iiiiiiiiiiiiiiiiiiiiiiiii"+pdata[id].getUuid());
-									db.deleteWishListItem(pdata[id].getUuid());
+									 db.deleteWishListItem(pdata[id].getUuid());
 								
 								 }
 
