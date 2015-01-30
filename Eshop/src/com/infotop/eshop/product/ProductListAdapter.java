@@ -6,7 +6,9 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.AsyncTask;
+import android.util.Log;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
@@ -61,64 +63,67 @@ public class ProductListAdapter extends ArrayAdapter<Product> {
 		} else {
 			holder = (ViewHolder) rowView.getTag();
 		}
-		final int id = position;
+		final int r = position;
 		holder.txtTitle.setText(pdata[position].getProductName());
 		holder.txtTitle1.setText(pdata[position].getProductDescription());
 		holder.txtTitle2.setText(pdata[position].getProductPrice());
 		loader.displayImage(pdata[position].getImage(), holder.imageView, op, null);
-		holder.imgwishlistbtn.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View v) {
-
-				UserSessionManager usMgr = new UserSessionManager(context);
-				if (usMgr.isUserLoggedIn()) {
-					selectedId = id;
-					emailId = usMgr.getUserDetails().get("email");
-					/*
-					 * new LongOperation().execute(new HttpUrl().getUrl() +
-					 * "/eshop/rest/addwishlist");
-					 */
-					Product p = new Product();
-					p.setServiceUrl(UrlInfo.ADDWishlist);
-					p.setId(pdata[id].getId());
-					p.setProductName(pdata[id].getProductName());
-					p.setProductDescription(pdata[id].getProductDescription());
-					p.setImage(pdata[id].getImage());
-					p.setProductPrice(pdata[id].getProductPrice());
-					p.setEmailId(emailId);
-					AsyncTask<Object, Void, String> respData = new PostOperation()
-							.execute(p);
-					String pcontent;
-					try {
-						pcontent = respData.get();
-						if (pcontent.equalsIgnoreCase("Success")) {
-							Toast.makeText(context,
-									"Your item is added to Wish List",
-									Toast.LENGTH_SHORT).show();
-						} else if (pcontent.equalsIgnoreCase("Exist")) {
-							Toast.makeText(context,
-									"Your item is already added to Wish List",
-									Toast.LENGTH_SHORT).show();
-						} else {
-							Toast.makeText(context, "Connection error",
-									Toast.LENGTH_SHORT).show();
-						}
-					} catch (InterruptedException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					} catch (ExecutionException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-
-				} else {
-					Intent intent = new Intent(context,
-							EshopLoginActivity.class);
-					context.startActivity(intent);
-
-				}
-			}
-		});
+		
+		
+		holder.imgwishlistbtn.setOnClickListener(new Mylistener(position, holder));
+//		holder.imgwishlistbtn.setOnClickListener(new View.OnClickListener() {
+//			@Override
+//			public void onClick(View v) {
+//
+//				UserSessionManager usMgr = new UserSessionManager(context);
+//				if (usMgr.isUserLoggedIn()) {
+//					selectedId = id;
+//					emailId = usMgr.getUserDetails().get("email");
+//					/*
+//					 * new LongOperation().execute(new HttpUrl().getUrl() +
+//					 * "/eshop/rest/addwishlist");
+//					 */
+//					Product p = new Product();
+//					p.setServiceUrl(UrlInfo.ADDWishlist);
+//					p.setId(pdata[id].getId());
+//					p.setProductName(pdata[id].getProductName());
+//					p.setProductDescription(pdata[id].getProductDescription());
+//					p.setImage(pdata[id].getImage());
+//					p.setProductPrice(pdata[id].getProductPrice());
+//					p.setEmailId(emailId);
+//					AsyncTask<Object, Void, String> respData = new PostOperation()
+//							.execute(p);
+//					String pcontent;
+//					try {
+//						pcontent = respData.get();
+//						if (pcontent.equalsIgnoreCase("Success")) {
+//							Toast.makeText(context,
+//									"Your item is added to Wish List",
+//									Toast.LENGTH_SHORT).show();
+//						} else if (pcontent.equalsIgnoreCase("Exist")) {
+//							Toast.makeText(context,
+//									"Your item is already added to Wish List",
+//									Toast.LENGTH_SHORT).show();
+//						} else {
+//							Toast.makeText(context, "Connection error",
+//									Toast.LENGTH_SHORT).show();
+//						}
+//					} catch (InterruptedException e) {
+//						// TODO Auto-generated catch block
+//						e.printStackTrace();
+//					} catch (ExecutionException e) {
+//						// TODO Auto-generated catch block
+//						e.printStackTrace();
+//					}
+//
+//				} else {
+//					Intent intent = new Intent(context,
+//							EshopLoginActivity.class);
+//					context.startActivity(intent);
+//
+//				}
+//			}
+//		});
 		return rowView;
 
 	}
@@ -129,5 +134,67 @@ public class ProductListAdapter extends ArrayAdapter<Product> {
 		public TextView txtTitle2;
 		public ImageView imageView;
 		public ImageView imgwishlistbtn;
+	}
+	
+	class Mylistener implements OnClickListener{
+
+		int id;
+		ViewHolder viewHolder;
+		public Mylistener(int temp,ViewHolder temp2){
+			this.id =temp;
+			this.viewHolder=temp2;
+		}
+		@Override
+		public void onClick(View v) {
+
+			UserSessionManager usMgr = new UserSessionManager(context);
+			if (usMgr.isUserLoggedIn()) {
+				emailId = usMgr.getUserDetails().get("email");
+				/*
+				 * new LongOperation().execute(new HttpUrl().getUrl() +
+				 * "/eshop/rest/addwishlist");
+				 */
+				Product p = new Product();
+				p.setServiceUrl(UrlInfo.ADDWishlist);
+				Log.v("test", String.valueOf(pdata[id].getId()));
+				p.setUuid(pdata[id].getUuid());
+				p.setProductName(pdata[id].getProductName());
+				p.setProductDescription(pdata[id].getProductDescription());
+				p.setImage(pdata[id].getImage());
+				p.setProductPrice(pdata[id].getProductPrice());
+				p.setEmailId(emailId);
+				AsyncTask<Object, Void, String> respData = new PostOperation()
+						.execute(p);
+				String pcontent;
+				try {
+					pcontent = respData.get();
+					if (pcontent.equalsIgnoreCase("Success")) {
+						Toast.makeText(context,
+								"Your item is added to Wish List",
+								Toast.LENGTH_SHORT).show();
+					} else if (pcontent.equalsIgnoreCase("Exist")) {
+						Toast.makeText(context,
+								"Your item is already added to Wish List",
+								Toast.LENGTH_SHORT).show();
+					} else {
+						Toast.makeText(context, "Connection error",
+								Toast.LENGTH_SHORT).show();
+					}
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (ExecutionException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+
+			} else {
+				Intent intent = new Intent(context,
+						EshopLoginActivity.class);
+				context.startActivity(intent);
+
+			}
+		}
+		
 	}
 }

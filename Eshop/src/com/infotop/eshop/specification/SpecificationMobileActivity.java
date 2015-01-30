@@ -3,6 +3,7 @@ package com.infotop.eshop.specification;
 import java.util.concurrent.ExecutionException;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.Menu;
@@ -10,6 +11,7 @@ import android.view.MenuItem;
 import android.widget.TextView;
 
 import com.infotop.eshop.R;
+import com.infotop.eshop.main.activity.EshopMainActivity;
 import com.infotop.eshop.model.ProductSpecification;
 import com.infotop.eshop.urls.UrlInfo;
 import com.infotop.eshop.utilities.GetOperation;
@@ -78,8 +80,10 @@ public class SpecificationMobileActivity extends Activity {
 		// Handle action bar item clicks here. The action bar will
 		// automatically handle clicks on the Home/Up button, so long
 		// as you specify a parent activity in AndroidManifest.xml.
-		int id = item.getItemId();
-		if (id == R.id.action_settings) {
+		switch (item.getItemId()) {
+		case R.id.home_mobile:
+			Intent intent=new Intent(SpecificationMobileActivity.this,EshopMainActivity.class);
+			startActivity(intent);
 			return true;
 		}
 		return super.onOptionsItemSelected(item);

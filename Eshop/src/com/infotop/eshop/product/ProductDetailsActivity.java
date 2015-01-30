@@ -27,6 +27,7 @@ import android.widget.Toast;
 
 import com.infotop.eshop.R;
 import com.infotop.eshop.login.EshopLoginActivity;
+import com.infotop.eshop.main.activity.EshopMainActivity;
 import com.infotop.eshop.main.activity.ZoomActivity;
 import com.infotop.eshop.model.ImageList;
 import com.infotop.eshop.model.Product;
@@ -562,6 +563,10 @@ public class ProductDetailsActivity extends Activity {
 				in.putStringArrayListExtra("purChaseItem", s);
 				startActivity(in);
 			}
+			return true;
+		case R.id.home_details:
+			Intent homeIntent=new Intent(ProductDetailsActivity.this,EshopMainActivity.class);
+			startActivity(homeIntent);
 			return true;
 		default:
 			return super.onOptionsItemSelected(item);

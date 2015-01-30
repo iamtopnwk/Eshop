@@ -19,6 +19,7 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.infotop.eshop.R;
+import com.infotop.eshop.main.activity.EshopMainActivity;
 import com.infotop.eshop.model.Product;
 import com.infotop.eshop.product.ProductDetailsActivity;
 import com.infotop.eshop.urls.UrlInfo;
@@ -96,11 +97,16 @@ public class WishListMainActivity extends Activity {
 		// Handle action bar item clicks here. The action bar will
 		// automatically handle clicks on the Home/Up button, so long
 		// as you specify a parent activity in AndroidManifest.xml.
-		int id = item.getItemId();
-		if (id == R.id.action_settings) {
+		switch (item.getItemId()) {
+		
+		case R.id.home_wishlist:
+			Intent homIntent=new Intent(WishListMainActivity.this,EshopMainActivity.class);
+			startActivity(homIntent);
 			return true;
+		default:
+			return super.onOptionsItemSelected(item);
+		
 		}
-		return super.onOptionsItemSelected(item);
-	}
 
+}
 }
