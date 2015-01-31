@@ -14,6 +14,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.infotop.eshop.R;
+import com.infotop.eshop.db.DatabaseHandler;
 import com.infotop.eshop.login.EshopLoginActivity;
 import com.infotop.eshop.model.Product;
 import com.infotop.eshop.urls.UrlInfo;
@@ -80,22 +81,18 @@ public class CustomGridViewAdapter extends ArrayAdapter<Product> {
 					p.setServiceUrl(UrlInfo.ADDWishlist);
 
 					p.setId(pdata[id].getId());
+					p.setId(pdata[id].getUuid());
 					p.setProductName(pdata[id].getProductName());
-					//p.setDescription(pdata[id].getDescription());
-					p.setProductDescription(pdata[id].getProductDescription());
+				    p.setProductDescription(pdata[id].getProductDescription());
 					p.setImage(pdata[id].getImage());
-					//p.setPrice(pdata[id].getPrice());
-					p.setProductPrice(pdata[id].getProductPrice());
+			        p.setProductPrice(pdata[id].getProductPrice());
 					p.setEmailId(emailId);
 
 					AsyncTask<Object, Void, String> respData = new PostOperation()
 							.execute(p);
 					String pcontent;
 
-					/*
-					 * w.setCreatedDate(new SimpleDateFormat("dd MMM yyyy")
-					 * .format(new Date()));
-					 */
+					
 
 					try {
 						pcontent = respData.get();
@@ -120,28 +117,20 @@ public class CustomGridViewAdapter extends ArrayAdapter<Product> {
 						e.printStackTrace();
 					}
 
-					/*
-					 * List<Wishlist> s = db.getAllWishListItems(); int
-					 * counter=0; for(int i=0;i<s.size();i++){
-					 * if(s.get(i).getProductId().equals(productId[id])){
-					 * counter++; } } if(counter>0){ Toast.makeText(context,
-					 * "Your item is already added to Wish List",
-					 * Toast.LENGTH_SHORT).show(); }else{
-					 * 
-					 * db.addWishList(w); Toast.makeText(context,
-					 * "Your item is added to Wish List",
-					 * Toast.LENGTH_SHORT).show();
-					 * 
-					 * }
-					 * 
-					 * db.addWishList(w); Toast.makeText(context,
-					 * "Your item is added to Wish List",
-					 * Toast.LENGTH_SHORT).show();
-					 */
+					
 				} else {
-					Intent intent = new Intent(context,
-							EshopLoginActivity.class);
-					context.startActivity(intent);
+					    DatabaseHandler db=new DatabaseHandler(context);
+					    Product p=new Product();
+					    p.setUuid(pdata[id].getUuid());
+						p.setProductName(pdata[id].getProductName());
+						p.setProductDescription(pdata[id].getProductDescription());
+						p.setImage(pdata[id].getImage());
+						p.setProductPrice(pdata[id].getProductPrice());
+					    db.addWishList(p);
+					   
+						Toast.makeText(getContext(), "Your item is added to Wish List",
+								Toast.LENGTH_SHORT).show();
+						
 
 				}
 			}

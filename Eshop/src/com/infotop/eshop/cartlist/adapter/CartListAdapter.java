@@ -17,9 +17,11 @@ import android.widget.Toast;
 
 import com.infotop.eshop.R;
 import com.infotop.eshop.cartlist.activity.CartListMainActivity;
+import com.infotop.eshop.db.DatabaseHandler;
 import com.infotop.eshop.model.Product;
 import com.infotop.eshop.urls.UrlInfo;
 import com.infotop.eshop.utilities.PostOperation;
+import com.infotop.eshop.utilities.UserSessionManager;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
@@ -49,12 +51,9 @@ public class CartListAdapter extends ArrayAdapter<Product> {
 					R.layout.cart_list_adapter, parent, false);
 			holder = new ViewHolder();
 			holder.txtTitle = (TextView) rowView.findViewById(R.id.productName);
-			holder.txtTitle1 = (TextView) rowView
-					.findViewById(R.id.productDesc);
-			holder.txtTitle2 = (TextView) rowView
-					.findViewById(R.id.productprice);
-			holder.imageView = (ImageView) rowView
-					.findViewById(R.id.productImg);
+			holder.txtTitle1 = (TextView) rowView.findViewById(R.id.productDesc);
+			holder.txtTitle2 = (TextView) rowView.findViewById(R.id.productprice);
+			holder.imageView = (ImageView) rowView.findViewById(R.id.productImg);
 			holder.imageView1 = (ImageView) rowView.findViewById(R.id.delete);
 			rowView.setTag(holder);
 		} else {
@@ -62,9 +61,9 @@ public class CartListAdapter extends ArrayAdapter<Product> {
 		}
 		final int id = position;
 		holder.txtTitle.setText(pdata[position].getProductName());
+		System.out.println("product name"+pdata[position].getProductName());
 		holder.txtTitle1.setText(pdata[position].getProductDescription());
 		holder.txtTitle2.setText(pdata[position].getProductPrice());
-		
 		loader.displayImage(pdata[position].getImage(), holder.imageView, op, null);
 		
 		holder.imageView1.setOnClickListener(new View.OnClickListener() {
@@ -77,6 +76,9 @@ public class CartListAdapter extends ArrayAdapter<Product> {
 						new DialogInterface.OnClickListener() {
 							public void onClick(DialogInterface dialog,
 									int which) {
+								
+								UserSessionManager usMgr = new UserSessionManager(context);
+								 if (usMgr.isUserLoggedIn()) {
 								
 								Product p = new Product();
 								p.setServiceUrl(UrlInfo.DELETE_CARTLIST);
@@ -110,6 +112,15 @@ public class CartListAdapter extends ArrayAdapter<Product> {
 									// TODO Auto-generated catch block
 									e.printStackTrace();
 								}
+								 }else{
+									 /*Product p= new Product();
+									 p.setId(pdata[id].getWishlistId());
+									System.out.println("productttttttttt fro wish"+p.getId()); */
+									 DatabaseHandler db = new DatabaseHandler(context);
+									 System.out.println("iiiiiiiiiiiiiiiiiiiiiiiii"+pdata[id].getUuid());
+									 db.deleteCartListItem(pdata[id].getUuid());
+								
+								 }
 
 								((Activity) context).finish();
 								Intent intent = new Intent(context,

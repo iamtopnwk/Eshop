@@ -3,10 +3,6 @@ package com.infotop.eshop.cartlist.activity;
 import java.util.ArrayList;
 import java.util.concurrent.ExecutionException;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.os.AsyncTask;
@@ -20,7 +16,11 @@ import android.widget.TextView;
 
 import com.infotop.eshop.R;
 import com.infotop.eshop.cartlist.adapter.CartListAdapter;
+
 import com.infotop.eshop.main.activity.EshopMainActivity;
+
+import com.infotop.eshop.db.DatabaseHandler;
+
 import com.infotop.eshop.model.Product;
 import com.infotop.eshop.payment.PaymentMainActivity;
 import com.infotop.eshop.product.ProductDetailsActivity;
@@ -28,6 +28,7 @@ import com.infotop.eshop.urls.UrlInfo;
 import com.infotop.eshop.utilities.JsonHelper;
 import com.infotop.eshop.utilities.PostOperation;
 import com.infotop.eshop.utilities.UserSessionManager;
+
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.display.RoundedBitmapDisplayer;
 
@@ -38,16 +39,14 @@ public class CartListMainActivity extends Activity {
 	DisplayImageOptions op;
 	Double totalAmount;
 	String grandTotal;
+	Product[] pdata;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_cart_list_main);
 		ListView list;
          TextView grand_Total;
-		// ArrayList<String> s;
-		
-		// CheckBox checkBox = (CheckBox) findViewById(R.id.checkBox1);
-
+	
 		op = new DisplayImageOptions.Builder()
 				.showStubImage(R.drawable.notavailable)
 				.showImageForEmptyUri(R.drawable.notavailable)
@@ -57,25 +56,27 @@ public class CartListMainActivity extends Activity {
 
 		list = (ListView) findViewById(R.id.cartListViewItems);
 		UserSessionManager usMgr = new UserSessionManager(this);
-		Product pdt = new Product();
+	if (usMgr.isUserLoggedIn()) {
+		
+        Product pdt = new Product();
 		pdt.setServiceUrl(UrlInfo.GET_ALLCARTLIST);
 		pdt.setEmailId(usMgr.getUserDetails().get("email"));
 
 		AsyncTask<Object, Void, String> cartListData = new PostOperation().execute(pdt);
-		
-		
-	//	String pcontent;
           
 		try {
-			final Product[] pdata= (Product[]) JsonHelper.toObject(cartListData.get(), Product[].class);
-		
+			pdata= (Product[]) JsonHelper.toObject(cartListData.get(), Product[].class);
+
 			totalAmount=0D;
 			for(int i=0;i<pdata.length;i++){
-			System.out.println("Idddddddd:"+pdata[i].getId());	
+				System.out.println("Idddddddd:"+pdata.length);
+			
+			System.out.println("Idddddddd:"+pdata[i].getProductPrice());
 				totalAmount = totalAmount
 						+ Double.valueOf(pdata[i].getProductPrice());
 				System.out.println("totalAmount====="+totalAmount);
 			}
+
 			listAdapter = new CartListAdapter(CartListMainActivity.this,pdata, op);
 			list.setAdapter(listAdapter);
 			list.setTextFilterEnabled(true);
@@ -85,14 +86,9 @@ public class CartListMainActivity extends Activity {
 				public void onItemClick(AdapterView<?> parent, View view,
 						int position, long id) {
 
-					
-
-					System.out.println("productId:-" + pdata[position].getId());
-					
-
 					Intent i = new Intent(CartListMainActivity.this,
 							ProductDetailsActivity.class);
-					i.putExtra("productId",  pdata[position].getId());
+					i.putExtra("productId",  pdata[position].getUuid());
 					startActivity(i);
 				}
 			});
@@ -104,43 +100,48 @@ public class CartListMainActivity extends Activity {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+
+		}else{
+			
+			DatabaseHandler db=new DatabaseHandler(CartListMainActivity.this);
+			final Product[] cartlistItems = db.getAllCartListItems();
+			
+			totalAmount=0D;
+			for(int i=0;i<cartlistItems.length;i++){
+				System.out.println("Idddddddd:"+cartlistItems.length);
+			
+			System.out.println("Idddddddd:"+cartlistItems[i].getProductPrice());
+				totalAmount = totalAmount
+						+ Double.valueOf(cartlistItems[i].getProductPrice());
+				System.out.println("totalAmount====="+totalAmount);
+			}
+			listAdapter = new CartListAdapter(CartListMainActivity.this,cartlistItems, op);
+			list.setAdapter(listAdapter);
+			list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+				@Override
+				public void onItemClick(AdapterView<?> parent, View view,
+						int position, long id) {
+
+					Intent i = new Intent(CartListMainActivity.this,
+							ProductDetailsActivity.class);
+					i.putExtra("productId",  cartlistItems[position].getUuid());
+					startActivity(i);
+				}
+			});
+			
+			
+			
+		}
+	
+
 		grand_Total = (TextView) findViewById(R.id.grand_total);
 
 		System.out.println(totalAmount);
 		grand_Total.setText(totalAmount.toString());
 		
-		/*	pcontent = cartListData.get();
-			System.out.println("return data:" + pcontent);
-			JSONArray jsonArray = new JSONArray(pcontent);
-
-			productId = new String[jsonArray.length()];
-			cartListId = new String[jsonArray.length()];
-			productName = new String[jsonArray.length()];
-			productDescription = new String[jsonArray.length()];
-			productPrice = new String[jsonArray.length()];
-			productImage = new String[jsonArray.length()];
-
-			System.out.println("js:" + jsonArray.length());
-*/
+		
 			
-			/*for (int i = 0; i < jsonArray.length(); i++) {
-				JSONObject pc = jsonArray.getJSONObject(i);
-
-				System.out.println("js1:" + pc);
-
-				productId[i] = pc.getString(TAG_PID);
-				cartListId[i] = pc.getString(TAG_CARTLIST_ID);
-				productName[i] = pc.getString(TAG_PNAME);
-				productDescription[i] = pc.getString(TAG_PDESC);
-				productPrice[i] = pc.getString(TAG_PPRICE);
-
-				productImage[i] = pc.getString(TAG_IMGURL);*/
-				
-		/*	totalAmount = totalAmount
-						+ Double.valueOf(pc.getString(TAG_PPRICE));*/
-
-			//}
-
+			
 			
 	}
 

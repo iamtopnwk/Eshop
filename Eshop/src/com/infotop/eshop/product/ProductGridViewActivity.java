@@ -158,30 +158,20 @@ public class ProductGridViewActivity extends Activity {
 		case R.id.action_search:
 			return true;
 		case R.id.abCartList:
-			usMgr = new UserSessionManager(this);
-			if (!usMgr.isUserLoggedIn()) {
-
-				Intent lgn1 = new Intent(this, NoItemFoundActivity.class);
-				startActivity(lgn1);
-			} else {
-				Intent wl = new Intent(this, CartListMainActivity.class);
-				startActivity(wl);
-			}
+			
+				Intent cl = new Intent(this, CartListMainActivity.class);
+				startActivity(cl);
+			
 			return true;
 		case R.id.abLogin:
 			Intent lgn = new Intent(this, EshopLoginActivity.class);
 			startActivity(lgn);
 			return true;
 		case R.id.abwishlist:
-			UserSessionManager usMgr = new UserSessionManager(this);
-			if (!usMgr.isUserLoggedIn()) {
-
-				Intent lgn1 = new Intent(this, NoItemFoundActivity.class);
-				startActivity(lgn1);
-			} else {
+			
 				Intent wl = new Intent(this, WishListMainActivity.class);
 				startActivity(wl);
-			}
+		
 			return true;
 		case R.id.abTrackOrder:
 			return true;

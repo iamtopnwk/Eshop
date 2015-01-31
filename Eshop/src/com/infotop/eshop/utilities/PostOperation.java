@@ -21,6 +21,7 @@ public class PostOperation extends AsyncTask<Object, Void, String> {
 			JSONObject json = new JSONObject();
 
 			json.accumulate("emailId", product.getEmailId());
+			json.accumulate("uuid" , product.getUuid());
 			json.accumulate("id", product.getId());
 			json.accumulate("productName", product.getProductName());
 			json.accumulate("productDescription", product.getProductDescription());
@@ -28,7 +29,8 @@ public class PostOperation extends AsyncTask<Object, Void, String> {
 			json.accumulate("image", product.getImage());
 			jsonData = json.toString();
 			pcontent = hs.httpPost(product.getServiceUrl(), jsonData);
-			// System.out.println("Executed data:" + pcontent);
+			 System.out.println("UUID=========" +product.getUuid());
+			 System.out.println("UUID=========" +product.getEmailId());
 			return pcontent;
 		} catch (Exception ex) {
 			System.out.println("Exception e:" + ex.getMessage());
