@@ -27,9 +27,13 @@ import com.infotop.eshop.login.EshopLoginActivity;
 import com.infotop.eshop.login.EshopPoliciesActivity;
 import com.infotop.eshop.login.NoItemFoundActivity;
 import com.infotop.eshop.main.activity.EshopMainActivity;
+import com.infotop.eshop.model.Category;
+import com.infotop.eshop.model.Product;
 import com.infotop.eshop.product.ProductListViewActivity;
 import com.infotop.eshop.urls.UrlInfo;
+import com.infotop.eshop.utilities.GetOperation;
 import com.infotop.eshop.utilities.HttpServiceHandler;
+import com.infotop.eshop.utilities.JsonHelper;
 import com.infotop.eshop.utilities.UserSessionManager;
 
 
@@ -61,12 +65,19 @@ public class SubListCategoryActivity extends Activity {
 		tv.setText("In " + parentCategoryName);
 		// Create Expandable List and set it's properties
 
-		String serverURL = UrlInfo.SUBCATEGORY_PATH + selectedParentId;
-
-		new LongOperation().execute(serverURL);
+		String serverURL = UrlInfo.SUBCATEGORY_PATH +"/" +selectedParentId;
+		AsyncTask<String, Void, String> data = new GetOperation().execute(serverURL);
+		//new LongOperation().execute(serverURL);
+		try {
+			final Category[] cdata= (Category[]) JsonHelper.toObject(data.get(), Category[].class);
+		 System.out.println(cdata);
+		}
+		catch(Exception e){
+			e.printStackTrace();
+		}
 	}
 
-	private class LongOperation extends AsyncTask<String, Void, Void> {
+	/*private class LongOperation extends AsyncTask<String, Void, Void> {
 
 		@Override
 		protected Void doInBackground(String... urls) {
@@ -91,7 +102,7 @@ public class SubListCategoryActivity extends Activity {
 					List<String> pcName = new ArrayList<String>();
 					List<String> chidIdUUid = new ArrayList<String>();
 					ccontent = hs.httpContent(UrlInfo.SUBCATEGORY_PATH
-							+ parentUuids.get(i) + "&wt=json&indent=true");
+							+ parentUuids.get(i));
 					JSONObject jsonObj1;
 					jsonObj1 = new JSONObject(ccontent)
 							.getJSONObject(TAG_RESPONSE);
@@ -108,7 +119,7 @@ public class SubListCategoryActivity extends Activity {
 			} catch (Exception ex) {
 				System.out.println("Exception e:" + ex.getMessage());
 			}
-			/*****************************************************/
+			*//*****************************************************//*
 			return null;
 		}
 
@@ -146,12 +157,12 @@ public class SubListCategoryActivity extends Activity {
 				public boolean onChildClick(ExpandableListView parent, View v,
 						int groupPosition, int childPosition, long id) {
 
-					/*
+					
 					 * * Toast.makeText( getApplicationContext(),
 					 * "The position of child category:" +
 					 * childData1.get(parentItems.get(groupPosition))
 					 * .get(childPosition), Toast.LENGTH_SHORT) .show();
-					 */
+					 
 
 					Intent i = new Intent(getApplicationContext(),
 							ProductListViewActivity.class);
@@ -165,7 +176,7 @@ public class SubListCategoryActivity extends Activity {
 				}
 			});
 		}
-	}
+	}*/
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
