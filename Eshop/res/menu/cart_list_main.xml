@@ -5,8 +5,14 @@
     
     <item
         android:id="@+id/ab_purChaseItem"
-        android:showAsAction="always"
-        android:title="PLACE ORDER"/>
+        android:icon="@drawable/buy"
+        android:showAsAction="ifRoom"
+        android:title="@string/buy_item"/>
+    <item 
+        android:id="@+id/home"
+        android:icon="@drawable/home"
+        android:showAsAction="ifRoom"
+        android:title="@string/home"/>
         
 
 </menu>

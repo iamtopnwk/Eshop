@@ -16,7 +16,11 @@ import android.widget.TextView;
 
 import com.infotop.eshop.R;
 import com.infotop.eshop.cartlist.adapter.CartListAdapter;
+
+import com.infotop.eshop.main.activity.EshopMainActivity;
+
 import com.infotop.eshop.db.DatabaseHandler;
+
 import com.infotop.eshop.model.Product;
 import com.infotop.eshop.payment.PaymentMainActivity;
 import com.infotop.eshop.product.ProductDetailsActivity;
@@ -167,6 +171,10 @@ public class CartListMainActivity extends Activity {
 					PaymentMainActivity.class);
 			in.putStringArrayListExtra("cartItemsBuy", s1);
 			startActivity(in);
+			return true;
+		case R.id.home:
+			Intent homIntent=new Intent(this,EshopMainActivity.class);
+			startActivity(homIntent);
 			return true;
 		default:
 			return super.onOptionsItemSelected(item);

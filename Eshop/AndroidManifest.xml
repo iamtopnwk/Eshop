@@ -64,7 +64,8 @@
         </activity>
         <activity
             android:name=".wishlist.activity.WishListMainActivity"
-            android:label="@string/title_activity_wish_list_main" >
+            android:label="@string/title_activity_wish_list_main"
+            android:uiOptions="splitActionBarWhenNarrow"  >
         </activity>
         <activity
             android:name=".payment.PaymentMainActivity"
@@ -119,28 +120,34 @@
         </activity>
         <activity
             android:name=".specification.SpecificationLaptopActivity"
-            android:label="@string/title_activity_product_specification" >
+            android:label="@string/title_activity_product_specification" 
+            android:uiOptions="splitActionBarWhenNarrow">
         </activity>
         <activity
             android:name=".specification.SpecificationClothActivity"
-            android:label="@string/title_activity_specification_cloth" >
+            android:label="@string/title_activity_specification_cloth"
+            android:uiOptions="splitActionBarWhenNarrow" >
         </activity>
         <activity
             android:name=".specification.SpecificationMobileActivity"
-            android:label="@string/title_activity_specification_mobile" >
+            android:label="@string/title_activity_specification_mobile"
+            android:uiOptions="splitActionBarWhenNarrow" >
         </activity>
         <activity
             android:name=".specification.SpecificationPendriveActivity"
-            android:label="@string/title_activity_specification_pendrive" >
+            android:label="@string/title_activity_specification_pendrive"
+            android:uiOptions="splitActionBarWhenNarrow" >
         </activity>
         <activity
             android:name=".specification.SpecificationMouseActivity"
-            android:label="@string/title_activity_specification_mouse" >
+            android:label="@string/title_activity_specification_mouse"
+            android:uiOptions="splitActionBarWhenNarrow" >
         </activity>
         <activity android:name="org.achartengine.GraphicalActivity" />
         <activity
             android:name=".specification.SpecificationTelevisionActivity"
             android:label="@string/title_activity_specification_television"
+            android:uiOptions="splitActionBarWhenNarrow"
             android:parentActivityName=".product.ProductDetailsActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -149,6 +156,7 @@
         <activity
             android:name=".specification.SpecificationWashingMachinActivity"
             android:label="@string/title_activity_specification_washing_machin"
+            android:uiOptions="splitActionBarWhenNarrow"
             android:parentActivityName=".product.ProductDetailsActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -157,6 +165,7 @@
         <activity
             android:name=".specification.SpecificationAirConditionerActivity"
             android:label="@string/title_activity_specification_air_conditioner"
+            android:uiOptions="splitActionBarWhenNarrow"
             android:parentActivityName=".product.ProductDetailsActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -165,6 +174,7 @@
         <activity
             android:name=".specification.SpecificationRadioActivity"
             android:label="@string/title_activity_specification_radio"
+            android:uiOptions="splitActionBarWhenNarrow"
             android:parentActivityName=".product.ProductDetailsActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -173,6 +183,7 @@
         <activity
             android:name=".specification.SpecificationAgricultureActivity"
             android:label="@string/title_activity_specification_agriculture"
+            android:uiOptions="splitActionBarWhenNarrow"
             android:parentActivityName=".product.ProductDetailsActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -181,6 +192,7 @@
         <activity
             android:name=".specification.SpecificationComputerActivity"
             android:label="@string/title_activity_specification_computer"
+            android:uiOptions="splitActionBarWhenNarrow"
             android:parentActivityName=".product.ProductDetailsActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -189,6 +201,7 @@
         <activity
             android:name=".specification.SpecificationLanguageActivity"
             android:label="@string/title_activity_specification_language"
+            android:uiOptions="splitActionBarWhenNarrow"
             android:parentActivityName=".product.ProductDetailsActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -197,6 +210,7 @@
         <activity
             android:name=".specification.SpecificationCricketBatActivity"
             android:label="@string/title_activity_specification_cricket_bat"
+            android:uiOptions="splitActionBarWhenNarrow"
             android:parentActivityName=".product.ProductDetailsActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -205,6 +219,7 @@
         <activity
             android:name=".specification.SpecificationTennisBatActivity"
             android:label="@string/title_activity_specification_tennis_bat"
+            android:uiOptions="splitActionBarWhenNarrow"
             android:parentActivityName=".product.ProductDetailsActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -213,6 +228,7 @@
         <activity
             android:name="com.infotop.eshop.specification.SpecificationShoesActivity"
             android:label="@string/title_activity_specification_shoes"
+            android:uiOptions="splitActionBarWhenNarrow"
             android:parentActivityName=".product.ProductDetailsActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"

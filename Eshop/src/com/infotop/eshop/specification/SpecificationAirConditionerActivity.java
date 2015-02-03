@@ -6,12 +6,14 @@ import com.infotop.eshop.R;
 import com.infotop.eshop.R.id;
 import com.infotop.eshop.R.layout;
 import com.infotop.eshop.R.menu;
+import com.infotop.eshop.main.activity.EshopMainActivity;
 import com.infotop.eshop.model.ProductSpecification;
 import com.infotop.eshop.urls.UrlInfo;
 import com.infotop.eshop.utilities.GetOperation;
 import com.infotop.eshop.utilities.JsonHelper;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.Menu;
@@ -90,8 +92,10 @@ public class SpecificationAirConditionerActivity extends Activity {
 		// Handle action bar item clicks here. The action bar will
 		// automatically handle clicks on the Home/Up button, so long
 		// as you specify a parent activity in AndroidManifest.xml.
-		int id = item.getItemId();
-		if (id == R.id.action_settings) {
+		switch (item.getItemId()) {
+		case R.id.home_ac:
+			Intent intent=new Intent(SpecificationAirConditionerActivity.this,EshopMainActivity.class);
+			startActivity(intent);
 			return true;
 		}
 		return super.onOptionsItemSelected(item);
