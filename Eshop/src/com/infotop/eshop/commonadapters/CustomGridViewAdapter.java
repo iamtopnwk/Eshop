@@ -70,7 +70,7 @@ public class CustomGridViewAdapter extends ArrayAdapter<Product> {
 		holder.txtTitle1.setText(pdata[position].getProductDescription());
 		holder.txtTitle2.setText(pdata[position].getProductPrice());
 		loader.displayImage(pdata[position].getImage(), holder.imageView, op, null);
-		holder.imgwishlistbtn.setOnClickListener(new View.OnClickListener() {
+	/*	holder.imgwishlistbtn.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
 
@@ -134,7 +134,7 @@ public class CustomGridViewAdapter extends ArrayAdapter<Product> {
 
 				}
 			}
-		});
+		});*/
 		return rowView;
 	}
 

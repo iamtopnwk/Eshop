@@ -111,6 +111,7 @@ public class CartListMainActivity extends Activity {
 						+ Double.valueOf(cartlistItems[i].getProductPrice());
 				System.out.println("totalAmount====="+totalAmount);
 			}
+			//if(cartlistItems!=null){
 			listAdapter = new CartListAdapter(CartListMainActivity.this,cartlistItems, op);
 			list.setAdapter(listAdapter);
 			list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -125,7 +126,7 @@ public class CartListMainActivity extends Activity {
 				}
 			});
 			
-			
+			//}
 			
 		}
 	

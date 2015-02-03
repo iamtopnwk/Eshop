@@ -35,7 +35,6 @@ import com.infotop.eshop.utilities.GetOperation;
 import com.infotop.eshop.utilities.JsonHelper;
 import com.infotop.eshop.utilities.PostOperation;
 import com.infotop.eshop.utilities.UserSessionManager;
-import com.infotop.eshop.wishlist.activity.WishListMainActivity;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.display.RoundedBitmapDisplayer;
 
@@ -171,17 +170,12 @@ public class ProductListViewActivity extends Activity {
 			Intent lgn = new Intent(this, EshopLoginActivity.class);
 			startActivity(lgn);
 			return true;
-		case R.id.abwishlist:
-			/*UserSessionManager usMgr = new UserSessionManager(this);
-			if (!usMgr.isUserLoggedIn()) {
-
-				Intent lgn1 = new Intent(this, NoItemFoundActivity.class);
-				startActivity(lgn1);
-			} else {*/
+		/*case R.id.abwishlist:
+			
 				Intent wl = new Intent(this, WishListMainActivity.class);
 				startActivity(wl);
-			//}
-			return true;
+			
+			return true;*/
 		case R.id.abTrackOrder:
 			return true;
 		case R.id.abRateApp:

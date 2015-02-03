@@ -31,7 +31,7 @@ import com.infotop.eshop.product.ProductListViewActivity;
 import com.infotop.eshop.urls.UrlInfo;
 import com.infotop.eshop.utilities.HttpServiceHandler;
 import com.infotop.eshop.utilities.UserSessionManager;
-import com.infotop.eshop.wishlist.activity.WishListMainActivity;
+
 
 public class SubListCategoryActivity extends Activity {
 
@@ -61,8 +61,7 @@ public class SubListCategoryActivity extends Activity {
 		tv.setText("In " + parentCategoryName);
 		// Create Expandable List and set it's properties
 
-		String serverURL = UrlInfo.SUBCATEGORY_PATH + selectedParentId
-				+ "&wt=json&indent=true";
+		String serverURL = UrlInfo.SUBCATEGORY_PATH + selectedParentId;
 
 		new LongOperation().execute(serverURL);
 	}
@@ -205,14 +204,14 @@ public class SubListCategoryActivity extends Activity {
 				startActivity(lgn);
 			}
 			return true;
-		case R.id.abwishlist:
+		/*case R.id.abwishlist:
 
 			// usMgr = new UserSessionManager(this);
 			
 				Intent wl = new Intent(this, WishListMainActivity.class);
 				startActivity(wl);
 		
-			return true;
+			return true;*/
 		case R.id.abTrackOrder:
 			return true;
 		case R.id.abRateApp:

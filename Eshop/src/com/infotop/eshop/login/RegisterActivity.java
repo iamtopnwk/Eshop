@@ -59,7 +59,7 @@ public class RegisterActivity extends Activity {
 			account.setMobileNumber(userMobile.getText().toString());
 			account.setShippingAddress(userSAdd.getText().toString());
 			account.setUserName(userName.getText().toString());
-			account.setServiceUrl(UrlInfo.REGISTER_PATH);
+			//account.setServiceUrl(UrlInfo.REGISTER_PATH);
 			AsyncTask<Object, Void, String> respData = new AccountPostOperation()
 					.execute(account);
 			String pcontent;

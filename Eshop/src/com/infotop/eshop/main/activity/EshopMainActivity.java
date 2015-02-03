@@ -29,7 +29,7 @@ import com.infotop.eshop.urls.UrlInfo;
 import com.infotop.eshop.utilities.GetOperation;
 import com.infotop.eshop.utilities.JsonHelper;
 import com.infotop.eshop.utilities.UserSessionManager;
-import com.infotop.eshop.wishlist.activity.WishListMainActivity;
+
 
 //Main Activity
 public class EshopMainActivity extends Activity {
@@ -185,13 +185,13 @@ public class EshopMainActivity extends Activity {
 				startActivity(lgn);
 			}
 			return true;
-		case R.id.abwishlist:
+		/*case R.id.abwishlist:
 
 			
 				Intent wl = new Intent(this, WishListMainActivity.class);
 				startActivity(wl);
 			
-			return true;
+			return true;*/
 		case R.id.abTrackOrder:
 			return true;
 		case R.id.abRateApp:

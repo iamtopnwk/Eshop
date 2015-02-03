@@ -1,4 +1,4 @@
-package com.infotop.eshop.specification;
+/*package com.infotop.eshop.specification;
 
 import org.json.JSONObject;
 
@@ -104,3 +104,4 @@ public class SpecificationClothActivity extends Activity {
 		return super.onOptionsItemSelected(item);
 	}
 }
+*/

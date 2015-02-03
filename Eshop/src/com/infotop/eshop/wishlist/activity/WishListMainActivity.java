@@ -1,6 +1,7 @@
-package com.infotop.eshop.wishlist.activity;
+/*package com.infotop.eshop.wishlist.activity;
 
 import java.util.concurrent.ExecutionException;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.AsyncTask;
@@ -10,6 +11,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+
 import com.infotop.eshop.R;
 import com.infotop.eshop.db.DatabaseHandler;
 import com.infotop.eshop.model.Product;
@@ -83,6 +85,7 @@ public class WishListMainActivity extends Activity {
 			
 			DatabaseHandler db=new DatabaseHandler(WishListMainActivity.this);
 			final Product[] wishlistItems = db.getAllWishListItems();
+			if(wishlistItems!=null){
 			listAdapter = new WishListAdapter(WishListMainActivity.this,wishlistItems,op);
 			list.setAdapter(listAdapter);
 			list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -98,12 +101,11 @@ public class WishListMainActivity extends Activity {
 
 				}
 			});	
+			}
 				
 		}
-			
-		
-
-		//System.gc();
+	
+		System.gc();
 	}
 	
 	@Override
@@ -126,3 +128,4 @@ public class WishListMainActivity extends Activity {
 	}
 
 }
+*/

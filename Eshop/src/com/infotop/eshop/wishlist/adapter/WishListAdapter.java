@@ -1,4 +1,4 @@
-package com.infotop.eshop.wishlist.adapter;
+/*package com.infotop.eshop.wishlist.adapter;
 
 
 import java.util.concurrent.ExecutionException;
@@ -115,9 +115,9 @@ public class WishListAdapter extends ArrayAdapter<Product> {
 								}
 
 								 }else{
-									 /*Product p= new Product();
+									 Product p= new Product();
 									 p.setId(pdata[id].getWishlistId());
-									 System.out.println("productttttttttt fro wish"+p.getId()); */
+									 System.out.println("productttttttttt fro wish"+p.getId()); 
 									 DatabaseHandler db = new DatabaseHandler(context);
 									 System.out.println("iiiiiiiiiiiiiiiiiiiiiiiii"+pdata[id].getUuid());
 									 db.deleteWishListItem(pdata[id].getUuid());
@@ -163,3 +163,4 @@ public class WishListAdapter extends ArrayAdapter<Product> {
 		public ImageView imageView1;
 	}
 }
+*/

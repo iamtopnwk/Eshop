@@ -194,7 +194,7 @@ public class ProductDetailsActivity extends Activity {
 	}
 
 	// functionalities for wishlistBtn
-	@SuppressLint("NewApi")
+	/*@SuppressLint("NewApi")
 	public void addToWishlist(View view) {
 
 		UserSessionManager usMgr = new UserSessionManager(
@@ -253,8 +253,6 @@ public class ProductDetailsActivity extends Activity {
 
 			System.out.println("uuuuuiiiiiddddddddddddd" + pdata.getUuid());
 
-			// db.addWishList(p);
-
 			Product[] pList = db.getAllWishListItems();
 			if (pList==null) {
 				db.addWishList(p);
@@ -263,10 +261,7 @@ public class ProductDetailsActivity extends Activity {
 				int counter = 0;
 				for (int i = 0; i < pList.length; i++) {
 
-					/*
-					 * System.out.println("IDidddddddddddd"+pList[i].getUuid());
-					 * System.out.println("IDidddddddddddd"+pdata.getUuid());
-					 */
+					
 					if (pList[i].getUuid().equals(p.getUuid())) {
 						counter++;
 					}
@@ -287,7 +282,7 @@ public class ProductDetailsActivity extends Activity {
 				}
 			}
 		}
-	}
+	}*/
 	public void getSpecifications(View view) {
 		if ("Mobiles".equalsIgnoreCase(childCategoryName)) {
 			Intent intSpecification = new Intent(this,
