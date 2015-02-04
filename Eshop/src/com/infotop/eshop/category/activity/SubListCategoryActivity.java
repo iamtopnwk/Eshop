@@ -14,14 +14,18 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ExpandableListView;
+import android.widget.GridView;
 import android.widget.ExpandableListView.OnChildClickListener;
 import android.widget.ExpandableListView.OnGroupClickListener;
 import android.widget.TextView;
 
 import com.infotop.eshop.R;
 import com.infotop.eshop.cartlist.activity.CartListMainActivity;
+import com.infotop.eshop.category.adapter.CategoryGridViewAdapter;
 import com.infotop.eshop.category.adapter.ExpandableListAdapter;
+import com.infotop.eshop.commonadapters.CustomGridViewAdapter;
 import com.infotop.eshop.login.ContactUsActivity;
 import com.infotop.eshop.login.EshopLoginActivity;
 import com.infotop.eshop.login.EshopPoliciesActivity;
@@ -29,6 +33,8 @@ import com.infotop.eshop.login.NoItemFoundActivity;
 import com.infotop.eshop.main.activity.EshopMainActivity;
 import com.infotop.eshop.model.Category;
 import com.infotop.eshop.model.Product;
+import com.infotop.eshop.product.ProductDetailsActivity;
+import com.infotop.eshop.product.ProductGridViewActivity;
 import com.infotop.eshop.product.ProductListViewActivity;
 import com.infotop.eshop.urls.UrlInfo;
 import com.infotop.eshop.utilities.GetOperation;
@@ -39,17 +45,18 @@ import com.infotop.eshop.utilities.UserSessionManager;
 
 public class SubListCategoryActivity extends Activity {
 
-	private static final String TAG_DOCS = "docs";
-	private static final String TAG_RESPONSE = "response";
-	private static final String TAG_CNAME = "categoryName";
-	private static final String TAG_UUID = "uuid";
-	private ArrayList<String> parentItems = new ArrayList<String>();
-	private ArrayList<String> parentUuids = new ArrayList<String>();
+	
+	/*private ArrayList<String> parentItems = new ArrayList<String>();
+	private ArrayList<String> parentUuids = new ArrayList<String>();*/
 	List<String> listDataHeader;
 	HashMap<String, List<String>> listDataChild;
 	HashMap<String, List<String>> listDataChild1;
 	ExpandableListView expandableList;
 	UserSessionManager usMgr;
+	CategoryGridViewAdapter gridAdapter;
+	GridView grid;
+	int imageId = 
+		      R.drawable.plus;
 
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -57,127 +64,47 @@ public class SubListCategoryActivity extends Activity {
 		String selectedParentId, parentCategoryName;
 
 		usMgr = new UserSessionManager(this);
-		// expandableList.setClickable(true);
-		TextView tv = (TextView) findViewById(R.id.selectedTextView);
+		grid = (GridView) findViewById(R.id.categoryGridView);
+	//	TextView tv = (TextView) findViewById(R.id.selectedTextView);
 		selectedParentId = getIntent().getExtras().getString("UUID");
-		// jsondata = getIntent().getExtras().getString("jsonData");
+	
 		parentCategoryName = getIntent().getExtras().getString("CategoryName");
-		tv.setText("In " + parentCategoryName);
-		// Create Expandable List and set it's properties
+		//tv.setText("In " + parentCategoryName);
+		
 
 		String serverURL = UrlInfo.SUBCATEGORY_PATH +"/" +selectedParentId;
 		AsyncTask<String, Void, String> data = new GetOperation().execute(serverURL);
-		//new LongOperation().execute(serverURL);
+		System.out.println("product subcategory id::--"+data);
+		
 		try {
 			final Category[] cdata= (Category[]) JsonHelper.toObject(data.get(), Category[].class);
-		 System.out.println(cdata);
+		    System.out.println("CDATA:::-"+cdata);
+		    
+			gridAdapter = new CategoryGridViewAdapter(SubListCategoryActivity.this,cdata,imageId);
+			grid.setAdapter(gridAdapter);
+			grid.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+				@Override
+				public void onItemClick(AdapterView<?> parent, View view,
+						int position, long id) {
+					
+					// pass Data to other Activity
+					Intent i = new Intent(SubListCategoryActivity.this,
+							ProductListViewActivity.class);
+					
+					i.putExtra("productId", cdata[position].getUuid());
+					i.putExtra("childCategoryName", cdata[position].getCategoryName());
+					System.out.println("GETUUID+++++++========"+cdata[position].getUuid());
+					//i.putExtra("childCategoryName", chilCategoryName);
+					startActivity(i);
+				}
+			});
 		}
 		catch(Exception e){
 			e.printStackTrace();
 		}
 	}
 
-	/*private class LongOperation extends AsyncTask<String, Void, Void> {
-
-		@Override
-		protected Void doInBackground(String... urls) {
-			String pcontent;
-			String ccontent;
-			JSONArray parentCategory = null;
-			JSONArray childCategory = null;
-			try {
-				HttpServiceHandler hs = new HttpServiceHandler();
-				pcontent = hs.httpContent(urls[0]);
-				JSONObject jsonObj;
-				jsonObj = new JSONObject(pcontent).getJSONObject(TAG_RESPONSE);
-				parentCategory = jsonObj.getJSONArray(TAG_DOCS);
-				listDataHeader = new ArrayList<String>();
-				listDataChild = new HashMap<String, List<String>>();
-				listDataChild1 = new HashMap<String, List<String>>();
-				for (int i = 0; i < parentCategory.length(); i++) {
-					JSONObject pc = parentCategory.getJSONObject(i);
-					parentItems.add(pc.getString(TAG_CNAME));
-					parentUuids.add(pc.getString(TAG_UUID));
-					listDataHeader.add(parentItems.get(i));
-					List<String> pcName = new ArrayList<String>();
-					List<String> chidIdUUid = new ArrayList<String>();
-					ccontent = hs.httpContent(UrlInfo.SUBCATEGORY_PATH
-							+ parentUuids.get(i));
-					JSONObject jsonObj1;
-					jsonObj1 = new JSONObject(ccontent)
-							.getJSONObject(TAG_RESPONSE);
-					childCategory = jsonObj1.getJSONArray(TAG_DOCS);
-					for (int j = 0; j < childCategory.length(); j++) {
-						JSONObject cc = childCategory.getJSONObject(j);
-						pcName.add(cc.getString(TAG_CNAME));
-						chidIdUUid.add(cc.getString(TAG_UUID));
-					}
-					listDataChild.put(listDataHeader.get(i), pcName);
-					listDataChild1.put(listDataHeader.get(i), chidIdUUid);
-				}
-
-			} catch (Exception ex) {
-				System.out.println("Exception e:" + ex.getMessage());
-			}
-			*//*****************************************************//*
-			return null;
-		}
-
-		protected void onPostExecute(Void unused) {
-			expandableList = (ExpandableListView) findViewById(R.id.catexpeId);
-			expandableList.setGroupIndicator(null);
-			// Create the Adapter
-			ExpandableListAdapter adapter = new ExpandableListAdapter(
-					SubListCategoryActivity.this, listDataHeader, listDataChild);
-
-			// Set the Adapter to expandableList
-			expandableList.setAdapter(adapter);
-			System.gc();
-			expandableList.setOnGroupClickListener(new OnGroupClickListener() {
-				@Override
-				public boolean onGroupClick(ExpandableListView parent, View v,
-						int groupPosition, long id) {
-					if (listDataChild.get(parentItems.get(groupPosition))
-							.size() == 0) {
-						System.out.println("Group Value is:"
-								+ parentUuids.get(groupPosition));
-						Intent i = new Intent(getApplicationContext(),
-								ProductListViewActivity.class);
-						i.putExtra("ccId", parentUuids.get(groupPosition));
-						i.putExtra("childCategoryName",
-								listDataHeader.get(groupPosition));
-						startActivity(i);
-					}
-					return false;
-
-				}
-			});
-			expandableList.setOnChildClickListener(new OnChildClickListener() {
-				@Override
-				public boolean onChildClick(ExpandableListView parent, View v,
-						int groupPosition, int childPosition, long id) {
-
-					
-					 * * Toast.makeText( getApplicationContext(),
-					 * "The position of child category:" +
-					 * childData1.get(parentItems.get(groupPosition))
-					 * .get(childPosition), Toast.LENGTH_SHORT) .show();
-					 
-
-					Intent i = new Intent(getApplicationContext(),
-							ProductListViewActivity.class);
-					i.putExtra("ccId",
-							listDataChild1.get(parentItems.get(groupPosition))
-									.get(childPosition));
-					i.putExtra("childCategoryName",
-							listDataHeader.get(groupPosition));
-					startActivity(i);
-					return false;
-				}
-			});
-		}
-	}*/
-
+	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.

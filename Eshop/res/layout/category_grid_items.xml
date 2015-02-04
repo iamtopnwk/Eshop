@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+     android:layout_height="210dp"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+   android:background="@drawable/edittextshape"
+    >
+      <ImageView
+        android:id="@+id/grid_image"
+        android:layout_width="25dp"
+        android:layout_height="25dp">
+    </ImageView>
+
+    <TextView
+        android:layout_below="@+id/grid_image"
+        android:id="@+id/category_Name"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:textColor="#040404"
+        android:textSize="10sp"
+        android:typeface="sans" />
+
+   
+    
+</RelativeLayout>

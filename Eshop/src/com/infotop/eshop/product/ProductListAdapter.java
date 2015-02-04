@@ -58,8 +58,8 @@ public class ProductListAdapter extends ArrayAdapter<Product> {
 					.findViewById(R.id.productprice);
 			holder.imageView = (ImageView) rowView
 					.findViewById(R.id.productImg);
-			holder.imgwishlistbtn = (ImageView) rowView
-					.findViewById(R.id.imgwishlistbtn);
+			/*holder.imgwishlistbtn = (ImageView) rowView
+					.findViewById(R.id.imgwishlistbtn);*/
 			rowView.setTag(holder);
 		} else {
 			holder = (ViewHolder) rowView.getTag();
@@ -68,7 +68,7 @@ public class ProductListAdapter extends ArrayAdapter<Product> {
 		holder.txtTitle.setText(pdata[position].getProductName());
 		holder.txtTitle1.setText(pdata[position].getProductDescription());
 		holder.txtTitle2.setText(pdata[position].getProductPrice());
-		loader.displayImage(pdata[position].getImage(), holder.imageView, op, null);
+		loader.displayImage(pdata[position].getMainimage(), holder.imageView, op, null);
 
 		/*holder.imgwishlistbtn.setOnClickListener(new View.OnClickListener() {
 =======

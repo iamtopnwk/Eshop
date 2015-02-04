@@ -67,12 +67,12 @@
         android:textSize="12sp"
         android:textStyle="bold" />
 
-    <ImageView
+   <!--  <ImageView
         android:id="@+id/imgwishlistbtn"
         android:layout_width="30dp"
         android:layout_height="30dp"
         android:layout_toRightOf="@+id/thumbnail"
         android:contentDescription="@string/wish_list"
-        android:src="@drawable/icon_wishlist" />
+        android:src="@drawable/icon_wishlist" /> -->
 
 </RelativeLayout>

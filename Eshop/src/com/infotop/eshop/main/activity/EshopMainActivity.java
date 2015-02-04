@@ -69,8 +69,7 @@ public class EshopMainActivity extends Activity {
 		AsyncTask<String, Void, String> data = new GetOperation()
 				.execute(serverURL);
 		try {
-			final Category[] navDrawerItems = (Category[]) JsonHelper.toObject(
-					data.get(), Category[].class);
+			final Category[] navDrawerItems = (Category[]) JsonHelper.toObject(data.get(), Category[].class);
 			adapter = new NavDrawerListAdapter(getApplicationContext(),
 					navDrawerItems);
 			mDrawerList.setAdapter(adapter);

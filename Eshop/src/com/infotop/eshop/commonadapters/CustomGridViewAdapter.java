@@ -28,7 +28,6 @@ public class CustomGridViewAdapter extends ArrayAdapter<Product> {
 
 	private final Activity context;
 	private final Product[] pdata;
-	private String emailId;
 	private final DisplayImageOptions op;
 	protected ImageLoader loader = ImageLoader.getInstance();
 
@@ -59,8 +58,8 @@ public class CustomGridViewAdapter extends ArrayAdapter<Product> {
 					.findViewById(R.id.product_price);
 			holder.imageView = (ImageView) rowView
 					.findViewById(R.id.productImg);
-			holder.imgwishlistbtn = (ImageView) rowView
-					.findViewById(R.id.imgwishlistbtn);
+		/*	holder.imgwishlistbtn = (ImageView) rowView
+					.findViewById(R.id.imgwishlistbtn);*/
 			rowView.setTag(holder);
 		} else {
 			holder = (ViewHolder) rowView.getTag();
@@ -69,7 +68,7 @@ public class CustomGridViewAdapter extends ArrayAdapter<Product> {
 		holder.txtTitle.setText(pdata[position].getProductName());
 		holder.txtTitle1.setText(pdata[position].getProductDescription());
 		holder.txtTitle2.setText(pdata[position].getProductPrice());
-		loader.displayImage(pdata[position].getImage(), holder.imageView, op, null);
+		loader.displayImage(pdata[position].getMainimage(), holder.imageView, op, null);
 	/*	holder.imgwishlistbtn.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
@@ -143,7 +142,7 @@ public class CustomGridViewAdapter extends ArrayAdapter<Product> {
 		public TextView txtTitle1;
 		public TextView txtTitle2;
 		public ImageView imageView;
-		public ImageView imgwishlistbtn;
+		//public ImageView imgwishlistbtn;
 
 	}
 

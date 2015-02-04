@@ -104,20 +104,20 @@ public class WishListMainActivity extends Activity {
 
 				}
 			});	
-<<<<<<< HEAD
+
 			}
 				
 		}
 	
 		System.gc();
-=======
+
 		}		
 		
 			
 		
 
 		//System.gc();
->>>>>>> branch 'master' of https://github.com/iamtopnwk/Eshop.git
+
 	}
 	
 	@Override
@@ -144,5 +144,5 @@ public class WishListMainActivity extends Activity {
 		}
 
 }
-<<<<<<< HEAD
+
 */
