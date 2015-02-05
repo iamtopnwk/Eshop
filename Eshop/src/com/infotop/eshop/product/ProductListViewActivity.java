@@ -43,11 +43,11 @@ public class ProductListViewActivity extends Activity {
 
 	
 	
-	String subCatId;
+	String productId;
 	DisplayImageOptions op;
 	ImageButton ib;
 	UserSessionManager usMgr;
-	String chilCategoryName;
+	//String chilCategoryName;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -68,11 +68,11 @@ public class ProductListViewActivity extends Activity {
 				.build();
 
 		list = (ListView) findViewById(R.id.productListView);
-		subCatId = getIntent().getExtras().getString("ccId");
-		chilCategoryName = getIntent().getExtras().getString(
-				"childCategoryName");
-		System.out.println("ChildNameProductList:" + chilCategoryName);
-		String serverURL = UrlInfo.GET_ALLPRODUCTS +"/"+ subCatId;
+		productId = getIntent().getExtras().getString("productId");
+		/*chilCategoryName = getIntent().getExtras().getString(
+				"childCategoryName");*/
+		//System.out.println("ChildNameProductList:" + chilCategoryName);
+		String serverURL = UrlInfo.GET_ALLPRODUCTS +"/"+ productId;
 		
 		AsyncTask<String, Void, String> data = new GetOperation().execute(serverURL);
 		
@@ -80,6 +80,7 @@ public class ProductListViewActivity extends Activity {
 			final Product[] pdata= (Product[]) JsonHelper.toObject(data.get(), Product[].class);
 			System.out.println("data::::::"+data.get());
 			System.out.println("productId---"+pdata[0].getUuid());
+			
             listAdapter=new ProductListAdapter(ProductListViewActivity.this, pdata, op);
 		
 			
@@ -104,7 +105,7 @@ public class ProductListViewActivity extends Activity {
 							ProductDetailsActivity.class);
 					// i.putStringArrayListExtra("productData", productData);
 					i.putExtra("productId", pdata[position].getUuid());
-					i.putExtra("childCategoryName", chilCategoryName);
+					//i.putExtra("childCategoryName", chilCategoryName);
 					startActivity(i);
 				}
 			});
@@ -131,8 +132,8 @@ public class ProductListViewActivity extends Activity {
 		System.out.println("Button is GridView");
 		Intent s = new Intent(ProductListViewActivity.this,
 				ProductGridViewActivity.class);
-		s.putExtra("ccId", subCatId);
-		s.putExtra("childCategoryName", chilCategoryName);
+		s.putExtra("ccId", productId);
+		//s.putExtra("childCategoryName", chilCategoryName);
 		startActivity(s);
 	}
 

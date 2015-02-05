@@ -441,8 +441,8 @@ public class ProductDetailsActivity extends Activity {
 				p.setProductName(pdata.getProductName());
 				p.setProductDescription(pdata.getProductDescription());
 				p.setProductPrice(pdata.getProductPrice());
-				p.setImage(mediumimageUrls.get(0));
-				System.out.println("jjjjjjjjjjjjjjjjjjjj" + p.getImage());
+				p.setMainimage(mediumimageUrls.get(0));
+				System.out.println("jjjjjjjjjjjjjjjjjjjj" + p.getMainimage());
 				// pdata.setImage(mediumimageUrls.get(0));
 
 				System.out.println("uuuuuiiiiiddddddddddddd" + pdata.getUuid());
@@ -472,7 +472,7 @@ public class ProductDetailsActivity extends Activity {
 						db.addCartList(p);
 						System.out.println("wiishlissstttgetpdata---------::::"
 								+ pdata.getProductName());
-						System.out.println("Image URL" + pdata.getImage());
+						System.out.println("Image URL" + pdata.getMainimage());
 						Toast.makeText(ProductDetailsActivity.this,
 								"Your item is added to Wish List",
 								Toast.LENGTH_SHORT).show();
@@ -496,7 +496,7 @@ public class ProductDetailsActivity extends Activity {
 				pdt.setProductPrice(pdata.getProductPrice());
 				pdt.setProductDescription(pdata.getProductDescription());
 				System.out.println("pdata product price::::::"+pdata.getProductPrice());
-				pdt.setImage(mediumimageUrls.get(0));
+				pdt.setMainimage(mediumimageUrls.get(0));
 
 				AsyncTask<Object, Void, String> respDataCartItem = new PostOperation()
 						.execute(pdt);

@@ -49,9 +49,10 @@ public class NavDrawerListAdapter extends ArrayAdapter<Category> {
        // ImageView imgIcon = (ImageView) convertView.findViewById(R.id.icon);
         TextView txtTitle = (TextView) convertView.findViewById(R.id.title);
      
-        //imgIcon.setImageResource(navDrawerItems.get(position).getIcon());        
+        //imgIcon.setImageResource(navDrawerItems.get(position).getIcon());  
+        System.out.println("POSITION===="+position);
         txtTitle.setText(navDrawerItems[position].getCategoryName());
-
+        System.out.println("POSITION===="+navDrawerItems[position].getCategoryName());
         return convertView;
 	}
 

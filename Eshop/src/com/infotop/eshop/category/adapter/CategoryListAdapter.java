@@ -37,8 +37,7 @@ public class CategoryListAdapter extends ArrayAdapter<String> {
 		View rowView = inflater.inflate(R.layout.category_list, null);
 		System.out.println("Cate Context value is:" + context);
 		TextView txtTitle = (TextView) rowView.findViewById(R.id.subCategory);
-		TextView txtTitle1 = (TextView) rowView
-				.findViewById(R.id.subCategoryDesc);
+		TextView txtTitle1 = (TextView) rowView.findViewById(R.id.subCategoryDesc);
 		ImageView imageView = (ImageView) rowView.findViewById(R.id.subimg);
 		imageView.setImageResource(imageId[position]);
 		txtTitle.setText(web[position]);

@@ -9,7 +9,7 @@ public class Product {
 	private String emailId;
 	private String wishlistId;
 	private String productDescription;
-	private String image;
+	private String mainimage;
 	private String uuid;
 	private String cartlistId;
 	private ImageList[] imageList ;
@@ -26,6 +26,14 @@ public class Product {
 		return cartlistId;
 	}
 
+	public String getMainimage() {
+		return mainimage;
+	}
+
+	public void setMainimage(String mainimage) {
+		this.mainimage = mainimage;
+	}
+
 	public void setCartlistId(String cartlistId) {
 		this.cartlistId = cartlistId;
 	}
@@ -38,13 +46,7 @@ public class Product {
 		this.uuid = uuid;
 	}
 
-	public String getImage() {
-		return image;
-	}
-
-	public void setImage(String image) {
-		this.image = image;
-	}
+	
 
 	public String getProductDescription() {
 		return productDescription;
