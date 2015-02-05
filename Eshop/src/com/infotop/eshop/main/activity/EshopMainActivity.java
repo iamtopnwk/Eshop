@@ -1,6 +1,7 @@
 	package com.infotop.eshop.main.activity;
 
 import android.app.Activity;
+import android.app.Dialog;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.content.Intent;
@@ -13,8 +14,12 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.AdapterView;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.infotop.eshop.R;
 import com.infotop.eshop.cartlist.activity.CartListMainActivity;
@@ -181,8 +186,57 @@ public class EshopMainActivity extends Activity {
 			return true;
 		case R.id.abLogin:
 			if (!usMgr.isUserLoggedIn()) {
-				Intent lgn = new Intent(this, EshopLoginActivity.class);
-				startActivity(lgn);
+				final Dialog login = new Dialog(this);
+				login.setContentView(R.layout.login_dialog);
+				login.setTitle("Login to Eshop");
+				
+				Button btnLogin = (Button) login.findViewById(R.id.btnLogin);
+				Button btnCancel = (Button) login.findViewById(R.id.btnCancel);
+				final EditText txtUsername = (EditText)login.findViewById(R.id.txtUsername);
+				final EditText txtPassword = (EditText)login.findViewById(R.id.txtPassword);
+				
+				btnLogin.setOnClickListener(new View.OnClickListener() {
+					@Override
+					public void onClick(View v) {
+						if(txtUsername.getText().toString().trim().length() > 0 && txtPassword.getText().toString().trim().length() > 0){
+							
+						
+						if(txtUsername.getText().toString().equals("admin") && txtPassword.getText().toString().equals("admin"))
+						{
+						// Validate Your login credential here than display message
+							usMgr.createUserLoginSession("Admin", "pktarei@gmail.com");
+						Toast.makeText(EshopMainActivity.this,
+								"Login Sucessfull", Toast.LENGTH_LONG).show();
+						
+						Intent intent =new Intent(EshopMainActivity.this,EshopMainActivity.class);
+						startActivity(intent);
+						// Redirect to dashboard / home screen.
+						
+						login.dismiss();
+						}
+						else
+						{
+							Toast.makeText(EshopMainActivity.this,
+									" Username / Password is incorrect ", Toast.LENGTH_LONG).show();
+
+						}
+					}else{
+						Toast.makeText(EshopMainActivity.this,
+								"Please enter Username and Password", Toast.LENGTH_LONG).show();
+					}
+					}	
+					});
+					
+				btnCancel.setOnClickListener(new View.OnClickListener() {
+					@Override
+					public void onClick(View v) {
+						login.dismiss();
+					}
+				});
+
+				// Make dialog box visible.
+				login.show();
+			
 			}
 			return true;
 		/*case R.id.abwishlist:
