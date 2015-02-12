@@ -9,10 +9,19 @@ public class Product {
 	private String emailId;
 	private String wishlistId;
 	private String productDescription;
-	private String mainimage;
+	private String mainImage;
 	private String uuid;
 	private String cartlistId;
 	private ImageList[] imageList ;
+	private String imagerootpath;
+
+	public String getImagerootpath() {
+		return imagerootpath;
+	}
+
+	public void setImagerootpath(String imagerootpath) {
+		this.imagerootpath = imagerootpath;
+	}
 
 	public ImageList[] getImageList() {
 		return imageList;
@@ -26,12 +35,14 @@ public class Product {
 		return cartlistId;
 	}
 
-	public String getMainimage() {
-		return mainimage;
+	
+
+	public String getMainImage() {
+		return mainImage;
 	}
 
-	public void setMainimage(String mainimage) {
-		this.mainimage = mainimage;
+	public void setMainImage(String mainImage) {
+		this.mainImage = mainImage;
 	}
 
 	public void setCartlistId(String cartlistId) {

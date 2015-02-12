@@ -67,6 +67,7 @@ public class ProductDetailsActivity extends Activity {
 	ViewHolder holder;
 	DisplayImageOptions op;
 	String productIdSpecification;
+	String image;
 
 	ImageLoader loader = ImageLoader.getInstance();
 	/*
@@ -111,7 +112,7 @@ public class ProductDetailsActivity extends Activity {
 		 * productUUid);
 		 */
 
-		String serverURL = UrlInfo.INDVProduct + productUUid;
+		String serverURL = UrlInfo.INDVProduct +"/"+ productUUid;
 		AsyncTask<String, Void, String> productListData = new GetOperation()
 				.execute(serverURL);
 		// Use AsyncTask execute Method To Prevent ANR Problem
@@ -130,20 +131,25 @@ public class ProductDetailsActivity extends Activity {
 			holder.txtTitle.setText(pdata.getProductName());
 			holder.txtTitle1.setText(pdata.getProductDescription());
 			holder.txtTitle2.setText(pdata.getProductPrice());
+			 /*image=pdata.getImagerootpath()+pdata.getMainImage();
+			loader.displayImage(image, holder.imageView, op,
+					null);*/
 
 			ImageList[] images = pdata.getImageList();
 			System.out.println("images length---------" + images.length);
+			System.out.println("images data---------" + images[0].toString());
 
 			for (int i = 0; i < images.length; i++) {
 
 				if (images[i].getImageType().equals("2")) {
-					mediumimageUrls.add(images[i].getImageValue());
+					mediumimageUrls.add(pdata.getImagerootpath()+images[i].getImageValue());
+					System.out.println("jk=="
+							+ pdata.getImagerootpath()+images[i].getImageValue());
 				}
 			}
 			loader.displayImage(mediumimageUrls.get(0), holder.imageView, op,
 					null);
-			System.out.println("jksssssssssssssssssssssssssssssssss"
-					+ mediumimageUrls.get(0));
+			
 
 			hAdapter = new ProductDetailsHorizontalAdapter(
 					ProductDetailsActivity.this, mediumimageUrls, op);
@@ -441,8 +447,9 @@ public class ProductDetailsActivity extends Activity {
 				p.setProductName(pdata.getProductName());
 				p.setProductDescription(pdata.getProductDescription());
 				p.setProductPrice(pdata.getProductPrice());
-				p.setMainimage(mediumimageUrls.get(0));
-				System.out.println("jjjjjjjjjjjjjjjjjjjj" + p.getMainimage());
+				p.setMainImage(mediumimageUrls.get(0));
+				
+				System.out.println("jjjjjjjjjjjjjjjjjjjj" + p.getMainImage());
 				// pdata.setImage(mediumimageUrls.get(0));
 
 				System.out.println("uuuuuiiiiiddddddddddddd" + pdata.getUuid());
@@ -465,16 +472,16 @@ public class ProductDetailsActivity extends Activity {
 					}
 					if (counter > 0) {
 						Toast.makeText(ProductDetailsActivity.this,
-								"Your item is already added to Wish List",
+								"Your item is already added to Cart List",
 								Toast.LENGTH_SHORT).show();
 					} else {
 
 						db.addCartList(p);
-						System.out.println("wiishlissstttgetpdata---------::::"
+						System.out.println("Cartlissstttgetpdata---------::::"
 								+ pdata.getProductName());
-						System.out.println("Image URL" + pdata.getMainimage());
+						System.out.println("Image URL" + pdata.getMainImage());
 						Toast.makeText(ProductDetailsActivity.this,
-								"Your item is added to Wish List",
+								"Your item is added to Cart List",
 								Toast.LENGTH_SHORT).show();
 					}
 				}
@@ -496,7 +503,7 @@ public class ProductDetailsActivity extends Activity {
 				pdt.setProductPrice(pdata.getProductPrice());
 				pdt.setProductDescription(pdata.getProductDescription());
 				System.out.println("pdata product price::::::"+pdata.getProductPrice());
-				pdt.setMainimage(mediumimageUrls.get(0));
+				pdt.setMainImage(image);
 
 				AsyncTask<Object, Void, String> respDataCartItem = new PostOperation()
 						.execute(pdt);

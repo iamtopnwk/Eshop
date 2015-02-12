@@ -92,7 +92,7 @@ public class SubListCategoryActivity extends Activity {
 							ProductListViewActivity.class);
 					
 					i.putExtra("productId", cdata[position].getUuid());
-					i.putExtra("childCategoryName", cdata[position].getCategoryName());
+					i.putExtra("childCategoryName", cdata[position].getCategoryDescription());
 					System.out.println("GETUUID+++++++========"+cdata[position].getUuid());
 					//i.putExtra("childCategoryName", chilCategoryName);
 					startActivity(i);

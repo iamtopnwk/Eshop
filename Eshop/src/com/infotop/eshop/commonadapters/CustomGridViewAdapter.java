@@ -68,7 +68,7 @@ public class CustomGridViewAdapter extends ArrayAdapter<Product> {
 		holder.txtTitle.setText(pdata[position].getProductName());
 		holder.txtTitle1.setText(pdata[position].getProductDescription());
 		holder.txtTitle2.setText(pdata[position].getProductPrice());
-		loader.displayImage(pdata[position].getMainimage(), holder.imageView, op, null);
+		loader.displayImage(pdata[position].getMainImage(), holder.imageView, op, null);
 	/*	holder.imgwishlistbtn.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {

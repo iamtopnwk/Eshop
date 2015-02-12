@@ -68,7 +68,7 @@
         android:textColor="#FF0000"
         android:textStyle="bold" />
     
-   <!--  <ImageView android:layout_width="30dp"
+    <!-- <ImageView android:layout_width="30dp"
         android:layout_height="30dp"
         android:id="@+id/imgwishlistbtn"
         android:src="@drawable/icon_wishlist"

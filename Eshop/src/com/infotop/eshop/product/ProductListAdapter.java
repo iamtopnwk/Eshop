@@ -68,8 +68,12 @@ public class ProductListAdapter extends ArrayAdapter<Product> {
 		holder.txtTitle.setText(pdata[position].getProductName());
 		holder.txtTitle1.setText(pdata[position].getProductDescription());
 		holder.txtTitle2.setText(pdata[position].getProductPrice());
-		loader.displayImage(pdata[position].getMainimage(), holder.imageView, op, null);
-
+		String rootpath = pdata[0].getImagerootpath();
+		String mainimageString = rootpath+pdata[position].getMainImage();
+		System.out.println("imageeee=="+mainimageString);
+		System.out.println("image2nd==="+pdata[position].getMainImage());
+		loader.displayImage(mainimageString, holder.imageView, op, null);
+         System.out.println("main image===="+mainimageString);
 		/*holder.imgwishlistbtn.setOnClickListener(new View.OnClickListener() {
 =======
 

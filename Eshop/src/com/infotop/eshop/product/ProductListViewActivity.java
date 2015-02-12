@@ -8,6 +8,7 @@ import java.util.concurrent.ExecutionException;
 import android.annotation.SuppressLint;
 import android.app.ActionBar;
 import android.app.Activity;
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -18,8 +19,11 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnTouchListener;
 import android.widget.AdapterView;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.infotop.eshop.R;
 import com.infotop.eshop.cartlist.activity.CartListMainActivity;
@@ -47,7 +51,7 @@ public class ProductListViewActivity extends Activity {
 	DisplayImageOptions op;
 	ImageButton ib;
 	UserSessionManager usMgr;
-	//String chilCategoryName;
+	String chilCategoryName;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -58,6 +62,7 @@ public class ProductListViewActivity extends Activity {
 		ActionBar actionBar = getActionBar();
 		ProductListAdapter listAdapter;
 		ListView list;
+		usMgr = new UserSessionManager(this);
 		// Enabling Back navigation on Action Bar icon
 		actionBar.setDisplayHomeAsUpEnabled(true);
 		op = new DisplayImageOptions.Builder()
@@ -69,9 +74,8 @@ public class ProductListViewActivity extends Activity {
 
 		list = (ListView) findViewById(R.id.productListView);
 		productId = getIntent().getExtras().getString("productId");
-		/*chilCategoryName = getIntent().getExtras().getString(
-				"childCategoryName");*/
-		//System.out.println("ChildNameProductList:" + chilCategoryName);
+		chilCategoryName = getIntent().getExtras().getString("childCategoryName");
+		System.out.println("ChildNameProductList:" + chilCategoryName);
 		String serverURL = UrlInfo.GET_ALLPRODUCTS +"/"+ productId;
 		
 		AsyncTask<String, Void, String> data = new GetOperation().execute(serverURL);
@@ -105,7 +109,7 @@ public class ProductListViewActivity extends Activity {
 							ProductDetailsActivity.class);
 					// i.putStringArrayListExtra("productData", productData);
 					i.putExtra("productId", pdata[position].getUuid());
-					//i.putExtra("childCategoryName", chilCategoryName);
+					i.putExtra("childCategoryName", chilCategoryName);
 					startActivity(i);
 				}
 			});
@@ -168,8 +172,59 @@ public class ProductListViewActivity extends Activity {
 			
 			return true;
 		case R.id.abLogin:
-			Intent lgn = new Intent(this, EshopLoginActivity.class);
-			startActivity(lgn);
+			if (!usMgr.isUserLoggedIn()) {
+				final Dialog login = new Dialog(this);
+				login.setContentView(R.layout.login_dialog);
+				login.setTitle("Login to Eshop");
+				
+				Button btnLogin = (Button) login.findViewById(R.id.btnLogin);
+				Button btnCancel = (Button) login.findViewById(R.id.btnCancel);
+				final EditText txtUsername = (EditText)login.findViewById(R.id.txtUsername);
+				final EditText txtPassword = (EditText)login.findViewById(R.id.txtPassword);
+				
+				btnLogin.setOnClickListener(new View.OnClickListener() {
+					@Override
+					public void onClick(View v) {
+						if(txtUsername.getText().toString().trim().length() > 0 && txtPassword.getText().toString().trim().length() > 0){
+							
+						
+						if(txtUsername.getText().toString().equals("admin") && txtPassword.getText().toString().equals("admin"))
+						{
+						// Validate Your login credential here than display message
+							usMgr.createUserLoginSession("Admin", "pktarei@gmail.com");
+						Toast.makeText(ProductListViewActivity.this,
+								"Login Sucessfull", Toast.LENGTH_LONG).show();
+						
+						Intent intent =new Intent(ProductListViewActivity.this,EshopMainActivity.class);
+						startActivity(intent);
+						// Redirect to dashboard / home screen.
+						
+						login.dismiss();
+						}
+						else
+						{
+							Toast.makeText(ProductListViewActivity.this,
+									" Username / Password is incorrect ", Toast.LENGTH_LONG).show();
+
+						}
+					}else{
+						Toast.makeText(ProductListViewActivity.this,
+								"Please enter Username and Password", Toast.LENGTH_LONG).show();
+					}
+					}	
+					});
+					
+				btnCancel.setOnClickListener(new View.OnClickListener() {
+					@Override
+					public void onClick(View v) {
+						login.dismiss();
+					}
+				});
+
+				// Make dialog box visible.
+				login.show();
+			
+			}
 			return true;
 		/*case R.id.abwishlist:
 			

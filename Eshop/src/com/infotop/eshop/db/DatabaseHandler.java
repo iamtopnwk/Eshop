@@ -68,7 +68,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 		values.put(KEY_NAME, plist.getProductName());
 		values.put(KEY_DESCRIPTION, plist.getProductDescription());
 		values.put(KEY_PRICE, plist.getProductPrice());
-		values.put(KEY_IMAGE, plist.getMainimage());
+		values.put(KEY_IMAGE, plist.getMainImage());
 
 		// Inserting Row
 		db.insert(TABLE_WISHLIST, null, values);
@@ -83,7 +83,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 		values.put(KEY_NAME, pList.getProductName());
 		values.put(KEY_DESCRIPTION, pList.getProductDescription());
 		values.put(KEY_PRICE, pList.getProductPrice());
-		values.put(KEY_IMAGE, pList.getMainimage());
+		values.put(KEY_IMAGE, pList.getMainImage());
 		// Inserting Row
 		db.insert(TABLE_CARTLIST, null, values);
 		db.close(); // Closing database connection
@@ -110,7 +110,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 			p.setProductName(cursor.getString(2));
 			p.setProductDescription(cursor.getString(3));
 			p.setProductPrice(cursor.getString(4));
-			p.setMainimage(cursor.getString(5));
+			p.setMainImage(cursor.getString(5));
 			wListdata[i]=p;
 			i++;
 	        } while (cursor.moveToNext());
@@ -138,7 +138,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 				p.setProductName(cursor.getString(2));
 				p.setProductDescription(cursor.getString(3));
 				p.setProductPrice(cursor.getString(4));
-				p.setMainimage(cursor.getString(5));
+				p.setMainImage(cursor.getString(5));
 				
 				cartListData[i]=p;
 				i++;

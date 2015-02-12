@@ -114,6 +114,7 @@ public class CartListMainActivity extends Activity {
 				totalAmount = totalAmount
 						+ Double.valueOf(cartlistItems[i].getProductPrice());
 				System.out.println("totalAmount====="+totalAmount);
+				System.out.println("main image===:"+cartlistItems[i].getMainImage());
 			}
 			//if(cartlistItems!=null){
 			listAdapter = new CartListAdapter(CartListMainActivity.this,cartlistItems, op);

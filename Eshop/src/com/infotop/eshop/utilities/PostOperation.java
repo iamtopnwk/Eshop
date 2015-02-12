@@ -26,7 +26,7 @@ public class PostOperation extends AsyncTask<Object, Void, String> {
 			json.accumulate("productName", product.getProductName());
 			json.accumulate("productDescription", product.getProductDescription());
 			json.accumulate("productPrice", product.getProductPrice());
-			json.accumulate("image", product.getMainimage());
+			json.accumulate("image", product.getMainImage());
 			jsonData = json.toString();
 			pcontent = hs.httpPost(product.getServiceUrl(), jsonData);
 			 System.out.println("UUID=========" +product.getUuid());

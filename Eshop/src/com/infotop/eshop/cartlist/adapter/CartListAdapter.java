@@ -64,7 +64,7 @@ public class CartListAdapter extends ArrayAdapter<Product> {
 		System.out.println("product name"+pdata[position].getProductName());
 		holder.txtTitle1.setText(pdata[position].getProductDescription());
 		holder.txtTitle2.setText(pdata[position].getProductPrice());
-		loader.displayImage(pdata[position].getMainimage(), holder.imageView, op, null);
+		loader.displayImage(pdata[position].getMainImage(), holder.imageView, op, null);
 		
 		holder.imageView1.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
